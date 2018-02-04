@@ -13,7 +13,7 @@ namespace FPDL.Test.Integration
         public void ToFPDLDoc()
         {
             // Dumb test, but you get wot you pays for....
-            XDocument fpdl_doc = XDocument.Load("Deploy1.xml");
+            XDocument fpdl_doc = XDocument.Load(@"..\..\..\FPDL\Test Data\Deploy1.xml");
             DeployObject deploy = new DeployObject(fpdl_doc.Element("Deploy"));
 
             XElement output_doc = deploy.ToFPDL();

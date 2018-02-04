@@ -39,8 +39,7 @@ namespace FPDL.Deploy
         /// <param name="fpdl"></param>
         public void FromFPDL(XElement fpdl)
         {
-            // Now parse the FPDL file            
-            if (fpdl.Element("Deploy") == null)
+            if (fpdl.Name != "Deploy")
                 throw new ApplicationException("Cannot parse: Not an FPDL Deploy file");
 
             ConfigMgmt = new ConfigMgmt(fpdl.Descendants("configMgmt").FirstOrDefault());

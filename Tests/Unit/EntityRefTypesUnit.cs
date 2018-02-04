@@ -4,7 +4,7 @@ using System.Xml.Linq;
 using FPDL.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UnitTests
+namespace FPDL.Test.Unit
 {
 
     #region Object
