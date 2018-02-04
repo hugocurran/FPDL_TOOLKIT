@@ -63,7 +63,7 @@
     <Compile Include="Design\Federate.cs" />
     <Compile Include="Design\Federation.cs" />
     <Compile Include="Design\Filter.cs" />
-    <Compile Include="Design\Publish.cs" />
+    <Compile Include="Common\Publish.cs" />
     <Compile Include="FpdlDeployParser.cs" />
     <Compile Include="FpdlDesignParser.cs" />
     <Compile Include="FpdlPatternParser.cs" />
