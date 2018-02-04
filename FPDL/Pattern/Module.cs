@@ -42,7 +42,11 @@ namespace FPDL.Pattern
             /// <summary>
             /// Vendor extension
             /// </summary>
-            extension
+            extension,
+            /// <summary>
+            /// Host
+            /// </summary>
+            host
         }
         /// <summary>
         /// Module type

@@ -1045,6 +1045,11 @@
             Vendor extension
             </summary>
         </member>
+        <member name="F:FPDL.Pattern.Module.Type.host">
+            <summary>
+            Host
+            </summary>
+        </member>
         <member name="F:FPDL.Pattern.Module.ModuleType">
             <summary>
             Module type

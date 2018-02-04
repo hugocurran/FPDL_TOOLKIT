@@ -76,10 +76,10 @@ namespace FPDL.Common
                     XElement _a = new XElement("parameterName", param.ParameterName);
                     if (param.DataType != null)
                         _a.SetAttributeValue("dataType", param.DataType);
-                    if ((param.DefaultValue != null) && (param.DataType != null))
-                        _a.SetAttributeValue("defaultValue", param.DefaultValue);
-                    else
+                    if ((param.DefaultValue != null) && (param.DataType == null))
                         throw new ApplicationException("HlaInteraction.ToXML: defaultValue defined with null dataType. AttributeName = " + param.ParameterName);
+                    else
+                        _a.SetAttributeValue("defaultValue", param.DefaultValue);
                     fpdlType.Add(_a);
                 }
             }

@@ -11,7 +11,7 @@ namespace FPDL.Test.Integration
         [TestMethod]
         public void PatternReadFromFile()
         {
-            XDocument patternFile = XDocument.Load(@"..\..\..\Test Data\Pattern1.xml");
+            XDocument patternFile = XDocument.Load(@"..\..\..\FPDL\Test Data\Pattern1.xml");
             PatternObject pattern = FpdlPatternParser.Load(patternFile);
         }
     }
