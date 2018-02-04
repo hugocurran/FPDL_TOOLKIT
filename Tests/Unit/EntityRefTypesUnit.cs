@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
-using FPDL.Deploy.Entities;
+using FPDL.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace UnitTests

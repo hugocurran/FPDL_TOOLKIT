@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Xml.Linq;
-using FPDL.BL;
-using FPDL.Pattern.Entities;
+using FPDL.Pattern;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace IntegrationTests
+namespace FPDL.Test.Integration
 {
     [TestClass]
     public class PatternTests

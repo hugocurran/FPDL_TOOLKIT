@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Xml;
 using System.Xml.Linq;
-using FPDL.Deploy.Entities;
+using FPDL.Deploy;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace IntegrationTests
+namespace FPDL.Test.Integration
 {
     [TestClass]
     public class ToFPDLTests

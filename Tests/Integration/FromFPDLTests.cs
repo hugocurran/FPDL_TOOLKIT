@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Xml.Linq;
 
-namespace IntegrationTests
+namespace FPDL.Test.Integration
 {
     [TestClass]
     public class FromFPDLTests
