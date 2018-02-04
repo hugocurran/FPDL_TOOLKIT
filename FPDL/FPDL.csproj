@@ -43,9 +43,11 @@
   <ItemGroup>
     <Compile Include="Common\ConfigMgmt.cs" />
     <Compile Include="Common\EntityValueTypes.cs" />
+    <Compile Include="Common\GatewayType.cs" />
     <Compile Include="Common\HlaInteraction.cs" />
     <Compile Include="Common\HlaObject.cs" />
-    <Compile Include="Common\Subscribe.cs" />
+    <Compile Include="Common\Source.cs" />
+    <Compile Include="Common\SystemType.cs" />
     <Compile Include="Deploy\Component.cs" />
     <Compile Include="Deploy\DeployObject.cs" />
     <Compile Include="Deploy\IModule.cs" />
@@ -56,6 +58,12 @@
     <Compile Include="Deploy\ModuleOsp.cs" />
     <Compile Include="Deploy\System.cs" />
     <Compile Include="Deploy\SystemFactory.cs" />
+    <Compile Include="Design\DesignObject.cs" />
+    <Compile Include="Design\Entity.cs" />
+    <Compile Include="Design\Federate.cs" />
+    <Compile Include="Design\Federation.cs" />
+    <Compile Include="Design\Filter.cs" />
+    <Compile Include="Design\Publish.cs" />
     <Compile Include="FpdlDeployParser.cs" />
     <Compile Include="FpdlDesignParser.cs" />
     <Compile Include="FpdlPatternParser.cs" />
@@ -68,7 +76,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Design\" />
     <Folder Include="Policy\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FPDL.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Linq;
@@ -11,31 +12,13 @@ namespace FPDL.Deploy
     public class System
     {
         /// <summary>
-        /// System types
-        /// </summary>
-        public enum Type
-        {
-            /// <summary>
-            /// Gateway
-            /// </summary>
-            Gateway,
-            /// <summary>
-            /// Filter
-            /// </summary>
-            Filter,
-            /// <summary>
-            /// Service
-            /// </summary>
-            Service
-        }
-        /// <summary>
         /// Components
         /// </summary>
         public List<Component> Components = new List<Component>();
         /// <summary>
         /// System type
         /// </summary>
-        public Type SystemType;
+        public Common.System.Type SystemType;
         /// <summary>
         /// Design reference
         /// </summary>
@@ -71,7 +54,7 @@ namespace FPDL.Deploy
             try
             {
                 DesignRef = Guid.Parse(fpdl.Attribute("designReference").Value);
-                SystemType = (Type)Enum.Parse(typeof(Type), fpdl.Attribute("systemType").Value);
+                SystemType = (Common.System.Type)Enum.Parse(typeof(Common.System.Type), fpdl.Attribute("systemType").Value);
                 Pattern = fpdl.Element("pattern").Value;
                 PatternRef = Guid.Parse(fpdl.Element("pattern").Attribute("patternReference").Value);
 

@@ -91,7 +91,7 @@ namespace FPDL.Pattern
             }
             catch (NullReferenceException e)
             {
-                throw new ApplicationException("Component parse error: " + e.Message);
+                throw new ApplicationException("PatternObject parse error: " + e.Message);
             }
         }
         /// <summary>

@@ -222,6 +222,31 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:FPDL.Common.Gateway">
+            <summary>
+            GatewayType enum
+            </summary>
+        </member>
+        <member name="T:FPDL.Common.Gateway.Type">
+            <summary>
+            Gateway Type
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Gateway.Type.HTG">
+            <summary>
+            HTG
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Gateway.Type.MTG">
+            <summary>
+            MTG
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Gateway.Type.LTG">
+            <summary>
+            LTG
+            </summary>
+        </member>
         <member name="T:FPDL.Common.HlaInteraction">
             <summary>
             HLA interaction 
@@ -376,6 +401,31 @@
             String representation of source
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:FPDL.Common.System">
+            <summary>
+            DOTC(A) system type
+            </summary>
+        </member>
+        <member name="T:FPDL.Common.System.Type">
+            <summary>
+            System types
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.System.Type.Gateway">
+            <summary>
+            Gateway
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.System.Type.Filter">
+            <summary>
+            Filter
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.System.Type.Service">
+            <summary>
+            Service
+            </summary>
         </member>
         <member name="T:FPDL.Deploy.Component">
             <summary>
@@ -750,26 +800,6 @@
             System object
             </summary>
         </member>
-        <member name="T:FPDL.Deploy.System.Type">
-            <summary>
-            System types
-            </summary>
-        </member>
-        <member name="F:FPDL.Deploy.System.Type.Gateway">
-            <summary>
-            Gateway
-            </summary>
-        </member>
-        <member name="F:FPDL.Deploy.System.Type.Filter">
-            <summary>
-            Filter
-            </summary>
-        </member>
-        <member name="F:FPDL.Deploy.System.Type.Service">
-            <summary>
-            Service
-            </summary>
-        </member>
         <member name="F:FPDL.Deploy.System.Components">
             <summary>
             Components
@@ -840,6 +870,267 @@
             </summary>
             <param name="systems">List to populate</param>
             <param name="fpdl">FPDL Deploy document</param>
+        </member>
+        <member name="T:FPDL.Design.DesignObject">
+            <summary>
+            Design object
+            </summary>
+        </member>
+        <member name="F:FPDL.Design.DesignObject.ConfigMgmt">
+            <summary>
+            ConfigMgmt for the Pattern document
+            </summary>
+        </member>
+        <member name="F:FPDL.Design.DesignObject.Federation">
+            <summary>
+            Components
+            </summary>
+        </member>
+        <member name="M:FPDL.Design.DesignObject.#ctor">
+            <summary>
+            Construct DesignObject
+            </summary>
+        </member>
+        <member name="M:FPDL.Design.DesignObject.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct DesignObject from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Design.DesignObject.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise DesignObject from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Design.DesignObject.ToFPDL">
+            <summary>
+            Serialise PatternObject to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Design.DesignObject.ToString">
+            <summary>
+            String representation of PatternObject
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Design.Entity">
+            <summary>
+            Entity
+            </summary>
+        </member>
+        <member name="F:FPDL.Design.Entity.EntityName">
+            <summary>
+            Entity friendly name
+            </summary>
+        </member>
+        <member name="F:FPDL.Design.Entity.EntityId">
+            <summary>
+            Entity ID (NETN ID)
+            </summary>
+        </member>
+        <member name="F:FPDL.Design.Entity.Publish">
+            <summary>
+            Entity publish
+            </summary>
+        </member>
+        <member name="M:FPDL.Design.Entity.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct Entity from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Design.Entity.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Entity from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Design.Entity.ToFPDL">
+            <summary>
+            Serialise Entity object to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Design.Federate">
+            <summary>
+            Federate
+            </summary>
+        </member>
+        <member name="F:FPDL.Design.Federate.FederateType">
+            <summary>
+            Federate type
+            </summary>
+        </member>
+        <member name="F:FPDL.Design.Federate.FederateName">
+            <summary>
+            Federation name
+            </summary>
+        </member>
+        <member name="F:FPDL.Design.Federate.PolicyReference">
+            <summary>
+            Policy reference
+            </summary>
+        </member>
+        <member name="F:FPDL.Design.Federate.SimulatorName">
+            <summary>
+            Simulator Name (optional)
+            </summary>
+        </member>
+        <member name="F:FPDL.Design.Federate.GatewayType">
+            <summary>
+            Gateway Type (optional)
+            </summary>
+        </member>
+        <member name="F:FPDL.Design.Federate.Filter">
+            <summary>
+            Filter specification (optional)
+            </summary>
+        </member>
+        <member name="F:FPDL.Design.Federate.Sources">
+            <summary>
+            Federate subscriptions
+            </summary>
+        </member>
+        <member name="F:FPDL.Design.Federate.Publish">
+            <summary>
+            Federate-level publish
+            </summary>
+        </member>
+        <member name="F:FPDL.Design.Federate.Entities">
+            <summary>
+            Entity-level publish
+            </summary>
+        </member>
+        <member name="M:FPDL.Design.Federate.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct Federation object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Design.Federate.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Federation object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Design.Federate.ToFPDL">
+            <summary>
+            Serialise Federation object to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Design.Federate.ToString">
+            <summary>
+            String representation of Component object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Design.Federation">
+            <summary>
+            Federation
+            </summary>
+        </member>
+        <member name="F:FPDL.Design.Federation.Name">
+            <summary>
+            Federation name
+            </summary>
+        </member>
+        <member name="F:FPDL.Design.Federation.Summary">
+            <summary>
+            Federation summary
+            </summary>
+        </member>
+        <member name="F:FPDL.Design.Federation.Scenario">
+            <summary>
+            URI of MSDL Scenario (optional)
+            </summary>
+        </member>
+        <member name="F:FPDL.Design.Federation.Federates">
+            <summary>
+            Modules
+            </summary>
+        </member>
+        <member name="M:FPDL.Design.Federation.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct Federation object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Design.Federation.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Federation object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Design.Federation.ToFPDL">
+            <summary>
+            Serialise Federation object to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Design.Federation.ToString">
+            <summary>
+            String representation of Component object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Design.Filter">
+            <summary>
+            Filter spec
+            </summary>
+        </member>
+        <member name="M:FPDL.Design.Filter.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct Filter object from FPDL
+            </summary>
+            <param name="xElement"></param>
+        </member>
+        <member name="M:FPDL.Design.Filter.ToFPDL">
+            <summary>
+            Serialise to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Design.Publish">
+            <summary>
+            Federate publish
+            </summary>
+        </member>
+        <member name="F:FPDL.Design.Publish.Objects">
+            <summary>
+            Objects to publish
+            </summary>
+        </member>
+        <member name="F:FPDL.Design.Publish.Interactions">
+            <summary>
+            Interactions to publish
+            </summary>
+        </member>
+        <member name="M:FPDL.Design.Publish.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct a Publish object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Design.Publish.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Publish object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Design.Publish.ToFPDL">
+            <summary>
+            Serialise Publish onject to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Design.Publish.ToString">
+            <summary>
+            String representation of Module object
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:FPDL.FpdlDeployParser">
             <summary>
