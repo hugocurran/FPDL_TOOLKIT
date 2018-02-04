@@ -18,9 +18,11 @@ namespace FPDL.Test.Unit
             HlaObject testObj = new HlaObject();
             testObj.ObjectClassName = "HlaObjectRoot.Some.Object";
             testObj.Attributes.Add(new HlaAttribute { Name = "attrib1", DataType = "int", DefaultValue = 1 });
-            testObj.Attributes.Add(new HlaAttribute { Name = "attrib2", DataType = "string", DefaultValue = "foo" });
+            testObj.Attributes.Add(new HlaAttribute { Name = "attrib2", DataType = "string" });
 
             Assert.IsTrue(testObj.Attributes.Count == 2);
+
+            Assert.IsNull(testObj.Attributes[1].DefaultValue);
 
             XElement result = testObj.ToFPDL();
             Assert.AreEqual("HlaObjectRoot.Some.Object", result.Element("objectClassName").Value);
