@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FPDL Toolkit")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("FPDL")]
+[assembly: AssemblyDescription("Class library that provides an object structure for FPDL")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Niteworks")]
 [assembly: AssemblyProduct("FPDL Toolkit")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyCopyright("Crown Copyright")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

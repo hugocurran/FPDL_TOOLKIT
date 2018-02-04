@@ -1,0 +1,1286 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FPDL</name>
+    </assembly>
+    <members>
+        <member name="T:FPDL.Common.ConfigMgmt">
+            <summary>
+            FPDL ConfigMgmt type
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.ConfigMgmt.SecurityOwner">
+            <summary>
+            National owner
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.ConfigMgmt.SecurityClassification">
+            <summary>
+            Classification
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.ConfigMgmt.CurrentVersion">
+            <summary>
+            Current version
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.ConfigMgmt.Description">
+            <summary>
+            Document description
+            </summary>
+        </member>
+        <member name="P:FPDL.Common.ConfigMgmt.Created">
+            <summary>
+            Creation data
+            </summary>
+        </member>
+        <member name="P:FPDL.Common.ConfigMgmt.DocReference">
+            <summary>
+            Document reference
+            </summary>
+        </member>
+        <member name="P:FPDL.Common.ConfigMgmt.Changed">
+            <summary>
+            Changes
+            </summary>
+        </member>
+        <member name="M:FPDL.Common.ConfigMgmt.#ctor">
+            <summary>
+            Construct ConfigMgmt object
+            </summary>
+        </member>
+        <member name="M:FPDL.Common.ConfigMgmt.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct ConfigMgmt object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Common.ConfigMgmt.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise ConfigMgmt object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Common.ConfigMgmt.ToFPDL">
+            <summary>
+            Serialise ConfigMgmt object to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Common.ConfigMgmt.Initialise(System.String,System.Int32,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            Initialise a ConfigMgmt object
+            </summary>
+            <param name="author">Athor name</param>
+            <param name="Major">Major version number</param>
+            <param name="Minor">Minor version number</param>
+            <param name="changeNotes">Change notes</param>
+            <param name="owner">National owner</param>
+            <param name="classification">Classification</param>
+            <exception cref="T:System.ApplicationException">Attempt to initialise an initialised configMgmt entry</exception>
+        </member>
+        <member name="M:FPDL.Common.ConfigMgmt.NewVersion(System.String,System.Int32,System.Int32,System.String)">
+            <summary>
+            Issue a new version of a document
+            </summary>
+            <param name="author">Author name</param>
+            <param name="Major">Major version number</param>
+            <param name="Minor">Minor version number</param>
+            <param name="changeNotes">Change notes</param>
+        </member>
+        <member name="M:FPDL.Common.ConfigMgmt.ToString">
+            <summary>
+            String representation of a ConfigMgmt object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Common.ConfigMgmt.created">
+            <summary>
+            Created type
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.ConfigMgmt.created.date">
+            <summary>
+            Creation data
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.ConfigMgmt.created.author">
+            <summary>
+            Author
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.ConfigMgmt.created.initialVersion">
+            <summary>
+            First version number
+            </summary>
+        </member>
+        <member name="M:FPDL.Common.ConfigMgmt.created.ToString">
+            <summary>
+            String representation of Created type
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Common.ConfigMgmt.changed">
+            <summary>
+            Changed type
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.ConfigMgmt.changed.date">
+            <summary>
+            Date of change
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.ConfigMgmt.changed.author">
+            <summary>
+            Author
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.ConfigMgmt.changed.newVersion">
+            <summary>
+            New version number
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.ConfigMgmt.changed.prevDocReference">
+            <summary>
+            Reference of the last version
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.ConfigMgmt.changed.changeNotes">
+            <summary>
+            Change notes
+            </summary>
+        </member>
+        <member name="M:FPDL.Common.ConfigMgmt.changed.ToString">
+            <summary>
+            String representation of a Changed type
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Common.ConfigMgmt.VersionFromString(System.String)">
+            <summary>
+            Create version from string
+            </summary>
+            <param name="value">Version string</param>
+            <returns>Version tuple</returns>
+        </member>
+        <member name="M:FPDL.Common.ConfigMgmt.VersionToString(System.Tuple{System.Int32,System.Int32})">
+            <summary>
+            Create string from version tuple
+            </summary>
+            <param name="version">Version tuple</param>
+            <returns>Version string</returns>
+        </member>
+        <member name="T:FPDL.Common.HlaAttribute">
+            <summary>
+            HLA Attribute value type
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.HlaAttribute.AttributeName">
+            <summary>
+            Attribute Name
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.HlaAttribute.DataType">
+            <summary>
+            Attribute data type (optional)
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.HlaAttribute.DefaultValue">
+            <summary>
+            Attribute default value (optional)
+            </summary>
+        </member>
+        <member name="M:FPDL.Common.HlaAttribute.ToString">
+            <summary>
+            String representation of HLA Attribute
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Common.HlaParameter">
+            <summary>
+            HLA Parameter value type
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.HlaParameter.ParameterName">
+            <summary>
+            Parameter name
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.HlaParameter.DataType">
+            <summary>
+            Parameter data type (optional)
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.HlaParameter.DefaultValue">
+            <summary>
+            Parameter default value (optional)
+            </summary>
+        </member>
+        <member name="M:FPDL.Common.HlaParameter.ToString">
+            <summary>
+            String representation of HLA Parameter
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Common.HlaInteraction">
+            <summary>
+            HLA interaction 
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.HlaInteraction.InteractionClassName">
+            <summary>
+            Interaction class name
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.HlaInteraction.Parameters">
+            <summary>
+            Interaction parameters
+            </summary>
+        </member>
+        <member name="M:FPDL.Common.HlaInteraction.#ctor">
+            <summary>
+            Construct an HlaInteraction object
+            </summary>
+        </member>
+        <member name="M:FPDL.Common.HlaInteraction.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Construct an HlaInteraction object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Common.HlaInteraction.ToFPDL">
+            <summary>
+            Serialise HLA interaction into FPDL
+            </summary>
+            <returns>FPDL HLA interaction</returns>
+        </member>
+        <member name="M:FPDL.Common.HlaInteraction.ToString">
+            <summary>
+            String representation of an HLA Interaction
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Common.HlaObject">
+            <summary>
+            HLA object 
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.HlaObject.ObjectClassName">
+            <summary>
+            Object class name
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.HlaObject.Attributes">
+            <summary>
+            Object attributes
+            </summary>
+        </member>
+        <member name="M:FPDL.Common.HlaObject.#ctor">
+            <summary>
+            Construct an HlaObject
+            </summary>
+        </member>
+        <member name="M:FPDL.Common.HlaObject.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Construct an HlaObject from FPDL
+            </summary>
+            <param name="fpdl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Common.HlaObject.ToFPDL">
+            <summary>
+            Serialise HlaObject to FPDL
+            </summary>
+            <returns>FPDL HLA object</returns>
+        </member>
+        <member name="M:FPDL.Common.HlaObject.ToString">
+            <summary>
+            String representation of HlaObject
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Common.Source">
+            <summary>
+            FPDL sourceType
+            </summary>
+        </member>
+        <member name="T:FPDL.Common.Source.Type">
+            <summary>
+            Source type
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Source.Type.Federate">
+            <summary>
+            Federate source
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Source.Type.Entity">
+            <summary>
+            Entity source
+            </summary>
+        </member>
+        <member name="P:FPDL.Common.Source.SourceType">
+            <summary>
+            Source type
+            </summary>
+        </member>
+        <member name="P:FPDL.Common.Source.SourceId">
+            <summary>
+            ID of source
+            </summary>
+        </member>
+        <member name="P:FPDL.Common.Source.Objects">
+            <summary>
+            HLA objects (read only)
+            </summary>
+        </member>
+        <member name="P:FPDL.Common.Source.Interactions">
+            <summary>
+            HLA interactions (read only)
+            </summary>
+        </member>
+        <member name="M:FPDL.Common.Source.#ctor">
+            <summary>
+            Construct Source object
+            </summary>
+        </member>
+        <member name="M:FPDL.Common.Source.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct a Source object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Common.Source.SetSubscribeSource(FPDL.Common.Source.Type,System.String)">
+            <summary>
+            Set the identity of the subscription source
+            </summary>
+            <param name="source">Federate or Entity</param>
+            <param name="id">Identity</param>
+            <exception cref="T:System.ApplicationException">If source is Entity and name is not a GUID</exception>
+        </member>
+        <member name="M:FPDL.Common.Source.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Source object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Common.Source.ToFPDL">
+            <summary>
+            Serialise Source to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Common.Source.ToString">
+            <summary>
+            String representation of source
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Deploy.Component">
+            <summary>
+            Deploy Component
+            </summary>
+        </member>
+        <member name="T:FPDL.Deploy.Component.Type">
+            <summary>
+            Component type
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.Component.Type.Proxy">
+            <summary>
+            Proxy
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.Component.Type.Guard">
+            <summary>
+            Guard
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.Component.Type.Filter">
+            <summary>
+            Filter
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.Component.Modules">
+            <summary>
+            Modules
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.Component.ComponentID">
+            <summary>
+            Component ID
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.Component.ComponentType">
+            <summary>
+            Component Type
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.Component.#ctor">
+            <summary>
+            Construct Component object
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.Component.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct Component object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.Component.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Component from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.Component.ToFPDL">
+            <summary>
+            Serialise Component to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.Component.ToString">
+            <summary>
+            String representation of Component
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Deploy.DeployObject">
+            <summary>
+            FPDL Deploy
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.DeployObject.ConfigMgmt">
+            <summary>
+            ConfigMgmt for Deploy document
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.DeployObject.Systems">
+            <summary>
+            Systems within Deploy document
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.DeployObject.#ctor">
+            <summary>
+            Construct a DeployObject
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.DeployObject.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct DeployObject from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.DeployObject.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise DeployObject from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.DeployObject.ToFPDL">
+            <summary>
+            Serialise DeployObject to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.DeployObject.ToString">
+            <summary>
+            String representation of DeployObject
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Deploy.IModule">
+            <summary>
+            Common interface for Module types
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.IModule.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise module from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.IModule.ToFPDL">
+            <summary>
+            Serialise module to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Deploy.ModuleExport">
+            <summary>
+            Export policy module.
+            </summary>
+        </member>
+        <member name="P:FPDL.Deploy.ModuleExport.InterfaceName">
+            <summary>
+            Interface binding for the policy
+            </summary>
+        </member>
+        <member name="P:FPDL.Deploy.ModuleExport.Sources">
+            <summary>
+            Sources
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleExport.#ctor">
+            <summary>
+            Construct Export module
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleExport.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct Export module from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleExport.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Export module from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleExport.ToFPDL">
+            <summary>
+            Serialise Export module to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleExport.ToString">
+            <summary>
+            String representation of Export module
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Deploy.ModuleFactory">
+            <summary>
+            Create a concrete Module instance
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleFactory.Create(System.Xml.Linq.XElement,FPDL.Deploy.Component)">
+            <summary>
+            Create a concrete Module instance
+            </summary>
+            <param name="fpdl"></param>
+            <param name="component"></param>
+        </member>
+        <member name="T:FPDL.Deploy.ModuleImport">
+            <summary>
+            Import policy module.
+            </summary>
+        </member>
+        <member name="P:FPDL.Deploy.ModuleImport.InterfaceName">
+            <summary>
+            Interface binding for the policy
+            </summary>
+        </member>
+        <member name="P:FPDL.Deploy.ModuleImport.Objects">
+            <summary>
+            Objects
+            </summary>
+        </member>
+        <member name="P:FPDL.Deploy.ModuleImport.Interactions">
+            <summary>
+            Interactions
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleImport.#ctor">
+            <summary>
+            Construct an Import module
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleImport.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct an Import module from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleImport.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Import module from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleImport.ToFPDL">
+            <summary>
+            Serialise Import module to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleImport.ToString">
+            <summary>
+            String representation of Import module
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Deploy.ModuleInterface">
+            <summary>
+            Interface module
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.ModuleInterface.InterfaceName">
+            <summary>
+            Interface binding for the policy
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.ModuleInterface.IpAddress">
+            <summary>
+            IP address
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.ModuleInterface.NetPrefix">
+            <summary>
+            Network prefix
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.ModuleInterface.DefaultRouter">
+            <summary>
+            Default router (optional)
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleInterface.#ctor">
+            <summary>
+            Construct an Interface module
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleInterface.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct an Interface module from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleInterface.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Interface module from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleInterface.ToFPDL">
+            <summary>
+            Serialise Interface module to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleInterface.ToString">
+            <summary>
+            String representation of Interface module
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Deploy.ModuleOsp">
+            <summary>
+            OSP module
+            </summary>
+        </member>
+        <member name="T:FPDL.Deploy.ModuleOsp.OspProtocol">
+            <summary>
+            OspProtocol types
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.ModuleOsp.OspProtocol.HPSD_ZMQ">
+            <summary>
+            HPSD over ZMQ
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.ModuleOsp.OspProtocol.HPSD_TCP">
+            <summary>
+            HPSD over TCP
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.ModuleOsp.OspProtocol.WebLVC_ZMQ">
+            <summary>
+            WebLVC over ZMQ
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.ModuleOsp.OspProtocol.WebLVC_TCP">
+            <summary>
+            WebLVC over TCP
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.ModuleOsp.Path">
+            <summary>
+            Direction of information flow
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.ModuleOsp.Protocol">
+            <summary>
+            OSP protocol
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.ModuleOsp.InputPort">
+            <summary>
+            Input port (optional)
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.ModuleOsp.OutputPort">
+            <summary>
+            Output port (optional)
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleOsp.#ctor">
+            <summary>
+            Construct OSP module
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleOsp.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct OSP module from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleOsp.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise OSP module from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleOsp.ToFPDL">
+            <summary>
+            Serialise OSP module to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleOsp.ToString">
+            <summary>
+            String representation of OSP module
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Deploy.System">
+            <summary>
+            System object
+            </summary>
+        </member>
+        <member name="T:FPDL.Deploy.System.Type">
+            <summary>
+            System types
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.System.Type.Gateway">
+            <summary>
+            Gateway
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.System.Type.Filter">
+            <summary>
+            Filter
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.System.Type.Service">
+            <summary>
+            Service
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.System.Components">
+            <summary>
+            Components
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.System.SystemType">
+            <summary>
+            System type
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.System.DesignRef">
+            <summary>
+            Design reference
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.System.Pattern">
+            <summary>
+            Pattern name
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.System.PatternRef">
+            <summary>
+            Pattern reference
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.System.#ctor">
+            <summary>
+            Construct System object
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.System.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct System object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.System.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise System object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.System.ToFPDL">
+            <summary>
+            Serialise System object to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.System.ToString">
+            <summary>
+            String representation of System object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Deploy.SystemFactory">
+            <summary>
+            Factory for System objects
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.SystemFactory.#ctor">
+            <summary>
+            Construct a System Factory
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.SystemFactory.#ctor(System.Collections.Generic.List{FPDL.Deploy.System},System.Xml.Linq.XElement)">
+            <summary>
+            Populate a List of systems
+            </summary>
+            <param name="systems">List to populate</param>
+            <param name="fpdl">FPDL Deploy document</param>
+        </member>
+        <member name="T:FPDL.FpdlDeployParser">
+            <summary>
+            Read a FPDL Deploy document
+            </summary>
+        </member>
+        <member name="M:FPDL.FpdlDeployParser.Load(System.Xml.Linq.XDocument)">
+            <summary>
+            Create a DeployObject from a FPDL Deploy document
+            </summary>
+            <param name="deployDoc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.FpdlDeployParser.Save(FPDL.Deploy.DeployObject,System.String,System.Boolean)">
+            <summary>
+            Save a DeployObject to a FPDL Deploy document
+            </summary>
+            <param name="deploy"></param>
+            <param name="filename"></param>
+            <param name="overwrite"></param>
+        </member>
+        <member name="T:FPDL.FpdlDesignParser">
+            <summary>
+            Read a FPDL Design document and creata a deploy superSystem
+            </summary>
+        </member>
+        <member name="T:FPDL.FpdlPatternParser">
+            <summary>
+            FPDL Pattern Parser
+            </summary>
+        </member>
+        <member name="M:FPDL.FpdlPatternParser.Load(System.Xml.Linq.XDocument)">
+            <summary>
+            Create a PatternObject from an FPDL Pattern document
+            </summary>
+            <param name="patternDoc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.FpdlPatternParser.LoadLibrary(System.Xml.Linq.XDocument)">
+            <summary>
+            Create a PatternLibrary from a FPDL Pattern Library document
+            </summary>
+            <param name="libraryDoc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.FpdlPatternParser.Save(FPDL.Pattern.PatternObject,System.String,System.Boolean)">
+            <summary>
+            Save a PatternObject to a FPDL Pattern document
+            </summary>
+            <param name="pattern"></param>
+            <param name="filename"></param>
+            <param name="overwrite"></param>
+        </member>
+        <member name="M:FPDL.FpdlPatternParser.Save(FPDL.Pattern.PatternLibrary,System.String,System.Boolean)">
+            <summary>
+            Save a PatternObject to a FPDL Pattern document
+            </summary>
+            <param name="library"></param>
+            <param name="filename"></param>
+            <param name="overwrite"></param>
+        </member>
+        <member name="T:FPDL.Pattern.Component">
+            <summary>
+            Component
+            </summary>
+        </member>
+        <member name="T:FPDL.Pattern.Component.Type">
+            <summary>
+            Component Type
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Component.Type.Proxy">
+            <summary>
+            Proxy
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Component.Type.Guard">
+            <summary>
+            Guard
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Component.Type.Filter">
+            <summary>
+            Filter
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Component.ComponentType">
+            <summary>
+            Component type
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Component.ComponentID">
+            <summary>
+            Component ID
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Component.Modules">
+            <summary>
+            Modules
+            </summary>
+        </member>
+        <member name="M:FPDL.Pattern.Component.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct Component object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Pattern.Component.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Component object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Pattern.Component.ToFPDL">
+            <summary>
+            Serialise Component object to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Pattern.Component.ToString">
+            <summary>
+            String representation of Component object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Pattern.Entry">
+            <summary>
+            Library entry
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Entry.Type">
+            <summary>
+            Pattern type
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Entry.Reference">
+            <summary>
+            Pattern reference
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Entry.Name">
+            <summary>
+            Pattern name
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Entry.Version">
+            <summary>
+            Pattern version
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Entry.Filename">
+            <summary>
+            Pattern filename (optional)
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Entry.Pattern">
+            <summary>
+            Pattern object (optional)
+            </summary>
+        </member>
+        <member name="T:FPDL.Pattern.Module">
+            <summary>
+            Pattern Module
+            </summary>
+        </member>
+        <member name="T:FPDL.Pattern.Module.Type">
+            <summary>
+            Module type
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Module.Type.interface">
+            <summary>
+            Interface
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Module.Type.osp">
+            <summary>
+            OSP
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Module.Type.export">
+            <summary>
+            Export Policy
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Module.Type.import">
+            <summary>
+            Import Policy
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Module.Type.filter">
+            <summary>
+            Filter
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Module.Type.federation">
+            <summary>
+            Federation
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Module.Type.extension">
+            <summary>
+            Vendor extension
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Module.ModuleType">
+            <summary>
+            Module type
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Module.Specifications">
+            <summary>
+            Parameter specifications
+            </summary>
+        </member>
+        <member name="M:FPDL.Pattern.Module.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct Module object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Pattern.Module.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Module object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Pattern.Module.ToFPDL">
+            <summary>
+            Serialise Module object to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Pattern.Module.ToString">
+            <summary>
+            String representation of Module object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Pattern.PatternLibrary">
+            <summary>
+            Pattern Library
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.PatternLibrary.ConfigMgmt">
+            <summary>
+            ConfigMgmt object for Library document
+            </summary>
+        </member>
+        <member name="P:FPDL.Pattern.PatternLibrary.Library">
+            <summary>
+            Library
+            </summary>
+        </member>
+        <member name="M:FPDL.Pattern.PatternLibrary.#ctor">
+            <summary>
+            Construct a Library object
+            </summary>
+        </member>
+        <member name="M:FPDL.Pattern.PatternLibrary.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct a Library object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Pattern.PatternLibrary.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Library object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Pattern.PatternLibrary.Initialise(System.String)">
+            <summary>
+            Initialise a Library object
+            </summary>
+            <param name="author"></param>
+        </member>
+        <member name="M:FPDL.Pattern.PatternLibrary.Add(FPDL.Pattern.PatternObject)">
+            <summary>
+            Add a Pattern to the Library
+            </summary>
+            <remarks>Store the Pattern in the library</remarks>
+            <param name="pattern"></param>
+        </member>
+        <member name="M:FPDL.Pattern.PatternLibrary.Add(FPDL.Pattern.PatternObject,System.String)">
+            <summary>
+            Add a Pattern to the Library
+            </summary>
+            <remarks>Store the pattern in a file</remarks>
+            <param name="pattern"></param>
+            <param name="filename"></param>
+        </member>
+        <member name="M:FPDL.Pattern.PatternLibrary.Add(FPDL.Pattern.PatternObject,System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Add a Pattern to the Library
+            </summary>
+            <param name="pattern"></param>
+            <param name="author"></param>
+            <param name="changeNotes"></param>
+            <param name="updateMajor"></param>
+            <param name="updateMinor"></param>
+        </member>
+        <member name="M:FPDL.Pattern.PatternLibrary.Remove(FPDL.Pattern.PatternObject)">
+            <summary>
+            Remove a Pattern from the Library
+            </summary>
+            <param name="pattern"></param>
+        </member>
+        <member name="M:FPDL.Pattern.PatternLibrary.Remove(System.Guid)">
+            <summary>
+            Remove a Pattern from the Library
+            </summary>
+            <param name="patternRef"></param>
+        </member>
+        <member name="T:FPDL.Pattern.PatternObject">
+            <summary>
+            Pattern
+            </summary>
+        </member>
+        <member name="T:FPDL.Pattern.PatternObject.Type">
+            <summary>
+            Pattern type
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.PatternObject.Type.HTG">
+            <summary>
+            HTG
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.PatternObject.Type.MTG">
+            <summary>
+            MTG
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.PatternObject.Type.LTG">
+            <summary>
+            LTG
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.PatternObject.Type.Filter">
+            <summary>
+            Filter
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.PatternObject.ConfigMgmt">
+            <summary>
+            ConfigMgmt for the Pattern document
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.PatternObject.PatternType">
+            <summary>
+            Pattern type
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.PatternObject.PatternName">
+            <summary>
+            Pattern name
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.PatternObject.Description">
+            <summary>
+            Description
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.PatternObject.Components">
+            <summary>
+            Components
+            </summary>
+        </member>
+        <member name="M:FPDL.Pattern.PatternObject.#ctor">
+            <summary>
+            Construct PatternObject
+            </summary>
+        </member>
+        <member name="M:FPDL.Pattern.PatternObject.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct Pattern object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Pattern.PatternObject.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise PatternObject from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Pattern.PatternObject.ToFPDL">
+            <summary>
+            Serialise PatternObject to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Pattern.PatternObject.ToString">
+            <summary>
+            String representation of PatternObject
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Pattern.Specification">
+            <summary>
+            Specification
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Specification.ParamName">
+            <summary>
+            Parameter name
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Specification.Value">
+            <summary>
+            Value
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.Specification.ReadOnly">
+            <summary>
+            Read only
+            </summary>
+        </member>
+        <member name="M:FPDL.Pattern.Specification.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct specification object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Pattern.Specification.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Specification object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Pattern.Specification.ToFPDL">
+            <summary>
+            Serialise Specification object to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Pattern.Specification.ToString">
+            <summary>
+            String representation of Specification object
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pattern xmlns="http://www.niteworks.net/fpdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.niteworks.net/fpdl file:///C:/Users/peter/source/repos/Guard-Emulator/FPDL_0.3/FPDL-ver0.3.xsd">
+	<configMgmt>
+		<securityOwner>UK</securityOwner>
+		<securityClassification>Official</securityClassification>
+		<currentVersion>1.0</currentVersion>
+		<description>Generic LTG</description>
+		<created>
+			<date>2018-02-03</date>
+			<author>PC</author>
+			<initialVersion>1.0</initialVersion>
+		</created>
+		<docReference>CC3B511A-F1F6-418B-BA00-3BF05D8AFA05</docReference>
+		<changed>
+			<date>2018-02-03</date>
+			<author>PC</author>
+			<newVersion>1.0</newVersion>
+			<prevDocReference>CC3B511A-F1F6-418B-BA00-3BF05D8AFA05</prevDocReference>
+			<changeNotes>Initial Version</changeNotes>
+		</changed>
+	</configMgmt>
+	<patternGenericType>LTG</patternGenericType>
+	<patternName>Generic LTG</patternName>
+	<description>Pattern for a generic LTG</description>
+	<component>
+		<componentType>Proxy</componentType>
+		<componentID>39592EDB-C906-4B31-8965-CB8C5106B0C6</componentID>
+		<module>
+			<moduleType>interface</moduleType>
+			<specification>
+				<paramName>interfaceName</paramName>
+				<value>CS+S Federation</value>
+			</specification>
+		</module>
+		<module>
+			<moduleType>interface</moduleType>
+		</module>
+		<module>
+			<moduleType>host</moduleType>
+		</module>
+		<module>
+			<moduleType>federation</moduleType>
+			<specification>
+				<paramName>federationName</paramName>
+				<value>CS+S</value>
+			</specification>
+			<specification>
+				<paramName>interfaceName</paramName>
+				<value>CS+S Federation</value>
+			</specification>
+		</module>
+		<module>
+			<moduleType>federation</moduleType>
+		</module>
+		<module>
+			<moduleType>export</moduleType>
+		</module>
+		<module>
+			<moduleType>import</moduleType>
+		</module>
+	</component>
+</Pattern>

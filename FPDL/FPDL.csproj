@@ -7,8 +7,8 @@
     <ProjectGuid>{7AE006A3-21FA-4C05-A974-06B14B882034}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FPDL_Toolkit</RootNamespace>
-    <AssemblyName>FPDL Toolkit</AssemblyName>
+    <RootNamespace>FPDL</RootNamespace>
+    <AssemblyName>FPDL</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>FPDL.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -40,8 +41,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Common\ConfigMgmt.cs" />
+    <Compile Include="Common\EntityValueTypes.cs" />
+    <Compile Include="Common\HlaInteraction.cs" />
+    <Compile Include="Common\HlaObject.cs" />
+    <Compile Include="Common\Subscribe.cs" />
+    <Compile Include="Deploy\Component.cs" />
+    <Compile Include="Deploy\DeployObject.cs" />
+    <Compile Include="Deploy\IModule.cs" />
+    <Compile Include="Deploy\ModuleExport.cs" />
+    <Compile Include="Deploy\ModuleFactory.cs" />
+    <Compile Include="Deploy\ModuleImport.cs" />
+    <Compile Include="Deploy\ModuleInterface.cs" />
+    <Compile Include="Deploy\ModuleOsp.cs" />
+    <Compile Include="Deploy\System.cs" />
+    <Compile Include="Deploy\SystemFactory.cs" />
+    <Compile Include="FpdlDeployParser.cs" />
+    <Compile Include="FpdlDesignParser.cs" />
+    <Compile Include="FpdlPatternParser.cs" />
+    <Compile Include="Pattern\Component.cs" />
+    <Compile Include="Pattern\Entry.cs" />
+    <Compile Include="Pattern\Module.cs" />
+    <Compile Include="Pattern\PatternLibrary.cs" />
+    <Compile Include="Pattern\PatternObject.cs" />
+    <Compile Include="Pattern\Specification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Design\" />
+    <Folder Include="Policy\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

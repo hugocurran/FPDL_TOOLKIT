@@ -1,0 +1,105 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml.Linq;
+
+namespace FPDL.Common
+{
+    /// <summary>
+    /// HLA object 
+    /// </summary>
+    public class HlaObject
+    {
+        /// <summary>
+        /// Object class name
+        /// </summary>
+        public string ObjectClassName;
+        /// <summary>
+        /// Object attributes
+        /// </summary>
+        public List<HlaAttribute> Attributes = new List<HlaAttribute>();
+        /// <summary>
+        /// Construct an HlaObject
+        /// </summary>
+        public HlaObject() { }
+        /// <summary>
+        /// Construct an HlaObject from FPDL
+        /// </summary>
+        /// <param name="fpdl"></param>
+        /// <returns></returns>
+        public static HlaObject FromFPDL(XElement fpdl)
+        {
+            if (fpdl.Name != "object")
+                throw new ApplicationException("Cannot parse: Not an FPDL HLA Object description");
+
+            HlaObject obj = new HlaObject();
+            try
+            {
+                obj.ObjectClassName = fpdl.Element("objectClassName").Value;
+                // There may not be any attributes
+                if (fpdl.Element("attributeName") != null)
+                {
+                    foreach (XElement attrib in fpdl.Elements("attributeName"))
+                    {
+                        HlaAttribute attribute = new HlaAttribute { AttributeName = attrib.Value };
+                        if (attrib.Attribute("dataType") != null)
+                            attribute.DataType = attrib.Attribute("dataType").Value;
+                        if (attrib.Attribute("defaultValue") != null)
+                            attribute.DataType = attrib.Attribute("defaultValue").Value;
+                        obj.Attributes.Add(attribute);
+                    }
+                }
+            }
+            catch (NullReferenceException e)
+            {
+                throw new ApplicationException("HlaObject parse error: " + e.Message);
+            }
+            return obj;
+        }
+
+        /// <summary>
+        /// Serialise HlaObject to FPDL
+        /// </summary>
+        /// <returns>FPDL HLA object</returns>
+        public XElement ToFPDL()
+        {
+            XElement fpdlType =
+                new XElement("object",
+                    new XElement("objectClassName", ObjectClassName)
+                );
+            // There may not be any attributes
+            if (Attributes.Count > 0)
+            {
+                foreach (HlaAttribute attrib in Attributes)
+                {
+                    XElement _a = new XElement("attributeName", attrib.AttributeName);
+                    if (attrib.DataType != null)
+                        _a.SetAttributeValue("dataType", attrib.DataType);
+                    if ((attrib.DefaultValue != null) && (attrib.DataType != null))
+                        _a.SetAttributeValue("defaultValue", attrib.DefaultValue);
+                    else
+                        throw new ApplicationException("HlaObject.ToXML: defaultValue defined with null dataType. AttributeName = " + attrib.AttributeName);
+                    fpdlType.Add(_a);
+                }
+            }
+            return fpdlType;
+        }
+        /// <summary>
+        /// String representation of HlaObject
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            StringBuilder str = new StringBuilder();
+            str.AppendFormat("\tObjectClassName: {0}\n", ObjectClassName);
+            foreach (HlaAttribute attrib in Attributes)
+            {
+                str.AppendFormat("\t\tAttribute: {0}\n", attrib.ToString());
+            }
+            return str.ToString();
+        }
+    }
+}
+
