@@ -175,7 +175,7 @@
             HLA Attribute value type
             </summary>
         </member>
-        <member name="F:FPDL.Common.HlaAttribute.AttributeName">
+        <member name="F:FPDL.Common.HlaAttribute.Name">
             <summary>
             Attribute Name
             </summary>

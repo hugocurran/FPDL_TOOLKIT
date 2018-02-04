@@ -6,7 +6,7 @@ using System.Xml.Linq;
 namespace FPDL.Test.Integration
 {
     [TestClass]
-    public class DeployFromFPDLTests
+    public class FromFPDLTests
     {
         [TestMethod]
         public void DeployFromFPDLDoc()

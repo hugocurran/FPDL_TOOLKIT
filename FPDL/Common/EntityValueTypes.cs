@@ -10,7 +10,7 @@ namespace FPDL.Common
         /// <summary>
         /// Attribute Name
         /// </summary>
-        public string AttributeName;
+        public string Name;
         /// <summary>
         /// Attribute data type (optional)
         /// </summary>
@@ -27,7 +27,7 @@ namespace FPDL.Common
         public override string ToString()
         {
             StringBuilder str = new StringBuilder();
-            str.AppendFormat("{0} ", AttributeName);
+            str.AppendFormat("{0} ", Name);
             if (DataType != "")
             {
                 str.AppendFormat("[{0}", DataType);

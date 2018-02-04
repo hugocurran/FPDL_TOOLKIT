@@ -17,8 +17,8 @@ namespace FPDL.Test.Unit
         {
             HlaObject testObj = new HlaObject();
             testObj.ObjectClassName = "HlaObjectRoot.Some.Object";
-            testObj.Attributes.Add(new HlaAttribute { AttributeName = "attrib1", DataType = "int", DefaultValue = 1 });
-            testObj.Attributes.Add(new HlaAttribute { AttributeName = "attrib2", DataType = "string", DefaultValue = "foo" });
+            testObj.Attributes.Add(new HlaAttribute { Name = "attrib1", DataType = "int", DefaultValue = 1 });
+            testObj.Attributes.Add(new HlaAttribute { Name = "attrib2", DataType = "string", DefaultValue = "foo" });
 
             Assert.IsTrue(testObj.Attributes.Count == 2);
 
@@ -32,8 +32,8 @@ namespace FPDL.Test.Unit
         {
             HlaObject testObj = new HlaObject();
             testObj.ObjectClassName = "HlaObjectRoot.Some.Object";
-            testObj.Attributes.Add(new HlaAttribute { AttributeName = "attrib1", DefaultValue = 1 });
-            testObj.Attributes.Add(new HlaAttribute { AttributeName = "attrib2", DataType = "string", DefaultValue = "foo" });
+            testObj.Attributes.Add(new HlaAttribute { Name = "attrib1", DefaultValue = 1 });
+            testObj.Attributes.Add(new HlaAttribute { Name = "attrib2", DataType = "string", DefaultValue = "foo" });
 
             Assert.IsTrue(testObj.Attributes.Count == 2);
             Assert.ThrowsException<ApplicationException>(() => testObj.ToFPDL());

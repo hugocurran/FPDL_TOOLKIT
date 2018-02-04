@@ -43,11 +43,11 @@ namespace FPDL.Common
                 {
                     foreach (XElement attrib in fpdl.Elements("attributeName"))
                     {
-                        HlaAttribute attribute = new HlaAttribute { AttributeName = attrib.Value };
+                        HlaAttribute attribute = new HlaAttribute { Name = attrib.Value };
                         if (attrib.Attribute("dataType") != null)
                             attribute.DataType = attrib.Attribute("dataType").Value;
                         if (attrib.Attribute("defaultValue") != null)
-                            attribute.DataType = attrib.Attribute("defaultValue").Value;
+                            attribute.DefaultValue = attrib.Attribute("defaultValue").Value;
                         obj.Attributes.Add(attribute);
                     }
                 }
@@ -74,14 +74,14 @@ namespace FPDL.Common
             {
                 foreach (HlaAttribute attrib in Attributes)
                 {
-                    XElement _a = new XElement("attributeName", attrib.AttributeName);
+                    XElement _a = new XElement("attributeName", attrib.Name);
                     if (attrib.DataType != null)
                         _a.SetAttributeValue("dataType", attrib.DataType);
-                    if ((attrib.DefaultValue != null) && (attrib.DataType != null))
-                        _a.SetAttributeValue("defaultValue", attrib.DefaultValue);
+                    if ((attrib.DefaultValue != null) && (attrib.DataType == null))
+                        throw new ApplicationException("HlaObject.ToXML: defaultValue defined with null dataType. AttributeName = " + attrib.Name);
                     else
-                        throw new ApplicationException("HlaObject.ToXML: defaultValue defined with null dataType. AttributeName = " + attrib.AttributeName);
-                    fpdlType.Add(_a);
+                        _a.SetAttributeValue("defaultValue", attrib.DefaultValue);
+                     fpdlType.Add(_a);
                 }
             }
             return fpdlType;
