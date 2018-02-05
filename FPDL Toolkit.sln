@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FPDL", "FPDL\FPDL.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{D8A613DE-20D8-47F8-897E-E20F2C051B3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FPDL-Viewer", "FPDL-Viewer\FPDL-Viewer.csproj", "{56039FD1-D5D3-4059-9435-56FF83B59ED8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{D8A613DE-20D8-47F8-897E-E20F2C051B3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8A613DE-20D8-47F8-897E-E20F2C051B3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8A613DE-20D8-47F8-897E-E20F2C051B3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56039FD1-D5D3-4059-9435-56FF83B59ED8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56039FD1-D5D3-4059-9435-56FF83B59ED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56039FD1-D5D3-4059-9435-56FF83B59ED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56039FD1-D5D3-4059-9435-56FF83B59ED8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

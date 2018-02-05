@@ -62,7 +62,7 @@ namespace FPDL.Pattern
         public override string ToString()
         {
             StringBuilder str = new StringBuilder();
-            str.AppendFormat("\t{0} = {1} (ReadOnly = {3})\n", ParamName, Value, ReadOnly);
+            str.AppendFormat("\t{0} = {1} (ReadOnly = {2})\n", ParamName, Value, ReadOnly);
             return str.ToString();
         }
     }
