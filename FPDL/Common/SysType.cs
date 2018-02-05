@@ -9,7 +9,7 @@ namespace FPDL.Common
     /// <summary>
     /// DOTC(A) system type
     /// </summary>
-    public class System
+    public class Sys
     {
         /// <summary>
         /// System types

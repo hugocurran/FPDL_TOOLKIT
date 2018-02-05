@@ -58,7 +58,7 @@ namespace FPDL.Deploy
                     InterfaceName = fpdl.Element("interfaceName").Value;
 
                 foreach (XElement hlaObject in fpdl.Elements("object"))
-                    _objects.Add(HlaObject.FromFPDL(hlaObject));
+                    _objects.Add(new HlaObject(hlaObject));
 
                 foreach (XElement hlaInteraction in fpdl.Elements("interaction"))
                     _interactions.Add(HlaInteraction.FromFPDL(hlaInteraction));

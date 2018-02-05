@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Linq;
 
-namespace FPDL.Design
+namespace FPDL.Policy
 {
     /// <summary>
     /// Entity

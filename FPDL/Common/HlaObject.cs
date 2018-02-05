@@ -28,16 +28,22 @@ namespace FPDL.Common
         /// Construct an HlaObject from FPDL
         /// </summary>
         /// <param name="fpdl"></param>
+        public HlaObject(XElement fpdl)
+        {
+            FromFPDL(fpdl);
+        }
+        /// <summary>
+        /// Construct an HlaObject from FPDL
+        /// </summary>
+        /// <param name="fpdl"></param>
         /// <returns></returns>
-        public static HlaObject FromFPDL(XElement fpdl)
+        public void FromFPDL(XElement fpdl)
         {
             if (fpdl.Name != "object")
                 throw new ApplicationException("Cannot parse: Not an FPDL HLA Object description");
-
-            HlaObject obj = new HlaObject();
             try
             {
-                obj.ObjectClassName = fpdl.Element("objectClassName").Value;
+                ObjectClassName = fpdl.Element("objectClassName").Value;
                 // There may not be any attributes
                 if (fpdl.Element("attributeName") != null)
                 {
@@ -48,7 +54,7 @@ namespace FPDL.Common
                             attribute.DataType = attrib.Attribute("dataType").Value;
                         if (attrib.Attribute("defaultValue") != null)
                             attribute.DefaultValue = attrib.Attribute("defaultValue").Value;
-                        obj.Attributes.Add(attribute);
+                        Attributes.Add(attribute);
                     }
                 }
             }
@@ -56,7 +62,6 @@ namespace FPDL.Common
             {
                 throw new ApplicationException("HlaObject parse error: " + e.Message);
             }
-            return obj;
         }
 
         /// <summary>

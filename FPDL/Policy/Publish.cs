@@ -1,9 +1,10 @@
-﻿using System;
+﻿using FPDL.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Linq;
 
-namespace FPDL.Common
+namespace FPDL.Policy
 {
     /// <summary>
     /// Federate publish
@@ -40,7 +41,7 @@ namespace FPDL.Common
                 if (fpdl.Element("object") != null)
                 {
                     foreach (XElement obj in fpdl.Elements("object"))
-                        Objects.Add(HlaObject.FromFPDL(obj));
+                        Objects.Add(new HlaObject(obj));
                 }
                 if (fpdl.Element("interaction") != null)
                 {

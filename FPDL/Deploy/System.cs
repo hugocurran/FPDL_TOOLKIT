@@ -18,7 +18,7 @@ namespace FPDL.Deploy
         /// <summary>
         /// System type
         /// </summary>
-        public Common.System.Type SystemType;
+        public Common.Sys.Type SystemType;
         /// <summary>
         /// Design reference
         /// </summary>
@@ -54,7 +54,7 @@ namespace FPDL.Deploy
             try
             {
                 DesignRef = Guid.Parse(fpdl.Attribute("designReference").Value);
-                SystemType = (Common.System.Type)Enum.Parse(typeof(Common.System.Type), fpdl.Attribute("systemType").Value);
+                SystemType = (Common.Sys.Type)Enum.Parse(typeof(Common.Sys.Type), fpdl.Attribute("systemType").Value);
                 Pattern = fpdl.Element("pattern").Value;
                 PatternRef = Guid.Parse(fpdl.Element("pattern").Attribute("patternReference").Value);
 

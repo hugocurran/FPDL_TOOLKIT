@@ -99,7 +99,7 @@ namespace FPDL.Common
                 if (fpdl.Element("object") != null)
                 {
                     foreach (XElement hlaObject in fpdl.Elements("object"))
-                        _objects.Add(HlaObject.FromFPDL(hlaObject));
+                        _objects.Add(new HlaObject(hlaObject));
                 }
                 if (fpdl.Element("interaction") != null)
                 {

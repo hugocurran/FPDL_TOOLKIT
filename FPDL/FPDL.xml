@@ -170,58 +170,6 @@
             <param name="version">Version tuple</param>
             <returns>Version string</returns>
         </member>
-        <member name="T:FPDL.Common.HlaAttribute">
-            <summary>
-            HLA Attribute value type
-            </summary>
-        </member>
-        <member name="F:FPDL.Common.HlaAttribute.Name">
-            <summary>
-            Attribute Name
-            </summary>
-        </member>
-        <member name="F:FPDL.Common.HlaAttribute.DataType">
-            <summary>
-            Attribute data type (optional)
-            </summary>
-        </member>
-        <member name="F:FPDL.Common.HlaAttribute.DefaultValue">
-            <summary>
-            Attribute default value (optional)
-            </summary>
-        </member>
-        <member name="M:FPDL.Common.HlaAttribute.ToString">
-            <summary>
-            String representation of HLA Attribute
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:FPDL.Common.HlaParameter">
-            <summary>
-            HLA Parameter value type
-            </summary>
-        </member>
-        <member name="F:FPDL.Common.HlaParameter.ParameterName">
-            <summary>
-            Parameter name
-            </summary>
-        </member>
-        <member name="F:FPDL.Common.HlaParameter.DataType">
-            <summary>
-            Parameter data type (optional)
-            </summary>
-        </member>
-        <member name="F:FPDL.Common.HlaParameter.DefaultValue">
-            <summary>
-            Parameter default value (optional)
-            </summary>
-        </member>
-        <member name="M:FPDL.Common.HlaParameter.ToString">
-            <summary>
-            String representation of HLA Parameter
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:FPDL.Common.Gateway">
             <summary>
             GatewayType enum
@@ -246,6 +194,32 @@
             <summary>
             LTG
             </summary>
+        </member>
+        <member name="T:FPDL.Common.HlaAttribute">
+            <summary>
+            HLA Attribute
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.HlaAttribute.Name">
+            <summary>
+            Attribute Name
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.HlaAttribute.DataType">
+            <summary>
+            Attribute data type (optional)
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.HlaAttribute.DefaultValue">
+            <summary>
+            Attribute default value (optional)
+            </summary>
+        </member>
+        <member name="M:FPDL.Common.HlaAttribute.ToString">
+            <summary>
+            String representation of HLA Attribute
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:FPDL.Common.HlaInteraction">
             <summary>
@@ -306,6 +280,12 @@
             Construct an HlaObject
             </summary>
         </member>
+        <member name="M:FPDL.Common.HlaObject.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct an HlaObject from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
         <member name="M:FPDL.Common.HlaObject.FromFPDL(System.Xml.Linq.XElement)">
             <summary>
             Construct an HlaObject from FPDL
@@ -322,6 +302,32 @@
         <member name="M:FPDL.Common.HlaObject.ToString">
             <summary>
             String representation of HlaObject
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Common.HlaParameter">
+            <summary>
+            HLA Parameter
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.HlaParameter.ParameterName">
+            <summary>
+            Parameter name
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.HlaParameter.DataType">
+            <summary>
+            Parameter data type (optional)
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.HlaParameter.DefaultValue">
+            <summary>
+            Parameter default value (optional)
+            </summary>
+        </member>
+        <member name="M:FPDL.Common.HlaParameter.ToString">
+            <summary>
+            String representation of HLA Parameter
             </summary>
             <returns></returns>
         </member>
@@ -402,69 +408,30 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:FPDL.Common.System">
+        <member name="T:FPDL.Common.Sys">
             <summary>
             DOTC(A) system type
             </summary>
         </member>
-        <member name="T:FPDL.Common.System.Type">
+        <member name="T:FPDL.Common.Sys.Type">
             <summary>
             System types
             </summary>
         </member>
-        <member name="F:FPDL.Common.System.Type.Gateway">
+        <member name="F:FPDL.Common.Sys.Type.Gateway">
             <summary>
             Gateway
             </summary>
         </member>
-        <member name="F:FPDL.Common.System.Type.Filter">
+        <member name="F:FPDL.Common.Sys.Type.Filter">
             <summary>
             Filter
             </summary>
         </member>
-        <member name="F:FPDL.Common.System.Type.Service">
+        <member name="F:FPDL.Common.Sys.Type.Service">
             <summary>
             Service
             </summary>
-        </member>
-        <member name="T:FPDL.Common.Publish">
-            <summary>
-            Federate publish
-            </summary>
-        </member>
-        <member name="F:FPDL.Common.Publish.Objects">
-            <summary>
-            Objects to publish
-            </summary>
-        </member>
-        <member name="F:FPDL.Common.Publish.Interactions">
-            <summary>
-            Interactions to publish
-            </summary>
-        </member>
-        <member name="M:FPDL.Common.Publish.#ctor(System.Xml.Linq.XElement)">
-            <summary>
-            Construct a Publish object from FPDL
-            </summary>
-            <param name="fpdl"></param>
-        </member>
-        <member name="M:FPDL.Common.Publish.FromFPDL(System.Xml.Linq.XElement)">
-            <summary>
-            Deserialise Publish object from FPDL
-            </summary>
-            <param name="fpdl"></param>
-        </member>
-        <member name="M:FPDL.Common.Publish.ToFPDL">
-            <summary>
-            Serialise Publish onject to FPDL
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:FPDL.Common.Publish.ToString">
-            <summary>
-            String representation of Module object
-            </summary>
-            <returns></returns>
         </member>
         <member name="T:FPDL.Deploy.Component">
             <summary>
@@ -1132,19 +1099,58 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:FPDL.FpdlDeployParser">
+        <member name="T:FPDL.Design.Publish">
+            <summary>
+            Federate publish
+            </summary>
+        </member>
+        <member name="F:FPDL.Design.Publish.Objects">
+            <summary>
+            Objects to publish
+            </summary>
+        </member>
+        <member name="F:FPDL.Design.Publish.Interactions">
+            <summary>
+            Interactions to publish
+            </summary>
+        </member>
+        <member name="M:FPDL.Design.Publish.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct a Publish object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Design.Publish.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Publish object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Design.Publish.ToFPDL">
+            <summary>
+            Serialise Publish onject to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Design.Publish.ToString">
+            <summary>
+            String representation of Module object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.DeployParser">
             <summary>
             Read a FPDL Deploy document
             </summary>
         </member>
-        <member name="M:FPDL.FpdlDeployParser.Load(System.Xml.Linq.XDocument)">
+        <member name="M:FPDL.DeployParser.Load(System.Xml.Linq.XDocument)">
             <summary>
             Create a DeployObject from a FPDL Deploy document
             </summary>
-            <param name="deployDoc"></param>
+            <param name="fpdlDoc"></param>
             <returns></returns>
         </member>
-        <member name="M:FPDL.FpdlDeployParser.Save(FPDL.Deploy.DeployObject,System.String,System.Boolean)">
+        <member name="M:FPDL.DeployParser.Save(FPDL.Deploy.DeployObject,System.String,System.Boolean)">
             <summary>
             Save a DeployObject to a FPDL Deploy document
             </summary>
@@ -1152,31 +1158,73 @@
             <param name="filename"></param>
             <param name="overwrite"></param>
         </member>
-        <member name="T:FPDL.FpdlDesignParser">
+        <member name="T:FPDL.DesignParser">
             <summary>
-            Read a FPDL Design document and creata a deploy superSystem
+            Read a FPDL Design document and create a DesignObject
             </summary>
         </member>
-        <member name="T:FPDL.FpdlPatternParser">
+        <member name="M:FPDL.DesignParser.Load(System.Xml.Linq.XDocument)">
+            <summary>
+            Create a DesignObject from a FPDL Deploy document
+            </summary>
+            <param name="fpdlDoc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.DesignParser.Save(FPDL.Design.DesignObject,System.String,System.Boolean)">
+            <summary>
+            Save a DesignObject to a FPDL Design document
+            </summary>
+            <param name="deploy"></param>
+            <param name="filename"></param>
+            <param name="overwrite"></param>
+        </member>
+        <member name="T:FPDL.FpdlReader">
+            <summary>
+            Parser support for all FPDL documents
+            </summary>
+        </member>
+        <member name="M:FPDL.FpdlReader.Parse(System.String)">
+            <summary>
+            Parse any FPDL document into the appropriate type
+            </summary>
+            <param name="filename">FPDL file Pathname</param>
+            <returns>IFpdlObject</returns>
+        </member>
+        <member name="M:FPDL.FpdlReader.Parse(System.Xml.Linq.XDocument)">
+            <summary>
+            Parse any FPDL document into the appropriate type
+            </summary>
+            <param name="fpdlDoc"></param>
+            <returns>IFpdlObject</returns>
+        </member>
+        <member name="M:FPDL.FpdlReader.Save(FPDL.Deploy.DeployObject,System.String,System.Boolean)">
+            <summary>
+            Save a DeployObject to a FPDL Deploy document
+            </summary>
+            <param name="deploy"></param>
+            <param name="filename"></param>
+            <param name="overwrite"></param>
+        </member>
+        <member name="T:FPDL.PatternParser">
             <summary>
             FPDL Pattern Parser
             </summary>
         </member>
-        <member name="M:FPDL.FpdlPatternParser.Load(System.Xml.Linq.XDocument)">
+        <member name="M:FPDL.PatternParser.Load(System.Xml.Linq.XDocument)">
             <summary>
             Create a PatternObject from an FPDL Pattern document
             </summary>
-            <param name="patternDoc"></param>
+            <param name="fpdlDoc"></param>
             <returns></returns>
         </member>
-        <member name="M:FPDL.FpdlPatternParser.LoadLibrary(System.Xml.Linq.XDocument)">
+        <member name="M:FPDL.PatternParser.LoadLibrary(System.Xml.Linq.XDocument)">
             <summary>
             Create a PatternLibrary from a FPDL Pattern Library document
             </summary>
-            <param name="libraryDoc"></param>
+            <param name="fpdlDoc"></param>
             <returns></returns>
         </member>
-        <member name="M:FPDL.FpdlPatternParser.Save(FPDL.Pattern.PatternObject,System.String,System.Boolean)">
+        <member name="M:FPDL.PatternParser.Save(FPDL.Pattern.PatternObject,System.String,System.Boolean)">
             <summary>
             Save a PatternObject to a FPDL Pattern document
             </summary>
@@ -1184,13 +1232,42 @@
             <param name="filename"></param>
             <param name="overwrite"></param>
         </member>
-        <member name="M:FPDL.FpdlPatternParser.Save(FPDL.Pattern.PatternLibrary,System.String,System.Boolean)">
+        <member name="M:FPDL.PatternParser.Save(FPDL.Pattern.PatternLibrary,System.String,System.Boolean)">
             <summary>
             Save a PatternObject to a FPDL Pattern document
             </summary>
             <param name="library"></param>
             <param name="filename"></param>
             <param name="overwrite"></param>
+        </member>
+        <member name="T:FPDL.FpdlWriter">
+            <summary>
+            Write FPDL documents to the filesystem
+            </summary>
+        </member>
+        <member name="M:FPDL.FpdlWriter.Write(FPDL.IFpdlObject,System.String)">
+            <summary>
+            Write an FPDL Document to the filesystem
+            </summary>
+            <param name="fpdlObj"></param>
+            <param name="filename"></param>
+        </member>
+        <member name="T:FPDL.IFpdlObject">
+            <summary>
+            Interface for FPDL *Object classes
+            </summary>
+        </member>
+        <member name="M:FPDL.IFpdlObject.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise object from FPDL document
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.IFpdlObject.ToFPDL">
+            <summary>
+            Serialise object to FPDL document
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:FPDL.Pattern.Component">
             <summary>
@@ -1407,6 +1484,12 @@
             </summary>
             <param name="fpdl"></param>
         </member>
+        <member name="M:FPDL.Pattern.PatternLibrary.ToFPDL">
+            <summary>
+            Serialise Library to FPDL
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:FPDL.Pattern.PatternLibrary.Initialise(System.String)">
             <summary>
             Initialise a Library object
@@ -1575,6 +1658,581 @@
         <member name="M:FPDL.Pattern.Specification.ToString">
             <summary>
             String representation of Specification object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.PolicyParser">
+            <summary>
+            Read a FPDL Policy document and creata a PolicyObject
+            </summary>
+        </member>
+        <member name="M:FPDL.PolicyParser.Load(System.Xml.Linq.XDocument)">
+            <summary>
+            Create a DesignObject from a FPDL Deploy document
+            </summary>
+            <param name="fpdlDoc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.PolicyParser.Save(FPDL.Policy.PolicyObject,System.String,System.Boolean)">
+            <summary>
+            Save a PolicyObject to a FPDL Deploy document
+            </summary>
+            <param name="deploy"></param>
+            <param name="filename"></param>
+            <param name="overwrite"></param>
+        </member>
+        <member name="T:FPDL.Policy.Entity">
+            <summary>
+            Entity
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.Entity.EntityName">
+            <summary>
+            Entity friendly name
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.Entity.EntityId">
+            <summary>
+            Entity ID (NETN ID)
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.Entity.Publish">
+            <summary>
+            Entity publish
+            </summary>
+        </member>
+        <member name="M:FPDL.Policy.Entity.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct Entity from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Policy.Entity.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Entity from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Policy.Entity.ToFPDL">
+            <summary>
+            Serialise Entity object to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Policy.Federate">
+            <summary>
+            Federate
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.Federate.FederateType">
+            <summary>
+            Federate Type
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.Federate.FederateName">
+            <summary>
+            Federate Name
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.Federate.SecurityOwner">
+            <summary>
+            Security Owner
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.Federate.SecurityClassification">
+            <summary>
+            Security Classification
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.Federate.SecurityCaveat">
+            <summary>
+            Security Caveat (optional)
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.Federate.PhysicalLocation">
+            <summary>
+            Physical Location
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.Federate.Description">
+            <summary>
+            Description (optional)
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.Federate.Publish">
+            <summary>
+            Publish (optional)
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.Federate.Entities">
+            <summary>
+            Entities (optional)
+            </summary>
+        </member>
+        <member name="M:FPDL.Policy.Federate.#ctor">
+            <summary>
+            Construct a Federate object
+            </summary>
+        </member>
+        <member name="M:FPDL.Policy.Federate.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct a Federate object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Policy.Federate.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Federate object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Policy.Federate.ToFPDL">
+            <summary>
+            Serialise Federate object to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Policy.PolicyException">
+            <summary>
+            PolicyException
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.PolicyException.ParameterName">
+            <summary>
+            Parameter Name
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.PolicyException.EntityIDs">
+            <summary>
+            Entity IDs
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.PolicyException.ReleaseStatements">
+            <summary>
+            Release Statements
+            </summary>
+        </member>
+        <member name="M:FPDL.Policy.PolicyException.#ctor">
+            <summary>
+            Construct PolicyException object
+            </summary>
+        </member>
+        <member name="M:FPDL.Policy.PolicyException.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct PolicyException objext from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Policy.PolicyException.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise PolicyException from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Policy.PolicyException.ToFPDL">
+            <summary>
+            Serialise PolicyException to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Policy.PolicyException.ToString">
+            <summary>
+            String representation of PolicyException
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Policy.PolicyHlaAttribute">
+            <summary>
+            Redefinition of HlaAttribute for Policy
+            </summary>
+            
+        </member>
+        <member name="F:FPDL.Policy.PolicyHlaAttribute.AttributeName">
+            <summary>
+            Attribute name
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.PolicyHlaAttribute.DefaultValue">
+            <summary>
+            Default Value (optional)
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.PolicyHlaAttribute.DataType">
+            <summary>
+            Data Type (required if Default Value set)
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.PolicyHlaAttribute.ReleaseStatements">
+            <summary>
+            Release statements for the Attribute
+            </summary>
+        </member>
+        <member name="M:FPDL.Policy.PolicyHlaAttribute.#ctor">
+            <summary>
+            Construct a PolicyHlaAttribute
+            </summary>
+        </member>
+        <member name="M:FPDL.Policy.PolicyHlaAttribute.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct a PolicyHlaAttribute from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Policy.PolicyHlaAttribute.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise PolicyHlaAttribute from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Policy.PolicyHlaAttribute.ToFPDL">
+            <summary>
+            Serialise PolicyHlaAttribute to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Policy.PolicyHlaInteraction">
+            <summary>
+            Redefined HlaInteraction for Policy
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.PolicyHlaInteraction.InteractionClassName">
+            <summary>
+            Interaction class name
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.PolicyHlaInteraction.ReleaseStatements">
+            <summary>
+            Release Statements
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.PolicyHlaInteraction.Exceptions">
+            <summary>
+            Exceptions
+            </summary>
+        </member>
+        <member name="M:FPDL.Policy.PolicyHlaInteraction.#ctor">
+            <summary>
+            Construct a PolicyHlaInteraction object
+            </summary>
+        </member>
+        <member name="M:FPDL.Policy.PolicyHlaInteraction.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct a PolicyHlaInteraction object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Policy.PolicyHlaInteraction.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise a PolicyHlaInteraction object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Policy.PolicyHlaInteraction.ToFPDL">
+            <summary>
+            Serialise HLA interaction into FPDL
+            </summary>
+            <returns>FPDL HLA interaction</returns>
+        </member>
+        <member name="M:FPDL.Policy.PolicyHlaInteraction.ToString">
+            <summary>
+            String representation of a PolicyHLAInteraction
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Policy.PolicyHlaObject">
+            <summary>
+            Redefinition of HlaObject for Policy
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.PolicyHlaObject.ObjectClassName">
+            <summary>
+            Object class name
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.PolicyHlaObject.Attributes">
+            <summary>
+            Object attributes
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.PolicyHlaObject.ReleaseStatements">
+            <summary>
+            Release statements for the Attribute
+            </summary>
+        </member>
+        <member name="M:FPDL.Policy.PolicyHlaObject.#ctor">
+            <summary>
+            Construct a HlaObject
+            </summary>
+        </member>
+        <member name="M:FPDL.Policy.PolicyHlaObject.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct a HlaObject from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Policy.PolicyHlaObject.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise HlaObject from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Policy.PolicyHlaObject.ToFPDL">
+            <summary>
+            Serialise HlaObject to FPDL
+            </summary>
+            <returns>FPDL HLA object</returns>
+        </member>
+        <member name="M:FPDL.Policy.PolicyHlaObject.ToString">
+            <summary>
+            String representation of HlaObject
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Policy.PolicyObject">
+            <summary>
+            PolicyObject class
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.PolicyObject.ConfigMgmt">
+            <summary>
+            ConfigMgmt
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.PolicyObject.Federate">
+            <summary>
+            Federate
+            </summary>
+        </member>
+        <member name="M:FPDL.Policy.PolicyObject.#ctor">
+            <summary>
+            Construct a PolicyObject
+            </summary>
+        </member>
+        <member name="M:FPDL.Policy.PolicyObject.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct PolicyObject from FPDL document
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Policy.PolicyObject.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise PolicyObject from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Policy.PolicyObject.ToFPDL">
+            <summary>
+            Serialise PolicyObject to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Policy.PolicyObject.ToString">
+            <summary>
+            String representation of PolicyObject
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Policy.Publish">
+            <summary>
+            Federate publish
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.Publish.Objects">
+            <summary>
+            Objects to publish
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.Publish.Interactions">
+            <summary>
+            Interactions to publish
+            </summary>
+        </member>
+        <member name="M:FPDL.Policy.Publish.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct a Publish object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Policy.Publish.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Publish object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Policy.Publish.ToFPDL">
+            <summary>
+            Serialise Publish onject to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Policy.Publish.ToString">
+            <summary>
+            String representation of Module object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Policy.IReleaseStatement">
+            <summary>
+            ReleaseStatement Interface
+            </summary>
+        </member>
+        <member name="M:FPDL.Policy.IReleaseStatement.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Policy.IReleaseStatement.ToFPDL">
+            <summary>
+            Serialise to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Policy.IReleaseStatement.ToString">
+            <summary>
+            String representation
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Policy.ReleaseStatement">
+            <summary>
+            Factory method for Release Statements
+            </summary>
+        </member>
+        <member name="M:FPDL.Policy.ReleaseStatement.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Create a ReleaseStatement from FPDL
+            </summary>
+            <param name="fpdl"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Policy.ReleaseToGeneric">
+            <summary>
+            ReleaseToGeneric
+            </summary>
+        </member>
+        <member name="T:FPDL.Policy.ReleaseToGeneric.CaveatType">
+            <summary>
+            Caveat type
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.ReleaseToGeneric.CaveatType.permissive">
+            <summary>
+            Permissive
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.ReleaseToGeneric.CaveatType.restrictive">
+            <summary>
+            Restrictive
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.ReleaseToGeneric.CaveatType.NOT_RELEASABLE">
+            <summary>
+            NOT Releaseable
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.ReleaseToGeneric.NotReleasable">
+            <summary>
+            True if this is a NotReleasableToGeneric statement
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.ReleaseToGeneric.SecurityOwner">
+            <summary>
+            Owner
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.ReleaseToGeneric.SecurityClassification">
+            <summary>
+            Classification
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.ReleaseToGeneric.SecurityCaveat">
+            <summary>
+            Caveat (optional)
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.ReleaseToGeneric.Caveat">
+            <summary>
+            Caveat Type
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.ReleaseToGeneric.SecurityNote">
+            <summary>
+            Notes
+            </summary>
+        </member>
+        <member name="M:FPDL.Policy.ReleaseToGeneric.#ctor(System.Boolean)">
+            <summary>
+            Construct ReleaseToGeneric object
+            </summary>
+        </member>
+        <member name="M:FPDL.Policy.ReleaseToGeneric.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct ReleaseToGeneric from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Policy.ReleaseToGeneric.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise ReleaseToGeneric from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Policy.ReleaseToGeneric.ToFPDL">
+            <summary>
+            Serialise ReleaseToGeneric to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Policy.ReleaseToGeneric.ToString">
+            <summary>
+            String representation of ReleaseToGeneric
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Policy.ReleaseToSpecific">
+            <summary>
+            ReleaseToSpecific
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.ReleaseToSpecific.NotReleasable">
+            <summary>
+            True if this is a NotReleasableToSpecific statement
+            </summary>
+        </member>
+        <member name="F:FPDL.Policy.ReleaseToSpecific.FederateName">
+            <summary>
+            Federate Name
+            </summary>
+        </member>
+        <member name="M:FPDL.Policy.ReleaseToSpecific.#ctor(System.Boolean)">
+            <summary>
+            Construct ReleaseToSpecific object
+            </summary>
+            <param name="notReleasable"></param>
+        </member>
+        <member name="M:FPDL.Policy.ReleaseToSpecific.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct ReleaseToSpecific object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Policy.ReleaseToSpecific.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise ReleaseToSpecific object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Policy.ReleaseToSpecific.ToFPDL">
+            <summary>
+            Serialise ReleaseToSpecific to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Policy.ReleaseToSpecific.ToString">
+            <summary>
+            String representation of ReleaseToGeneric
             </summary>
             <returns></returns>
         </member>
