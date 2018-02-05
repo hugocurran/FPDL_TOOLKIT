@@ -9,7 +9,7 @@ namespace FPDL.Pattern
     /// <summary>
     /// Pattern Library
     /// </summary>
-    public class PatternLibrary
+    public class PatternLibrary : IFpdlObject
     {
         // Type, GUID, Name, Version, Filename
         /// <summary>
@@ -72,6 +72,19 @@ namespace FPDL.Pattern
             }
             initialised = true;
         }
+
+        /// <summary>
+        /// Serialise Library to FPDL
+        /// </summary>
+        /// <returns></returns>
+        public XElement ToFPDL()
+        {
+            XElement fpdl = new XElement("PatternLibrary",
+                new XElement(ConfigMgmt.ToFPDL())
+                );
+            return fpdl;
+        }
+
         /// <summary>
         /// Initialise a Library object
         /// </summary>

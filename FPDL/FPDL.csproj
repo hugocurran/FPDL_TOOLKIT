@@ -64,19 +64,22 @@
     <Compile Include="Design\Federation.cs" />
     <Compile Include="Design\Filter.cs" />
     <Compile Include="Common\Publish.cs" />
-    <Compile Include="FpdlDeployParser.cs" />
-    <Compile Include="FpdlDesignParser.cs" />
-    <Compile Include="FpdlPatternParser.cs" />
+    <Compile Include="DeployParser.cs" />
+    <Compile Include="DesignParser.cs" />
+    <Compile Include="FpdlReader.cs" />
+    <Compile Include="PatternParser.cs" />
+    <Compile Include="FpdlWriter.cs" />
+    <Compile Include="IFpdlObject.cs" />
     <Compile Include="Pattern\Component.cs" />
     <Compile Include="Pattern\Entry.cs" />
     <Compile Include="Pattern\Module.cs" />
     <Compile Include="Pattern\PatternLibrary.cs" />
     <Compile Include="Pattern\PatternObject.cs" />
     <Compile Include="Pattern\Specification.cs" />
+    <Compile Include="PolicyParser.cs" />
+    <Compile Include="Policy\PolicyObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Policy\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

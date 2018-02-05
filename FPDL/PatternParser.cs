@@ -8,53 +8,53 @@ namespace FPDL
     /// <summary>
     /// FPDL Pattern Parser
     /// </summary>
-    public class FpdlPatternParser
+    public class PatternParser
     {
         /// <summary>
         /// Create a PatternObject from an FPDL Pattern document
         /// </summary>
-        /// <param name="patternDoc"></param>
+        /// <param name="fpdlDoc"></param>
         /// <returns></returns>
-        public static PatternObject Load(XDocument patternDoc)
+        public static PatternObject Load(XDocument fpdlDoc)
         {
             // We need to get rid of all of the XMLNS prefixes
             // XMLNS declarations
-            patternDoc.Descendants()
+            fpdlDoc.Descendants()
                 .Attributes()
                 .Where(x => x.IsNamespaceDeclaration)
                 .Remove();
             // Namespace prefixes
-            foreach (var elem in patternDoc.Descendants())
+            foreach (var elem in fpdlDoc.Descendants())
                 elem.Name = elem.Name.LocalName;
 
             // Now parse the FPDL file            
-            if (patternDoc.Element("Pattern") == null)
+            if (fpdlDoc.Element("Pattern") == null)
                 throw new ApplicationException("Cannot parse: Not an FPDL Pattern file");
 
-            return new PatternObject(patternDoc.Element("Pattern"));
+            return new PatternObject(fpdlDoc.Element("Pattern"));
         }
         /// <summary>
         /// Create a PatternLibrary from a FPDL Pattern Library document
         /// </summary>
-        /// <param name="libraryDoc"></param>
+        /// <param name="fpdlDoc"></param>
         /// <returns></returns>
-        public static PatternLibrary LoadLibrary(XDocument libraryDoc)
+        public static PatternLibrary LoadLibrary(XDocument fpdlDoc)
         {
             // We need to get rid of all of the XMLNS prefixes
             // XMLNS declarations
-            libraryDoc.Descendants()
+            fpdlDoc.Descendants()
                 .Attributes()
                 .Where(x => x.IsNamespaceDeclaration)
                 .Remove();
             // Namespace prefixes
-            foreach (var elem in libraryDoc.Descendants())
+            foreach (var elem in fpdlDoc.Descendants())
                 elem.Name = elem.Name.LocalName;
 
             // Now parse the FPDL file            
-            if (libraryDoc.Element("PatternLibrary") == null)
+            if (fpdlDoc.Element("PatternLibrary") == null)
                 throw new ApplicationException("Cannot parse: Not an FPDL Library Pattern file");
 
-            return new PatternLibrary(libraryDoc.Element("PatternLibrary"));
+            return new PatternLibrary(fpdlDoc.Element("PatternLibrary"));
         }
         /// <summary>
         /// Save a PatternObject to a FPDL Pattern document

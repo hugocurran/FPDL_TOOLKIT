@@ -15,7 +15,7 @@ namespace FPDL.Test.Integration
             XDocument fpdl_doc = XDocument.Load(@"..\..\..\FPDL\Test Data\Deploy1.xml");
 
             // Exercise the full codepath
-            DeployObject deploy = FpdlDeployParser.Load(fpdl_doc);
+            DeployObject deploy = DeployParser.Load(fpdl_doc);
 
             Tuple<int, int> expectedVer = Tuple.Create(1,0);
             Assert.AreEqual(expectedVer, deploy.ConfigMgmt.CurrentVersion);
@@ -30,7 +30,7 @@ namespace FPDL.Test.Integration
             XDocument patternFile = XDocument.Load(@"..\..\..\FPDL\Test Data\Pattern1.xml");
 
             // Exercise the full codepath
-            PatternObject pattern = FpdlPatternParser.Load(patternFile);
+            PatternObject pattern = PatternParser.Load(patternFile);
 
             Tuple<int, int> expectedVer = Tuple.Create(1, 0);
             Assert.AreEqual(expectedVer, pattern.ConfigMgmt.CurrentVersion);

@@ -9,7 +9,7 @@ namespace FPDL.Design
     /// <summary>
     /// Design object
     /// </summary>
-    class DesignObject
+    public class DesignObject : IFpdlObject
     {
         /// <summary>
         /// ConfigMgmt for the Pattern document
@@ -54,13 +54,13 @@ namespace FPDL.Design
         /// Serialise PatternObject to FPDL
         /// </summary>
         /// <returns></returns>
-        public XDocument ToFPDL()
+        public XElement ToFPDL()
         {
             XElement design = new XElement("Design",
                 ConfigMgmt.ToFPDL(),
                 new XElement("federation", Federation.ToFPDL())
             );
-            return new XDocument(design);
+            return design;
         }
         /// <summary>
         /// String representation of PatternObject

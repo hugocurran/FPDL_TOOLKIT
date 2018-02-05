@@ -427,6 +427,45 @@
             Service
             </summary>
         </member>
+        <member name="T:FPDL.Common.Publish">
+            <summary>
+            Federate publish
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Publish.Objects">
+            <summary>
+            Objects to publish
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Publish.Interactions">
+            <summary>
+            Interactions to publish
+            </summary>
+        </member>
+        <member name="M:FPDL.Common.Publish.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct a Publish object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Common.Publish.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Publish object from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Common.Publish.ToFPDL">
+            <summary>
+            Serialise Publish onject to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Common.Publish.ToString">
+            <summary>
+            String representation of Module object
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:FPDL.Deploy.Component">
             <summary>
             Deploy Component
@@ -1090,45 +1129,6 @@
         <member name="M:FPDL.Design.Filter.ToFPDL">
             <summary>
             Serialise to FPDL
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:FPDL.Design.Publish">
-            <summary>
-            Federate publish
-            </summary>
-        </member>
-        <member name="F:FPDL.Design.Publish.Objects">
-            <summary>
-            Objects to publish
-            </summary>
-        </member>
-        <member name="F:FPDL.Design.Publish.Interactions">
-            <summary>
-            Interactions to publish
-            </summary>
-        </member>
-        <member name="M:FPDL.Design.Publish.#ctor(System.Xml.Linq.XElement)">
-            <summary>
-            Construct a Publish object from FPDL
-            </summary>
-            <param name="fpdl"></param>
-        </member>
-        <member name="M:FPDL.Design.Publish.FromFPDL(System.Xml.Linq.XElement)">
-            <summary>
-            Deserialise Publish object from FPDL
-            </summary>
-            <param name="fpdl"></param>
-        </member>
-        <member name="M:FPDL.Design.Publish.ToFPDL">
-            <summary>
-            Serialise Publish onject to FPDL
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:FPDL.Design.Publish.ToString">
-            <summary>
-            String representation of Module object
             </summary>
             <returns></returns>
         </member>

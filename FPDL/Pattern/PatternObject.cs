@@ -11,7 +11,7 @@ namespace FPDL.Pattern
     /// <summary>
     /// Pattern
     /// </summary>
-    public class PatternObject
+    public class PatternObject : IFpdlObject
     {
         /// <summary>
         /// Pattern type
@@ -98,7 +98,7 @@ namespace FPDL.Pattern
         /// Serialise PatternObject to FPDL
         /// </summary>
         /// <returns></returns>
-        public XDocument ToFPDL()
+        public XElement ToFPDL()
         {            
             XElement pattern = new XElement("Pattern",
                 ConfigMgmt.ToFPDL(),
@@ -110,7 +110,7 @@ namespace FPDL.Pattern
             {
                 pattern.Add(component.ToFPDL());
             }
-            return new XDocument(pattern);
+            return pattern;
         }
         /// <summary>
         /// String representation of PatternObject

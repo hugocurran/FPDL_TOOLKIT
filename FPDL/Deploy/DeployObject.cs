@@ -10,7 +10,7 @@ namespace FPDL.Deploy
     /// <summary>
     /// FPDL Deploy
     /// </summary>
-    public class DeployObject
+    public class DeployObject : IFpdlObject
     {
         /// <summary>
         /// ConfigMgmt for Deploy document
