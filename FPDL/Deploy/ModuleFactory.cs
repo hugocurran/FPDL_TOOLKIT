@@ -38,6 +38,9 @@ namespace FPDL.Deploy
                     case "interface":
                         component.Modules.Add(new ModuleInterface(module));
                         break;
+                    case "host":
+                        component.Modules.Add(new ModuleHost(module));
+                        break;
                     default:
                         // Should throw an exception
                         continue;
