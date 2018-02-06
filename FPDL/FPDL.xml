@@ -512,6 +512,11 @@
             ConfigMgmt for Deploy document
             </summary>
         </member>
+        <member name="F:FPDL.Deploy.DeployObject.DesignReference">
+            <summary>
+            Reference to the design document
+            </summary>
+        </member>
         <member name="F:FPDL.Deploy.DeployObject.Systems">
             <summary>
             Systems within Deploy document
@@ -607,6 +612,50 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:FPDL.Deploy.ModuleExtension">
+            <summary>
+            Extension Module
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.ModuleExtension.VendorName">
+            <summary>
+            Vendor Name
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.ModuleExtension.Parameters">
+            <summary>
+            Parameters (Key, Value) pairs
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleExtension.#ctor">
+            <summary>
+            Construct module
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleExtension.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct Module from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleExtension.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Module from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleExtension.ToFPDL">
+            <summary>
+            Serialise Module to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleExtension.ToString">
+            <summary>
+            String representation of Extension module
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:FPDL.Deploy.ModuleFactory">
             <summary>
             Create a concrete Module instance
@@ -618,6 +667,169 @@
             </summary>
             <param name="fpdl"></param>
             <param name="component"></param>
+        </member>
+        <member name="T:FPDL.Deploy.ModuleFederation">
+            <summary>
+            Federation Module
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.ModuleFederation.FederationName">
+            <summary>
+            Federation Name
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.ModuleFederation.FederateName">
+            <summary>
+            Federate Name
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.ModuleFederation.InterfaceName">
+            <summary>
+            Interface Binding
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.ModuleFederation.RTI">
+            <summary>
+            RTI specification
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleFederation.#ctor">
+            <summary>
+            Construct Federation Module
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleFederation.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct Federation Module from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleFederation.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Module from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleFederation.ToFPDL">
+            <summary>
+            Serialise Module to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleFederation.ToString">
+            <summary>
+            String representation of Federation module
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Deploy.Rti">
+            <summary>
+            RTI class
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.Rti.CrcAddress">
+            <summary>
+            CRC Address
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.Rti.AddressType">
+            <summary>
+            Address Type
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.Rti.CrcPortNumber">
+            <summary>
+            CRC Port number
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.Rti.HlaSpec">
+            <summary>
+            HLA Specification
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.Rti.FomUri">
+            <summary>
+            URI of FOM modules
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.Rti.FomFile">
+            <summary>
+            Filenames of FOM modules
+            </summary>
+        </member>
+        <member name="T:FPDL.Deploy.ModuleHost">
+            <summary>
+            Host Module
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.ModuleHost.HostName">
+            <summary>
+            Interface binding for the policy
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.ModuleHost.Logging">
+            <summary>
+            Logging servers
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.ModuleHost.Time">
+            <summary>
+            Time servers
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleHost.#ctor">
+            <summary>
+            Construct a Host Module
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleHost.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct an Interface module from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleHost.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Interface module from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleHost.ToFPDL">
+            <summary>
+            Serialise Host module to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleHost.ToString">
+            <summary>
+            String representation of Host module
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Deploy.Server">
+            <summary>
+            Generic Server description
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.Server.Name">
+            <summary>
+            FQDN or IP address of server
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.Server.Protocol">
+            <summary>
+            Application protocol (eg syslog, NTP, etc
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.Server.Transport">
+            <summary>
+            Transport protocol (TCP, UDP, etc)
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.Server.Port">
+            <summary>
+            Port number
+            </summary>
         </member>
         <member name="T:FPDL.Deploy.ModuleImport">
             <summary>
@@ -814,11 +1026,6 @@
         <member name="F:FPDL.Deploy.System.SystemType">
             <summary>
             System type
-            </summary>
-        </member>
-        <member name="F:FPDL.Deploy.System.DesignRef">
-            <summary>
-            Design reference
             </summary>
         </member>
         <member name="F:FPDL.Deploy.System.Pattern">
@@ -1338,32 +1545,32 @@
             Library entry
             </summary>
         </member>
-        <member name="F:FPDL.Pattern.Entry.Type">
+        <member name="P:FPDL.Pattern.Entry.Type">
             <summary>
             Pattern type
             </summary>
         </member>
-        <member name="F:FPDL.Pattern.Entry.Reference">
+        <member name="P:FPDL.Pattern.Entry.Reference">
             <summary>
             Pattern reference
             </summary>
         </member>
-        <member name="F:FPDL.Pattern.Entry.Name">
+        <member name="P:FPDL.Pattern.Entry.Name">
             <summary>
             Pattern name
             </summary>
         </member>
-        <member name="F:FPDL.Pattern.Entry.Version">
+        <member name="P:FPDL.Pattern.Entry.Version">
             <summary>
             Pattern version
             </summary>
         </member>
-        <member name="F:FPDL.Pattern.Entry.Filename">
+        <member name="P:FPDL.Pattern.Entry.Filename">
             <summary>
             Pattern filename (optional)
             </summary>
         </member>
-        <member name="F:FPDL.Pattern.Entry.Pattern">
+        <member name="P:FPDL.Pattern.Entry.Pattern">
             <summary>
             Pattern object (optional)
             </summary>
@@ -1457,7 +1664,7 @@
             Pattern Library
             </summary>
         </member>
-        <member name="F:FPDL.Pattern.PatternLibrary.ConfigMgmt">
+        <member name="P:FPDL.Pattern.PatternLibrary.ConfigMgmt">
             <summary>
             ConfigMgmt object for Library document
             </summary>

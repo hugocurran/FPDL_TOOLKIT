@@ -11,26 +11,31 @@ namespace FPDL.Pattern
         /// <summary>
         /// Pattern type
         /// </summary>
-        public PatternObject.Type Type;
+        public PatternObject.Type Type { get; set; }
         /// <summary>
         /// Pattern reference
         /// </summary>
-        public Guid Reference;
+        public Guid Reference { get; set; }
         /// <summary>
         /// Pattern name
         /// </summary>
-        public string Name;
+        public string Name { get; set; }
         /// <summary>
         /// Pattern version
         /// </summary>
-        public string Version;
+        public string Version { get; set; }
         /// <summary>
         /// Pattern filename (optional)
         /// </summary>
-        public string Filename;
+        public string Filename { get; set; }
         /// <summary>
         /// Pattern object (optional)
         /// </summary>
-        public PatternObject Pattern = null;
+        public PatternObject Pattern { get; set; }
+
+        public Entry()
+        {
+            Pattern = null;
+        }
     }
 }

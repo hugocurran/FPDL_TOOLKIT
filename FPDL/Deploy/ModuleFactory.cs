@@ -41,6 +41,12 @@ namespace FPDL.Deploy
                     case "host":
                         component.Modules.Add(new ModuleHost(module));
                         break;
+                    case "federation":
+                        component.Modules.Add(new ModuleFederation(module));
+                        break;
+                    case "extension":
+                        component.Modules.Add(new ModuleExtension(module));
+                        break;
                     default:
                         // Should throw an exception
                         continue;

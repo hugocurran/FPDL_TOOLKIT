@@ -20,8 +20,8 @@
 			<changeNotes>InitialVersion</changeNotes>
 		</changed>
 	</configMgmt>
-	<designDocReference>C2056C70-A628-490E-B59B-3946EE89DFC3</designDocReference>
-	<system systemType="Gateway" designReference="C2056C70-A628-490E-B59B-3946EE89DFC3">
+	<designReference>C2056C70-A628-490E-B59B-3946EE89DFC3</designReference>
+	<system systemType="Gateway">
 		<pattern patternReference="C2056C70-A628-490E-B59B-3946EE89DFC4">HTG</pattern>
 		<component componentID="F6A15143-6BF7-4313-B558-C154C973EC07" componentType="Proxy">
 			<interface>
@@ -37,7 +37,7 @@
 				<federateName>GBAD-GWY</federateName>
 				<interfaceName>CS+S Network</interfaceName>
 				<rti>
-					<crcAddress type="ipAddress">127.0.0.1</crcAddress>
+					<crcAddress addressType="ipAddress">127.0.0.1</crcAddress>
 					<crcPortNumber>4452</crcPortNumber>
 					<hlaSpec>HLA Evolved</hlaSpec>
 					<fom>
@@ -128,7 +128,7 @@
 				<federateName>DOTC(A)-GWY</federateName>
 				<interfaceName>GBAD Network</interfaceName>
 				<rti>
-					<crcAddress type="ipAddress">127.0.0.1</crcAddress>
+					<crcAddress addressType="ipAddress">127.0.0.1</crcAddress>
 					<crcPortNumber>4497</crcPortNumber>
 					<hlaSpec>HLA Evolved</hlaSpec>
 					<fom>

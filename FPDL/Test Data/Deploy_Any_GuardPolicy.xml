@@ -13,9 +13,9 @@
     </created>
     <docReference>52769B0B-A240-45E2-972C-ED3B6307F71D</docReference>
   </configMgmt>
-  <designDocReference>C2056C70-A628-490E-B59B-3946EE89DFC3</designDocReference>
+  <designReference>C2056C70-A628-490E-B59B-3946EE89DFC3</designReference>
   <system systemType="Gateway">
-    <pattern>HTG</pattern>
+    <pattern patternReference="F6A15143-6BF7-4313-B558-C154C973EC07">HTG</pattern>
     <component componentID ="F6A15143-6BF7-4313-B558-C154C973EC07" componentType="Proxy">
       <interface>
         <interfaceName>CS+S Network</interfaceName>
@@ -30,7 +30,7 @@
         <federateName>GBAD-GWY</federateName>
         <interfaceName>CS+S Network</interfaceName>
         <rti>
-          <crcAddress type="ipAddress">127.0.0.1</crcAddress>
+          <crcAddress addressType="ipAddress">127.0.0.1</crcAddress>
           <crcPortNumber>4452</crcPortNumber>
           <hlaSpec>HLA Evolved</hlaSpec>
           <fom>
@@ -40,12 +40,12 @@
         </rti>
       </federation>
       <osp>
-        <protocol>HPSD_ZMQ</protocol>
+        <protocol>HPSD_TCP</protocol>
         <path>ExportPath</path>
         <outputPort>127.0.0.1:5556</outputPort>
       </osp>
       <osp>
-        <protocol>HPSD_ZMQ</protocol>
+        <protocol>HPSD_TCP</protocol>
         <path>ImportPath</path>
         <inputPort>127.0.0.1:5557</inputPort>
       </osp>
@@ -121,7 +121,7 @@
         <federateName>DOTC(A)-GWY</federateName>
         <interfaceName>GBAD Network</interfaceName>
         <rti>
-          <crcAddress type="ipAddress">127.0.0.1</crcAddress>
+          <crcAddress addressType="ipAddress">127.0.0.1</crcAddress>
           <crcPortNumber>4497</crcPortNumber>
           <hlaSpec>HLA Evolved</hlaSpec>
           <fom>
@@ -131,12 +131,12 @@
         </rti>
       </federation>
       <osp>
-        <protocol>HPSD</protocol>
+        <protocol>HPSD_TCP</protocol>
         <path>ExportPath</path>
         <inputPort>127.0.0.1:5555</inputPort>
       </osp>
       <osp>
-        <protocol>HPSD</protocol>
+        <protocol>HPSD_TCP</protocol>
         <path>ImportPath</path>
         <inputPort>127.0.0.1:5558</inputPort>
       </osp>

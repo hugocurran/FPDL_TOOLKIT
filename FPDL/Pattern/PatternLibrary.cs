@@ -15,7 +15,7 @@ namespace FPDL.Pattern
         /// <summary>
         /// ConfigMgmt object for Library document
         /// </summary>
-        public ConfigMgmt ConfigMgmt;
+        public ConfigMgmt ConfigMgmt { get; private set; }
         /// <summary>
         /// Library
         /// </summary>

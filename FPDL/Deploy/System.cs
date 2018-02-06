@@ -20,10 +20,6 @@ namespace FPDL.Deploy
         /// </summary>
         public Common.Sys.Type SystemType;
         /// <summary>
-        /// Design reference
-        /// </summary>
-        public Guid DesignRef;
-        /// <summary>
         /// Pattern name
         /// </summary>
         public string Pattern;
@@ -53,7 +49,6 @@ namespace FPDL.Deploy
                 throw new ApplicationException("Cannot parse: Not an FPDL system description");
             try
             {
-                DesignRef = Guid.Parse(fpdl.Attribute("designReference").Value);
                 SystemType = (Common.Sys.Type)Enum.Parse(typeof(Common.Sys.Type), fpdl.Attribute("systemType").Value);
                 Pattern = fpdl.Element("pattern").Value;
                 PatternRef = Guid.Parse(fpdl.Element("pattern").Attribute("patternReference").Value);
@@ -78,7 +73,6 @@ namespace FPDL.Deploy
         {
             XElement fpdl = new XElement("system",
                     new XAttribute("systemType", SystemType.ToString()),
-                    new XAttribute("designReference", DesignRef.ToString()),
                 new XElement("pattern", Pattern,
                     new XAttribute("patternReference", PatternRef.ToString())
                 )
@@ -97,7 +91,6 @@ namespace FPDL.Deploy
         {
             StringBuilder str = new StringBuilder("\nSystem\n");
             str.AppendFormat("  Type: {0}\n", SystemType);
-            str.AppendFormat("  DesignRef: {0}\n", DesignRef);
             str.AppendFormat("  Pattern: {0} ({1})\n", Pattern, PatternRef);
             foreach (Component comp in Components)
                 str.AppendFormat("\n{0}", comp);

@@ -17,6 +17,10 @@ namespace FPDL.Deploy
         /// </summary>
         public ConfigMgmt ConfigMgmt;
         /// <summary>
+        /// Reference to the design document
+        /// </summary>
+        public Guid DesignReference;
+        /// <summary>
         /// Systems within Deploy document
         /// </summary>
         public List<System> Systems = new List<System>();
@@ -42,8 +46,8 @@ namespace FPDL.Deploy
             if (fpdl.Name != "Deploy")
                 throw new ApplicationException("Cannot parse: Not an FPDL Deploy file");
 
-            ConfigMgmt = new ConfigMgmt(fpdl.Descendants("configMgmt").FirstOrDefault());
-
+            ConfigMgmt = new ConfigMgmt(fpdl.Element("configMgmt"));
+            DesignReference = Guid.Parse(fpdl.Element("designReference").Value);
             IEnumerable<XElement> systems = fpdl.Descendants("system");
             foreach (XElement system in systems)
             {
@@ -57,7 +61,8 @@ namespace FPDL.Deploy
         public XElement ToFPDL()
         {
             XElement fpdl = new XElement("Deploy");
-
+            fpdl.Add(ConfigMgmt.ToFPDL());
+            fpdl.Add(new XElement("designReference", DesignReference));
             foreach(System system in Systems)
             {
                 fpdl.Add(system.ToFPDL());
@@ -72,6 +77,7 @@ namespace FPDL.Deploy
         {
             StringBuilder str = new StringBuilder("DEPLOY =>\n");
             str.AppendFormat("{0}", ConfigMgmt);
+            str.AppendFormat("Design Ref: {0}\n", DesignReference);
             foreach (System sys in Systems)
                 str.AppendFormat("{0}\n", sys);
             return str.ToString();

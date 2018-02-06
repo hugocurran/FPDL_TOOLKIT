@@ -53,7 +53,9 @@
     <Compile Include="Deploy\DeployObject.cs" />
     <Compile Include="Deploy\IModule.cs" />
     <Compile Include="Deploy\ModuleExport.cs" />
+    <Compile Include="Deploy\ModuleExtension.cs" />
     <Compile Include="Deploy\ModuleFactory.cs" />
+    <Compile Include="Deploy\ModuleFederation.cs" />
     <Compile Include="Deploy\ModuleHost.cs" />
     <Compile Include="Deploy\ModuleImport.cs" />
     <Compile Include="Deploy\ModuleInterface.cs" />
