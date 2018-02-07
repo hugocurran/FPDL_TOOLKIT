@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Linq;
 
 namespace FPDL.Pattern
 {
@@ -8,6 +9,10 @@ namespace FPDL.Pattern
     public class Entry
     {
         // Type, GUID, Name, Version, Filename
+        /// <summary>
+        /// Embedded pattern = true
+        /// </summary>
+        public bool Embedded;
         /// <summary>
         /// Pattern type
         /// </summary>
@@ -32,9 +37,12 @@ namespace FPDL.Pattern
         /// Pattern object (optional)
         /// </summary>
         public PatternObject Pattern { get; set; }
-
+        /// <summary>
+        /// Construct Entry object
+        /// </summary>
         public Entry()
         {
+            Embedded = true;
             Pattern = null;
         }
     }

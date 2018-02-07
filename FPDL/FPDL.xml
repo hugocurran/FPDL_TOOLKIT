@@ -1545,6 +1545,11 @@
             Library entry
             </summary>
         </member>
+        <member name="F:FPDL.Pattern.Entry.Embedded">
+            <summary>
+            Embedded pattern = true
+            </summary>
+        </member>
         <member name="P:FPDL.Pattern.Entry.Type">
             <summary>
             Pattern type
@@ -1573,6 +1578,11 @@
         <member name="P:FPDL.Pattern.Entry.Pattern">
             <summary>
             Pattern object (optional)
+            </summary>
+        </member>
+        <member name="M:FPDL.Pattern.Entry.#ctor">
+            <summary>
+            Construct Entry object
             </summary>
         </member>
         <member name="T:FPDL.Pattern.Module">

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Pattern xmlns="http://www.niteworks.net/fpdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.niteworks.net/fpdl file:///C:/Users/peter/source/repos/Guard-Emulator/FPDL_0.3/FPDL-ver0.3.xsd">
+<Pattern xmlns="http://www.niteworks.net/fpdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.niteworks.net/fpdl   file:///C:/Users/peter/source/repos/FPDL-Schema/FPDL-ver0.3.xsd">
 	<configMgmt>
 		<securityOwner>UK</securityOwner>
 		<securityClassification>Official</securityClassification>
