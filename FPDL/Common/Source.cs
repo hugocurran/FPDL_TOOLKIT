@@ -27,6 +27,10 @@ namespace FPDL.Common
             Entity
         }
         /// <summary>
+        /// True if this Source refers to a filter
+        /// </summary>
+        public bool FilterSource;
+        /// <summary>
         /// Source type
         /// </summary>
         public Type SourceType { get; private set; }
@@ -91,6 +95,11 @@ namespace FPDL.Common
                 throw new ApplicationException("Cannot parse: Not an FPDL source description");
             try
             {
+                if (fpdl.Attribute("filterSource") != null)
+                    FilterSource = Convert.ToBoolean(fpdl.Attribute("filterSource").Value);
+                else
+                    FilterSource = false;
+
                 if (fpdl.Element("federateSource") != null)
                     SetSubscribeSource(Type.Federate, fpdl.Element("federateSource").Value);
                 else if (fpdl.Element("entitySource") != null)
@@ -121,7 +130,7 @@ namespace FPDL.Common
         /// <returns></returns>
         public XElement ToFPDL()
         {
-            XElement fpdlType = new XElement("source");
+            XElement fpdlType = new XElement("source", new XAttribute("filterSource", FilterSource.ToString()));
 
             if (SourceType == Type.Federate)
                 fpdlType.Add(new XElement("federateSource", SourceId));
