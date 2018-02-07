@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Policy xmlns="http://www.niteworks.net/fpdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.niteworks.net/fpdl file:///C:/Users/peter/source/repos/FPDL-Schema/FPDL-ver0.3.xsd">
+	<configMgmt>
+		<securityOwner>UK</securityOwner>
+		<securityClassification>Official</securityClassification>
+		<currentVersion>1.0</currentVersion>
+		<description>Pattern Library for testing</description>
+		<created>
+			<date>2018-02-07</date>
+			<author>PC</author>
+			<initialVersion>1.0</initialVersion>
+		</created>
+		<docReference>EFD5A9BE-44E8-4557-8B26-FBDCBB03303D</docReference>
+		<changed>
+			<date>2018-02-07</date>
+			<author>PC</author>
+			<newVersion>1.0</newVersion>
+			<prevDocReference>EFD5A9BE-44E8-4557-8B26-FBDCBB03303D</prevDocReference>
+			<changeNotes>Initial version</changeNotes>
+		</changed>
+	</configMgmt>
+  <federate federateType="Gateway">
+    <federateName>TyphoonAirToGround</federateName>
+    <securityOwner>UK</securityOwner>
+    <securityClassification>Official Sensitive</securityClassification>
+    <securityCaveat>none</securityCaveat>
+    <physicalLocation>Waddington</physicalLocation>
+    <description>vrer</description>
+    <entity>
+      <entityName>Brimstone</entityName>
+      <entityID>efd5da9b-44e8-4557-8b26-abcdbb03303d</entityID>
+      <publish>
+      <object>
+        <!--GUI - Grading =Identification-->
+        <objectClassName>HLAobjectRoot.BaseEntity.EntityType</objectClassName>
+        <releaseStatements>
+          <releaseToGeneric>
+            <securityOwner>UK</securityOwner>
+            <securityClassification>Secret</securityClassification>
+            <securityCaveat type="permissive">RELEASEABLE TO NATO SECRET</securityCaveat>
+            <securityNote>Test ABC UK Typhoon SGG</securityNote>
+          </releaseToGeneric>
+        </releaseStatements>
+      </object>
+      </publish>
+    </entity>
+  </federate>
+</Policy>

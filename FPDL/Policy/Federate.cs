@@ -41,11 +41,11 @@ namespace FPDL.Policy
         /// <summary>
         /// Publish (optional)
         /// </summary>
-        public Publish Publish;
+        public PolicyPublish Publish;
         /// <summary>
         /// Entities (optional)
         /// </summary>
-        public List<Entity> Entities;
+        public List<PolicyEntity> Entities = new List<PolicyEntity>();
         /// <summary>
         /// Construct a Federate object
         /// </summary>
@@ -78,10 +78,12 @@ namespace FPDL.Policy
                 if (fpdl.Element("description") != null)
                     Description = fpdl.Element("description").Value;
                 if (fpdl.Element("publish") != null)
-                    Publish = new Publish(fpdl.Element("publish"));
+                    Publish = new PolicyPublish(fpdl.Element("publish"));
                 if (fpdl.Element("entity") != null)
                     foreach (XElement entity in fpdl.Elements("entity"))
-                        Entities.Add(new Entity(entity));
+                    {
+                        Entities.Add(new PolicyEntity(entity));
+                    }
             }
             catch (ArgumentException e)
             {
@@ -113,7 +115,7 @@ namespace FPDL.Policy
             if (Publish != null)
                 fpdl.Add(Publish.ToFPDL());
             if (Entities != null)
-                foreach (Entity entity in Entities)
+                foreach (PolicyEntity entity in Entities)
                     fpdl.Add(entity.ToFPDL());
             return fpdl;
         }

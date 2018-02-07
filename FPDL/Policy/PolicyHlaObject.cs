@@ -10,7 +10,7 @@ namespace FPDL.Policy
     /// <summary>
     /// Redefinition of HlaObject for Policy
     /// </summary>
-    class PolicyHlaObject
+    public class PolicyHlaObject
     {
         /// <summary>
         /// Object class name
@@ -51,7 +51,7 @@ namespace FPDL.Policy
                 ObjectClassName = fpdl.Element("objectClassName").Value;
                 if (fpdl.Element("releaseStatements") != null)
                 {
-                    foreach (XElement statement in fpdl.Element("releaseStatements").Descendants())
+                    foreach (XElement statement in fpdl.Element("releaseStatements").Elements())
                         ReleaseStatements.Add(ReleaseStatement.FromFPDL(statement));
                 }
                 if (fpdl.Element("attribute") != null)

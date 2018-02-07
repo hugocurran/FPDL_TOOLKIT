@@ -81,14 +81,14 @@
     <Compile Include="Pattern\PatternObject.cs" />
     <Compile Include="Pattern\Specification.cs" />
     <Compile Include="PolicyParser.cs" />
-    <Compile Include="Policy\Entity.cs" />
+    <Compile Include="Policy\PolicyEntity.cs" />
     <Compile Include="Policy\Federate.cs" />
     <Compile Include="Policy\PolicyException.cs" />
     <Compile Include="Policy\PolicyHlaAttribute.cs" />
     <Compile Include="Policy\PolicyHlaInteraction.cs" />
     <Compile Include="Policy\PolicyHlaObject.cs" />
     <Compile Include="Policy\PolicyObject.cs" />
-    <Compile Include="Policy\Publish.cs" />
+    <Compile Include="Policy\PolicyPublish.cs" />
     <Compile Include="Policy\ReleaseStatement\IReleaseStatement.cs" />
     <Compile Include="Policy\ReleaseStatement\ReleaseStatement.cs" />
     <Compile Include="Policy\ReleaseStatement\ReleaseToGeneric.cs" />

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Policy xmlns="http://www.niteworks.net/fpdl">
+  <configMgmt xmlns="">
+    <securityOwner></securityOwner>
+    <securityClassification></securityClassification>
+    <currentVersion></currentVersion>
+    <created>
+      <date></date>
+      <author></author>
+      <initialVersion></initialVersion>
+    </created>
+  </configMgmt>
+  <federate federateType="" xmlns="">
+    <federateName>E3DSurveillance</federateName>
+    <securityOwner></securityOwner>
+    <securityClassification></securityClassification>
+    <securityCaveat></securityCaveat>
+    <physicalLocation>Waddington</physicalLocation>
+    <description></description>
+    <publish></publish>
+    <entity>
+      <entityName>AIM9-X</entityName>
+      <entityID></entityID>
+      <publish>
+      <object>
+        <!--GUI - Grading =Identification-->
+        <objectClassName>HLAobjectRoot.BaseEntity.EntityType</objectClassName>
+        <releaseStatements>
+          <releaseToGeneric>
+            <securityOwner>UK</securityOwner>
+            <securityClassification>Secret</securityClassification>
+            <securityCaveat>RELEASEABLE TO NATO SECRET</securityCaveat>
+            <securityNote>Test ABC UK Typhoon SGG</securityNote>
+          </releaseToGeneric>
+        </releaseStatements>
+      </object>
+      </publish>
+	</entity>
+  </federate>
+</Policy>

@@ -6,7 +6,7 @@ namespace FPDL.Policy
     /// <summary>
     /// Entity
     /// </summary>
-    public class Entity
+    public class PolicyEntity
     {
         /// <summary>
         /// Entity friendly name
@@ -19,13 +19,13 @@ namespace FPDL.Policy
         /// <summary>
         /// Entity publish
         /// </summary>
-        public Publish Publish;
+        public PolicyPublish Publish;
 
         /// <summary>
         /// Construct Entity from FPDL
         /// </summary>
         /// <param name="fpdl"></param>
-        public Entity(XElement fpdl)
+        public PolicyEntity(XElement fpdl)
         {
             FromFPDL(fpdl);
         }
@@ -36,16 +36,16 @@ namespace FPDL.Policy
         public void FromFPDL(XElement fpdl)
         {
             if (fpdl.Name != "entity")
-                throw new ApplicationException("Cannot parse: Not a publish description");
+                throw new ApplicationException("Cannot parse: Not an Entity description");
             try
             {
                 EntityName = fpdl.Element("entityName").Value;
                 EntityId = Guid.Parse(fpdl.Element("entityID").Value);
-                Publish = new Publish(fpdl.Element("publish"));
+                Publish = new PolicyPublish(fpdl.Element("publish"));
             }
             catch (NullReferenceException e)
             {
-                throw new ApplicationException("Module parse error: " + e.Message);
+                throw new ApplicationException("Entity parse error: " + e.Message);
             }
         }
         /// <summary>

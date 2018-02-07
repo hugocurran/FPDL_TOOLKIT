@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Policy xmlns="http://www.niteworks.net/fpdl">
+  <configMgmt xmlns="">
+    <securityOwner></securityOwner>
+    <securityClassification></securityClassification>
+    <currentVersion></currentVersion>
+    <created>
+      <date></date>
+      <author></author>
+      <initialVersion></initialVersion>
+    </created>
+  </configMgmt>
+  <federate federateType="filter" xmlns="">
+    <federateName>Protector1</federateName>
+    <securityOwner>NATO</securityOwner>
+    <securityClassification>Confidential</securityClassification>
+    <securityCaveat>svs</securityCaveat>
+    <physicalLocation>Waddington</physicalLocation>
+    <description>wfw</description>
+    <publish></publish>
+    <entity>
+      <entityName>Meteor</entityName>
+      <entityID></entityID>
+      <publish>
+        <object>
+          <!--GUI - Grading =Identification-->
+          <objectClassName>HLAobjectRoot.BaseEntity.EntityType</objectClassName>
+          <releaseStatements>
+            <releaseToGeneric>
+              <securityOwner>UK</securityOwner>
+              <securityClassification>Secret</securityClassification>
+              <securityCaveat>RELEASEABLE TO NATO SECRET</securityCaveat>
+              <securityNote>Test ABC UK Typhoon SGG</securityNote>
+            </releaseToGeneric>
+          </releaseStatements>
+        </object>
+        <object>
+          <!--GUI - Grading =Identification-->
+          <objectClassName>HLAobjectRoot.BaseEntity.EntityIdentifier</objectClassName>
+          <releaseStatements>
+            <releaseToGeneric>
+              <securityOwner>UK</securityOwner>
+              <securityClassification>Secret</securityClassification>
+              <securityCaveat>RELEASEABLE TO NATO SECRET</securityCaveat>
+              <securityNote>Test ABC UK Typhoon SGG</securityNote>
+            </releaseToGeneric>
+          </releaseStatements>
+        </object>
+        <object>
+          <!--GUI - Grading =Identification-->
+          <objectClassName>HLAobjectRoot.BaseEntity.PhysicalEntity.AlternateEntityType</objectClassName>
+          <releaseStatements>
+            <releaseToGeneric>
+              <securityOwner>UK</securityOwner>
+              <securityClassification>Secret</securityClassification>
+              <securityCaveat>RELEASEABLE TO NATO SECRET</securityCaveat>
+              <securityNote>Test ABC UK Typhoon SGG</securityNote>
+            </releaseToGeneric>
+          </releaseStatements>
+        </object>
+        <object>
+          <!--GUI - Grading =Identification-->
+          <objectClassName>HLAobjectRoot.BaseEntity.PhysicalEntity.ForceIdentifier</objectClassName>
+          <releaseStatements>
+            <releaseToGeneric>
+              <securityOwner>UK</securityOwner>
+              <securityClassification>Secret</securityClassification>
+              <securityCaveat>RELEASEABLE TO NATO SECRET</securityCaveat>
+              <securityNote>Test ABC UK Typhoon SGG</securityNote>
+            </releaseToGeneric>
+          </releaseStatements>
+        </object>
+        <object>
+          <!--GUI - Grading =Identification-->
+          <objectClassName>HLAobjectRoot.BaseEntity.PhysicalEntity.Marking</objectClassName>
+          <releaseStatements>
+            <releaseToGeneric>
+              <securityOwner>UK</securityOwner>
+              <securityClassification>Secret</securityClassification>
+              <securityCaveat>RELEASEABLE TO NATO SECRET</securityCaveat>
+              <securityNote>Test ABC UK Typhoon SGG</securityNote>
+            </releaseToGeneric>
+          </releaseStatements>
+        </object>
+      </publish>
+    </entity>
+  </federate>
+</Policy>

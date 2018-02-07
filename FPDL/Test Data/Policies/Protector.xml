@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Policy xmlns="http://www.niteworks.net/fpdl">
+  <configMgmt xmlns="">
+    <securityOwner></securityOwner>
+    <securityClassification></securityClassification>
+    <currentVersion></currentVersion>
+    <created>
+      <date></date>
+      <author></author>
+      <initialVersion></initialVersion>
+    </created>
+  </configMgmt>
+  <federate federateType="service" xmlns="">
+    <federateName>Protector2</federateName>
+    <securityOwner>GE</securityOwner>
+    <securityClassification>Secret</securityClassification>
+    <securityCaveat>qqqqqq</securityCaveat>
+    <physicalLocation>Waddington</physicalLocation>
+    <description>xxxxxxxxx</description>
+    <publish></publish>
+    <entity>
+      <entityName>AIM9-X</entityName>
+      <entityID></entityID>
+      <publish />
+    </entity>
+  </federate>
+</Policy>

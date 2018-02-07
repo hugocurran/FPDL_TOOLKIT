@@ -9,22 +9,22 @@ namespace FPDL.Policy
     /// <summary>
     /// Federate publish
     /// </summary>
-    public class Publish
+    public class PolicyPublish
     {
         /// <summary>
         /// Objects to publish
         /// </summary>
-        public List<HlaObject> Objects = new List<HlaObject>();
+        public List<PolicyHlaObject> Objects = new List<PolicyHlaObject>();
         /// <summary>
         /// Interactions to publish
         /// </summary>
-        public List<HlaInteraction> Interactions = new List<HlaInteraction>();
+        public List<PolicyHlaInteraction> Interactions = new List<PolicyHlaInteraction>();
 
         /// <summary>
         /// Construct a Publish object from FPDL
         /// </summary>
         /// <param name="fpdl"></param>
-        public Publish(XElement fpdl)
+        public PolicyPublish(XElement fpdl)
         {
             FromFPDL(fpdl);
         }
@@ -41,12 +41,12 @@ namespace FPDL.Policy
                 if (fpdl.Element("object") != null)
                 {
                     foreach (XElement obj in fpdl.Elements("object"))
-                        Objects.Add(new HlaObject(obj));
+                        Objects.Add(new PolicyHlaObject(obj));
                 }
                 if (fpdl.Element("interaction") != null)
                 {
                     foreach (XElement inter in fpdl.Elements("interaction"))
-                        Interactions.Add(HlaInteraction.FromFPDL(inter));
+                        Interactions.Add(new PolicyHlaInteraction(inter));
                 }
             }
             catch (NullReferenceException e)
@@ -63,12 +63,12 @@ namespace FPDL.Policy
             XElement fpdl = new XElement("publish");
             if (Objects.Count > 0)
             {
-                foreach (HlaObject obj in Objects)
+                foreach (PolicyHlaObject obj in Objects)
                     fpdl.Add(obj.ToFPDL());
             }
             if (Interactions.Count > 0)
             {
-                foreach (HlaInteraction inter in Interactions)
+                foreach (PolicyHlaInteraction inter in Interactions)
                     fpdl.Add(inter.ToFPDL());
             }
             return fpdl;
@@ -80,9 +80,9 @@ namespace FPDL.Policy
         public override string ToString()
         {
             StringBuilder str = new StringBuilder("publish\n");
-            foreach (HlaObject obj in Objects)
+            foreach (PolicyHlaObject obj in Objects)
                 str.Append(obj.ToString());
-            foreach (HlaInteraction inter in Interactions)
+            foreach (PolicyHlaInteraction inter in Interactions)
                 str.Append(inter.ToString());
             return str.ToString();
         }

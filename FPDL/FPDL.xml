@@ -1898,39 +1898,39 @@
             <param name="filename"></param>
             <param name="overwrite"></param>
         </member>
-        <member name="T:FPDL.Policy.Entity">
+        <member name="T:FPDL.Policy.PolicyEntity">
             <summary>
             Entity
             </summary>
         </member>
-        <member name="F:FPDL.Policy.Entity.EntityName">
+        <member name="F:FPDL.Policy.PolicyEntity.EntityName">
             <summary>
             Entity friendly name
             </summary>
         </member>
-        <member name="F:FPDL.Policy.Entity.EntityId">
+        <member name="F:FPDL.Policy.PolicyEntity.EntityId">
             <summary>
             Entity ID (NETN ID)
             </summary>
         </member>
-        <member name="F:FPDL.Policy.Entity.Publish">
+        <member name="F:FPDL.Policy.PolicyEntity.Publish">
             <summary>
             Entity publish
             </summary>
         </member>
-        <member name="M:FPDL.Policy.Entity.#ctor(System.Xml.Linq.XElement)">
+        <member name="M:FPDL.Policy.PolicyEntity.#ctor(System.Xml.Linq.XElement)">
             <summary>
             Construct Entity from FPDL
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Policy.Entity.FromFPDL(System.Xml.Linq.XElement)">
+        <member name="M:FPDL.Policy.PolicyEntity.FromFPDL(System.Xml.Linq.XElement)">
             <summary>
             Deserialise Entity from FPDL
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Policy.Entity.ToFPDL">
+        <member name="M:FPDL.Policy.PolicyEntity.ToFPDL">
             <summary>
             Serialise Entity object to FPDL
             </summary>
@@ -2250,40 +2250,40 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:FPDL.Policy.Publish">
+        <member name="T:FPDL.Policy.PolicyPublish">
             <summary>
             Federate publish
             </summary>
         </member>
-        <member name="F:FPDL.Policy.Publish.Objects">
+        <member name="F:FPDL.Policy.PolicyPublish.Objects">
             <summary>
             Objects to publish
             </summary>
         </member>
-        <member name="F:FPDL.Policy.Publish.Interactions">
+        <member name="F:FPDL.Policy.PolicyPublish.Interactions">
             <summary>
             Interactions to publish
             </summary>
         </member>
-        <member name="M:FPDL.Policy.Publish.#ctor(System.Xml.Linq.XElement)">
+        <member name="M:FPDL.Policy.PolicyPublish.#ctor(System.Xml.Linq.XElement)">
             <summary>
             Construct a Publish object from FPDL
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Policy.Publish.FromFPDL(System.Xml.Linq.XElement)">
+        <member name="M:FPDL.Policy.PolicyPublish.FromFPDL(System.Xml.Linq.XElement)">
             <summary>
             Deserialise Publish object from FPDL
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Policy.Publish.ToFPDL">
+        <member name="M:FPDL.Policy.PolicyPublish.ToFPDL">
             <summary>
             Serialise Publish onject to FPDL
             </summary>
             <returns></returns>
         </member>
-        <member name="M:FPDL.Policy.Publish.ToString">
+        <member name="M:FPDL.Policy.PolicyPublish.ToString">
             <summary>
             String representation of Module object
             </summary>
