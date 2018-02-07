@@ -18,7 +18,7 @@ namespace FPDL.Deploy
         /// <summary>
         /// System type
         /// </summary>
-        public Common.Sys.Type SystemType;
+        public Enums.FederateType SystemType;
         /// <summary>
         /// Pattern name
         /// </summary>
@@ -49,7 +49,7 @@ namespace FPDL.Deploy
                 throw new ApplicationException("Cannot parse: Not an FPDL system description");
             try
             {
-                SystemType = (Common.Sys.Type)Enum.Parse(typeof(Common.Sys.Type), fpdl.Attribute("systemType").Value);
+                SystemType = (Enums.FederateType)Enum.Parse(typeof(Enums.FederateType), fpdl.Attribute("systemType").Value);
                 Pattern = fpdl.Element("pattern").Value;
                 PatternRef = Guid.Parse(fpdl.Element("pattern").Attribute("patternReference").Value);
 

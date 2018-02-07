@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FPDL.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Linq;
@@ -11,27 +12,9 @@ namespace FPDL.Pattern
     public class Component
     {
         /// <summary>
-        /// Component Type
-        /// </summary>
-        public enum Type
-        {
-            /// <summary>
-            /// Proxy
-            /// </summary>
-            Proxy,
-            /// <summary>
-            /// Guard
-            /// </summary>
-            Guard,
-            /// <summary>
-            /// Filter
-            /// </summary>
-            Filter
-        }
-        /// <summary>
         /// Component type
         /// </summary>
-        public Component.Type ComponentType;
+        public Enums.ComponentType ComponentType;
         /// <summary>
         /// Component ID
         /// </summary>
@@ -58,7 +41,7 @@ namespace FPDL.Pattern
                 throw new ApplicationException("Cannot parse: Not an FPDL component description");
             try
             {
-                ComponentType = (Component.Type)Enum.Parse(typeof(Component.Type), fpdl.Element("componentType").Value);
+                ComponentType = (Enums.ComponentType)Enum.Parse(typeof(Enums.ComponentType), fpdl.Element("componentType").Value);
                 ComponentID = Guid.Parse(fpdl.Element("componentID").Value);
                 foreach (XElement module in fpdl.Descendants("module"))
                     Modules.Add(new Module(module));

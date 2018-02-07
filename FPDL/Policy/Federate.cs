@@ -13,7 +13,7 @@ namespace FPDL.Policy
         /// <summary>
         /// Federate Type
         /// </summary>
-        public Sys.Type FederateType;
+        public Enums.GatewayType FederateType;
         /// <summary>
         /// Federate Name
         /// </summary>
@@ -68,7 +68,7 @@ namespace FPDL.Policy
                 throw new ApplicationException("Cannot parse: Not an FPDL federate description");
             try
             {
-                FederateType = (Sys.Type)Enum.Parse(typeof(Sys.Type), fpdl.Attribute("federateType").Value);
+                FederateType = (Enums.GatewayType)Enum.Parse(typeof(Enums.GatewayType), fpdl.Attribute("federateType").Value);
                 FederateName = fpdl.Element("federateName").Value;
                 SecurityOwner = fpdl.Element("securityOwner").Value;
                 SecurityClassification = fpdl.Element("securityClassification").Value;

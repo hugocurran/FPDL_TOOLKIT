@@ -12,6 +12,7 @@ namespace FPDL.Common
     /// </summary>
     public class Source
     {
+        // Note that we handle things differently to the FPDL schema....
         /// <summary>
         /// Source type
         /// </summary>
@@ -27,10 +28,6 @@ namespace FPDL.Common
             Entity
         }
         /// <summary>
-        /// True if this Source refers to a filter
-        /// </summary>
-        public bool FilterSource;
-        /// <summary>
         /// Source type
         /// </summary>
         public Type SourceType { get; private set; }
@@ -38,6 +35,11 @@ namespace FPDL.Common
         /// ID of source
         /// </summary>
         public string SourceId { get; private set; }
+
+        /// <summary>
+        /// True if this Source refers to a filter
+        /// </summary>
+        public bool FilterSource;
         /// <summary>
         /// HLA objects (read only)
         /// </summary>

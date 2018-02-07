@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FPDL.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Linq;
@@ -12,24 +13,6 @@ namespace FPDL.Deploy
     public class Component
     {
         /// <summary>
-        /// Component type
-        /// </summary>
-        public enum Type
-        {
-            /// <summary>
-            /// Proxy
-            /// </summary>
-            Proxy,
-            /// <summary>
-            /// Guard
-            /// </summary>
-            Guard,
-            /// <summary>
-            /// Filter
-            /// </summary>
-            Filter
-        }
-        /// <summary>
         /// Modules
         /// </summary>
         public List<IModule> Modules = new List<IModule>();
@@ -40,7 +23,7 @@ namespace FPDL.Deploy
         /// <summary>
         /// Component Type
         /// </summary>
-        public Type ComponentType;
+        public Enums.ComponentType ComponentType;
         /// <summary>
         /// Construct Component object
         /// </summary>
@@ -64,21 +47,12 @@ namespace FPDL.Deploy
             try
             {
                 ComponentID = Guid.Parse(fpdl.Attribute("componentID").Value);
-                switch (fpdl.Attribute("componentType").Value)
-                {
-                    case "Proxy":
-                        ComponentType = Type.Proxy;
-                        break;
-                    case "Guard":
-                        ComponentType = Type.Guard;
-                        break;
-                    case "Filter":
-                        ComponentType = Type.Filter;
-                        break;
-                    default:
-                        throw new ApplicationException("Component parse error: Invalid componentType");
-                }
+                ComponentType = (Enums.ComponentType)Enum.Parse(typeof(Enums.ComponentType), fpdl.Attribute("componentType").Value);
                 ModuleFactory.Create(fpdl, this);
+            }
+            catch (ArgumentException e)
+            {
+                throw new ApplicationException("Invalid component type: " + e.Message);
             }
             catch (NullReferenceException e)
             {
@@ -92,8 +66,8 @@ namespace FPDL.Deploy
         public XElement ToFPDL()
         {
             XElement fpdl = new XElement("component",
-                    new XAttribute("componentID", ComponentID.ToString()),
-                    new XAttribute("componentType", ComponentType.ToString())
+                    new XElement("componentID", ComponentID.ToString()),
+                    new XElement("componentType", ComponentType.ToString())
                     );
 
             foreach (IModule module in Modules)

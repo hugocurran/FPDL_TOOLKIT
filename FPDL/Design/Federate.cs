@@ -14,7 +14,7 @@ namespace FPDL.Design
         /// <summary>
         /// Federate type
         /// </summary>
-        Common.Sys.Type FederateType;
+        public Enums.FederateType FederateType;
         /// <summary>
         /// Federation name
         /// </summary>
@@ -30,7 +30,7 @@ namespace FPDL.Design
         /// <summary>
         /// Gateway Type (optional)
         /// </summary>
-        public Gateway.Type GatewayType;
+        public Enums.GatewayType GatewayType;
         /// <summary>
         /// Filter specification (optional)
         /// </summary>
@@ -66,19 +66,19 @@ namespace FPDL.Design
                 throw new ApplicationException("Cannot parse: Not an FPDL federate description");
             try
             {
-                FederateType = (Common.Sys.Type)Enum.Parse(typeof(Common.Sys.Type), fpdl.Attribute("federateType").Value);
+                FederateType = (Enums.FederateType)Enum.Parse(typeof(Enums.FederateType), fpdl.Attribute("federateType").Value);
                 FederateName = fpdl.Element("federateName").Value;
                 PolicyReference = Guid.Parse(fpdl.Element("policyReference").Value);
                 if (fpdl.Element("simulatorName") != null)
                     SimulatorName = fpdl.Element("simulatorName").Value;
 
-                if ((FederateType == Common.Sys.Type.Gateway) && (fpdl.Element("gateway") == null))
+                if ((FederateType == Enums.FederateType.gateway) && (fpdl.Element("gateway") == null))
                     throw new ApplicationException("Missing gateway specification for a Gateway federateType");
                 else
-                    GatewayType = (Gateway.Type)Enum.Parse(typeof(Gateway.Type), fpdl.Element("gateway").Attribute("type").Value);
+                    GatewayType = (Enums.GatewayType)Enum.Parse(typeof(Enums.GatewayType), fpdl.Element("gateway").Attribute("type").Value);
 
-                if ((FederateType == Common.Sys.Type.Gateway) && (fpdl.Element("gateway") == null))
-                    throw new ApplicationException("Missing gateway specification for a Gateway federateType");
+                if ((FederateType == Enums.FederateType.filter) && (fpdl.Element("filter") == null))
+                    throw new ApplicationException("Missing filter specification for a Filter federateType");
                 else
                     Filter = new Filter(fpdl.Element("filter"));
 
@@ -119,9 +119,9 @@ namespace FPDL.Design
                 );
             if (SimulatorName != null)
                 fpdl.Add(new XElement("simulatorName", SimulatorName));
-            if (FederateType == Common.Sys.Type.Gateway)
+            if (FederateType == Enums.FederateType.gateway)
                 fpdl.Add(new XElement("gateway", new XAttribute("type", GatewayType.ToString())));
-            if (FederateType == Common.Sys.Type.Filter)
+            if (FederateType == Enums.FederateType.filter)
                 fpdl.Add(new XElement("filter", Filter.ToFPDL()));
             if (Sources.Count > 0)
             {
@@ -148,9 +148,9 @@ namespace FPDL.Design
             str.AppendFormat("  PolicyRef: {0}\n", PolicyReference);
             if (SimulatorName != null)
                 str.AppendFormat("  SimulatorName: {0}\n", PolicyReference);
-            if (FederateType == Common.Sys.Type.Gateway)
+            if (FederateType == Enums.FederateType.gateway)
                 str.AppendFormat("  Gateway Type: {0}\n", GatewayType);
-            if (FederateType == Common.Sys.Type.Filter)
+            if (FederateType == Enums.FederateType.filter)
                 str.AppendFormat("  Filter:\n\t{0}\n", Filter.ToString());
             if (Sources.Count > 0)
             {

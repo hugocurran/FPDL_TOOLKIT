@@ -42,13 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\ConfigMgmt.cs" />
-    <Compile Include="Common\GatewayType.cs" />
     <Compile Include="Common\HlaAttribute.cs" />
     <Compile Include="Common\HlaInteraction.cs" />
     <Compile Include="Common\HlaObject.cs" />
     <Compile Include="Common\HlaParameter.cs" />
     <Compile Include="Common\Source.cs" />
-    <Compile Include="Common\SysType.cs" />
+    <Compile Include="Common\Enums.cs" />
     <Compile Include="Deploy\Component.cs" />
     <Compile Include="Deploy\DeployObject.cs" />
     <Compile Include="Deploy\IModule.cs" />

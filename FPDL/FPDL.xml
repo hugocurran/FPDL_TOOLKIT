@@ -170,31 +170,6 @@
             <param name="version">Version tuple</param>
             <returns>Version string</returns>
         </member>
-        <member name="T:FPDL.Common.Gateway">
-            <summary>
-            GatewayType enum
-            </summary>
-        </member>
-        <member name="T:FPDL.Common.Gateway.Type">
-            <summary>
-            Gateway Type
-            </summary>
-        </member>
-        <member name="F:FPDL.Common.Gateway.Type.HTG">
-            <summary>
-            HTG
-            </summary>
-        </member>
-        <member name="F:FPDL.Common.Gateway.Type.MTG">
-            <summary>
-            MTG
-            </summary>
-        </member>
-        <member name="F:FPDL.Common.Gateway.Type.LTG">
-            <summary>
-            LTG
-            </summary>
-        </member>
         <member name="T:FPDL.Common.HlaAttribute">
             <summary>
             HLA Attribute
@@ -351,6 +326,11 @@
             Entity source
             </summary>
         </member>
+        <member name="F:FPDL.Common.Source.FilterSource">
+            <summary>
+            True if this Source refers to a filter
+            </summary>
+        </member>
         <member name="P:FPDL.Common.Source.SourceType">
             <summary>
             Source type
@@ -408,29 +388,49 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:FPDL.Common.Sys">
+        <member name="T:FPDL.Common.Enums">
             <summary>
             DOTC(A) system type
             </summary>
         </member>
-        <member name="T:FPDL.Common.Sys.Type">
+        <member name="T:FPDL.Common.Enums.FederateType">
             <summary>
             System types
             </summary>
         </member>
-        <member name="F:FPDL.Common.Sys.Type.Gateway">
+        <member name="F:FPDL.Common.Enums.FederateType.gateway">
             <summary>
             Gateway
             </summary>
         </member>
-        <member name="F:FPDL.Common.Sys.Type.Filter">
+        <member name="F:FPDL.Common.Enums.FederateType.filter">
             <summary>
             Filter
             </summary>
         </member>
-        <member name="F:FPDL.Common.Sys.Type.Service">
+        <member name="F:FPDL.Common.Enums.FederateType.service">
             <summary>
             Service
+            </summary>
+        </member>
+        <member name="T:FPDL.Common.Enums.GatewayType">
+            <summary>
+            Gateway Type
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Enums.GatewayType.htg">
+            <summary>
+            HTG
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Enums.GatewayType.mtg">
+            <summary>
+            MTG
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Enums.GatewayType.ltg">
+            <summary>
+            LTG
             </summary>
         </member>
         <member name="T:FPDL.Deploy.Component">
