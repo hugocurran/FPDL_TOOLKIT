@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FPDL-Viewer", "FPDL-Viewer\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pattern Editor", "WindowsFormsApp1\Pattern Editor.csproj", "{A1690AA5-8795-4A72-9E70-07D06BC6F0EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Design2Deploy", "Design2Deploy\Design2Deploy.csproj", "{DDB4B1E4-FE1B-44FC-90C9-0EC507D50ACB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{A1690AA5-8795-4A72-9E70-07D06BC6F0EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1690AA5-8795-4A72-9E70-07D06BC6F0EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1690AA5-8795-4A72-9E70-07D06BC6F0EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDB4B1E4-FE1B-44FC-90C9-0EC507D50ACB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDB4B1E4-FE1B-44FC-90C9-0EC507D50ACB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDB4B1E4-FE1B-44FC-90C9-0EC507D50ACB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDB4B1E4-FE1B-44FC-90C9-0EC507D50ACB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

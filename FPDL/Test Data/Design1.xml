@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Design xmlns="http://www.niteworks.net/fpdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.niteworks.net/fpdl file:///C:/Users/peter/source/repos/FPDL-Schema/FPDL-ver0.3.xsd">
+	<configMgmt>
+		<securityOwner>UK</securityOwner>
+		<securityClassification>Official</securityClassification>
+		<currentVersion>1.0</currentVersion>
+		<description>Test federation #1</description>
+		<created>
+			<date>2018-02-12</date>
+			<author>PC</author>
+			<initialVersion>1.0</initialVersion>
+		</created>
+		<docReference>BD830841-A47D-468A-9990-8728B540D38E</docReference>
+		<changed>
+			<date>2018-02-12</date>
+			<author>PC</author>
+			<newVersion>1.0</newVersion>
+			<prevDocReference>BD830841-A47D-468A-9990-8728B540D38E</prevDocReference>
+			<changeNotes>Initial Version</changeNotes>
+		</changed>
+	</configMgmt>
+	<federation>
+		<description>
+			<name>Test Federation #1</name>
+			<summary>Test file to verify basic layout of design display</summary>
+		</description>
+		<federate federateType="gateway">
+			<federateName>Fed #1</federateName>
+			<policyReference>BD830841-A47D-468A-9990-8728B540D38E</policyReference>
+			<gateway gatewayType="ltg"/>
+		</federate>
+		<federate federateType="gateway">
+			<federateName>Fed #2</federateName>
+			<policyReference>BD830841-A47D-468A-9990-8728B540D38E</policyReference>
+			<gateway gatewayType="htg"/>
+		</federate>
+		<federate federateType="service">
+			<federateName>Fed #3</federateName>
+			<policyReference>BD830841-A47D-468A-9990-8728B540D38E</policyReference>
+		</federate>
+	</federation>
+</Design>

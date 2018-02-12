@@ -36,6 +36,10 @@ namespace FPDL.Common
         public enum GatewayType
         {
             /// <summary>
+            /// Not Applicable
+            /// </summary>
+            NotApplicable,  // avoids selecting HTG by defaul
+            /// <summary>
             /// HTG
             /// </summary>
             htg,
@@ -66,6 +70,44 @@ namespace FPDL.Common
             /// Filter
             /// </summary>
             filter
+        }
+        /// <summary>
+        /// Module type
+        /// </summary>
+        public enum ModuleType
+        {
+            /// <summary>
+            /// Interface
+            /// </summary>
+            @interface, // character literal to protocol c# reserved word
+            /// <summary>
+            /// OSP
+            /// </summary>
+            osp,
+            /// <summary>
+            /// Export Policy
+            /// </summary>
+            export,
+            /// <summary>
+            /// Import Policy
+            /// </summary>
+            import,
+            /// <summary>
+            /// Filter
+            /// </summary>
+            filter,
+            /// <summary>
+            /// Federation
+            /// </summary>
+            federation,
+            /// <summary>
+            /// Vendor extension
+            /// </summary>
+            extension,
+            /// <summary>
+            /// Host
+            /// </summary>
+            host
         }
     }
 }

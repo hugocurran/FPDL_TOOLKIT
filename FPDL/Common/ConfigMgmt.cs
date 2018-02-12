@@ -15,15 +15,15 @@ namespace FPDL.Common
         /// <summary>
         /// National owner
         /// </summary>
-        public string SecurityOwner;
+        public string SecurityOwner { get; private set; }
         /// <summary>
         /// Classification
         /// </summary>
-        public string SecurityClassification;
+        public string SecurityClassification { get; private set; }
         /// <summary>
         /// Current version
         /// </summary>
-        public Tuple<int, int> CurrentVersion;
+        public Tuple<int, int> CurrentVersion { get; private set; }
         /// <summary>
         /// Document description
         /// </summary>
@@ -47,7 +47,10 @@ namespace FPDL.Common
         /// <summary>
         /// Construct ConfigMgmt object
         /// </summary>
-        public ConfigMgmt() { }
+        public ConfigMgmt()
+        {
+            initialised = false;
+        }
         /// <summary>
         /// Construct ConfigMgmt object from FPDL
         /// </summary>
@@ -141,7 +144,7 @@ namespace FPDL.Common
         /// <exception cref="ApplicationException">Attempt to initialise an initialised configMgmt entry</exception>
         public void Initialise(string author, int Major, int Minor, string changeNotes, string owner="UK", string classification="OFFICIAL")
         {
-            if (!initialised)
+            if (initialised)
                 throw new ApplicationException("Attempt to initialise an initialised configMgmt entry");
 
             SecurityOwner = owner;

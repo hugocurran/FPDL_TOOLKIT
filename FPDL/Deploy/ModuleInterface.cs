@@ -15,19 +15,25 @@ namespace FPDL.Deploy
         /// <summary>
         /// Interface binding for the policy
         /// </summary>
-        public string InterfaceName;
+        [DeployIf("interfaceName", "Unique name for this interface")]
+        public string InterfaceName { get; set; }
         /// <summary>
         /// IP address
         /// </summary>
-        public string IpAddress;
+        [DeployIf("ipAddress", "IP address for this interface")]
+        public string IpAddress { get; set; }
         /// <summary>
         /// Network prefix
         /// </summary>
-        public string NetPrefix;
+        [DeployIf("netPrefix", "Network prefix for the address (eg /24)")]
+        public string NetPrefix { get; set; }
         /// <summary>
         /// Default router (optional)
         /// </summary>
-        public string DefaultRouter = "";
+        [DeployIf("defaultRouter", "Default router IP address", true)]
+        public string DefaultRouter { get; set; }
+
+
         /// <summary>
         /// Construct an Interface module
         /// </summary>

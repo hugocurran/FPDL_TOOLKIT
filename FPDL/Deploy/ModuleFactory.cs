@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FPDL.Common;
+using System;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
@@ -7,7 +8,7 @@ namespace FPDL.Deploy
     /// <summary>
     /// Create a concrete Module instance
     /// </summary>
-    class ModuleFactory
+    public class ModuleFactory
     {
         /// <summary>
         /// Create a concrete Module instance
@@ -53,5 +54,42 @@ namespace FPDL.Deploy
                 }
             }
         }
+        /// <summary>
+        /// Create a concrete Module instance
+        /// </summary>
+        /// <param name="moduleName"></param>
+        /// <param name="component"></param>
+        public static void Create(Enums.ModuleType moduleName, Component component)
+        {
+            switch (moduleName.ToString())
+            {
+                case "export":
+                    component.Modules.Add(new ModuleExport());
+                    break;
+                case "import":
+                    component.Modules.Add(new ModuleImport());
+                    break;
+                case "osp":
+                    component.Modules.Add(new ModuleOsp());
+                    break;
+                case "interface":
+                    component.Modules.Add(new ModuleInterface());
+                    break;
+                case "host":
+                    component.Modules.Add(new ModuleHost());
+                    break;
+                case "federation":
+                    component.Modules.Add(new ModuleFederation());
+                    break;
+                case "extension":
+                    component.Modules.Add(new ModuleExtension());
+                    break;
+                default:
+                    // Should throw an exception
+                    break;
+            }
+        }
     }
 }
+
+

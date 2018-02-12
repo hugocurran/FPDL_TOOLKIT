@@ -9,17 +9,17 @@
             FPDL ConfigMgmt type
             </summary>
         </member>
-        <member name="F:FPDL.Common.ConfigMgmt.SecurityOwner">
+        <member name="P:FPDL.Common.ConfigMgmt.SecurityOwner">
             <summary>
             National owner
             </summary>
         </member>
-        <member name="F:FPDL.Common.ConfigMgmt.SecurityClassification">
+        <member name="P:FPDL.Common.ConfigMgmt.SecurityClassification">
             <summary>
             Classification
             </summary>
         </member>
-        <member name="F:FPDL.Common.ConfigMgmt.CurrentVersion">
+        <member name="P:FPDL.Common.ConfigMgmt.CurrentVersion">
             <summary>
             Current version
             </summary>
@@ -326,11 +326,6 @@
             Entity source
             </summary>
         </member>
-        <member name="F:FPDL.Common.Source.FilterSource">
-            <summary>
-            True if this Source refers to a filter
-            </summary>
-        </member>
         <member name="P:FPDL.Common.Source.SourceType">
             <summary>
             Source type
@@ -339,6 +334,11 @@
         <member name="P:FPDL.Common.Source.SourceId">
             <summary>
             ID of source
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Source.FilterSource">
+            <summary>
+            True if this Source refers to a filter
             </summary>
         </member>
         <member name="P:FPDL.Common.Source.Objects">
@@ -390,7 +390,8 @@
         </member>
         <member name="T:FPDL.Common.Enums">
             <summary>
-            DOTC(A) system type
+            FPDL Schema Enum mappings\n
+            NB: The FPDL Schema comvention is for lower case
             </summary>
         </member>
         <member name="T:FPDL.Common.Enums.FederateType">
@@ -418,6 +419,11 @@
             Gateway Type
             </summary>
         </member>
+        <member name="F:FPDL.Common.Enums.GatewayType.NotApplicable">
+            <summary>
+            Not Applicable
+            </summary>
+        </member>
         <member name="F:FPDL.Common.Enums.GatewayType.htg">
             <summary>
             HTG
@@ -433,29 +439,74 @@
             LTG
             </summary>
         </member>
-        <member name="T:FPDL.Deploy.Component">
-            <summary>
-            Deploy Component
-            </summary>
-        </member>
-        <member name="T:FPDL.Deploy.Component.Type">
+        <member name="T:FPDL.Common.Enums.ComponentType">
             <summary>
             Component type
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.Component.Type.Proxy">
+        <member name="F:FPDL.Common.Enums.ComponentType.proxy">
             <summary>
             Proxy
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.Component.Type.Guard">
+        <member name="F:FPDL.Common.Enums.ComponentType.guard">
             <summary>
             Guard
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.Component.Type.Filter">
+        <member name="F:FPDL.Common.Enums.ComponentType.filter">
             <summary>
             Filter
+            </summary>
+        </member>
+        <member name="T:FPDL.Common.Enums.ModuleType">
+            <summary>
+            Module type
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Enums.ModuleType.interface">
+            <summary>
+            Interface
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Enums.ModuleType.osp">
+            <summary>
+            OSP
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Enums.ModuleType.export">
+            <summary>
+            Export Policy
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Enums.ModuleType.import">
+            <summary>
+            Import Policy
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Enums.ModuleType.filter">
+            <summary>
+            Filter
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Enums.ModuleType.federation">
+            <summary>
+            Federation
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Enums.ModuleType.extension">
+            <summary>
+            Vendor extension
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Enums.ModuleType.host">
+            <summary>
+            Host
+            </summary>
+        </member>
+        <member name="T:FPDL.Deploy.Component">
+            <summary>
+            Deploy Component
             </summary>
         </member>
         <member name="F:FPDL.Deploy.Component.Modules">
@@ -548,6 +599,12 @@
         <member name="M:FPDL.Deploy.DeployObject.ToString">
             <summary>
             String representation of DeployObject
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.DeployObject.IsEmpty">
+            <summary>
+            Returns true if this object is empty
             </summary>
             <returns></returns>
         </member>
@@ -668,27 +725,34 @@
             <param name="fpdl"></param>
             <param name="component"></param>
         </member>
+        <member name="M:FPDL.Deploy.ModuleFactory.Create(FPDL.Common.Enums.ModuleType,FPDL.Deploy.Component)">
+            <summary>
+            Create a concrete Module instance
+            </summary>
+            <param name="moduleName"></param>
+            <param name="component"></param>
+        </member>
         <member name="T:FPDL.Deploy.ModuleFederation">
             <summary>
             Federation Module
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.ModuleFederation.FederationName">
+        <member name="P:FPDL.Deploy.ModuleFederation.FederationName">
             <summary>
             Federation Name
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.ModuleFederation.FederateName">
+        <member name="P:FPDL.Deploy.ModuleFederation.FederateName">
             <summary>
             Federate Name
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.ModuleFederation.InterfaceName">
+        <member name="P:FPDL.Deploy.ModuleFederation.InterfaceName">
             <summary>
             Interface Binding
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.ModuleFederation.RTI">
+        <member name="P:FPDL.Deploy.ModuleFederation.RTI">
             <summary>
             RTI specification
             </summary>
@@ -885,22 +949,22 @@
             Interface module
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.ModuleInterface.InterfaceName">
+        <member name="P:FPDL.Deploy.ModuleInterface.InterfaceName">
             <summary>
             Interface binding for the policy
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.ModuleInterface.IpAddress">
+        <member name="P:FPDL.Deploy.ModuleInterface.IpAddress">
             <summary>
             IP address
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.ModuleInterface.NetPrefix">
+        <member name="P:FPDL.Deploy.ModuleInterface.NetPrefix">
             <summary>
             Network prefix
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.ModuleInterface.DefaultRouter">
+        <member name="P:FPDL.Deploy.ModuleInterface.DefaultRouter">
             <summary>
             Default router (optional)
             </summary>
@@ -1096,7 +1160,7 @@
         </member>
         <member name="F:FPDL.Design.DesignObject.Federation">
             <summary>
-            Components
+            Federation Name
             </summary>
         </member>
         <member name="M:FPDL.Design.DesignObject.#ctor">
@@ -1481,26 +1545,6 @@
             Component
             </summary>
         </member>
-        <member name="T:FPDL.Pattern.Component.Type">
-            <summary>
-            Component Type
-            </summary>
-        </member>
-        <member name="F:FPDL.Pattern.Component.Type.Proxy">
-            <summary>
-            Proxy
-            </summary>
-        </member>
-        <member name="F:FPDL.Pattern.Component.Type.Guard">
-            <summary>
-            Guard
-            </summary>
-        </member>
-        <member name="F:FPDL.Pattern.Component.Type.Filter">
-            <summary>
-            Filter
-            </summary>
-        </member>
         <member name="F:FPDL.Pattern.Component.ComponentType">
             <summary>
             Component type
@@ -1588,51 +1632,6 @@
         <member name="T:FPDL.Pattern.Module">
             <summary>
             Pattern Module
-            </summary>
-        </member>
-        <member name="T:FPDL.Pattern.Module.Type">
-            <summary>
-            Module type
-            </summary>
-        </member>
-        <member name="F:FPDL.Pattern.Module.Type.interface">
-            <summary>
-            Interface
-            </summary>
-        </member>
-        <member name="F:FPDL.Pattern.Module.Type.osp">
-            <summary>
-            OSP
-            </summary>
-        </member>
-        <member name="F:FPDL.Pattern.Module.Type.export">
-            <summary>
-            Export Policy
-            </summary>
-        </member>
-        <member name="F:FPDL.Pattern.Module.Type.import">
-            <summary>
-            Import Policy
-            </summary>
-        </member>
-        <member name="F:FPDL.Pattern.Module.Type.filter">
-            <summary>
-            Filter
-            </summary>
-        </member>
-        <member name="F:FPDL.Pattern.Module.Type.federation">
-            <summary>
-            Federation
-            </summary>
-        </member>
-        <member name="F:FPDL.Pattern.Module.Type.extension">
-            <summary>
-            Vendor extension
-            </summary>
-        </member>
-        <member name="F:FPDL.Pattern.Module.Type.host">
-            <summary>
-            Host
             </summary>
         </member>
         <member name="F:FPDL.Pattern.Module.ModuleType">

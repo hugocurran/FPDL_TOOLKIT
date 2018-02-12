@@ -24,10 +24,16 @@ namespace FPDL.Deploy
         /// Systems within Deploy document
         /// </summary>
         public List<System> Systems = new List<System>();
+
+
+
         /// <summary>
         /// Construct a DeployObject
         /// </summary>
-        public DeployObject() { }
+        public DeployObject()
+        {
+            ConfigMgmt = new ConfigMgmt();
+        }
 
         /// <summary>
         /// Construct DeployObject from FPDL
@@ -54,6 +60,7 @@ namespace FPDL.Deploy
                 Systems.Add(new System(system));
             }
         }
+
         /// <summary>
         /// Serialise DeployObject to FPDL
         /// </summary>
@@ -81,6 +88,21 @@ namespace FPDL.Deploy
             foreach (System sys in Systems)
                 str.AppendFormat("{0}\n", sys);
             return str.ToString();
+        }
+
+        /// <summary>
+        /// Returns true if this object is empty
+        /// </summary>
+        /// <returns></returns>
+        public bool IsEmpty()
+        {
+            if ((ConfigMgmt.DocReference != null) && (Systems.Count > 0))
+            {
+                if (Systems[0].Components.Count > 0)
+                    if (Systems[0].Components[0].Modules.Count > 0)
+                        return false;
+            }
+            return true;
         }
     }
 }

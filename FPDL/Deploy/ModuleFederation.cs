@@ -15,19 +15,22 @@ namespace FPDL.Deploy
         /// <summary>
         /// Federation Name
         /// </summary>
-        public string FederationName;
+        [DeployIf("federationName", "The name of this federation")]
+        public string FederationName { get; set; }
         /// <summary>
         /// Federate Name
         /// </summary>
-        public string FederateName;
+        [DeployIf("federateName", "Federate name on this federation")]
+        public string FederateName { get; set; }
         /// <summary>
         /// Interface Binding
         /// </summary>
-        public string InterfaceName;
+        [DeployIf("interfaceName", "Interface binding for this federation")]
+        public string InterfaceName { get; set; }
         /// <summary>
         /// RTI specification
         /// </summary>
-        public Rti RTI;
+        public Rti RTI { get; set; }
 
         /// <summary>
         /// Construct Federation Module

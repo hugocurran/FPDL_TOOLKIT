@@ -16,9 +16,12 @@ namespace FPDL.Design
         /// </summary>
         public ConfigMgmt ConfigMgmt;
         /// <summary>
-        /// Components
+        /// Federation Name
         /// </summary>
         public Federation Federation;
+
+
+
         /// <summary>
         /// Construct DesignObject
         /// </summary>

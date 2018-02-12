@@ -74,12 +74,12 @@ namespace FPDL.Design
 
                 if ((FederateType == Enums.FederateType.gateway) && (fpdl.Element("gateway") == null))
                     throw new ApplicationException("Missing gateway specification for a Gateway federateType");
-                else
-                    GatewayType = (Enums.GatewayType)Enum.Parse(typeof(Enums.GatewayType), fpdl.Element("gateway").Attribute("type").Value);
+                else if (FederateType == Enums.FederateType.gateway)
+                    GatewayType = (Enums.GatewayType)Enum.Parse(typeof(Enums.GatewayType), fpdl.Element("gateway").Attribute("gatewayType").Value);
 
                 if ((FederateType == Enums.FederateType.filter) && (fpdl.Element("filter") == null))
                     throw new ApplicationException("Missing filter specification for a Filter federateType");
-                else
+                else if (FederateType == Enums.FederateType.filter)
                     Filter = new Filter(fpdl.Element("filter"));
 
                 if (fpdl.Element("subscribe") != null)
@@ -120,7 +120,7 @@ namespace FPDL.Design
             if (SimulatorName != null)
                 fpdl.Add(new XElement("simulatorName", SimulatorName));
             if (FederateType == Enums.FederateType.gateway)
-                fpdl.Add(new XElement("gateway", new XAttribute("type", GatewayType.ToString())));
+                fpdl.Add(new XElement("gateway", new XAttribute("gatewayType", GatewayType.ToString())));
             if (FederateType == Enums.FederateType.filter)
                 fpdl.Add(new XElement("filter", Filter.ToFPDL()));
             if (Sources.Count > 0)

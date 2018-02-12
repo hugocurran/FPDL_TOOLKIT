@@ -49,6 +49,7 @@
     <Compile Include="Common\Source.cs" />
     <Compile Include="Common\Enums.cs" />
     <Compile Include="Deploy\Component.cs" />
+    <Compile Include="Deploy\DeployIfAttribute.cs" />
     <Compile Include="Deploy\DeployObject.cs" />
     <Compile Include="Deploy\IModule.cs" />
     <Compile Include="Deploy\ModuleExport.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Design\Publish.cs" />
     <Compile Include="DeployParser.cs" />
     <Compile Include="DesignParser.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="FpdlReader.cs" />
     <Compile Include="PatternParser.cs" />
     <Compile Include="FpdlWriter.cs" />

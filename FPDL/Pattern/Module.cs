@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FPDL.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Linq;
@@ -10,48 +11,11 @@ namespace FPDL.Pattern
     /// </summary>
     public class Module
     {
+        
         /// <summary>
         /// Module type
         /// </summary>
-        public enum Type
-        {
-            /// <summary>
-            /// Interface
-            /// </summary>
-            @interface, // character literal to protocol c# reserved word
-            /// <summary>
-            /// OSP
-            /// </summary>
-            osp,
-            /// <summary>
-            /// Export Policy
-            /// </summary>
-            export,
-            /// <summary>
-            /// Import Policy
-            /// </summary>
-            import,
-            /// <summary>
-            /// Filter
-            /// </summary>
-            filter,
-            /// <summary>
-            /// Federation
-            /// </summary>
-            federation,
-            /// <summary>
-            /// Vendor extension
-            /// </summary>
-            extension,
-            /// <summary>
-            /// Host
-            /// </summary>
-            host
-        }
-        /// <summary>
-        /// Module type
-        /// </summary>
-        public Module.Type ModuleType;
+        public Enums.ModuleType ModuleType;
         /// <summary>
         /// Parameter specifications
         /// </summary>
@@ -74,7 +38,7 @@ namespace FPDL.Pattern
                 throw new ApplicationException("Cannot parse: Not an FPDL module description");
             try
             {
-                ModuleType = (Module.Type)Enum.Parse(typeof(Module.Type), fpdl.Element("moduleType").Value);
+                ModuleType = (Enums.ModuleType)Enum.Parse(typeof(Enums.ModuleType), fpdl.Element("moduleType").Value);
                 foreach (XElement spec in fpdl.Descendants("specification"))
                     Specifications.Add(new Specification(spec));
             }

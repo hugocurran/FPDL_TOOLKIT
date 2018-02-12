@@ -26,6 +26,8 @@ namespace FPDL.Design
         /// Modules
         /// </summary>
         public List<Federate> Federates = new List<Federate>();
+
+
         /// <summary>
         /// Construct Federation object from FPDL
         /// </summary>
