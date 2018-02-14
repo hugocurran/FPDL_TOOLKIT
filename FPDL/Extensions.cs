@@ -6,9 +6,17 @@ using System.Threading.Tasks;
 
 namespace FPDL
 {
-    internal static class Extensions
+    /// <summary>
+    /// Extension methods
+    /// </summary>
+    public static class Extensions
     {
-        internal static string ToUpperFirst(this string s)
+        /// <summary>
+        /// Return a string with the first character capitalised
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public static string ToUpperFirst(this string s)
         {
             if (string.IsNullOrEmpty(s))
             {

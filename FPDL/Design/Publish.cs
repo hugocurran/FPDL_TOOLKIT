@@ -46,7 +46,7 @@ namespace FPDL.Design
                 if (fpdl.Element("interaction") != null)
                 {
                     foreach (XElement inter in fpdl.Elements("interaction"))
-                        Interactions.Add(HlaInteraction.FromFPDL(inter));
+                        Interactions.Add(new HlaInteraction(inter));
                 }
             }
             catch (NullReferenceException e)

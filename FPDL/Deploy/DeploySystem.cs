@@ -9,12 +9,16 @@ namespace FPDL.Deploy
     /// <summary>
     /// System object
     /// </summary>
-    public class System
+    public class DeploySystem
     {
+        /// <summary>
+        /// Federate Name
+        /// </summary>
+        public string FederateName;
         /// <summary>
         /// Components
         /// </summary>
-        public List<Component> Components = new List<Component>();
+        public List<Component> Components;
         /// <summary>
         /// System type
         /// </summary>
@@ -30,14 +34,17 @@ namespace FPDL.Deploy
         /// <summary>
         /// Construct System object
         /// </summary>
-        public System() { }
+        public DeploySystem()
+        {
+            Components = new List<Component>();
+        }
 
 
         /// <summary>
         /// Construct System object from FPDL
         /// </summary>
         /// <param name="fpdl"></param>
-        public System(XElement fpdl)
+        public DeploySystem(XElement fpdl) : this()
         {
             FromFPDL(fpdl);
         }

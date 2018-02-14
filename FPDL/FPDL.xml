@@ -175,17 +175,17 @@
             HLA Attribute
             </summary>
         </member>
-        <member name="F:FPDL.Common.HlaAttribute.Name">
+        <member name="P:FPDL.Common.HlaAttribute.Name">
             <summary>
             Attribute Name
             </summary>
         </member>
-        <member name="F:FPDL.Common.HlaAttribute.DataType">
+        <member name="P:FPDL.Common.HlaAttribute.DataType">
             <summary>
             Attribute data type (optional)
             </summary>
         </member>
-        <member name="F:FPDL.Common.HlaAttribute.DefaultValue">
+        <member name="P:FPDL.Common.HlaAttribute.DefaultValue">
             <summary>
             Attribute default value (optional)
             </summary>
@@ -201,12 +201,12 @@
             HLA interaction 
             </summary>
         </member>
-        <member name="F:FPDL.Common.HlaInteraction.InteractionClassName">
+        <member name="P:FPDL.Common.HlaInteraction.InteractionClassName">
             <summary>
             Interaction class name
             </summary>
         </member>
-        <member name="F:FPDL.Common.HlaInteraction.Parameters">
+        <member name="P:FPDL.Common.HlaInteraction.Parameters">
             <summary>
             Interaction parameters
             </summary>
@@ -215,6 +215,12 @@
             <summary>
             Construct an HlaInteraction object
             </summary>
+        </member>
+        <member name="M:FPDL.Common.HlaInteraction.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct and HlaInteraction object from FPDL
+            </summary>
+            <param name="fpdl"></param>
         </member>
         <member name="M:FPDL.Common.HlaInteraction.FromFPDL(System.Xml.Linq.XElement)">
             <summary>
@@ -240,12 +246,12 @@
             HLA object 
             </summary>
         </member>
-        <member name="F:FPDL.Common.HlaObject.ObjectClassName">
+        <member name="P:FPDL.Common.HlaObject.ObjectClassName">
             <summary>
             Object class name
             </summary>
         </member>
-        <member name="F:FPDL.Common.HlaObject.Attributes">
+        <member name="P:FPDL.Common.HlaObject.Attributes">
             <summary>
             Object attributes
             </summary>
@@ -439,6 +445,26 @@
             LTG
             </summary>
         </member>
+        <member name="T:FPDL.Common.Enums.FilterType">
+            <summary>
+            Filter Type
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Enums.FilterType.proximity">
+            <summary>
+            Proximity filter
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Enums.FilterType.obfuscation">
+            <summary>
+            Obfuscation filter
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Enums.FilterType.delay">
+            <summary>
+            Delay filter
+            </summary>
+        </member>
         <member name="T:FPDL.Common.Enums.ComponentType">
             <summary>
             Component type
@@ -503,6 +529,40 @@
             <summary>
             Host
             </summary>
+        </member>
+        <member name="T:FPDL.Common.DeployIfAttribute">
+            <summary>
+            Class defining the custome DeployIf Attribute
+            </summary>
+        </member>
+        <member name="P:FPDL.Common.DeployIfAttribute.FpdlName">
+            <summary>
+            The name of this value in FPDL
+            </summary>
+        </member>
+        <member name="P:FPDL.Common.DeployIfAttribute.ToolTip">
+            <summary>
+            Text for use in a tooltip
+            </summary>
+        </member>
+        <member name="P:FPDL.Common.DeployIfAttribute.Optional">
+            <summary>
+            Defines if this field is optional or not
+            </summary>
+        </member>
+        <member name="P:FPDL.Common.DeployIfAttribute.List">
+            <summary>
+            Defines if this field is a List type or not
+            </summary>
+        </member>
+        <member name="M:FPDL.Common.DeployIfAttribute.#ctor(System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Construct a DeployIf Attribute object
+            </summary>
+            <param name="fpdlName"></param>
+            <param name="toolTip"></param>
+            <param name="optional"></param>
+            <param name="list"></param>
         </member>
         <member name="T:FPDL.Deploy.Component">
             <summary>
@@ -613,6 +673,11 @@
             Common interface for Module types
             </summary>
         </member>
+        <member name="M:FPDL.Deploy.IModule.GetModuleType">
+            <summary>
+            Get the module identity
+            </summary>
+        </member>
         <member name="M:FPDL.Deploy.IModule.FromFPDL(System.Xml.Linq.XElement)">
             <summary>
             Deserialise module from FPDL
@@ -638,6 +703,11 @@
         <member name="P:FPDL.Deploy.ModuleExport.Sources">
             <summary>
             Sources
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleExport.GetModuleType">
+            <summary>
+            Get the module identity
             </summary>
         </member>
         <member name="M:FPDL.Deploy.ModuleExport.#ctor">
@@ -674,14 +744,19 @@
             Extension Module
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.ModuleExtension.VendorName">
+        <member name="P:FPDL.Deploy.ModuleExtension.VendorName">
             <summary>
             Vendor Name
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.ModuleExtension.Parameters">
+        <member name="P:FPDL.Deploy.ModuleExtension.Parameters">
             <summary>
             Parameters (Key, Value) pairs
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleExtension.GetModuleType">
+            <summary>
+            Get the module identity
             </summary>
         </member>
         <member name="M:FPDL.Deploy.ModuleExtension.#ctor">
@@ -757,6 +832,11 @@
             RTI specification
             </summary>
         </member>
+        <member name="M:FPDL.Deploy.ModuleFederation.GetModuleType">
+            <summary>
+            Get the module identity
+            </summary>
+        </member>
         <member name="M:FPDL.Deploy.ModuleFederation.#ctor">
             <summary>
             Construct Federation Module
@@ -791,34 +871,39 @@
             RTI class
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.Rti.CrcAddress">
+        <member name="P:FPDL.Deploy.Rti.CrcAddress">
             <summary>
             CRC Address
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.Rti.AddressType">
+        <member name="P:FPDL.Deploy.Rti.AddressType">
             <summary>
             Address Type
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.Rti.CrcPortNumber">
+        <member name="P:FPDL.Deploy.Rti.CrcPortNumber">
             <summary>
             CRC Port number
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.Rti.HlaSpec">
+        <member name="P:FPDL.Deploy.Rti.HlaSpec">
             <summary>
             HLA Specification
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.Rti.FomUri">
+        <member name="P:FPDL.Deploy.Rti.FomUri">
             <summary>
             URI of FOM modules
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.Rti.FomFile">
+        <member name="P:FPDL.Deploy.Rti.FomFile">
             <summary>
             Filenames of FOM modules
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.Rti.#ctor">
+            <summary>
+            Rti constructor
             </summary>
         </member>
         <member name="T:FPDL.Deploy.ModuleHost">
@@ -826,19 +911,24 @@
             Host Module
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.ModuleHost.HostName">
+        <member name="P:FPDL.Deploy.ModuleHost.HostName">
             <summary>
-            Interface binding for the policy
+            Host name
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.ModuleHost.Logging">
+        <member name="P:FPDL.Deploy.ModuleHost.Logging">
             <summary>
             Logging servers
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.ModuleHost.Time">
+        <member name="P:FPDL.Deploy.ModuleHost.Time">
             <summary>
             Time servers
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleHost.GetModuleType">
+            <summary>
+            Get the module identity
             </summary>
         </member>
         <member name="M:FPDL.Deploy.ModuleHost.#ctor">
@@ -915,6 +1005,11 @@
             Interactions
             </summary>
         </member>
+        <member name="M:FPDL.Deploy.ModuleImport.GetModuleType">
+            <summary>
+            Get the module identity
+            </summary>
+        </member>
         <member name="M:FPDL.Deploy.ModuleImport.#ctor">
             <summary>
             Construct an Import module
@@ -967,6 +1062,11 @@
         <member name="P:FPDL.Deploy.ModuleInterface.DefaultRouter">
             <summary>
             Default router (optional)
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleInterface.GetModuleType">
+            <summary>
+            Get the module identity
             </summary>
         </member>
         <member name="M:FPDL.Deploy.ModuleInterface.#ctor">
@@ -1028,24 +1128,29 @@
             WebLVC over TCP
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.ModuleOsp.Path">
+        <member name="P:FPDL.Deploy.ModuleOsp.Path">
             <summary>
             Direction of information flow
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.ModuleOsp.Protocol">
+        <member name="P:FPDL.Deploy.ModuleOsp.Protocol">
             <summary>
             OSP protocol
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.ModuleOsp.InputPort">
+        <member name="P:FPDL.Deploy.ModuleOsp.InputPort">
             <summary>
             Input port (optional)
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.ModuleOsp.OutputPort">
+        <member name="P:FPDL.Deploy.ModuleOsp.OutputPort">
             <summary>
             Output port (optional)
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleOsp.GetModuleType">
+            <summary>
+            Get the module identity
             </summary>
         </member>
         <member name="M:FPDL.Deploy.ModuleOsp.#ctor">
@@ -1077,55 +1182,60 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:FPDL.Deploy.System">
+        <member name="T:FPDL.Deploy.DeploySystem">
             <summary>
             System object
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.System.Components">
+        <member name="F:FPDL.Deploy.DeploySystem.FederateName">
+            <summary>
+            Federate Name
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.DeploySystem.Components">
             <summary>
             Components
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.System.SystemType">
+        <member name="F:FPDL.Deploy.DeploySystem.SystemType">
             <summary>
             System type
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.System.Pattern">
+        <member name="F:FPDL.Deploy.DeploySystem.Pattern">
             <summary>
             Pattern name
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.System.PatternRef">
+        <member name="F:FPDL.Deploy.DeploySystem.PatternRef">
             <summary>
             Pattern reference
             </summary>
         </member>
-        <member name="M:FPDL.Deploy.System.#ctor">
+        <member name="M:FPDL.Deploy.DeploySystem.#ctor">
             <summary>
             Construct System object
             </summary>
         </member>
-        <member name="M:FPDL.Deploy.System.#ctor(System.Xml.Linq.XElement)">
+        <member name="M:FPDL.Deploy.DeploySystem.#ctor(System.Xml.Linq.XElement)">
             <summary>
             Construct System object from FPDL
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Deploy.System.FromFPDL(System.Xml.Linq.XElement)">
+        <member name="M:FPDL.Deploy.DeploySystem.FromFPDL(System.Xml.Linq.XElement)">
             <summary>
             Deserialise System object from FPDL
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Deploy.System.ToFPDL">
+        <member name="M:FPDL.Deploy.DeploySystem.ToFPDL">
             <summary>
             Serialise System object to FPDL
             </summary>
             <returns></returns>
         </member>
-        <member name="M:FPDL.Deploy.System.ToString">
+        <member name="M:FPDL.Deploy.DeploySystem.ToString">
             <summary>
             String representation of System object
             </summary>
@@ -1141,7 +1251,7 @@
             Construct a System Factory
             </summary>
         </member>
-        <member name="M:FPDL.Deploy.SystemFactory.#ctor(System.Collections.Generic.List{FPDL.Deploy.System},System.Xml.Linq.XElement)">
+        <member name="M:FPDL.Deploy.SystemFactory.#ctor(System.Collections.Generic.List{FPDL.Deploy.DeploySystem},System.Xml.Linq.XElement)">
             <summary>
             Populate a List of systems
             </summary>
@@ -1258,6 +1368,11 @@
         <member name="F:FPDL.Design.Federate.GatewayType">
             <summary>
             Gateway Type (optional)
+            </summary>
+        </member>
+        <member name="F:FPDL.Design.Federate.FilterType">
+            <summary>
+            Filter Type (optional)
             </summary>
         </member>
         <member name="F:FPDL.Design.Federate.Filter">
@@ -1448,6 +1563,18 @@
             <param name="deploy"></param>
             <param name="filename"></param>
             <param name="overwrite"></param>
+        </member>
+        <member name="T:FPDL.Extensions">
+            <summary>
+            Extension methods
+            </summary>
+        </member>
+        <member name="M:FPDL.Extensions.ToUpperFirst(System.String)">
+            <summary>
+            Return a string with the first character capitalised
+            </summary>
+            <param name="s"></param>
+            <returns></returns>
         </member>
         <member name="T:FPDL.FpdlReader">
             <summary>

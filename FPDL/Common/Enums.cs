@@ -54,6 +54,25 @@ namespace FPDL.Common
         }
 
         /// <summary>
+        /// Filter Type
+        /// </summary>
+        public enum FilterType
+        {
+            /// <summary>
+            /// Proximity filter
+            /// </summary>
+            proximity,
+            /// <summary>
+            /// Obfuscation filter
+            /// </summary>
+            obfuscation,
+            /// <summary>
+            /// Delay filter
+            /// </summary>
+            delay
+        }
+
+        /// <summary>
         /// Component type
         /// </summary>
         public enum ComponentType

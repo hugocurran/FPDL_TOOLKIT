@@ -23,7 +23,7 @@ namespace FPDL.Deploy
         /// <summary>
         /// Systems within Deploy document
         /// </summary>
-        public List<System> Systems = new List<System>();
+        public List<DeploySystem> Systems;
 
 
 
@@ -32,6 +32,7 @@ namespace FPDL.Deploy
         /// </summary>
         public DeployObject()
         {
+            Systems = new List<DeploySystem>();
             ConfigMgmt = new ConfigMgmt();
         }
 
@@ -39,7 +40,7 @@ namespace FPDL.Deploy
         /// Construct DeployObject from FPDL
         /// </summary>
         /// <param name="fpdl"></param>
-        public DeployObject(XElement fpdl)
+        public DeployObject(XElement fpdl) : this()
         {
             FromFPDL(fpdl);
         }
@@ -57,7 +58,7 @@ namespace FPDL.Deploy
             IEnumerable<XElement> systems = fpdl.Descendants("system");
             foreach (XElement system in systems)
             {
-                Systems.Add(new System(system));
+                Systems.Add(new DeploySystem(system));
             }
         }
 
@@ -70,7 +71,7 @@ namespace FPDL.Deploy
             XElement fpdl = new XElement("Deploy");
             fpdl.Add(ConfigMgmt.ToFPDL());
             fpdl.Add(new XElement("designReference", DesignReference));
-            foreach(System system in Systems)
+            foreach(DeploySystem system in Systems)
             {
                 fpdl.Add(system.ToFPDL());
             }
@@ -85,7 +86,7 @@ namespace FPDL.Deploy
             StringBuilder str = new StringBuilder("DEPLOY =>\n");
             str.AppendFormat("{0}", ConfigMgmt);
             str.AppendFormat("Design Ref: {0}\n", DesignReference);
-            foreach (System sys in Systems)
+            foreach (DeploySystem sys in Systems)
                 str.AppendFormat("{0}\n", sys);
             return str.ToString();
         }

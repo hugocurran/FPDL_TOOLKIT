@@ -1,7 +1,9 @@
-﻿using System;
+﻿using FPDL.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Linq;
+using static FPDL.Common.Enums;
 
 namespace FPDL.Deploy
 {
@@ -11,27 +13,42 @@ namespace FPDL.Deploy
     public class ModuleHost : IModule
     {
         /// <summary>
-        /// Interface binding for the policy
+        /// Host name
         /// </summary>
-        public string HostName;
+        [DeployIf("hostName", "Name for the host")]
+        public string HostName { get; set; }
         /// <summary>
         /// Logging servers
         /// </summary>
-        public List<Server> Logging = new List<Server>();
+        [DeployIf("LOGGING", "Logging servers", true, true )]
+        public List<Server> Logging { get; set; }
         /// <summary>
         /// Time servers
         /// </summary>
-        public List<Server> Time = new List<Server>();
-        
+        [DeployIf("TIME", "Time servers", true, true)]
+        public List<Server> Time { get; set; }
+
+        /// <summary>
+        /// Get the module identity
+        /// </summary>
+        public ModuleType GetModuleType()
+        {
+            return ModuleType.host;
+        }
+
         /// <summary>
         /// Construct a Host Module
         /// </summary>
-        public ModuleHost() { }
+        public ModuleHost()
+        {
+            Logging = new List<Server>();
+            Time = new List<Server>();
+        }
         /// <summary>
         /// Construct an Interface module from FPDL
         /// </summary>
         /// <param name="fpdl"></param>
-        public ModuleHost(XElement fpdl)
+        public ModuleHost(XElement fpdl) : this()
         {
             FromFPDL(fpdl);
         }

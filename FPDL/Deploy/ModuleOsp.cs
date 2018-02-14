@@ -1,13 +1,15 @@
-﻿using System;
+﻿using FPDL.Common;
+using System;
 using System.Text;
 using System.Xml.Linq;
+using static FPDL.Common.Enums;
 
 namespace FPDL.Deploy
 {
     /// <summary>
     /// OSP module
     /// </summary>
-    class ModuleOsp : IModule
+    public class ModuleOsp : IModule
     {
         /// <summary>
         /// OspProtocol types
@@ -34,19 +36,32 @@ namespace FPDL.Deploy
         /// <summary>
         /// Direction of information flow
         /// </summary>
-        public string Path;
+        [DeployIf("path", "Direction of this OSP configuration")]
+        public string Path { get; set; }
         /// <summary>
         /// OSP protocol
         /// </summary>
-        public OspProtocol Protocol;
+        [DeployIf("protocol", "Messaging protocol in use")]
+        public OspProtocol Protocol { get; set; }
         /// <summary>
         /// Input port (optional)
         /// </summary>
-        public string InputPort = "";
+        [DeployIf("inputPort", "Address:Port for input", true)]
+        public string InputPort { get; set; }
         /// <summary>
         /// Output port (optional)
         /// </summary>
-        public string OutputPort = "";
+        [DeployIf("outputPort", "Address:Port for output", true)]
+        public string OutputPort { get; set; }
+
+        /// <summary>
+        /// Get the module identity
+        /// </summary>
+        public ModuleType GetModuleType()
+        {
+            return ModuleType.osp;
+        }
+
         /// <summary>
         /// Construct OSP module
         /// </summary>

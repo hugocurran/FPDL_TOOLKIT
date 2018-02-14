@@ -1,7 +1,9 @@
-﻿using System;
+﻿using FPDL.Common;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Linq;
+using static FPDL.Common.Enums;
 
 namespace FPDL.Deploy
 {
@@ -13,21 +15,34 @@ namespace FPDL.Deploy
         /// <summary>
         /// Vendor Name
         /// </summary>
-        public string VendorName;
+        [DeployIf("vendorName", "Name of the vendor")]
+        public string VendorName { get; set; }
         /// <summary>
         /// Parameters (Key, Value) pairs
         /// </summary>
-        public Dictionary<string, string> Parameters = new Dictionary<string, string>();
+        [DeployIf("PARAMETERS", "Vendor-specific parameters", false, true)]
+        public Dictionary<string, string> Parameters { get; set; }
+
+        /// <summary>
+        /// Get the module identity
+        /// </summary>
+        public ModuleType GetModuleType()
+        {
+            return ModuleType.extension;
+        }
 
         /// <summary>
         /// Construct module
         /// </summary>
-        public ModuleExtension() { }
+        public ModuleExtension()
+        {
+            Parameters = new Dictionary<string, string>();
+        }
         /// <summary>
         /// Construct Module from FPDL
         /// </summary>
         /// <param name="fpdl"></param>
-        public ModuleExtension(XElement fpdl)
+        public ModuleExtension(XElement fpdl) : this()
         {
             FromFPDL(fpdl);
         }

@@ -32,6 +32,10 @@ namespace FPDL.Design
         /// </summary>
         public Enums.GatewayType GatewayType;
         /// <summary>
+        /// Filter Type (optional)
+        /// </summary>
+        public Enums.FilterType FilterType;
+        /// <summary>
         /// Filter specification (optional)
         /// </summary>
         public Filter Filter;

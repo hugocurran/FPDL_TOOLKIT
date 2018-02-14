@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Pattern xmlns="http://www.niteworks.net/fpdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.niteworks.net/fpdl file:///C:/Users/peter/source/repos/FPDL-Schema/FPDL-ver0.3.xsd">
+	<configMgmt>
+		<securityOwner>UK</securityOwner>
+		<securityClassification>Official</securityClassification>
+		<currentVersion>1.0</currentVersion>
+		<description>Test Proximity Filter Pattern</description>
+		<created>
+			<date>2018-02-14</date>
+			<author>PC</author>
+			<initialVersion>1.0</initialVersion>
+		</created>
+		<docReference>CE40C351-604B-454B-B43B-D32AAFE45519</docReference>
+		<changed>
+			<date>2018-02-14</date>
+			<author>PC</author>
+			<newVersion>1.0</newVersion>
+			<prevDocReference>CE40C351-604B-454B-B43B-D32AAFE45519</prevDocReference>
+			<changeNotes>Initial version</changeNotes>
+		</changed>
+	</configMgmt>
+	<patternGenericType>filter</patternGenericType>
+	<patternName>Test Proximity Filter</patternName>
+	<description>Test only version of a simple proximity filter pattern</description>
+	<component>
+		<componentType>filter</componentType>
+		<componentID>5D876A0E-42E0-4E71-BED5-9E1FC0104564</componentID>
+		<module>
+			<moduleType>interface</moduleType>
+		</module>
+		<module>
+			<moduleType>host</moduleType>
+		</module>
+		<module>
+			<moduleType>federation</moduleType>
+		</module>
+		<module>
+			<moduleType>export</moduleType>
+		</module>
+		<module>
+			<moduleType>import</moduleType>
+		</module>
+		<module>
+			<moduleType>filter</moduleType>
+			<specification>
+				<paramName readOnly="true">model</paramName>
+				<value>27</value>
+			</specification>
+			<specification>
+				<paramName readOnly="true">filterID</paramName>
+				<value>00000001-0001-0001-0001-1234567890ab</value>
+			</specification>
+			<specification>
+				<paramName readOnly="true">ObjectA ID</paramName>
+				<value>entityParam</value>
+			</specification>
+			<specification>
+				<paramName readOnly="true">ObjectB ID</paramName>
+				<value>entityParam</value>
+			</specification>
+			<specification>
+				<paramName readOnly="true">ObjectC ID</paramName>
+				<value>entityParam</value>
+			</specification>
+		</module>
+	</component>
+</Pattern>

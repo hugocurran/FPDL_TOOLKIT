@@ -15,20 +15,26 @@ namespace FPDL.Common
         /// <summary>
         /// Object class name
         /// </summary>
-        public string ObjectClassName;
+        [DeployIf("objectClassName", "Fully qualified object classname")]
+        public string ObjectClassName { get; set; }
         /// <summary>
         /// Object attributes
         /// </summary>
-        public List<HlaAttribute> Attributes = new List<HlaAttribute>();
+        [DeployIf("ATTRIBUTES", "Attributes", true, true)]
+        public List<HlaAttribute> Attributes { get; set; }
+
         /// <summary>
         /// Construct an HlaObject
         /// </summary>
-        public HlaObject() { }
+        public HlaObject()
+        {
+            Attributes = new List<HlaAttribute>();
+        }
         /// <summary>
         /// Construct an HlaObject from FPDL
         /// </summary>
         /// <param name="fpdl"></param>
-        public HlaObject(XElement fpdl)
+        public HlaObject(XElement fpdl) : this()
         {
             FromFPDL(fpdl);
         }

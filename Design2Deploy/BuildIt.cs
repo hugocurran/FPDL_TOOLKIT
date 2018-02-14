@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DeployEditor
+namespace FPDL.Deploy.Editor
 {
     /// <summary>
     /// Make a deploy skeleton by combining Design and Pattern
@@ -38,7 +38,7 @@ namespace DeployEditor
             {
                 if ((federate.FederateType == Enums.FederateType.gateway) || (federate.FederateType == Enums.FederateType.filter))
                 {
-                    FPDL.Deploy.System system = new FPDL.Deploy.System
+                    FPDL.Deploy.DeploySystem system = new FPDL.Deploy.DeploySystem
                     {
                         SystemType = federate.FederateType
                     };
@@ -46,7 +46,7 @@ namespace DeployEditor
             }
         }
 
-        internal void AddPattern(FPDL.Deploy.System system, PatternObject pattern)
+        internal void AddPattern(FPDL.Deploy.DeploySystem system, PatternObject pattern)
         {
             system.Pattern = pattern.PatternName;
             system.PatternRef = pattern.ConfigMgmt.DocReference;

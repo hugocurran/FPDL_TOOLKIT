@@ -1,16 +1,18 @@
-﻿using System;
+﻿using FPDL.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using static FPDL.Common.Enums;
 
 namespace FPDL.Deploy
 {
     /// <summary>
     /// Interface module
     /// </summary>
-    class ModuleInterface : IModule
+    public class ModuleInterface : IModule
     {
         /// <summary>
         /// Interface binding for the policy
@@ -33,6 +35,13 @@ namespace FPDL.Deploy
         [DeployIf("defaultRouter", "Default router IP address", true)]
         public string DefaultRouter { get; set; }
 
+        /// <summary>
+        /// Get the module identity
+        /// </summary>
+        public ModuleType GetModuleType()
+        {
+            return ModuleType.@interface;
+        }
 
         /// <summary>
         /// Construct an Interface module

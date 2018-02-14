@@ -10,15 +10,18 @@ namespace FPDL.Common
         /// <summary>
         /// Attribute Name
         /// </summary>
-        public string Name;
+        [DeployIf("name", "Attribute name")]
+        public string Name { get; set; }
         /// <summary>
         /// Attribute data type (optional)
         /// </summary>
-        public string DataType;
+        [DeployIf("dataType", "Data type",true)]
+        public string DataType { get; set; }
         /// <summary>
         /// Attribute default value (optional)
         /// </summary>
-        public object DefaultValue;
+        [DeployIf("defaultValue", "Default value", true)]
+        public object DefaultValue { get; set; }
 
         /// <summary>
         /// String representation of HLA Attribute

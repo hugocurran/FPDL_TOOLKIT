@@ -30,10 +30,12 @@ namespace FPDL.Common
         /// <summary>
         /// Source type
         /// </summary>
+        [DeployIf("sourceType", "Federate or Entity")]
         public Type SourceType { get; private set; }
         /// <summary>
         /// ID of source
         /// </summary>
+        [DeployIf("sourceID", "Federate name or Entity ID")]
         public string SourceId { get; private set; }
 
         /// <summary>
@@ -43,10 +45,12 @@ namespace FPDL.Common
         /// <summary>
         /// HLA objects (read only)
         /// </summary>
+        [DeployIf("OBJECTS", "Objects", true, true)]
         public IReadOnlyList<HlaObject> Objects { get { return _objects; } }
         /// <summary>
         /// HLA interactions (read only)
         /// </summary>
+        [DeployIf("INTERACTIONS", "Interactions", true, true)]
         public IReadOnlyList<HlaInteraction> Interactions { get { return _interactions; } }
 
         private List<HlaObject> _objects = new List<HlaObject>();
@@ -55,12 +59,16 @@ namespace FPDL.Common
         /// <summary>
         /// Construct Source object
         /// </summary>
-        public Source() { }
+        public Source()
+        {
+            _objects = new List<HlaObject>();
+            _interactions = new List<HlaInteraction>();
+        }
         /// <summary>
         /// Construct a Source object from FPDL
         /// </summary>
         /// <param name="fpdl"></param>
-        public Source(XElement fpdl)
+        public Source(XElement fpdl) : this ()
         {
             FromFPDL(fpdl);
         }
@@ -116,7 +124,7 @@ namespace FPDL.Common
                 {
                     foreach (XElement hlaInteraction in fpdl.Elements("interaction"))
                     {
-                        _interactions.Add(HlaInteraction.FromFPDL(hlaInteraction));
+                        _interactions.Add(new HlaInteraction(hlaInteraction));
                     }
                 }
             }

@@ -1,9 +1,11 @@
-﻿using System;
+﻿using FPDL.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using static FPDL.Common.Enums;
 
 namespace FPDL.Deploy
 {
@@ -30,7 +32,16 @@ namespace FPDL.Deploy
         /// <summary>
         /// RTI specification
         /// </summary>
+        [DeployIf("RTI", "RTI information")]
         public Rti RTI { get; set; }
+
+        /// <summary>
+        /// Get the module identity
+        /// </summary>
+        public ModuleType GetModuleType()
+        {
+            return ModuleType.federation;
+        }
 
         /// <summary>
         /// Construct Federation Module
@@ -136,26 +147,41 @@ namespace FPDL.Deploy
         /// <summary>
         /// CRC Address
         /// </summary>
-        public string CrcAddress;
+        [DeployIf("crcAddress", "IP address or hostname of CRC server")]
+        public string CrcAddress { get; set; }
         /// <summary>
         /// Address Type
         /// </summary>
-        public string AddressType;
+        [DeployIf("addressType", "Type of CRC adress (IP or name)")]
+        public string AddressType { get; set; }
         /// <summary>
         /// CRC Port number
         /// </summary>
-        public string CrcPortNumber;
+        [DeployIf("crcPortNumber", "Port number used by CRC server")]
+        public string CrcPortNumber { get; set; }
         /// <summary>
         /// HLA Specification
         /// </summary>
-        public string HlaSpec;
+        [DeployIf("hlaSpec", "HLA specification for this federation (eg HLA Evolved)")]
+        public string HlaSpec { get; set; }
         /// <summary>
         /// URI of FOM modules
         /// </summary>
-        public List<string> FomUri = new List<string>();
+        [DeployIf("fom:uri","URI of FOM module", false, true)]
+        public List<string> FomUri { get; set; }
         /// <summary>
         /// Filenames of FOM modules
         /// </summary>
-        public List<string> FomFile = new List<string>();
+        [DeployIf("fom:fileName", "Filepath of FOM module", false, true)]
+        public List<string> FomFile { get; set; }
+
+        /// <summary>
+        /// Rti constructor
+        /// </summary>
+        public Rti()
+        {
+            FomUri = new List<string>();
+            FomFile = new List<string>();
+        }
     }
 }

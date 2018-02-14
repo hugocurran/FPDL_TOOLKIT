@@ -15,7 +15,7 @@ namespace FPDL.Deploy
         /// <summary>
         /// Modules
         /// </summary>
-        public List<IModule> Modules = new List<IModule>();
+        public List<IModule> Modules;
         /// <summary>
         /// Component ID
         /// </summary>
@@ -27,12 +27,15 @@ namespace FPDL.Deploy
         /// <summary>
         /// Construct Component object
         /// </summary>
-        public Component() { }
+        public Component()
+        {
+            Modules = new List<IModule>();
+        }
         /// <summary>
         /// Construct Component object from FPDL
         /// </summary>
         /// <param name="fpdl"></param>
-        public Component(XElement fpdl)
+        public Component(XElement fpdl) : this()
         {
             FromFPDL(fpdl);
         }

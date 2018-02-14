@@ -19,14 +19,14 @@ namespace FPDL.Deploy
         /// </summary>
         /// <param name="systems">List to populate</param>
         /// <param name="fpdl">FPDL Deploy document</param>
-        public SystemFactory(List<System> systems, XElement fpdl)
+        public SystemFactory(List<DeploySystem> systems, XElement fpdl)
         {
             if (fpdl.Name != "Deploy")
                 throw new ApplicationException("Cannot parse: Not an FPDL Deploy file");
             try
             {
                 foreach (XElement system in fpdl.Elements("system"))
-                    systems.Add(new System(system));
+                    systems.Add(new DeploySystem(system));
             }
             catch (Exception e)
             {

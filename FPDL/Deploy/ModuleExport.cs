@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Linq;
+using static FPDL.Common.Enums;
 
 namespace FPDL.Deploy
 {
@@ -18,17 +19,29 @@ namespace FPDL.Deploy
         //      federateSource | entitySource
         //      object
         //      interaction
-        
+
         /// <summary>
         /// Interface binding for the policy
         /// </summary>
+        [DeployIf("interfaceName", "Interface binding for export policy")]
         public string InterfaceName { get; set; }
         /// <summary>
         /// Sources
         /// </summary>
+        [DeployIf("SOURCE", "Source federate or entity", false, true)]
         public IReadOnlyList<Source> Sources { get { return _sources; } }
 
         private List<Source> _sources = new List<Source>();
+
+        /// <summary>
+        /// Get the module identity
+        /// </summary>
+        public ModuleType GetModuleType()
+        {
+            return ModuleType.export;
+        }
+
+
         /// <summary>
         /// Construct Export module
         /// </summary>

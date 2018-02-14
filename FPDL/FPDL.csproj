@@ -60,7 +60,7 @@
     <Compile Include="Deploy\ModuleImport.cs" />
     <Compile Include="Deploy\ModuleInterface.cs" />
     <Compile Include="Deploy\ModuleOsp.cs" />
-    <Compile Include="Deploy\System.cs" />
+    <Compile Include="Deploy\DeploySystem.cs" />
     <Compile Include="Deploy\SystemFactory.cs" />
     <Compile Include="Design\DesignObject.cs" />
     <Compile Include="Design\Entity.cs" />

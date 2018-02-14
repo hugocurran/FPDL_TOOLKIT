@@ -21,9 +21,9 @@
 		</changed>
 	</configMgmt>
 	<designReference>C2056C70-A628-490E-B59B-3946EE89DFC3</designReference>
-	<system systemType="Gateway">
+	<system systemType="gateway">
 		<pattern patternReference="C2056C70-A628-490E-B59B-3946EE89DFC4">HTG</pattern>
-		<component componentID="F6A15143-6BF7-4313-B558-C154C973EC07" componentType="Proxy">
+		<component componentID="F6A15143-6BF7-4313-B558-C154C973EC07" componentType="proxy">
 			<interface>
 				<interfaceName>CS+S Network</interfaceName>
 				<ipAddress netPrefix="8">127.0.0.1</ipAddress>
@@ -114,7 +114,7 @@
 				<interfaceName>LowNetwork</interfaceName>
 			</import>
 		</component>
-		<component componentID="F6A15143-6BF7-4313-B558-C154C973EC00" componentType="Proxy">
+		<component componentID="F6A15143-6BF7-4313-B558-C154C973EC00" componentType="proxy">
 			<interface>
 				<interfaceName>GBAD Network</interfaceName>
 				<ipAddress netPrefix="8">127.0.0.1</ipAddress>
@@ -205,7 +205,7 @@
 				<interfaceName>LowNetwork</interfaceName>
 			</import>
 		</component>
-		<component componentID="ED425374-5626-4773-8D5E-C2EBE683F632" componentType="Guard">
+		<component componentID="ED425374-5626-4773-8D5E-C2EBE683F632" componentType="guard">
 			<interface>
 				<interfaceName>HighNetwork</interfaceName>
 				<ipAddress netPrefix="8">127.0.0.1</ipAddress>

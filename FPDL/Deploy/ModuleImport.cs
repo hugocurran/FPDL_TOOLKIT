@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Xml.Linq;
+using static FPDL.Common.Enums;
 
 namespace FPDL.Deploy
 {
@@ -20,18 +21,31 @@ namespace FPDL.Deploy
         /// <summary>
         /// Interface binding for the policy
         /// </summary>
+        [DeployIf("interfaceName", "Interface binding for import policy")]
         public string InterfaceName { get; set; }
         /// <summary>
         /// Objects
         /// </summary>
+        [DeployIf("OBJECTS", "Objects", true, true)]
         public IReadOnlyList<HlaObject> Objects { get { return _objects; } }
         /// <summary>
         /// Interactions
         /// </summary>
+        [DeployIf("INTERACTIONS", "Interactions", true, true)]
         public IReadOnlyList<HlaInteraction> Interactions { get { return _interactions; } }
 
         private List<HlaObject> _objects = new List<HlaObject>();
         private List<HlaInteraction> _interactions = new List<HlaInteraction>();
+
+        /// <summary>
+        /// Get the module identity
+        /// </summary>
+        public ModuleType GetModuleType()
+        {
+            return ModuleType.import;
+        }
+
+
         /// <summary>
         /// Construct an Import module
         /// </summary>
@@ -61,7 +75,7 @@ namespace FPDL.Deploy
                     _objects.Add(new HlaObject(hlaObject));
 
                 foreach (XElement hlaInteraction in fpdl.Elements("interaction"))
-                    _interactions.Add(HlaInteraction.FromFPDL(hlaInteraction));
+                    _interactions.Add(new HlaInteraction(hlaInteraction));
             }
             catch (NullReferenceException e)
             {

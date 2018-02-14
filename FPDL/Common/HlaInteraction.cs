@@ -13,29 +13,43 @@ namespace FPDL.Common
         /// <summary>
         /// Interaction class name
         /// </summary>
-        public string InteractionClassName;
+        [DeployIf("interactionClassName", "Fully qualified ingteraction classname")]
+        public string InteractionClassName { get; set; }
         /// <summary>
         /// Interaction parameters
         /// </summary>
-        public List<HlaParameter> Parameters = new List<HlaParameter>();
+        [DeployIf("PARAMETERS", "Parameters", true, true)]
+        public List<HlaParameter> Parameters { get; set; }
+
         /// <summary>
         /// Construct an HlaInteraction object
         /// </summary>
-        public HlaInteraction() { }
+        public HlaInteraction()
+        {
+            Parameters = new List<HlaParameter>();
+        }
+        /// <summary>
+        /// Construct and HlaInteraction object from FPDL
+        /// </summary>
+        /// <param name="fpdl"></param>
+        public HlaInteraction(XElement fpdl) : this()
+        {
+            FromFPDL(fpdl);
+        }
+
         /// <summary>
         /// Construct an HlaInteraction object from FPDL
         /// </summary>
         /// <param name="fpdl"></param>
         /// <returns></returns>
-        public static HlaInteraction FromFPDL(XElement fpdl)
+        public void FromFPDL(XElement fpdl)
         {
             if (fpdl.Name != "interaction")
                 throw new ApplicationException("Cannot parse: Not an FPDL HLA Interaction description");
 
-            HlaInteraction obj = new HlaInteraction();
             try
             {
-                obj.InteractionClassName = fpdl.Element("interactionClassName").Value;
+                InteractionClassName = fpdl.Element("interactionClassName").Value;
                 // There may not be any parameters
                 if (fpdl.Element("parameterName") != null)
                 {
@@ -46,7 +60,7 @@ namespace FPDL.Common
                             parameter.DataType = param.Attribute("dataType").Value;
                         if (param.Attribute("defaultValue") != null)
                             parameter.DataType = param.Attribute("defaultValue").Value;
-                        obj.Parameters.Add(parameter);
+                        Parameters.Add(parameter);
                     }
                 }
             }
@@ -55,7 +69,6 @@ namespace FPDL.Common
                 //string ms = e.Message;
                 throw new ApplicationException("HlaInteraction parse error: " + e.Message);
             }
-            return obj;
         }
 
         /// <summary>

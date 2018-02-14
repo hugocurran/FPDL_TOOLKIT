@@ -1,4 +1,5 @@
 ﻿using System.Xml.Linq;
+using static FPDL.Common.Enums;
 
 namespace FPDL.Deploy
 {
@@ -7,6 +8,10 @@ namespace FPDL.Deploy
     /// </summary>
     public interface IModule
     {
+        /// <summary>
+        /// Get the module identity
+        /// </summary>
+        ModuleType GetModuleType();
         /// <summary>
         /// Deserialise module from FPDL
         /// </summary>
