@@ -175,7 +175,7 @@
             HLA Attribute
             </summary>
         </member>
-        <member name="P:FPDL.Common.HlaAttribute.Name">
+        <member name="P:FPDL.Common.HlaAttribute.AttributeName">
             <summary>
             Attribute Name
             </summary>
@@ -193,6 +193,12 @@
         <member name="M:FPDL.Common.HlaAttribute.ToString">
             <summary>
             String representation of HLA Attribute
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Common.HlaAttribute.GetNode">
+            <summary>
+            Get a TreeNode
             </summary>
             <returns></returns>
         </member>
@@ -241,6 +247,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:FPDL.Common.HlaInteraction.GetNode">
+            <summary>
+            Get a TreeNode
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:FPDL.Common.HlaObject">
             <summary>
             HLA object 
@@ -286,6 +298,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:FPDL.Common.HlaObject.GetNode">
+            <summary>
+            Get a TreeNode
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:FPDL.Common.HlaParameter">
             <summary>
             HLA Parameter
@@ -309,6 +327,12 @@
         <member name="M:FPDL.Common.HlaParameter.ToString">
             <summary>
             String representation of HLA Parameter
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Common.HlaParameter.GetNode">
+            <summary>
+            Get a TreeNode
             </summary>
             <returns></returns>
         </member>
@@ -394,6 +418,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:FPDL.Common.Source.GetNode">
+            <summary>
+            Get a TreeNode
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:FPDL.Common.Enums">
             <summary>
             FPDL Schema Enum mappings\n
@@ -403,6 +433,11 @@
         <member name="T:FPDL.Common.Enums.FederateType">
             <summary>
             System types
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Enums.FederateType.NotApplicable">
+            <summary>
+            Not Applicable
             </summary>
         </member>
         <member name="F:FPDL.Common.Enums.FederateType.gateway">
@@ -450,6 +485,11 @@
             Filter Type
             </summary>
         </member>
+        <member name="F:FPDL.Common.Enums.FilterType.NotApplicable">
+            <summary>
+            Not Applicable
+            </summary>
+        </member>
         <member name="F:FPDL.Common.Enums.FilterType.proximity">
             <summary>
             Proximity filter
@@ -468,6 +508,11 @@
         <member name="T:FPDL.Common.Enums.ComponentType">
             <summary>
             Component type
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Enums.ComponentType.NotApplicable">
+            <summary>
+            Not Applicable
             </summary>
         </member>
         <member name="F:FPDL.Common.Enums.ComponentType.proxy">
@@ -528,6 +573,36 @@
         <member name="F:FPDL.Common.Enums.ModuleType.host">
             <summary>
             Host
+            </summary>
+        </member>
+        <member name="T:FPDL.Common.Enums.PatternType">
+            <summary>
+            Pattern type
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Enums.PatternType.NotApplicable">
+            <summary>
+            Not Applicable
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Enums.PatternType.htg">
+            <summary>
+            HTG
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Enums.PatternType.mtg">
+            <summary>
+            MTG
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Enums.PatternType.ltg">
+            <summary>
+            LTG
+            </summary>
+        </member>
+        <member name="F:FPDL.Common.Enums.PatternType.filter">
+            <summary>
+            Filter
             </summary>
         </member>
         <member name="T:FPDL.Common.DeployIfAttribute">
@@ -613,6 +688,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:FPDL.Deploy.Component.GetNode">
+            <summary>
+            Get a TreeNode
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:FPDL.Deploy.DeployObject">
             <summary>
             FPDL Deploy
@@ -662,6 +743,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:FPDL.Deploy.DeployObject.GetNode">
+            <summary>
+            Get a TreeNode
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:FPDL.Deploy.DeployObject.IsEmpty">
             <summary>
             Returns true if this object is empty
@@ -689,6 +776,18 @@
             Serialise module to FPDL
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.IModule.GetNode">
+            <summary>
+            Get a TreeNode representation
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.IModule.ApplyPattern(System.Collections.Generic.List{FPDL.Pattern.Specification})">
+            <summary>
+            Apply specifications from a Pattern to this module
+            </summary>
+            <param name="specifications"></param>
         </member>
         <member name="T:FPDL.Deploy.ModuleExport">
             <summary>
@@ -739,6 +838,24 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:FPDL.Deploy.ModuleExport.GetNode">
+            <summary>
+            Get a TreeNode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleExport.ApplyPattern(System.Collections.Generic.List{FPDL.Pattern.Specification})">
+            <summary>
+            Apply specifications from a Pattern to this module
+            </summary>
+            <param name="specifications"></param>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleExport.ApplyPattern(System.Collections.Generic.List{FPDL.Common.Source})">
+            <summary>
+            Apply specifications from a Design to this module
+            </summary>
+            <param name="sources"></param>
+        </member>
         <member name="T:FPDL.Deploy.ModuleExtension">
             <summary>
             Extension Module
@@ -788,6 +905,18 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:FPDL.Deploy.ModuleExtension.GetNode">
+            <summary>
+            Get a TreeNode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleExtension.ApplyPattern(System.Collections.Generic.List{FPDL.Pattern.Specification})">
+            <summary>
+            Apply specifications from a Pattern to this module
+            </summary>
+            <param name="specifications"></param>
+        </member>
         <member name="T:FPDL.Deploy.ModuleFactory">
             <summary>
             Create a concrete Module instance
@@ -806,6 +935,12 @@
             </summary>
             <param name="moduleName"></param>
             <param name="component"></param>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleFactory.Create(FPDL.Common.Enums.ModuleType)">
+            <summary>
+            Create a concrete Module instance
+            </summary>
+            <param name="moduleName"></param>
         </member>
         <member name="T:FPDL.Deploy.ModuleFederation">
             <summary>
@@ -866,6 +1001,18 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:FPDL.Deploy.ModuleFederation.GetNode">
+            <summary>
+            Get a TreeNode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleFederation.ApplyPattern(System.Collections.Generic.List{FPDL.Pattern.Specification})">
+            <summary>
+            Apply specifications from a Pattern to this module
+            </summary>
+            <param name="specifications"></param>
+        </member>
         <member name="T:FPDL.Deploy.Rti">
             <summary>
             RTI class
@@ -905,6 +1052,12 @@
             <summary>
             Rti constructor
             </summary>
+        </member>
+        <member name="M:FPDL.Deploy.Rti.GetNode">
+            <summary>
+            Get a TreeNode
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:FPDL.Deploy.ModuleHost">
             <summary>
@@ -960,6 +1113,18 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:FPDL.Deploy.ModuleHost.GetNode">
+            <summary>
+            Get a TreeNode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleHost.ApplyPattern(System.Collections.Generic.List{FPDL.Pattern.Specification})">
+            <summary>
+            Apply specifications from a Pattern to this module
+            </summary>
+            <param name="specifications"></param>
+        </member>
         <member name="T:FPDL.Deploy.Server">
             <summary>
             Generic Server description
@@ -984,6 +1149,12 @@
             <summary>
             Port number
             </summary>
+        </member>
+        <member name="M:FPDL.Deploy.Server.GetNode">
+            <summary>
+            Get a TreeNode
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:FPDL.Deploy.ModuleImport">
             <summary>
@@ -1038,6 +1209,24 @@
             String representation of Import module
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleImport.GetNode">
+            <summary>
+            Get a TreeNode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleImport.ApplyPattern(System.Collections.Generic.List{FPDL.Pattern.Specification})">
+            <summary>
+            Apply specifications from a Pattern to this module
+            </summary>
+            <param name="specifications"></param>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleImport.ApplyPattern(FPDL.Design.Publish)">
+            <summary>
+            Apply specifications from a Design to this module
+            </summary>
+            <param name="publish"></param>
         </member>
         <member name="T:FPDL.Deploy.ModuleInterface">
             <summary>
@@ -1097,6 +1286,18 @@
             String representation of Interface module
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleInterface.GetNode">
+            <summary>
+            Get a TreeNode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleInterface.ApplyPattern(System.Collections.Generic.List{FPDL.Pattern.Specification})">
+            <summary>
+            Apply specifications from a Pattern to this module
+            </summary>
+            <param name="specifications"></param>
         </member>
         <member name="T:FPDL.Deploy.ModuleOsp">
             <summary>
@@ -1182,6 +1383,18 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:FPDL.Deploy.ModuleOsp.GetNode">
+            <summary>
+            Get a TreeNode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleOsp.ApplyPattern(System.Collections.Generic.List{FPDL.Pattern.Specification})">
+            <summary>
+            Apply specifications from a Pattern to this module
+            </summary>
+            <param name="specifications"></param>
+        </member>
         <member name="T:FPDL.Deploy.DeploySystem">
             <summary>
             System object
@@ -1238,6 +1451,12 @@
         <member name="M:FPDL.Deploy.DeploySystem.ToString">
             <summary>
             String representation of System object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.DeploySystem.GetNode">
+            <summary>
+            Get a TreeNode
             </summary>
             <returns></returns>
         </member>
@@ -1879,31 +2098,6 @@
         <member name="T:FPDL.Pattern.PatternObject">
             <summary>
             Pattern
-            </summary>
-        </member>
-        <member name="T:FPDL.Pattern.PatternObject.Type">
-            <summary>
-            Pattern type
-            </summary>
-        </member>
-        <member name="F:FPDL.Pattern.PatternObject.Type.HTG">
-            <summary>
-            HTG
-            </summary>
-        </member>
-        <member name="F:FPDL.Pattern.PatternObject.Type.MTG">
-            <summary>
-            MTG
-            </summary>
-        </member>
-        <member name="F:FPDL.Pattern.PatternObject.Type.LTG">
-            <summary>
-            LTG
-            </summary>
-        </member>
-        <member name="F:FPDL.Pattern.PatternObject.Type.Filter">
-            <summary>
-            Filter
             </summary>
         </member>
         <member name="F:FPDL.Pattern.PatternObject.ConfigMgmt">

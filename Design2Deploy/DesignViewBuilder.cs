@@ -27,24 +27,18 @@ namespace FPDL.Tools.DeployEditor
                 if (type == Enums.FederateType.gateway)
                 {
                     t2[0] = new TreeNode(federates[i].GatewayType.ToString().ToUpper());
-                    t2[0].Tag = federates[i];
                     t1[0] = new TreeNode(federates[i].FederateType.ToString().ToUpperFirst(), t2);
-                    t1[0].Tag = federates[i];
                 }
                 if (type == Enums.FederateType.filter)
                 {
                     t2[0] = new TreeNode(federates[i].FilterType.ToString().ToUpperFirst());
-                    t2[0].Tag = federates[i];
                     t1[0] = new TreeNode(federates[i].FederateType.ToString().ToUpperFirst(), t2);
-                    t1[0].Tag = federates[i];
                 }
                 if (type == Enums.FederateType.service)
                 {
                     t1[0] = new TreeNode(federates[i].FederateType.ToString().ToUpperFirst());
                 }
                 feds[i] = new TreeNode(federates[i].FederateName, t1);
-                if (type != Enums.FederateType.service)
-                    feds[i].Tag = federates[i];
             }
             return feds;
         }

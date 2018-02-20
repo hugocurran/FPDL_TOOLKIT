@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FPDL.Common;
+using System;
 using System.Xml.Linq;
 
 namespace FPDL.Pattern
@@ -16,7 +17,7 @@ namespace FPDL.Pattern
         /// <summary>
         /// Pattern type
         /// </summary>
-        public PatternObject.Type Type { get; set; }
+        public Enums.PatternType Type { get; set; }
         /// <summary>
         /// Pattern reference
         /// </summary>

@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Windows.Forms;
 
 namespace FPDL.Common
 {
@@ -11,7 +12,7 @@ namespace FPDL.Common
         /// Attribute Name
         /// </summary>
         [DeployIf("name", "Attribute name")]
-        public string Name { get; set; }
+        public string AttributeName { get; set; }
         /// <summary>
         /// Attribute data type (optional)
         /// </summary>
@@ -30,7 +31,7 @@ namespace FPDL.Common
         public override string ToString()
         {
             StringBuilder str = new StringBuilder();
-            str.AppendFormat("{0} ", Name);
+            str.AppendFormat("{0} ", AttributeName);
             if (DataType != "")
             {
                 str.AppendFormat("[{0}", DataType);
@@ -40,6 +41,22 @@ namespace FPDL.Common
                     str.Append("]");
             }
             return str.ToString();
+        }
+
+        /// <summary>
+        /// Get a TreeNode
+        /// </summary>
+        /// <returns></returns>
+        public TreeNode GetNode()
+        {
+            if (DataType != null)
+            {
+                TreeNode[] t = new TreeNode[1];
+                string dt = string.Format("{0} [{1}]", DefaultValue, DataType);
+                t[0] = new TreeNode(dt);
+                return new TreeNode(AttributeName, t);
+            }
+            return new TreeNode(AttributeName);
         }
     }
 }

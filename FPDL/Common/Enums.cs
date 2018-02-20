@@ -18,6 +18,10 @@ namespace FPDL.Common
         public enum FederateType
         {
             /// <summary>
+            /// Not Applicable
+            /// </summary>
+            NotApplicable,  // avoids selecting gateway by default
+            /// <summary>
             /// Gateway
             /// </summary>
             gateway,
@@ -38,7 +42,7 @@ namespace FPDL.Common
             /// <summary>
             /// Not Applicable
             /// </summary>
-            NotApplicable,  // avoids selecting HTG by defaul
+            NotApplicable,  // avoids selecting HTG by default
             /// <summary>
             /// HTG
             /// </summary>
@@ -59,6 +63,10 @@ namespace FPDL.Common
         public enum FilterType
         {
             /// <summary>
+            /// Not Applicable
+            /// </summary>
+            NotApplicable,  // avoids selecting proximity by default
+            /// <summary>
             /// Proximity filter
             /// </summary>
             proximity,
@@ -77,6 +85,10 @@ namespace FPDL.Common
         /// </summary>
         public enum ComponentType
         {
+            /// <summary>
+            /// Not Applicable
+            /// </summary>
+            NotApplicable,  // avoids selecting proxy by default
             /// <summary>
             /// Proxy
             /// </summary>
@@ -127,6 +139,32 @@ namespace FPDL.Common
             /// Host
             /// </summary>
             host
+        }
+        /// <summary>
+        /// Pattern type
+        /// </summary>
+        public enum PatternType
+        {
+            /// <summary>
+            /// Not Applicable
+            /// </summary>
+            NotApplicable,  // avoids selecting HTG by default
+            /// <summary>
+            /// HTG
+            /// </summary>
+            htg,
+            /// <summary>
+            /// MTG
+            /// </summary>
+            mtg,
+            /// <summary>
+            /// LTG
+            /// </summary>
+            ltg,
+            /// <summary>
+            /// Filter
+            /// </summary>
+            filter
         }
     }
 }

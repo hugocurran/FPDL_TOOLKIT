@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace FPDL.Common
@@ -55,7 +56,7 @@ namespace FPDL.Common
                 {
                     foreach (XElement attrib in fpdl.Elements("attributeName"))
                     {
-                        HlaAttribute attribute = new HlaAttribute { Name = attrib.Value };
+                        HlaAttribute attribute = new HlaAttribute { AttributeName = attrib.Value };
                         if (attrib.Attribute("dataType") != null)
                             attribute.DataType = attrib.Attribute("dataType").Value;
                         if (attrib.Attribute("defaultValue") != null)
@@ -85,11 +86,11 @@ namespace FPDL.Common
             {
                 foreach (HlaAttribute attrib in Attributes)
                 {
-                    XElement _a = new XElement("attributeName", attrib.Name);
+                    XElement _a = new XElement("attributeName", attrib.AttributeName);
                     if (attrib.DataType != null)
                         _a.SetAttributeValue("dataType", attrib.DataType);
                     if ((attrib.DefaultValue != null) && (attrib.DataType == null))
-                        throw new ApplicationException("HlaObject.ToXML: defaultValue defined with null dataType. AttributeName = " + attrib.Name);
+                        throw new ApplicationException("HlaObject.ToXML: defaultValue defined with null dataType. AttributeName = " + attrib.AttributeName);
                     else
                         _a.SetAttributeValue("defaultValue", attrib.DefaultValue);
                      fpdlType.Add(_a);
@@ -110,6 +111,20 @@ namespace FPDL.Common
                 str.AppendFormat("\t\tAttribute: {0}\n", attrib.ToString());
             }
             return str.ToString();
+        }
+        /// <summary>
+        /// Get a TreeNode
+        /// </summary>
+        /// <returns></returns>
+        public TreeNode GetNode()
+        {
+            TreeNode[] t = new TreeNode[Attributes.Count];
+            for (int i = 0; i < Attributes.Count; i++)
+                t[i] = Attributes[i].GetNode();
+            TreeNode a = new TreeNode(ObjectClassName, t);
+            a.ToolTipText = "Object class name";
+            a.Tag = this;
+            return a;
         }
     }
 }

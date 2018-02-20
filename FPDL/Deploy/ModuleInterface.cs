@@ -1,9 +1,12 @@
 ﻿using FPDL.Common;
+using FPDL.Pattern;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml.Linq;
 using static FPDL.Common.Enums;
 
@@ -104,6 +107,50 @@ namespace FPDL.Deploy
             if (DefaultRouter != "")
                 str.AppendFormat("\tDeFaultRouter: {0}\n", DefaultRouter);
             return str.ToString();
+        }
+        /// <summary>
+        /// Get a TreeNode
+        /// </summary>
+        /// <returns></returns>
+        public TreeNode GetNode()
+        {
+            TreeNode[] t = new TreeNode[3];
+            t[0] = new TreeNode("InterfaceName = " + InterfaceName);
+            t[0].ToolTipText = "Interface Name";
+            t[1] = new TreeNode("IP Address = " + IpAddress);
+            t[1].ToolTipText = "IP Address";
+            t[2] = new TreeNode("Default Router = " + DefaultRouter);
+            t[2].ToolTipText = "Default Router";
+
+            TreeNode a = new TreeNode("Interface", t);
+            a.ToolTipText = "Interface module";
+            a.Tag = this;
+            return a;
+        }
+        /// <summary>
+        /// Apply specifications from a Pattern to this module
+        /// </summary>
+        /// <param name="specifications"></param>
+        public void ApplyPattern(List<Specification> specifications)
+        {
+            foreach (Specification spec in specifications)
+            {
+                switch (spec.ParamName)
+                {
+                    case "interfaceName":
+                        InterfaceName = spec.Value;
+                        break;
+                    case "ipAddress":
+                        IpAddress = spec.Value;
+                        break;
+                    case "netPrefix":
+                        NetPrefix = spec.Value;
+                        break;
+                    case "defaultRouter":
+                        DefaultRouter = spec.Value;
+                        break;
+                }
+            }
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using FPDL.Common;
+using FPDL.Pattern;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml.Linq;
 using static FPDL.Common.Enums;
 
@@ -136,8 +138,68 @@ namespace FPDL.Deploy
                 str.AppendFormat("\tFOM: {0}\n", fom);
             return str.ToString();
         }
+        /// <summary>
+        /// Get a TreeNode
+        /// </summary>
+        /// <returns></returns>
+        public TreeNode GetNode()
+        {
+            TreeNode[] t = new TreeNode[4];
+            t[0] = new TreeNode("Federation name = " + FederationName);
+            t[0].ToolTipText = "Name of this Federation";
+            t[1] = new TreeNode("Federate name = " + FederateName);
+            t[1].ToolTipText = "Federate name in the federation";
+            t[2] = new TreeNode("Interface name = " + InterfaceName);
+            t[2].ToolTipText = "Interface binding";
+            t[3] = RTI.GetNode();
 
+            TreeNode a = new TreeNode("Federation", t);
+            a.ToolTipText = "Federation module";
+            a.Tag = this;
+            return a;
+        }
+        /// <summary>
+        /// Apply specifications from a Pattern to this module
+        /// </summary>
+        /// <param name="specifications"></param>
+        public void ApplyPattern(List<Specification> specifications)
+        {
+            foreach (Specification spec in specifications)
+            {
+                switch (spec.ParamName)
+                {
+                    case "federationName":
+                        FederationName = spec.Value;
+                        break;
+                    case "federateName":
+                        FederateName = spec.Value;
+                        break;
+                    case "interfaceName":
+                        InterfaceName = spec.Value;
+                        break;
+                    case "crcAddress":
+                        RTI.CrcAddress = spec.Value;
+                        break;
+                    case "addressType":
+                        RTI.AddressType = spec.Value;
+                        break;
+                    case "crcPortNumber":
+                        RTI.CrcPortNumber = spec.Value;
+                        break;
+                    case "hlaSpec":
+                        RTI.HlaSpec = spec.Value;
+                        break;
+                    case "fomUri":
+                        RTI.FomUri.Add(spec.Value);
+                        break;
+                    case "fomFile":
+                        RTI.FomFile.Add(spec.Value);
+                        break;
+                }
+            }
+        }
     }
+
 
     /// <summary>
     /// RTI class
@@ -167,12 +229,12 @@ namespace FPDL.Deploy
         /// <summary>
         /// URI of FOM modules
         /// </summary>
-        [DeployIf("fom:uri","URI of FOM module", false, true)]
+        [DeployIf("fom:uri","URI of FOM module", true, true)]
         public List<string> FomUri { get; set; }
         /// <summary>
         /// Filenames of FOM modules
         /// </summary>
-        [DeployIf("fom:fileName", "Filepath of FOM module", false, true)]
+        [DeployIf("fom:fileName", "Filepath of FOM module", true, true)]
         public List<string> FomFile { get; set; }
 
         /// <summary>
@@ -182,6 +244,38 @@ namespace FPDL.Deploy
         {
             FomUri = new List<string>();
             FomFile = new List<string>();
+        }
+        /// <summary>
+        /// Get a TreeNode
+        /// </summary>
+        /// <returns></returns>
+        public TreeNode GetNode()
+        {
+            TreeNode[] t = new TreeNode[4];
+            t[0] = new TreeNode("CRC Address = " + CrcAddress);
+            t[0].ToolTipText = "CRC server FQDN or IP adress";
+            t[1] = new TreeNode("Address type = " + AddressType);
+            t[1].ToolTipText = "Address type(hostname/IP address)";
+            t[2] = new TreeNode("CRC Port Number = " + CrcPortNumber);
+            t[2].ToolTipText = "CRC server port number";
+            t[3] = new TreeNode("HLA Specification = " + HlaSpec);
+            t[3].ToolTipText = "Hla specification (eg HLA Evolved";
+
+            TreeNode[] t1 = new TreeNode[FomUri.Count];
+            for (int i = 0; i < FomUri.Count; i++)
+                t1[i] = new TreeNode("FOM URI = " + FomUri[i]);
+
+            TreeNode[] t2 = new TreeNode[FomFile.Count];
+            for (int i = 0; i < FomFile.Count; i++)
+                t2[i] = new TreeNode("FOM Filename = " + FomFile[i]);
+
+            TreeNode a = new TreeNode("RTI");
+            a.Nodes.AddRange(t);
+            a.Nodes.AddRange(t1);
+            a.Nodes.AddRange(t2);
+            a.ToolTipText = "RTI specification";
+            a.Tag = this;
+            return a;
         }
     }
 }

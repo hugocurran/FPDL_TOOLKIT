@@ -1,6 +1,9 @@
 ﻿using FPDL.Common;
+using FPDL.Pattern;
 using System;
+using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 using System.Xml.Linq;
 using static FPDL.Common.Enums;
 
@@ -130,6 +133,52 @@ namespace FPDL.Deploy
             if (OutputPort != "")
                 str.AppendFormat("\tOutput: {0}\n", OutputPort);
             return str.ToString();
+        }
+        /// <summary>
+        /// Get a TreeNode
+        /// </summary>
+        /// <returns></returns>
+        public TreeNode GetNode()
+        {
+            TreeNode[] t = new TreeNode[4];
+            t[0] = new TreeNode("Path = " + Path);
+            t[0].ToolTipText = "Path (export/import)";
+            t[1] = new TreeNode("Protocol = " + Protocol.ToString());
+            t[1].ToolTipText = "OSP protocol";
+            t[2] = new TreeNode("Input = " + InputPort);
+            t[2].ToolTipText = "Input Address:Port";
+            t[3] = new TreeNode("Output = " + OutputPort);
+            t[3].ToolTipText = "Output Address:Port";
+
+            TreeNode a = new TreeNode("OSP", t);
+            a.ToolTipText = "OSP module";
+            a.Tag = this;
+            return a;
+        }
+        /// <summary>
+        /// Apply specifications from a Pattern to this module
+        /// </summary>
+        /// <param name="specifications"></param>
+        public void ApplyPattern(List<Specification> specifications)
+        {
+            foreach (Specification spec in specifications)
+            {
+                switch (spec.ParamName)
+                {
+                    case "path":
+                        Path = spec.Value;
+                        break;
+                    case "protocol":
+                        Protocol = (OspProtocol)Enum.Parse(typeof(OspProtocol), spec.Value);
+                        break;
+                    case "inputPort":
+                        InputPort = spec.Value;
+                        break;
+                    case "outputPort":
+                        OutputPort = spec.Value;
+                        break;
+                }
+            }
         }
     }
 }

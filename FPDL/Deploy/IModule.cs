@@ -1,4 +1,7 @@
-﻿using System.Xml.Linq;
+﻿using FPDL.Pattern;
+using System.Collections.Generic;
+using System.Windows.Forms;
+using System.Xml.Linq;
 using static FPDL.Common.Enums;
 
 namespace FPDL.Deploy
@@ -22,5 +25,15 @@ namespace FPDL.Deploy
         /// </summary>
         /// <returns></returns>
         XElement ToFPDL();
+        /// <summary>
+        /// Get a TreeNode representation
+        /// </summary>
+        /// <returns></returns>
+        TreeNode GetNode();
+        /// <summary>
+        /// Apply specifications from a Pattern to this module
+        /// </summary>
+        /// <param name="specifications"></param>
+        void ApplyPattern(List<Specification> specifications);
     }
 }

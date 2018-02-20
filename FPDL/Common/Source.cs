@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace FPDL.Common
@@ -179,6 +180,27 @@ namespace FPDL.Common
                 str.AppendFormat("\t{0}\n", inter.ToString());
             }
             return str.ToString();
+        }
+        /// <summary>
+        /// Get a TreeNode
+        /// </summary>
+        /// <returns></returns>
+        public TreeNode GetNode()
+        {
+            TreeNode[] t1 = new TreeNode[Objects.Count];
+            for (int i = 0; i < Objects.Count; i++)
+                t1[i] = Objects[i].GetNode();
+
+            TreeNode[] t2 = new TreeNode[Interactions.Count];
+            for (int i = 0; i < Interactions.Count; i++)
+                t2[i] = Interactions[i].GetNode();
+
+            TreeNode a = new TreeNode(SourceId + " (" + SourceType.ToString());
+            a.Nodes.AddRange(t1);
+            a.Nodes.AddRange(t2);
+            a.ToolTipText = "Source federate/entity";
+            a.Tag = this;
+            return a;
         }
     }
 }

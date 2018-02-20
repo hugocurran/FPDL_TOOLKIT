@@ -71,7 +71,7 @@ namespace FPDL.Pattern
                         entry = new Entry
                         {
                             Embedded = Convert.ToBoolean(_entry.Attribute("embedded").Value),
-                            Type = (PatternObject.Type)Enum.Parse(typeof(PatternObject.Type), _entry.Element("patternGenericType").Value),
+                            Type = (Enums.PatternType)Enum.Parse(typeof(Enums.PatternType), _entry.Element("patternGenericType").Value),
                             Reference = Guid.Parse(_entry.Element("patternReference").Value),
                             Name = _entry.Element("patternName").Value,
                             Version = _entry.Element("patternVersion").Value,

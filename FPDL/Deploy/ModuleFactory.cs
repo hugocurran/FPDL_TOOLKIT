@@ -89,6 +89,33 @@ namespace FPDL.Deploy
                     break;
             }
         }
+
+        /// <summary>
+        /// Create a concrete Module instance
+        /// </summary>
+        /// <param name="moduleName"></param>
+        public static IModule Create(Enums.ModuleType moduleName)
+        {
+            switch (moduleName.ToString())
+            {
+                case "export":
+                    return new ModuleExport();
+                case "import":
+                    return new ModuleImport();
+                case "osp":
+                    return new ModuleOsp();
+                case "interface":
+                    return new ModuleInterface();
+                case "host":
+                    return new ModuleHost();
+                case "federation":
+                    return new ModuleFederation();
+                case "extension":
+                    return new ModuleExtension();
+                default:
+                    return null;
+            }
+        }
     }
 }
 

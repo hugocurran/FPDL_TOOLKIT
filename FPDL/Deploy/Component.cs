@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace FPDL.Deploy
@@ -91,6 +92,27 @@ namespace FPDL.Deploy
             foreach (IModule mod in Modules)
                 str.AppendFormat("  {0}\n", mod.ToString());
             return str.ToString();
+        }
+        /// <summary>
+        /// Get a TreeNode
+        /// </summary>
+        /// <returns></returns>
+        public TreeNode GetNode()
+        {
+            TreeNode[] t1 = new TreeNode[1];
+            t1[0] = new TreeNode("Component ID = " + ComponentID.ToString());
+            t1[0].ToolTipText = "Component ID reference";
+
+            TreeNode[] t = new TreeNode[Modules.Count];
+            for (int i = 0; i < Modules.Count; i++)
+                t[i] = Modules[i].GetNode();
+
+            TreeNode a = new TreeNode("Component = " + ComponentType.ToString());
+            a.Nodes.AddRange(t1);
+            a.Nodes.AddRange(t);
+            a.ToolTipText = "Component";
+            a.Tag = this;
+            return a;
         }
     }
 }

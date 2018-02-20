@@ -1,4 +1,5 @@
 ﻿using FPDL.Common;
+using FPDL.Deploy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,28 +14,7 @@ namespace FPDL.Pattern
     /// </summary>
     public class PatternObject : IFpdlObject
     {
-        /// <summary>
-        /// Pattern type
-        /// </summary>
-        public enum Type
-        {
-            /// <summary>
-            /// HTG
-            /// </summary>
-            HTG,
-            /// <summary>
-            /// MTG
-            /// </summary>
-            MTG,
-            /// <summary>
-            /// LTG
-            /// </summary>
-            LTG,
-            /// <summary>
-            /// Filter
-            /// </summary>
-            Filter
-        }
+
         /// <summary>
         /// ConfigMgmt for the Pattern document
         /// </summary>
@@ -42,7 +22,7 @@ namespace FPDL.Pattern
         /// <summary>
         /// Pattern type
         /// </summary>
-        public Type PatternType;
+        public Enums.PatternType PatternType;
         /// <summary>
         /// Pattern name
         /// </summary>
@@ -79,7 +59,7 @@ namespace FPDL.Pattern
             try
             {
                 ConfigMgmt = new ConfigMgmt(fpdl.Descendants("configMgmt").FirstOrDefault());
-                PatternType = (Type)Enum.Parse(typeof(Type), fpdl.Element("patternGenericType").Value);
+                PatternType = (Enums.PatternType)Enum.Parse(typeof(Enums.PatternType), fpdl.Element("patternGenericType").Value);
                 PatternName = fpdl.Element("patternName").Value;
                 Description = fpdl.Element("description").Value;
                 foreach (XElement component in fpdl.Descendants("component"))
@@ -99,13 +79,13 @@ namespace FPDL.Pattern
         /// </summary>
         /// <returns></returns>
         public XElement ToFPDL()
-        {            
+        {
             XElement pattern = new XElement("Pattern",
                 ConfigMgmt.ToFPDL(),
                 new XElement("patternGenericType", PatternType.ToString()),
                 new XElement("patternName", PatternName),
                 new XElement("description", Description)
-            );            
+            );
             foreach (Component component in Components)
             {
                 pattern.Add(component.ToFPDL());

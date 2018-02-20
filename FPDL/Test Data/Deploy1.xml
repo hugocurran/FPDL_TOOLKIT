@@ -23,6 +23,7 @@
 	<designReference>C2056C70-A628-490E-B59B-3946EE89DFC3</designReference>
 	<system systemType="gateway">
 		<pattern patternReference="C2056C70-A628-490E-B59B-3946EE89DFC4">HTG</pattern>
+		<federateName>Test Federate</federateName>
 		<component componentID="F6A15143-6BF7-4313-B558-C154C973EC07" componentType="proxy">
 			<interface>
 				<interfaceName>CS+S Network</interfaceName>

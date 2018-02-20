@@ -1,7 +1,10 @@
 ﻿using FPDL.Common;
+using FPDL.Pattern;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
+using System.Windows.Forms;
 using System.Xml.Linq;
 using static FPDL.Common.Enums;
 
@@ -20,7 +23,7 @@ namespace FPDL.Deploy
         /// <summary>
         /// Logging servers
         /// </summary>
-        [DeployIf("LOGGING", "Logging servers", true, true )]
+        [DeployIf("LOGGING", "Logging servers", true, true)]
         public List<Server> Logging { get; set; }
         /// <summary>
         /// Time servers
@@ -140,6 +143,49 @@ namespace FPDL.Deploy
                 str.AppendFormat("\tTime: {0} - {1} - {2} Port {3}\n", serv.Name, serv.Protocol, serv.Transport, serv.Port);
             return str.ToString();
         }
+        /// <summary>
+        /// Get a TreeNode
+        /// </summary>
+        /// <returns></returns>
+        public TreeNode GetNode()
+        {
+            TreeNode[] t0 = new TreeNode[1];
+            t0[0] = new TreeNode("Host Name = " + HostName);
+            t0[0].ToolTipText = "Host name";
+
+            TreeNode[] t1 = new TreeNode[Logging.Count];
+            for (int i = 0; i < Logging.Count; i++)
+                t1[i] = Logging[i].GetNode();
+
+            TreeNode[] t2 = new TreeNode[Time.Count];
+            for (int i = 0; i < Time.Count; i++)
+                t2[i] = Time[i].GetNode();
+
+            TreeNode a = new TreeNode("Host");
+            a.Nodes.AddRange(t0);
+            a.Nodes.AddRange(t1);
+            a.Nodes.AddRange(t2);
+            a.ToolTipText = "Host Module";
+            a.Tag = this;
+            return a;
+        }
+        /// <summary>
+        /// Apply specifications from a Pattern to this module
+        /// </summary>
+        /// <param name="specifications"></param>
+        public void ApplyPattern(List<Specification> specifications)
+        {
+            foreach (Specification spec in specifications)
+            {
+                switch (spec.ParamName)
+                {
+                    case "hostName":
+                        HostName = spec.Value;
+                        break;
+                        // Need to figure out time and logging
+                }
+            }
+        }
     }
     /// <summary>
     /// Generic Server description
@@ -162,5 +208,30 @@ namespace FPDL.Deploy
         /// Port number
         /// </summary>
         public string Port;
+
+        /// <summary>
+        /// Get a TreeNode
+        /// </summary>
+        /// <returns></returns>
+        public TreeNode GetNode()
+        {
+            TreeNode[] t = new TreeNode[4];
+            t[0] = new TreeNode("Server = " + Name);
+            t[0].ToolTipText = "Server FQDN or IP address";
+            t[1] = new TreeNode("Protocol = " + Protocol);
+            t[1].ToolTipText = "Protocol (eg syslog, ntp)";
+            t[2] = new TreeNode("Transport = " + Transport);
+            t[2].ToolTipText = "Transport protocol (TCP/UDP)";
+            t[3] = new TreeNode("Port = " + Port);
+            t[3].ToolTipText = "Port number";
+
+            TreeNode a = new TreeNode("Server", t);
+            a.ToolTipText = "Server description";
+            a.Tag = this;
+            return a;
+        }
+
+
+
     }
 }

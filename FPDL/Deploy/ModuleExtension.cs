@@ -1,7 +1,9 @@
 ﻿using FPDL.Common;
+using FPDL.Pattern;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 using System.Xml.Linq;
 using static FPDL.Common.Enums;
 
@@ -92,6 +94,45 @@ namespace FPDL.Deploy
             foreach (KeyValuePair<string, string> param in Parameters)
                 str.AppendFormat("\tParameter: Name = {0}, Value = {1}\n", param.Key, param.Value);
             return str.ToString();
+        }
+        /// <summary>
+        /// Get a TreeNode
+        /// </summary>
+        /// <returns></returns>
+        public TreeNode GetNode()
+        {
+            TreeNode[] t = new TreeNode[Parameters.Count];
+            int i = 0;
+            foreach(var param in Parameters)
+                t[i++] = new TreeNode(param.Key + " = " + param.Value);
+
+            TreeNode[] t1 = new TreeNode[1];
+            t1[0] = new TreeNode("Vendor name = " + VendorName, t);
+
+            TreeNode a = new TreeNode("Extensions", t1);
+            a.ToolTipText = "Extensions Module";
+            a.Tag = this;
+            return a;
+        }
+
+        /// <summary>
+        /// Apply specifications from a Pattern to this module
+        /// </summary>
+        /// <param name="specifications"></param>
+        public void ApplyPattern(List<Specification> specifications)
+        {
+            foreach (Specification spec in specifications)
+            {
+                switch (spec.ParamName)
+                {
+                    case "vendorName":
+                        VendorName = spec.Value;
+                        break;
+                    default:
+                        Parameters.Add(spec.ParamName, spec.Value);
+                        break;
+                }
+            }
         }
     }
 }

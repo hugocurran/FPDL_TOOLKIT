@@ -151,7 +151,7 @@ namespace FPDL.Common
             SecurityClassification = classification;
             CurrentVersion = Tuple.Create(Major, Minor);
             Description = changeNotes;
-            DocReference = new Guid();
+            DocReference = Guid.NewGuid();
 
             Created = new created
             {

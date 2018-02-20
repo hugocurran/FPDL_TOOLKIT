@@ -1,7 +1,10 @@
 ﻿using FPDL.Common;
+using FPDL.Design;
+using FPDL.Pattern;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 using System.Xml.Linq;
 using static FPDL.Common.Enums;
 
@@ -110,6 +113,60 @@ namespace FPDL.Deploy
             foreach (HlaInteraction inter in _interactions)
                 str.AppendFormat("\t{0}\n", inter.ToString());
             return str.ToString();
+        }
+
+        /// <summary>
+        /// Get a TreeNode
+        /// </summary>
+        /// <returns></returns>
+        public TreeNode GetNode()
+        {
+            TreeNode[] t0 = new TreeNode[1];
+            t0[0] = new TreeNode(InterfaceName);
+            t0[0].ToolTipText = "Interface Binding";
+
+            TreeNode[] t1 = new TreeNode[Objects.Count];
+            for (int i = 0; i < Objects.Count; i++)
+                t1[i] = Objects[i].GetNode();
+
+            TreeNode[] t2 = new TreeNode[Interactions.Count];
+            for (int i = 0; i < Interactions.Count; i++)
+                t2[i] = Interactions[i].GetNode();
+
+            TreeNode a = new TreeNode("Import Policy");
+            a.Nodes.AddRange(t0);
+            a.Nodes.AddRange(t1);
+            a.Nodes.AddRange(t2);
+            a.ToolTipText = "Import Module";
+            a.Tag = this;
+            return a;
+        }
+        /// <summary>
+        /// Apply specifications from a Pattern to this module
+        /// </summary>
+        /// <param name="specifications"></param>
+        public void ApplyPattern(List<Specification> specifications)
+        {
+            foreach (Specification spec in specifications)
+            {
+                switch (spec.ParamName)
+                {
+                    case "interfaceName":
+                        InterfaceName = spec.Value;
+                        break;
+                }
+            }
+        }
+        /// <summary>
+        /// Apply specifications from a Design to this module
+        /// </summary>
+        /// <param name="publish"></param>
+        public void ApplyPattern(Publish publish)
+        {
+            if (publish.Objects.Count > 0)
+                _objects = publish.Objects;
+            if (publish.Interactions.Count > 0)
+                _interactions = publish.Interactions;
         }
     }
 }

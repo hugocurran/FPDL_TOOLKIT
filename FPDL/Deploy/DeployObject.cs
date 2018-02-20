@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace FPDL.Deploy
@@ -89,6 +90,27 @@ namespace FPDL.Deploy
             foreach (DeploySystem sys in Systems)
                 str.AppendFormat("{0}\n", sys);
             return str.ToString();
+        }
+        /// <summary>
+        /// Get a TreeNode
+        /// </summary>
+        /// <returns></returns>
+        public TreeNode GetNode()
+        {
+            TreeNode[] t1 = new TreeNode[1];
+            t1[0] = new TreeNode("Design reference = " + DesignReference);
+            t1[0].ToolTipText = "Design reference";
+
+            TreeNode[] t = new TreeNode[Systems.Count];
+            for (int i = 0; i < Systems.Count; i++)
+                t[i] = Systems[i].GetNode();
+
+            TreeNode a = new TreeNode("Deploy");
+            a.Nodes.AddRange(t1);
+            a.Nodes.AddRange(t);
+            a.ToolTipText = "Deploy";
+            a.Tag = this;
+            return a;
         }
 
         /// <summary>

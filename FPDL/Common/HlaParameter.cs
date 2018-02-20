@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Windows.Forms;
 
 namespace FPDL.Common
 {
@@ -37,6 +38,21 @@ namespace FPDL.Common
                     str.Append("]");
             }
             return str.ToString();
+        }
+        /// <summary>
+        /// Get a TreeNode
+        /// </summary>
+        /// <returns></returns>
+        public TreeNode GetNode()
+        {
+            if (DataType != null)
+            {
+                TreeNode[] t = new TreeNode[1];
+                string dt = string.Format("{0} [{1}]", DefaultValue, DataType);
+                t[0] = new TreeNode(dt);
+                return new TreeNode(ParameterName, t);
+            }
+            return new TreeNode(ParameterName);
         }
     }
 }

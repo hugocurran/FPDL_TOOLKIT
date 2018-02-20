@@ -1,6 +1,8 @@
 ﻿using FPDL.Common;
+using FPDL.Deploy;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 using System.Xml.Linq;
 
@@ -75,6 +77,34 @@ namespace FPDL.Pattern
             foreach (Specification spec in Specifications)
                 str.Append(spec.ToString());
             return str.ToString();
+        }
+
+        internal void ApplyPattern(IModule module)
+        {
+            Type type = null;
+            switch (ModuleType)
+            {
+                case Enums.ModuleType.@interface:
+                    type = typeof(ModuleInterface);
+                    break;
+            }
+            PropertyInfo[] properties = type.GetProperties();
+
+            // Match the pre-defined specifications to the appropriate variable in the module
+            DeployIfAttribute a;
+            foreach (PropertyInfo p in properties)
+            {
+                a = (DeployIfAttribute)p.GetCustomAttribute(typeof(DeployIfAttribute));
+                foreach (Specification spec in Specifications)
+                {
+                    if (spec.ParamName == a.FpdlName)
+                    {
+                        p.SetValue(module, spec.Value);
+                    }
+                }
+
+
+            }
         }
     }
 }

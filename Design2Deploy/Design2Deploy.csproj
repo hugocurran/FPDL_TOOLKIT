@@ -60,10 +60,19 @@
     </Compile>
     <Compile Include="DeployViewBuilder.cs" />
     <Compile Include="DesignViewBuilder.cs" />
+    <Compile Include="PatternSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PatternSelect.Designer.cs">
+      <DependentUpon>PatternSelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DeployEditor.resx">
       <DependentUpon>DeployEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PatternSelect.resx">
+      <DependentUpon>PatternSelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -75,6 +84,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Properties\DataSources\PatternSelect.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

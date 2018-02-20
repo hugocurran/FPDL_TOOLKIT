@@ -33,6 +33,7 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deployDocumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.designToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.patternLibraryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -45,9 +46,16 @@
             this.federationTxtBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.deployTreeView = new System.Windows.Forms.TreeView();
-            this.patternLibraryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deployDateTbox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.deployRefTbox = new System.Windows.Forms.TextBox();
+            this.deployVersionTbox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.deployTreeView = new System.Windows.Forms.TreeView();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -55,6 +63,7 @@
             this.splitContainer1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -86,27 +95,34 @@
             this.designToolStripMenuItem,
             this.patternLibraryToolStripMenuItem});
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(120, 26);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // deployDocumentToolStripMenuItem
             // 
             this.deployDocumentToolStripMenuItem.Name = "deployDocumentToolStripMenuItem";
-            this.deployDocumentToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.deployDocumentToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.deployDocumentToolStripMenuItem.Text = "Deploy";
             this.deployDocumentToolStripMenuItem.Click += new System.EventHandler(this.deployDocumentToolStripMenuItem_Click);
             // 
             // designToolStripMenuItem
             // 
             this.designToolStripMenuItem.Name = "designToolStripMenuItem";
-            this.designToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.designToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.designToolStripMenuItem.Text = "Design";
             this.designToolStripMenuItem.Click += new System.EventHandler(this.designToolStripMenuItem_Click);
+            // 
+            // patternLibraryToolStripMenuItem
+            // 
+            this.patternLibraryToolStripMenuItem.Name = "patternLibraryToolStripMenuItem";
+            this.patternLibraryToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
+            this.patternLibraryToolStripMenuItem.Text = "Pattern Library";
+            this.patternLibraryToolStripMenuItem.Click += new System.EventHandler(this.patternLibraryToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(120, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -115,6 +131,7 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // openFileDialog1
             // 
@@ -134,7 +151,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
-            this.splitContainer1.Size = new System.Drawing.Size(1305, 645);
+            this.splitContainer1.Size = new System.Drawing.Size(1305, 770);
             this.splitContainer1.SplitterDistance = 414;
             this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 1;
@@ -147,11 +164,12 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.federationTxtBox);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(16, 4);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(395, 625);
+            this.groupBox1.Size = new System.Drawing.Size(414, 770);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Design";
@@ -159,10 +177,10 @@
             // createDeploy
             // 
             this.createDeploy.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.createDeploy.Location = new System.Drawing.Point(4, 593);
+            this.createDeploy.Location = new System.Drawing.Point(4, 738);
             this.createDeploy.Margin = new System.Windows.Forms.Padding(4);
             this.createDeploy.Name = "createDeploy";
-            this.createDeploy.Size = new System.Drawing.Size(387, 28);
+            this.createDeploy.Size = new System.Drawing.Size(406, 28);
             this.createDeploy.TabIndex = 5;
             this.createDeploy.Text = "Create Deploy";
             this.createDeploy.UseVisualStyleBackColor = true;
@@ -215,46 +233,109 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.deployDateTbox);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.deployRefTbox);
+            this.groupBox2.Controls.Add(this.deployVersionTbox);
+            this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.statusStrip1);
             this.groupBox2.Controls.Add(this.deployTreeView);
-            this.groupBox2.Location = new System.Drawing.Point(4, 4);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(0, 0);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(865, 625);
+            this.groupBox2.Size = new System.Drawing.Size(886, 770);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Deploy";
             // 
-            // deployTreeView
+            // deployDateTbox
             // 
-            this.deployTreeView.Location = new System.Drawing.Point(24, 136);
-            this.deployTreeView.Margin = new System.Windows.Forms.Padding(4);
-            this.deployTreeView.Name = "deployTreeView";
-            this.deployTreeView.Size = new System.Drawing.Size(816, 434);
-            this.deployTreeView.TabIndex = 0;
+            this.deployDateTbox.Location = new System.Drawing.Point(298, 27);
+            this.deployDateTbox.Name = "deployDateTbox";
+            this.deployDateTbox.Size = new System.Drawing.Size(161, 22);
+            this.deployDateTbox.TabIndex = 7;
             // 
-            // patternLibraryToolStripMenuItem
+            // label5
             // 
-            this.patternLibraryToolStripMenuItem.Name = "patternLibraryToolStripMenuItem";
-            this.patternLibraryToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
-            this.patternLibraryToolStripMenuItem.Text = "Pattern Library";
-            this.patternLibraryToolStripMenuItem.Click += new System.EventHandler(this.patternLibraryToolStripMenuItem_Click);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(249, 30);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(42, 17);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Date:";
+            // 
+            // deployRefTbox
+            // 
+            this.deployRefTbox.Location = new System.Drawing.Point(136, 60);
+            this.deployRefTbox.Name = "deployRefTbox";
+            this.deployRefTbox.Size = new System.Drawing.Size(323, 22);
+            this.deployRefTbox.TabIndex = 5;
+            // 
+            // deployVersionTbox
+            // 
+            this.deployVersionTbox.Location = new System.Drawing.Point(135, 27);
+            this.deployVersionTbox.Name = "deployVersionTbox";
+            this.deployVersionTbox.Size = new System.Drawing.Size(79, 22);
+            this.deployVersionTbox.TabIndex = 4;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(51, 66);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(78, 17);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Reference:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 23);
+            this.label3.Location = new System.Drawing.Point(69, 30);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(154, 17);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Pattern Library Loaded";
+            this.label3.Size = new System.Drawing.Size(60, 17);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Version:";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLabel1,
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(4, 741);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(878, 25);
+            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // statusLabel1
+            // 
+            this.statusLabel1.Name = "statusLabel1";
+            this.statusLabel1.Size = new System.Drawing.Size(0, 20);
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(151, 20);
+            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            // 
+            // deployTreeView
+            // 
+            this.deployTreeView.Location = new System.Drawing.Point(24, 115);
+            this.deployTreeView.Margin = new System.Windows.Forms.Padding(4);
+            this.deployTreeView.Name = "deployTreeView";
+            this.deployTreeView.Size = new System.Drawing.Size(816, 455);
+            this.deployTreeView.TabIndex = 0;
+            this.deployTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.deployNodeDoubleClick);
             // 
             // DeployEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1305, 673);
+            this.ClientSize = new System.Drawing.Size(1305, 798);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -271,6 +352,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -297,6 +380,14 @@
         private System.Windows.Forms.Button createDeploy;
         private System.Windows.Forms.TreeView deployTreeView;
         private System.Windows.Forms.ToolStripMenuItem patternLibraryToolStripMenuItem;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.TextBox deployDateTbox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox deployRefTbox;
+        private System.Windows.Forms.TextBox deployVersionTbox;
+        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace FPDL.Common
@@ -111,6 +112,20 @@ namespace FPDL.Common
                 str.AppendFormat("\t\tParameter: {0}\n", param.ToString());
             }
             return str.ToString();
+        }
+        /// <summary>
+        /// Get a TreeNode
+        /// </summary>
+        /// <returns></returns>
+        public TreeNode GetNode()
+        {
+            TreeNode[] t = new TreeNode[Parameters.Count];
+            for (int i = 0; i < Parameters.Count; i++)
+                t[i] = Parameters[i].GetNode();
+            TreeNode a = new TreeNode(InteractionClassName, t);
+            a.ToolTipText = "Interaction class name";
+            a.Tag = this;
+            return a;
         }
     }
 }

@@ -40,11 +40,11 @@
 					<changeNotes>Initial Version</changeNotes>
 				</changed>
 			</configMgmt>
-			<patternGenericType>LTG</patternGenericType>
+			<patternGenericType>ltg</patternGenericType>
 			<patternName>Generic LTG</patternName>
 			<description>Pattern for a generic LTG</description>
 			<component>
-				<componentType>Proxy</componentType>
+				<componentType>proxy</componentType>
 				<componentID>39592EDB-C906-4B31-8965-CB8C5106B0C6</componentID>
 				<module>
 					<moduleType>interface</moduleType>
@@ -103,11 +103,11 @@
 					<changeNotes>Initial Version</changeNotes>
 				</changed>
 			</configMgmt>
-			<patternGenericType>HTG</patternGenericType>
+			<patternGenericType>htg</patternGenericType>
 			<patternName>Generic HTG</patternName>
 			<description>Test Pattern for a generic HTG</description>
 			<component>
-				<componentType>Proxy</componentType>
+				<componentType>proxy</componentType>
 				<componentID>3465AC9A-F78E-41CE-B637-4740C6467554</componentID>
 				<module>
 					<moduleType>interface</moduleType>
@@ -166,7 +166,7 @@
 				</module>
 			</component>
 			<component>
-				<componentType>Proxy</componentType>
+				<componentType>proxy</componentType>
 				<componentID>6270300F-45F2-4D9B-BF10-C24773E76394</componentID>
 				<module>
 					<moduleType>interface</moduleType>
@@ -210,7 +210,7 @@
 				</module>
 			</component>
 			<component>
-				<componentType>Guard</componentType>
+				<componentType>guard</componentType>
 				<componentID>CF181760-2DA2-461C-A045-AD100503A0DE</componentID>
 				<module>
 					<moduleType>interface</moduleType>

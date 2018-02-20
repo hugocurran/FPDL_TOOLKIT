@@ -1,7 +1,9 @@
 ﻿using FPDL.Common;
+using FPDL.Pattern;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 using System.Xml.Linq;
 using static FPDL.Common.Enums;
 
@@ -40,8 +42,7 @@ namespace FPDL.Deploy
         {
             return ModuleType.export;
         }
-
-
+        
         /// <summary>
         /// Construct Export module
         /// </summary>
@@ -102,5 +103,52 @@ namespace FPDL.Deploy
                 str.AppendFormat("\t{0}\n", sub.ToString());
             return str.ToString();
         }
+        /// <summary>
+        /// Get a TreeNode
+        /// </summary>
+        /// <returns></returns>
+        public TreeNode GetNode()
+        {
+            TreeNode[] t0 = new TreeNode[1];
+            t0[0] = new TreeNode(InterfaceName);
+            t0[0].ToolTipText = "Interface Binding";
+
+            TreeNode[] t1 = new TreeNode[Sources.Count];
+            for (int i = 0; i < Sources.Count; i++)
+                t1[i] = Sources[i].GetNode();
+
+            TreeNode a = new TreeNode("Export Policy");
+            a.Nodes.AddRange(t0);
+            a.Nodes.AddRange(t1);
+            a.ToolTipText = "Export Module";
+            a.Tag = this;
+            return a;
+        }
+        /// <summary>
+        /// Apply specifications from a Pattern to this module
+        /// </summary>
+        /// <param name="specifications"></param>
+        public void ApplyPattern(List<Specification> specifications)
+        {
+            foreach (Specification spec in specifications)
+            {
+                switch (spec.ParamName)
+                {
+                    case "interfaceName":
+                        InterfaceName = spec.Value;
+                        break;
+                }
+            }
+        }
+        /// <summary>
+        /// Apply specifications from a Design to this module
+        /// </summary>
+        /// <param name="sources"></param>
+        public void ApplyPattern(List<Source> sources)
+        {
+            if (sources.Count > 0)
+                _sources = sources;
+        }
+
     }
 }

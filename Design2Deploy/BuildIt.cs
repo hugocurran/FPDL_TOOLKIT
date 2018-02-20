@@ -8,26 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FPDL.Deploy.Editor
+namespace FPDL.Tools.DeployEditor
 {
     /// <summary>
     /// Make a deploy skeleton by combining Design and Pattern
     /// </summary>
-    internal class BuildIt
+    internal static class BuildIt
     {
-        private DesignObject design;
-        internal DeployObject deploy;
-
-        internal BuildIt()
+        internal static DeployObject Initialise(DesignObject design, string owner, string classification, DeployEditor editor)
         {
-            deploy = new DeployObject();
-        }
-
-        internal void Initialise(DesignObject design, string owner, string classification)
-        {
-            this.design = design;
-
             // we need to build a skeleton of the Deploy doc
+            DeployObject deploy = new DeployObject();
+
             deploy.ConfigMgmt = new ConfigMgmt();
             string author = Environment.UserName;
             deploy.ConfigMgmt.Initialise(author, 1, 0, "Initial Version", owner, classification);
@@ -36,33 +28,60 @@ namespace FPDL.Deploy.Editor
 
             foreach(Federate federate in design.Federation.Federates)
             {
+                DeploySystem system = null;
                 if ((federate.FederateType == Enums.FederateType.gateway) || (federate.FederateType == Enums.FederateType.filter))
                 {
-                    FPDL.Deploy.DeploySystem system = new FPDL.Deploy.DeploySystem
+                    system = new DeploySystem
                     {
-                        SystemType = federate.FederateType
+                        SystemType = (federate.FederateType == Enums.FederateType.filter) ? Enums.PatternType.filter : (Enums.PatternType)federate.GatewayType,
+                        FederateName = federate.FederateName
                     };
+                    deploy.Systems.Add(system);
+                    editor.checkList[federate.FederateName] = true;
                 }
             }
+            return deploy;
         }
 
-        internal void AddPattern(FPDL.Deploy.DeploySystem system, PatternObject pattern)
+        
+        // Complete the system spec using a pattern
+        internal static void AddPattern(Federate federate, DeploySystem system, PatternObject pattern)
         {
             system.Pattern = pattern.PatternName;
             system.PatternRef = pattern.ConfigMgmt.DocReference;
             foreach (var pcomponent in pattern.Components)
             {
-                FPDL.Deploy.Component component = new FPDL.Deploy.Component();
+                Deploy.Component component = new Deploy.Component();
                 component.ComponentType = pcomponent.ComponentType;
                 component.ComponentID = pcomponent.ComponentID;
                 foreach (var pmodule in pcomponent.Modules)
                 {
-                    ModuleFactory.Create(pmodule.ModuleType, component);
+                    IModule module = ModuleFactory.Create(pmodule.ModuleType);
+                    component.Modules.Add(module);
+                    switch (pmodule.ModuleType)
+                    {
+                        case Enums.ModuleType.federation:
+                        case Enums.ModuleType.extension:
+                        case Enums.ModuleType.host:
+                        case Enums.ModuleType.@interface:
+                        case Enums.ModuleType.osp:
+                            module.ApplyPattern(pmodule.Specifications);
+                            break;
+                        case Enums.ModuleType.import:
+                            module.ApplyPattern(pmodule.Specifications);
+                            ((ModuleImport)module).ApplyPattern(federate.Publish);
+                            break;
+                        case Enums.ModuleType.export:
+                            module.ApplyPattern(pmodule.Specifications);
+                            ((ModuleExport)module).ApplyPattern(federate.Sources);
+                            break;
+                        //case Enums.ModuleType.filter:
+                        //    module.ApplyPattern(pmodule.Specifications);
+                        //    ((ModuleFilter)module).ApplyPattern(federate.Filter);
+                        //    break;
+                    }
                 }
             }
         }
-
-        
-
     }
 }
