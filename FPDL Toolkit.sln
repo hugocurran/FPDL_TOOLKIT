@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FPDL-Viewer", "FPDL-Viewer\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pattern Editor", "WindowsFormsApp1\Pattern Editor.csproj", "{A1690AA5-8795-4A72-9E70-07D06BC6F0EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Design2Deploy", "Design2Deploy\Design2Deploy.csproj", "{DDB4B1E4-FE1B-44FC-90C9-0EC507D50ACB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeployEditor", "Design2Deploy\DeployEditor.csproj", "{DDB4B1E4-FE1B-44FC-90C9-0EC507D50ACB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

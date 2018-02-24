@@ -1,4 +1,4 @@
-﻿namespace PatternEditor
+﻿namespace FPDL.Tools.PatternEditor
 {
     partial class Form1
     {
@@ -41,29 +41,32 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.Pattern = new System.Windows.Forms.TabPage();
+            this.genericType = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.label3 = new System.Windows.Forms.Label();
             this.patternDescription = new System.Windows.Forms.RichTextBox();
             this.patternName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.patternGenericType = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.showConfigMgmt = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.patternLibraryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pattType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pattName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pattVer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pattRef = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripComboBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.patternLibraryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.Pattern.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.patternLibraryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,8 +79,8 @@
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1079, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(10, 3, 0, 3);
+            this.menuStrip1.Size = new System.Drawing.Size(1339, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -150,119 +153,120 @@
             this.tabControl.Controls.Add(this.Pattern);
             this.tabControl.Controls.Add(this.tabPage2);
             this.tabControl.Enabled = false;
-            this.tabControl.Location = new System.Drawing.Point(16, 33);
-            this.tabControl.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl.Location = new System.Drawing.Point(20, 45);
+            this.tabControl.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1047, 832);
+            this.tabControl.Size = new System.Drawing.Size(1309, 1144);
             this.tabControl.TabIndex = 1;
             // 
             // Pattern
             // 
+            this.Pattern.Controls.Add(this.genericType);
             this.Pattern.Controls.Add(this.panel1);
             this.Pattern.Controls.Add(this.label3);
             this.Pattern.Controls.Add(this.patternDescription);
             this.Pattern.Controls.Add(this.patternName);
             this.Pattern.Controls.Add(this.label2);
-            this.Pattern.Controls.Add(this.patternGenericType);
             this.Pattern.Controls.Add(this.label1);
             this.Pattern.Controls.Add(this.showConfigMgmt);
             this.Pattern.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Pattern.Location = new System.Drawing.Point(4, 25);
-            this.Pattern.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Pattern.Location = new System.Drawing.Point(4, 31);
+            this.Pattern.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.Pattern.Name = "Pattern";
-            this.Pattern.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Pattern.Size = new System.Drawing.Size(1039, 803);
+            this.Pattern.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.Pattern.Size = new System.Drawing.Size(1301, 1109);
             this.Pattern.TabIndex = 0;
             this.Pattern.Text = "Pattern";
             this.Pattern.UseVisualStyleBackColor = true;
             // 
+            // genericType
+            // 
+            this.genericType.Location = new System.Drawing.Point(265, 142);
+            this.genericType.Name = "genericType";
+            this.genericType.Size = new System.Drawing.Size(251, 30);
+            this.genericType.TabIndex = 10;
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.treeView1);
-            this.panel1.Location = new System.Drawing.Point(67, 293);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Location = new System.Drawing.Point(84, 403);
+            this.panel1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(912, 487);
+            this.panel1.Size = new System.Drawing.Size(1140, 277);
             this.panel1.TabIndex = 9;
             // 
             // treeView1
             // 
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView1.Location = new System.Drawing.Point(0, 0);
-            this.treeView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.treeView1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(912, 487);
+            this.treeView1.ShowNodeToolTips = true;
+            this.treeView1.Size = new System.Drawing.Size(1140, 277);
             this.treeView1.TabIndex = 0;
+            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(61, 228);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(76, 314);
+            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(109, 25);
+            this.label3.Size = new System.Drawing.Size(104, 24);
             this.label3.TabIndex = 8;
             this.label3.Text = "Description";
             // 
             // patternDescription
             // 
-            this.patternDescription.Location = new System.Drawing.Point(219, 202);
-            this.patternDescription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.patternDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.patternDescription.Location = new System.Drawing.Point(274, 278);
+            this.patternDescription.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.patternDescription.Name = "patternDescription";
-            this.patternDescription.Size = new System.Drawing.Size(687, 83);
+            this.patternDescription.Size = new System.Drawing.Size(858, 113);
             this.patternDescription.TabIndex = 7;
             this.patternDescription.Text = "";
             // 
             // patternName
             // 
-            this.patternName.Location = new System.Drawing.Point(219, 149);
-            this.patternName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.patternName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.patternName.Location = new System.Drawing.Point(265, 211);
+            this.patternName.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.patternName.Name = "patternName";
-            this.patternName.Size = new System.Drawing.Size(687, 30);
+            this.patternName.Size = new System.Drawing.Size(858, 28);
             this.patternName.TabIndex = 5;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(56, 156);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(70, 214);
+            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(137, 25);
+            this.label2.Size = new System.Drawing.Size(129, 24);
             this.label2.TabIndex = 4;
             this.label2.Text = "Pattern Name:";
-            // 
-            // patternGenericType
-            // 
-            this.patternGenericType.FormattingEnabled = true;
-            this.patternGenericType.ItemHeight = 25;
-            this.patternGenericType.Items.AddRange(new object[] {
-            "LTG",
-            "MTG",
-            "HTG",
-            "Filter"});
-            this.patternGenericType.Location = new System.Drawing.Point(212, 98);
-            this.patternGenericType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.patternGenericType.Name = "patternGenericType";
-            this.patternGenericType.Size = new System.Drawing.Size(159, 29);
-            this.patternGenericType.TabIndex = 3;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(56, 103);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(70, 142);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 25);
+            this.label1.Size = new System.Drawing.Size(130, 24);
             this.label1.TabIndex = 2;
             this.label1.Text = "Generic Type:";
             // 
             // showConfigMgmt
             // 
-            this.showConfigMgmt.Location = new System.Drawing.Point(61, 34);
-            this.showConfigMgmt.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.showConfigMgmt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showConfigMgmt.Location = new System.Drawing.Point(76, 47);
+            this.showConfigMgmt.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.showConfigMgmt.Name = "showConfigMgmt";
-            this.showConfigMgmt.Size = new System.Drawing.Size(272, 46);
+            this.showConfigMgmt.Size = new System.Drawing.Size(285, 63);
             this.showConfigMgmt.TabIndex = 0;
             this.showConfigMgmt.Text = "Show Configuration Mgmt";
             this.showConfigMgmt.UseVisualStyleBackColor = true;
@@ -271,18 +275,14 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dataGridView1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Location = new System.Drawing.Point(4, 31);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage2.Size = new System.Drawing.Size(1039, 803);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.tabPage2.Size = new System.Drawing.Size(1301, 1109);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Library";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // dataGridView1
             // 
@@ -296,16 +296,13 @@
             this.pattVer,
             this.pattRef});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(4, 4);
+            this.dataGridView1.Location = new System.Drawing.Point(5, 6);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1031, 795);
+            this.dataGridView1.Size = new System.Drawing.Size(1291, 1097);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // patternLibraryBindingSource
-            // 
-            this.patternLibraryBindingSource.DataSource = typeof(FPDL.Pattern.PatternLibrary);
             // 
             // pattType
             // 
@@ -331,15 +328,39 @@
             this.pattRef.Name = "pattRef";
             this.pattRef.ReadOnly = true;
             // 
+            // contextMenu
+            // 
+            this.contextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem});
+            this.contextMenu.Name = "contextMenu";
+            this.contextMenu.Size = new System.Drawing.Size(247, 36);
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(186, 28);
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            this.addToolStripMenuItem.TextChanged += new System.EventHandler(this.addComponentToolStripMenuItem_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // patternLibraryBindingSource
+            // 
+            this.patternLibraryBindingSource.DataSource = typeof(FPDL.Pattern.PatternLibrary);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1079, 880);
+            this.ClientSize = new System.Drawing.Size(1339, 800);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.Name = "Form1";
             this.Text = "Pattern Editor";
             this.menuStrip1.ResumeLayout(false);
@@ -350,6 +371,7 @@
             this.panel1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.contextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.patternLibraryBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -379,7 +401,6 @@
         private System.Windows.Forms.RichTextBox patternDescription;
         private System.Windows.Forms.TextBox patternName;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ListBox patternGenericType;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button showConfigMgmt;
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -387,6 +408,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn pattName;
         private System.Windows.Forms.DataGridViewTextBoxColumn pattVer;
         private System.Windows.Forms.DataGridViewTextBoxColumn pattRef;
+        private System.Windows.Forms.ContextMenuStrip contextMenu;
+        private System.Windows.Forms.ToolStripComboBox addToolStripMenuItem;
+        private System.Windows.Forms.TextBox genericType;
     }
 }
 

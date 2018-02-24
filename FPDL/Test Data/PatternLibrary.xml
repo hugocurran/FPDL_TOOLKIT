@@ -256,6 +256,17 @@
 				<module>
 					<moduleType>import</moduleType>
 				</module>
+				<module>
+					<moduleType>extension</moduleType>
+					<specification>
+						<paramName>vendorName</paramName>
+						<value>Eric</value>
+					</specification>
+					<specification>
+						<paramName>foo</paramName>
+						<value>bar</value>
+					</specification>
+				</module>
 			</component>
 		</Pattern>
 	</entry>

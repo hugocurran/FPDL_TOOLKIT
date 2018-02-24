@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.patternTypeLabel = new System.Windows.Forms.Label();
             this.applyPatternSelect = new System.Windows.Forms.Button();
             this.cancelPatternSelect = new System.Windows.Forms.Button();
@@ -81,8 +82,17 @@
             this.PatternName,
             this.Version,
             this.PatternRef});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.patternListGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.patternListGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.patternListGrid.Location = new System.Drawing.Point(0, 0);
+            this.patternListGrid.MultiSelect = false;
             this.patternListGrid.Name = "patternListGrid";
             this.patternListGrid.ReadOnly = true;
             this.patternListGrid.RowTemplate.Height = 24;
@@ -132,6 +142,7 @@
             this.Controls.Add(this.applyPatternSelect);
             this.Controls.Add(this.patternTypeLabel);
             this.Name = "PatternSelect";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PatternSelect";
             ((System.ComponentModel.ISupportInitialize)(this.patternListGrid)).EndInit();
             this.panel1.ResumeLayout(false);

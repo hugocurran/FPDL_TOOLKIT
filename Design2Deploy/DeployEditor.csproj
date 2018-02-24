@@ -60,6 +60,30 @@
     </Compile>
     <Compile Include="DeployViewBuilder.cs" />
     <Compile Include="DesignViewBuilder.cs" />
+    <Compile Include="ModuleExtensionEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModuleExtensionEdit.Designer.cs">
+      <DependentUpon>ModuleExtensionEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeploySave.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeploySave.Designer.cs">
+      <DependentUpon>DeploySave.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModuleOspEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModuleOspEdit.Designer.cs">
+      <DependentUpon>ModuleOspEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ModuleInterfaceEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModuleInterfaceEdit.Designer.cs">
+      <DependentUpon>ModuleInterfaceEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="PatternSelect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +94,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DeployEditor.resx">
       <DependentUpon>DeployEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModuleExtensionEdit.resx">
+      <DependentUpon>ModuleExtensionEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeploySave.resx">
+      <DependentUpon>DeploySave.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModuleOspEdit.resx">
+      <DependentUpon>ModuleOspEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModuleInterfaceEdit.resx">
+      <DependentUpon>ModuleInterfaceEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PatternSelect.resx">
       <DependentUpon>PatternSelect.cs</DependentUpon>

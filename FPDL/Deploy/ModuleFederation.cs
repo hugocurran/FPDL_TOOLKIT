@@ -48,12 +48,15 @@ namespace FPDL.Deploy
         /// <summary>
         /// Construct Federation Module
         /// </summary>
-        public ModuleFederation() { }
+        public ModuleFederation()
+        {
+            RTI = new Rti();
+        }
         /// <summary>
         /// Construct Federation Module from FPDL
         /// </summary>
         /// <param name="fpdl"></param>
-        public ModuleFederation(XElement fpdl)
+        public ModuleFederation(XElement fpdl) : this ()
         {
             FromFPDL(fpdl);
         }

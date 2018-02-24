@@ -67,9 +67,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Design2Deploy\Design2Deploy.csproj">
+    <ProjectReference Include="..\Design2Deploy\DeployEditor.csproj">
       <Project>{ddb4b1e4-fe1b-44fc-90c9-0ec507d50acb}</Project>
-      <Name>Design2Deploy</Name>
+      <Name>DeployEditor</Name>
     </ProjectReference>
     <ProjectReference Include="..\FPDL\FPDL.csproj">
       <Project>{7ae006a3-21fa-4c05-a974-06b14b882034}</Project>

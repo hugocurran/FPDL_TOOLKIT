@@ -16,15 +16,18 @@ namespace FPDL.Deploy
         /// <summary>
         /// Modules
         /// </summary>
-        public List<IModule> Modules;
+        [DeployIf("configMgmt", "Configuration Management Data",false, true)]
+        public List<IModule> Modules { get; set; }
         /// <summary>
         /// Component ID
         /// </summary>
-        public Guid ComponentID;
+        [DeployIf("configMgmt", "Configuration Management Data")]
+        public Guid ComponentID { get; set; }
         /// <summary>
         /// Component Type
         /// </summary>
-        public Enums.ComponentType ComponentType;
+        [DeployIf("configMgmt", "Configuration Management Data")]
+        public Enums.ComponentType ComponentType { get; set; }
         /// <summary>
         /// Construct Component object
         /// </summary>

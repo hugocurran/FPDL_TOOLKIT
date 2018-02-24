@@ -19,11 +19,11 @@
 			<changeNotes>Initial Version</changeNotes>
 		</changed>
 	</configMgmt>
-	<patternGenericType>LTG</patternGenericType>
+	<patternGenericType>ltg</patternGenericType>
 	<patternName>Generic LTG</patternName>
 	<description>Pattern for a generic LTG</description>
 	<component>
-		<componentType>Proxy</componentType>
+		<componentType>proxy</componentType>
 		<componentID>39592EDB-C906-4B31-8965-CB8C5106B0C6</componentID>
 		<module>
 			<moduleType>interface</moduleType>

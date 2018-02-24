@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace FPDL.Pattern
@@ -64,6 +65,17 @@ namespace FPDL.Pattern
             StringBuilder str = new StringBuilder();
             str.AppendFormat("\t{0} = {1} (ReadOnly = {2})\n", ParamName, Value, ReadOnly);
             return str.ToString();
+        }
+        /// <summary>
+        /// Get a TreeNode
+        /// </summary>
+        /// <returns></returns>
+        public TreeNode GetNode()
+        {
+            string node = (ReadOnly) ? ParamName + " = " + Value + " (ReadOnly)" : ParamName + " = " + Value;
+            TreeNode a = new TreeNode(node);
+            a.ToolTipText = "Specification";
+            return a;
         }
     }
 }

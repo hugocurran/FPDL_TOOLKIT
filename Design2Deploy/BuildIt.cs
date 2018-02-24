@@ -33,8 +33,9 @@ namespace FPDL.Tools.DeployEditor
                 {
                     system = new DeploySystem
                     {
-                        SystemType = (federate.FederateType == Enums.FederateType.filter) ? Enums.PatternType.filter : (Enums.PatternType)federate.GatewayType,
-                        FederateName = federate.FederateName
+                        SystemType = federate.FederateType,
+                        FederateName = federate.FederateName,
+                        PatternType = federate.FederateType.ToPattern(federate.GatewayType)
                     };
                     deploy.Systems.Add(system);
                     editor.checkList[federate.FederateName] = true;
@@ -69,11 +70,13 @@ namespace FPDL.Tools.DeployEditor
                             break;
                         case Enums.ModuleType.import:
                             module.ApplyPattern(pmodule.Specifications);
-                            ((ModuleImport)module).ApplyPattern(federate.Publish);
+                            if (federate.Publish != null)
+                                ((ModuleImport)module).ApplyPattern(federate.Publish);
                             break;
                         case Enums.ModuleType.export:
                             module.ApplyPattern(pmodule.Specifications);
-                            ((ModuleExport)module).ApplyPattern(federate.Sources);
+                            if (federate.Sources.Count > 0)
+                                ((ModuleExport)module).ApplyPattern(federate.Sources);
                             break;
                         //case Enums.ModuleType.filter:
                         //    module.ApplyPattern(pmodule.Specifications);
@@ -81,6 +84,7 @@ namespace FPDL.Tools.DeployEditor
                         //    break;
                     }
                 }
+                system.Components.Add(component);
             }
         }
     }

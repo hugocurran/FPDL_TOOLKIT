@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FPDL.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,24 @@ namespace FPDL
             char[] a = s.ToCharArray();
             a[0] = char.ToUpper(a[0]);
             return new string(a);
+        }
+        /// <summary>
+        /// Derive PatternType from FederateType and GatewayType
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="gw"></param>
+        /// <returns></returns>
+        public static Enums.PatternType ToPattern(this Enums.FederateType type, Enums.GatewayType gw)
+        {
+            switch (type)
+            {
+                case Enums.FederateType.gateway:
+                    return (Enums.PatternType)Enum.Parse(typeof(Enums.PatternType), gw.ToString());
+                case Enums.FederateType.filter:
+                    return Enums.PatternType.filter;
+                default:
+                    return Enums.PatternType.NotApplicable;
+            }
         }
     }
 }

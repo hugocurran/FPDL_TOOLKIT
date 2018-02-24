@@ -146,9 +146,9 @@ namespace FPDL.Deploy
             t[1] = new TreeNode("Protocol = " + Protocol.ToString());
             t[1].ToolTipText = "OSP protocol";
             t[2] = new TreeNode("Input = " + InputPort);
-            t[2].ToolTipText = "Input Address:Port";
+            t[2].ToolTipText = "Input Address:Port (optional)";
             t[3] = new TreeNode("Output = " + OutputPort);
-            t[3].ToolTipText = "Output Address:Port";
+            t[3].ToolTipText = "Output Address:Port (optional)";
 
             TreeNode a = new TreeNode("OSP", t);
             a.ToolTipText = "OSP module";

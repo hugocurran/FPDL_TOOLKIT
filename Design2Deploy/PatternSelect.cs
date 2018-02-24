@@ -65,8 +65,11 @@ namespace FPDL.Tools.DeployEditor
         
         private void applyPatternSelect_Click(object sender, EventArgs e)
         {
+            if (patternListGrid.SelectedRows.Count < 1)
+                return;
             var selected = patternListGrid.SelectedRows;
             pattern = (PatternObject)selected[0].Tag;
+            patternSelected = true;
             DialogResult = DialogResult.OK;
             Close();
         }

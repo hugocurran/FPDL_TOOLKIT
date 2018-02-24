@@ -1,7 +1,9 @@
 ﻿using FPDL.Common;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -16,17 +18,23 @@ namespace FPDL.Deploy
         /// <summary>
         /// ConfigMgmt for Deploy document
         /// </summary>
-        public ConfigMgmt ConfigMgmt;
+        [DeployIf("configMgmt", "Configuration Management Data")]
+        public ConfigMgmt ConfigMgmt { get; set; }
         /// <summary>
         /// Reference to the design document
         /// </summary>
-        public Guid DesignReference;
+        [DeployIf("designReference", "Design Reference")]
+        public Guid DesignReference { get; set; }
         /// <summary>
         /// Systems within Deploy document
         /// </summary>
-        public List<DeploySystem> Systems;
-
-
+        [DeployIf("Systems", "Systems within Deploy", false, true)]
+        public List<DeploySystem> Systems { get; set; }
+        /// <summary>
+        /// Contains either an error message of 'OK' following verify check
+        /// </summary>
+        [DeployIf("","",true)]
+        public string VerifyResult { get; set; }
 
         /// <summary>
         /// Construct a DeployObject
@@ -64,10 +72,63 @@ namespace FPDL.Deploy
         }
 
         /// <summary>
-        /// Serialise DeployObject to FPDL
+        /// Verify that all required values have been set
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public bool Verify()
+        {
+            if (!CheckObject(this))
+                return false;
+
+            foreach (DeploySystem system in Systems)
+            {
+                if (!CheckObject(system))
+                    return false;
+                foreach (Component component in system.Components)
+                {
+                    if (!CheckObject(component))
+                        return false;
+                    foreach (IModule module in component.Modules)
+                        if (!CheckObject(module))
+                            return false;
+                }
+            }
+            return true;
+        }
+        // Use the DeployIfAttribute to check that non-optional values are not empty
+        private bool CheckObject(object obj)
+        {
+            Type type = obj.GetType();
+            PropertyInfo[] pi = type.GetProperties();
+            foreach (PropertyInfo p in pi)
+            {
+                DeployIfAttribute a = p.GetCustomAttribute<DeployIfAttribute>();
+                if ((!a.Optional) && (!a.List))     // Note marked optional or a list
+                {
+                    object value = p.GetValue(obj);
+                    if (value != null || !string.IsNullOrEmpty(value.ToString()))
+                        continue;
+                     VerifyResult = String.Format("Missing value for {0}", a.FpdlName);
+                    return false;
+                }
+                if ((!a.Optional) && (a.List))
+                {
+                    object value = p.GetValue(obj);
+                    if (((IList)value).Count < 1)
+                    {
+                        VerifyResult = String.Format("Empty collection for {0}", a.FpdlName);
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+            /// <summary>
+            /// Serialise DeployObject to FPDL
+            /// </summary>
+            /// <returns></returns>
+            public XElement ToFPDL()
         {
             XElement fpdl = new XElement("Deploy");
             fpdl.Add(ConfigMgmt.ToFPDL());
@@ -78,6 +139,20 @@ namespace FPDL.Deploy
             }
             return fpdl;
         }
+        /// <summary>
+        /// Serialise DeployObject to FPDL
+        /// </summary>
+        /// <param name="system"></param>
+        /// <returns></returns>
+        public XElement ToFPDL(DeploySystem system)
+        {
+            XElement fpdl = new XElement("Deploy");
+            fpdl.Add(ConfigMgmt.ToFPDL());
+            fpdl.Add(new XElement("designReference", DesignReference));
+            fpdl.Add(system.ToFPDL());
+            return fpdl;
+        }
+
         /// <summary>
         /// String representation of DeployObject
         /// </summary>

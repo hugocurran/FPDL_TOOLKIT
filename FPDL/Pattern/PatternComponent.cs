@@ -3,6 +3,7 @@ using FPDL.Deploy;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace FPDL.Pattern
@@ -10,7 +11,7 @@ namespace FPDL.Pattern
     /// <summary>
     /// Component
     /// </summary>
-    public class Component
+    public class PatternComponent
     {
         /// <summary>
         /// Component type
@@ -24,11 +25,16 @@ namespace FPDL.Pattern
         /// Modules
         /// </summary>
         public List<Module> Modules = new List<Module>();
+
+        /// <summary>
+        /// Construct Component object
+        /// </summary>
+        public PatternComponent() { }
         /// <summary>
         /// Construct Component object from FPDL
         /// </summary>
         /// <param name="fpdl"></param>
-        public Component(XElement fpdl)
+        public PatternComponent(XElement fpdl)
         {
             FromFPDL(fpdl);
         }
@@ -81,6 +87,31 @@ namespace FPDL.Pattern
             foreach (Module module in Modules)
                 str.Append(module.ToString());
             return str.ToString();
+        }
+
+        /// <summary>
+        /// Get a TreeNode
+        /// </summary>
+        /// <returns></returns>
+        public TreeNode GetNode()
+        {
+            TreeNode[] t1 = new TreeNode[2];
+            t1[0] = new TreeNode("Component type = " + ComponentType.ToString().ToUpper());
+            t1[0].ToolTipText = "Component type";
+            t1[1] = new TreeNode("Component ID = " + ComponentID.ToString());
+            t1[1].ToolTipText = "Component ID";
+            //t1[2] = new TreeNode("Modules");
+
+            TreeNode[] t = new TreeNode[Modules.Count];
+            for (int i = 0; i < Modules.Count; i++)
+                t[i] = Modules[i].GetNode();
+
+            TreeNode a = new TreeNode("Components");
+            a.Nodes.AddRange(t1);
+            a.Nodes.AddRange(t);
+            a.ToolTipText = "Components";
+            a.Tag = this;
+            return a;
         }
     }
 }

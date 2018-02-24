@@ -644,17 +644,17 @@
             Deploy Component
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.Component.Modules">
+        <member name="P:FPDL.Deploy.Component.Modules">
             <summary>
             Modules
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.Component.ComponentID">
+        <member name="P:FPDL.Deploy.Component.ComponentID">
             <summary>
             Component ID
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.Component.ComponentType">
+        <member name="P:FPDL.Deploy.Component.ComponentType">
             <summary>
             Component Type
             </summary>
@@ -699,19 +699,24 @@
             FPDL Deploy
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.DeployObject.ConfigMgmt">
+        <member name="P:FPDL.Deploy.DeployObject.ConfigMgmt">
             <summary>
             ConfigMgmt for Deploy document
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.DeployObject.DesignReference">
+        <member name="P:FPDL.Deploy.DeployObject.DesignReference">
             <summary>
             Reference to the design document
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.DeployObject.Systems">
+        <member name="P:FPDL.Deploy.DeployObject.Systems">
             <summary>
             Systems within Deploy document
+            </summary>
+        </member>
+        <member name="P:FPDL.Deploy.DeployObject.VerifyResult">
+            <summary>
+            Contains either an error message of 'OK' following verify check
             </summary>
         </member>
         <member name="M:FPDL.Deploy.DeployObject.#ctor">
@@ -731,10 +736,23 @@
             </summary>
             <param name="fpdl"></param>
         </member>
+        <member name="M:FPDL.Deploy.DeployObject.Verify">
+            <summary>
+            Verify that all required values have been set
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:FPDL.Deploy.DeployObject.ToFPDL">
             <summary>
             Serialise DeployObject to FPDL
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.DeployObject.ToFPDL(FPDL.Deploy.DeploySystem)">
+            <summary>
+            Serialise DeployObject to FPDL
+            </summary>
+            <param name="system"></param>
             <returns></returns>
         </member>
         <member name="M:FPDL.Deploy.DeployObject.ToString">
@@ -1400,29 +1418,34 @@
             System object
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.DeploySystem.FederateName">
+        <member name="P:FPDL.Deploy.DeploySystem.FederateName">
             <summary>
             Federate Name
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.DeploySystem.Components">
+        <member name="P:FPDL.Deploy.DeploySystem.Components">
             <summary>
             Components
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.DeploySystem.SystemType">
+        <member name="P:FPDL.Deploy.DeploySystem.SystemType">
             <summary>
             System type
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.DeploySystem.Pattern">
+        <member name="P:FPDL.Deploy.DeploySystem.Pattern">
             <summary>
             Pattern name
             </summary>
         </member>
-        <member name="F:FPDL.Deploy.DeploySystem.PatternRef">
+        <member name="P:FPDL.Deploy.DeploySystem.PatternRef">
             <summary>
             Pattern reference
+            </summary>
+        </member>
+        <member name="P:FPDL.Deploy.DeploySystem.PatternType">
+            <summary>
+            Pattern Type (internal use)
             </summary>
         </member>
         <member name="M:FPDL.Deploy.DeploySystem.#ctor">
@@ -1795,6 +1818,14 @@
             <param name="s"></param>
             <returns></returns>
         </member>
+        <member name="M:FPDL.Extensions.ToPattern(FPDL.Common.Enums.FederateType,FPDL.Common.Enums.GatewayType)">
+            <summary>
+            Derive PatternType from FederateType and GatewayType
+            </summary>
+            <param name="type"></param>
+            <param name="gw"></param>
+            <returns></returns>
+        </member>
         <member name="T:FPDL.FpdlReader">
             <summary>
             Parser support for all FPDL documents
@@ -1886,47 +1917,58 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:FPDL.Pattern.Component">
+        <member name="T:FPDL.Pattern.PatternComponent">
             <summary>
             Component
             </summary>
         </member>
-        <member name="F:FPDL.Pattern.Component.ComponentType">
+        <member name="F:FPDL.Pattern.PatternComponent.ComponentType">
             <summary>
             Component type
             </summary>
         </member>
-        <member name="F:FPDL.Pattern.Component.ComponentID">
+        <member name="F:FPDL.Pattern.PatternComponent.ComponentID">
             <summary>
             Component ID
             </summary>
         </member>
-        <member name="F:FPDL.Pattern.Component.Modules">
+        <member name="F:FPDL.Pattern.PatternComponent.Modules">
             <summary>
             Modules
             </summary>
         </member>
-        <member name="M:FPDL.Pattern.Component.#ctor(System.Xml.Linq.XElement)">
+        <member name="M:FPDL.Pattern.PatternComponent.#ctor">
+            <summary>
+            Construct Component object
+            </summary>
+        </member>
+        <member name="M:FPDL.Pattern.PatternComponent.#ctor(System.Xml.Linq.XElement)">
             <summary>
             Construct Component object from FPDL
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Pattern.Component.FromFPDL(System.Xml.Linq.XElement)">
+        <member name="M:FPDL.Pattern.PatternComponent.FromFPDL(System.Xml.Linq.XElement)">
             <summary>
             Deserialise Component object from FPDL
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Pattern.Component.ToFPDL">
+        <member name="M:FPDL.Pattern.PatternComponent.ToFPDL">
             <summary>
             Serialise Component object to FPDL
             </summary>
             <returns></returns>
         </member>
-        <member name="M:FPDL.Pattern.Component.ToString">
+        <member name="M:FPDL.Pattern.PatternComponent.ToString">
             <summary>
             String representation of Component object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Pattern.PatternComponent.GetNode">
+            <summary>
+            Get a TreeNode
             </summary>
             <returns></returns>
         </member>
@@ -2011,6 +2053,12 @@
         <member name="M:FPDL.Pattern.Module.ToString">
             <summary>
             String representation of Module object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Pattern.Module.GetNode">
+            <summary>
+            Get a TreeNode
             </summary>
             <returns></returns>
         </member>
@@ -2154,6 +2202,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:FPDL.Pattern.PatternObject.GetNode">
+            <summary>
+            Get a TreeNode
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:FPDL.Pattern.Specification">
             <summary>
             Specification
@@ -2195,6 +2249,12 @@
         <member name="M:FPDL.Pattern.Specification.ToString">
             <summary>
             String representation of Specification object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Pattern.Specification.GetNode">
+            <summary>
+            Get a TreeNode
             </summary>
             <returns></returns>
         </member>

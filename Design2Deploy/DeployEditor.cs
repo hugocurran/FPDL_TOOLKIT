@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using FPDL.Deploy;
 using FPDL.Pattern;
+using System.IO;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace FPDL.Tools.DeployEditor
 {
@@ -19,7 +22,7 @@ namespace FPDL.Tools.DeployEditor
         // Keep a list of federates and if they have been deployed
         internal Dictionary<string, bool> checkList = new Dictionary<string, bool>();
         // Keep track of the total number of System nodes in the Deploy doc
-        private int deploySystemsCount;
+        //private int deploySystemsCount;
 
         public DeployEditor()
         {
@@ -170,35 +173,6 @@ namespace FPDL.Tools.DeployEditor
             createDeploy.Enabled = checkListTest();
         }
 
-
-        //private void deployAdd(Federate federate)
-        //{
-        //    if (checkList[federate.FederateName])
-        //    {
-        //        MessageBox.Show("That federate has been deployed (edit in the Deploy pane)", "Deploy Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        //        return;
-        //    }
-        //    if (deploy == null)
-        //    {
-        //        deploy = new DeployObject();
-
-        //        deploy.ConfigMgmt.Initialise("PC", 1, 0, "Initial Version");
-        //        deploy.DesignReference = design.ConfigMgmt.DocReference;
-        //        foreach (Federate fed in design.Federation.Federates)
-        //        {
-        //            if ((fed.FederateType == Enums.FederateType.gateway) || (fed.FederateType == Enums.FederateType.filter))
-        //                deploySystemsCount++;
-        //        }
-        //    }
-        //    DeploySystem system = new DeploySystem
-        //    {
-        //        SystemType = (federate.FederateType == Enums.FederateType.filter) ? Enums.PatternType.filter : (Enums.PatternType)federate.GatewayType,
-        //        FederateName = federate.FederateName
-        //    };
-        //    deploy.Systems.Add(system);
-        //    checkList[federate.FederateName] = true;
-        //}
-
         // Test if all applicable federates in design have been copied to deploy
         private bool checkListTest()
         {
@@ -264,31 +238,105 @@ namespace FPDL.Tools.DeployEditor
                 return;
             }
 
-            if (e.Node.Tag.GetType() == typeof(DeploySystem))
+            if ((((TreeView)sender).SelectedNode == null) || (((TreeView)sender).SelectedNode.Tag == null))
+                return;
+            object tag = ((TreeView)sender).SelectedNode.Tag;
+
+            // Pattern 
+            if (tag.GetType() == typeof(DeploySystem))
             {
-                DeploySystem system = (DeploySystem)e.Node.Tag;
+                DeploySystem system = (DeploySystem)tag;
                 if (system.Components.Count == 0)      // No pattern applied
                 {
                     PatternSelect patternSelect = new PatternSelect();
-                    patternSelect.initialise(library, system.SystemType);
-                    PatternObject pattern;
+                    patternSelect.initialise(library, system.PatternType);
                     if (patternSelect.ShowDialog() == DialogResult.OK)
                     {
-                        pattern = patternSelect.getPattern();
+                        PatternObject pattern = patternSelect.getPattern();
+                        Federate federate = null;
                         // Find the federate in Design by name
-                        foreach (Federate federate in design.Federation.Federates)
-                            if (system.FederateName == federate.FederateName)
+                        foreach (Federate fed in design.Federation.Federates)
+                        {
+                            if (system.FederateName == fed.FederateName)
                             {
-
+                                federate = fed;
+                                break;
                             }
+                        }
+                        BuildIt.AddPattern(federate, system, pattern);
                     }
                 }
-            }
+            } // end pattern
 
+            // Module edit
+            if (tag.GetType() == typeof(ModuleInterface))
+            {
+                ModuleInterface module = (ModuleInterface)tag;
+                ModuleInterfaceEdit edit = new ModuleInterfaceEdit(module);
+                if (edit.ShowDialog() == DialogResult.Cancel)
+                    return;
+            }
+            if (tag.GetType() == typeof(ModuleOsp))
+            {
+                ModuleOsp module = (ModuleOsp)tag;
+                ModuleOspEdit edit = new ModuleOspEdit(module);
+                if (edit.ShowDialog() == DialogResult.Cancel)
+                    return;
+            }
+            if (tag.GetType() == typeof(ModuleExtension))
+            {
+                ModuleExtension module = (ModuleExtension)tag;
+                ModuleExtensionEdit edit = new ModuleExtensionEdit(module);
+                if (edit.ShowDialog() == DialogResult.Cancel)
+                    return;
+            }// end module edit
+            showDeployTree();
         }
 
 
         #endregion
+
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeploySave save = new DeploySave(deploy, design);
+            if (save.ShowDialog() == DialogResult.OK)
+            {
+                if (save.singleFile)
+                {
+                    saveFileDialog1.AddExtension = true;
+                    saveFileDialog1.DefaultExt = ".xml";
+                    saveFileDialog1.Filter = "FPDL files | *.xml";
+                    openFileDialog1.InitialDirectory = "\\";
+                    saveFileDialog1.FileName = save.fileName + ".xml";
+                    saveFileDialog1.RestoreDirectory = true;
+                    if (DialogResult.OK == saveFileDialog1.ShowDialog())
+                    {
+                        XDocument doc = new XDocument(deploy.ToFPDL());
+                        doc.Save(saveFileDialog1.FileName);
+                    }
+                }
+                else
+                {
+                    //folderBrowserDialog1.RootFolder = Environment.SpecialFolder.MyDocuments;
+                    folderBrowserDialog1.Description = "Deploy Editor";
+                    if (DialogResult.OK == folderBrowserDialog1.ShowDialog())
+                    {
+                        string path = folderBrowserDialog1.SelectedPath;
+                        foreach (DeploySystem system in deploy.Systems)
+                        {
+                            XDocument doc = new XDocument(deploy.ToFPDL(system));
+                            string filename = String.Format("{0}\\{1} - {2}",
+                                folderBrowserDialog1.SelectedPath,
+                                system.FederateName, 
+                                deploy.DesignReference
+                                );
+                            doc.Save(filename);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

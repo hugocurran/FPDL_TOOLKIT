@@ -1,4 +1,5 @@
 ﻿using FPDL;
+using FPDL.Common;
 using FPDL.Pattern;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PatternEditor
+namespace FPDL.Tools.PatternEditor
 {
     public partial class Form1 : Form
     {
@@ -27,9 +28,27 @@ namespace PatternEditor
         // Create a new pattern
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            CreatePattern create = new CreatePattern();
+
+            if (create.ShowDialog() == DialogResult.OK)
+            {
+                pattern = new PatternObject
+                {
+                    PatternName = create.patternName,
+                    PatternType = create.patternType,
+                    Description = create.patternDescription
+                };
+                pattern.ConfigMgmt = new ConfigMgmt();
+                pattern.ConfigMgmt.Initialise(
+                    Environment.UserName,
+                    1, 0,
+                    "Initial Version");
+                showPatternFile(pattern);
+                treeView1.ContextMenuStrip = contextMenu;
+            }
         }
 
+        // Open file
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFileDialog1.Filter = "Pattern files | *.xml";
@@ -74,10 +93,11 @@ namespace PatternEditor
         {
             tabControl.Show();
             tabControl.Enabled = true;
+
             treeView1.Nodes.Clear();
 
-            patternGenericType.Enabled = false;
-            patternGenericType.SelectedItem = pattern.PatternType.ToString();
+            genericType.Enabled = false;
+            genericType.Text = pattern.PatternType.ToString().ToUpper();
 
             patternName.Enabled = false;
             patternName.Text = pattern.PatternName;
@@ -85,32 +105,32 @@ namespace PatternEditor
             patternDescription.Enabled = false;
             patternDescription.Text = pattern.Description;
 
-            TreeNode[] components = new TreeNode[pattern.Components.Count];
-
-            for (int i = 0; i < pattern.Components.Count; i++)
-            {
-                var component = pattern.Components[i];
-                TreeNode[] modules = new TreeNode[component.Modules.Count];
-
-                for (int j = 0; j < component.Modules.Count; j++)
-                {
-                    var module = pattern.Components[i].Modules[j];
-
-                    TreeNode[] specification = new TreeNode[module.Specifications.Count];
-                    for (int k = 0; k < module.Specifications.Count; k++)
-                    {
-                        specification[k] = new TreeNode(module.Specifications[k].ParamName + " = " + module.Specifications[k].Value);
-                    }
-                    modules[j] = new TreeNode(module.ModuleType.ToString(), specification);
-
-                }
-                components[i] = new TreeNode(pattern.Components[i].ComponentType.ToString(), modules);
-            }
-            TreeNode system = new TreeNode(pattern.PatternType.ToString() + " (" + pattern.PatternName + ")", components);
-            
-            treeView1.Nodes.Add(system);
+            treeView1.Nodes.Add(pattern.GetNode());
             treeView1.ExpandAll();
         }
+        #endregion
+
+        #region Context Menu
+
+        private TreeNode old_selectNode;
+        private void showContextMenu(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        // Add a new component based on the context menu selection
+        private void addComponentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripComboBox s = (ToolStripComboBox)sender;
+
+            PatternComponent component = new PatternComponent();
+            component.ComponentType = (Enums.ComponentType)Enum.Parse(typeof(Enums.ComponentType), ((string)s.SelectedItem).ToLower());
+            component.ComponentID = Guid.NewGuid();
+            pattern.Components.Add(component);
+            showPatternFile(pattern);
+        }
+
+
         #endregion
 
         #region showPatternLibrary
@@ -136,5 +156,20 @@ namespace PatternEditor
         }
 
         #endregion
+
+        private void proxyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+
+        }
     }
 }

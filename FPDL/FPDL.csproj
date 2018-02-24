@@ -76,7 +76,7 @@
     <Compile Include="PatternParser.cs" />
     <Compile Include="FpdlWriter.cs" />
     <Compile Include="IFpdlObject.cs" />
-    <Compile Include="Pattern\Component.cs" />
+    <Compile Include="Pattern\PatternComponent.cs" />
     <Compile Include="Pattern\Entry.cs" />
     <Compile Include="Pattern\Module.cs" />
     <Compile Include="Pattern\PatternLibrary.cs" />

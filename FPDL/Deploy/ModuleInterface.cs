@@ -114,13 +114,15 @@ namespace FPDL.Deploy
         /// <returns></returns>
         public TreeNode GetNode()
         {
-            TreeNode[] t = new TreeNode[3];
+            TreeNode[] t = new TreeNode[4];
             t[0] = new TreeNode("InterfaceName = " + InterfaceName);
             t[0].ToolTipText = "Interface Name";
             t[1] = new TreeNode("IP Address = " + IpAddress);
             t[1].ToolTipText = "IP Address";
-            t[2] = new TreeNode("Default Router = " + DefaultRouter);
-            t[2].ToolTipText = "Default Router";
+            t[2] = new TreeNode("Network Prefix = " + NetPrefix);
+            t[2].ToolTipText = "Network Prefix (eg 24)";
+            t[3] = new TreeNode("Default Router = " + DefaultRouter);
+            t[3].ToolTipText = "Default Router";
 
             TreeNode a = new TreeNode("Interface", t);
             a.ToolTipText = "Interface module";

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace FPDL.Pattern
@@ -34,7 +35,7 @@ namespace FPDL.Pattern
         /// <summary>
         /// Components
         /// </summary>
-        public List<Component> Components = new List<Component>();
+        public List<PatternComponent> Components = new List<PatternComponent>();
         /// <summary>
         /// Construct PatternObject
         /// </summary>
@@ -63,7 +64,7 @@ namespace FPDL.Pattern
                 PatternName = fpdl.Element("patternName").Value;
                 Description = fpdl.Element("description").Value;
                 foreach (XElement component in fpdl.Descendants("component"))
-                    Components.Add(new Component(component));
+                    Components.Add(new PatternComponent(component));
             }
             catch (ArgumentException e)
             {
@@ -86,7 +87,7 @@ namespace FPDL.Pattern
                 new XElement("patternName", PatternName),
                 new XElement("description", Description)
             );
-            foreach (Component component in Components)
+            foreach (PatternComponent component in Components)
             {
                 pattern.Add(component.ToFPDL());
             }
@@ -100,9 +101,33 @@ namespace FPDL.Pattern
         {
             StringBuilder str = new StringBuilder("PATTERN =>\n");
             str.AppendFormat("{0}", ConfigMgmt);
-            foreach (Component component in Components)
+            foreach (PatternComponent component in Components)
                 str.AppendFormat("\n{0}\n", component);
             return str.ToString();
+        }
+
+        /// <summary>
+        /// Get a TreeNode
+        /// </summary>
+        /// <returns></returns>
+        public TreeNode GetNode()
+        {
+            TreeNode[] t1 = new TreeNode[2];
+            t1[0] = new TreeNode("Pattern type = " + PatternType.ToString().ToUpper());
+            t1[0].ToolTipText = "Generic pattern type";
+            t1[1] = new TreeNode("Pattern name = " + PatternName);
+            t1[1].ToolTipText = "Pattern name";
+
+            TreeNode[] t = new TreeNode[Components.Count];
+            for (int i = 0; i < Components.Count; i++)
+                t[i] = Components[i].GetNode();
+
+            TreeNode a = new TreeNode("Pattern");
+            a.Nodes.AddRange(t1);
+            a.Nodes.AddRange(t);
+            a.ToolTipText = "Pattern specification";
+            a.Tag = this;
+            return a;
         }
     }
 }

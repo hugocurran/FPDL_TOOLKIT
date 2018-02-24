@@ -15,29 +15,41 @@ namespace FPDL.Deploy
         /// <summary>
         /// Federate Name
         /// </summary>
-        public string FederateName;
+        [DeployIf("federateName", "Federate name")]
+        public string FederateName { get; set; }
         /// <summary>
         /// Components
         /// </summary>
-        public List<Component> Components;
+        [DeployIf("Components", "List of components", false, true)]
+        public List<Component> Components { get; set; }
         /// <summary>
         /// System type
         /// </summary>
-        public Enums.PatternType SystemType;
+        [DeployIf("System Type", "Type of system")]
+        public Enums.FederateType SystemType { get; set; }
+        //public Enums.PatternType SystemType { get; set; }
         /// <summary>
         /// Pattern name
         /// </summary>
-        public string Pattern;
+        [DeployIf("pattern", "Pattern name")]
+        public string Pattern { get; set; }
         /// <summary>
         /// Pattern reference
         /// </summary>
-        public Guid PatternRef;
+        [DeployIf("patternReference", "Pattern reference")]
+        public Guid PatternRef { get; set; }
+        /// <summary>
+        /// Pattern Type (internal use)
+        /// </summary>
+        [DeployIf("patternType", "Pattern Type", true)]
+        public Enums.PatternType PatternType { get; set; }
         /// <summary>
         /// Construct System object
         /// </summary>
         public DeploySystem()
         {
             Components = new List<Component>();
+            PatternType = Enums.PatternType.NotApplicable;
         }
 
 
@@ -49,6 +61,7 @@ namespace FPDL.Deploy
         {
             FromFPDL(fpdl);
         }
+
         /// <summary>
         /// Deserialise System object from FPDL
         /// </summary>
@@ -59,7 +72,7 @@ namespace FPDL.Deploy
                 throw new ApplicationException("Cannot parse: Not an FPDL system description");
             try
             {
-                SystemType = (Enums.PatternType)Enum.Parse(typeof(Enums.PatternType), fpdl.Attribute("systemType").Value);
+                SystemType = (Enums.FederateType)Enum.Parse(typeof(Enums.FederateType), fpdl.Attribute("systemType").Value);
                 Pattern = fpdl.Element("pattern").Value;
                 PatternRef = Guid.Parse(fpdl.Element("pattern").Attribute("patternReference").Value);
                 FederateName = fpdl.Element("federateName").Value;

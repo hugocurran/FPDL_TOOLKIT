@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace FPDL.Pattern
@@ -102,9 +103,22 @@ namespace FPDL.Pattern
                         p.SetValue(module, spec.Value);
                     }
                 }
-
-
             }
+        }
+        /// <summary>
+        /// Get a TreeNode
+        /// </summary>
+        /// <returns></returns>
+        public TreeNode GetNode()
+        {
+            TreeNode[] t = new TreeNode[Specifications.Count];
+            for (int i = 0; i < Specifications.Count; i++)
+                t[i] = Specifications[i].GetNode();
+
+            TreeNode a = new TreeNode("Module = " + ModuleType.ToString().ToUpperFirst(), t);
+            a.ToolTipText = "Module";
+            a.Tag = this;
+            return a;
         }
     }
 }
