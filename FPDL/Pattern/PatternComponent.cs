@@ -95,21 +95,19 @@ namespace FPDL.Pattern
         /// <returns></returns>
         public TreeNode GetNode()
         {
-            TreeNode[] t1 = new TreeNode[2];
-            t1[0] = new TreeNode("Component type = " + ComponentType.ToString().ToUpper());
-            t1[0].ToolTipText = "Component type";
-            t1[1] = new TreeNode("Component ID = " + ComponentID.ToString());
-            t1[1].ToolTipText = "Component ID";
+            TreeNode[] t1 = new TreeNode[1];
+            t1[0] = new TreeNode("Component ID = " + ComponentID.ToString());
+            t1[0].ToolTipText = "Component ID";
             //t1[2] = new TreeNode("Modules");
 
             TreeNode[] t = new TreeNode[Modules.Count];
             for (int i = 0; i < Modules.Count; i++)
                 t[i] = Modules[i].GetNode();
 
-            TreeNode a = new TreeNode("Components");
+            TreeNode a = new TreeNode("Component (" + ComponentType.ToString().ToUpper() + ")");
             a.Nodes.AddRange(t1);
             a.Nodes.AddRange(t);
-            a.ToolTipText = "Components";
+            a.ToolTipText = "Right-click to add modules";
             a.Tag = this;
             return a;
         }

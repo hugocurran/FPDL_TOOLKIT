@@ -2032,6 +2032,12 @@
             Parameter specifications
             </summary>
         </member>
+        <member name="M:FPDL.Pattern.Module.#ctor(FPDL.Common.Enums.ModuleType)">
+            <summary>
+            Construct Module object
+            </summary>
+            <param name="moduleType"></param>
+        </member>
         <member name="M:FPDL.Pattern.Module.#ctor(System.Xml.Linq.XElement)">
             <summary>
             Construct Module object from FPDL
@@ -2213,17 +2219,17 @@
             Specification
             </summary>
         </member>
-        <member name="F:FPDL.Pattern.Specification.ParamName">
+        <member name="P:FPDL.Pattern.Specification.ParamName">
             <summary>
             Parameter name
             </summary>
         </member>
-        <member name="F:FPDL.Pattern.Specification.Value">
+        <member name="P:FPDL.Pattern.Specification.Value">
             <summary>
             Value
             </summary>
         </member>
-        <member name="F:FPDL.Pattern.Specification.ReadOnly">
+        <member name="P:FPDL.Pattern.Specification.ReadOnly">
             <summary>
             Read only
             </summary>

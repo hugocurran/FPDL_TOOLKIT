@@ -13,15 +13,19 @@ namespace FPDL.Pattern
         /// <summary>
         /// Parameter name
         /// </summary>
-        public string ParamName;
+        public string ParamName { get; set; }
         /// <summary>
         /// Value
         /// </summary>
-        public string Value;
+        public string Value { get; set; }
         /// <summary>
         /// Read only
         /// </summary>
-        public bool ReadOnly = false;
+        public bool ReadOnly { get; set; }
+        /// <summary>
+        /// Construct specification object from FPDL
+        /// </summary>
+        public Specification() { }
         /// <summary>
         /// Construct specification object from FPDL
         /// </summary>

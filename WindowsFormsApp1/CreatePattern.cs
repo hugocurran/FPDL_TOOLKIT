@@ -25,6 +25,11 @@ namespace FPDL.Tools.PatternEditor
 
         private void applyBut_Click(object sender, EventArgs e)
         {
+            if (patternTypeCbx.Text == "Select pattern type")
+            {
+                MessageBox.Show("No pattern type selected", "Pattern Editor", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                return;
+            }
             patternName = patternNameTbx.Text;
             patternDescription = patternDescriptionRtbx.Text;
             patternType = (Enums.PatternType)Enum.Parse(typeof(Enums.PatternType), patternTypeCbx.Text.ToLower());

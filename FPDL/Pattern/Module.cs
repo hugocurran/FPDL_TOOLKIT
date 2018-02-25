@@ -2,6 +2,7 @@
 using FPDL.Deploy;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
@@ -13,8 +14,7 @@ namespace FPDL.Pattern
     /// Pattern Module
     /// </summary>
     public class Module
-    {
-        
+    {        
         /// <summary>
         /// Module type
         /// </summary>
@@ -23,6 +23,15 @@ namespace FPDL.Pattern
         /// Parameter specifications
         /// </summary>
         public List<Specification> Specifications = new List<Specification>();
+
+        /// <summary>
+        /// Construct Module object
+        /// </summary>
+        /// <param name="moduleType"></param>
+        public Module(Enums.ModuleType moduleType)
+        {
+            ModuleType = moduleType;
+        }
         /// <summary>
         /// Construct Module object from FPDL
         /// </summary>
@@ -115,9 +124,11 @@ namespace FPDL.Pattern
             for (int i = 0; i < Specifications.Count; i++)
                 t[i] = Specifications[i].GetNode();
 
-            TreeNode a = new TreeNode("Module = " + ModuleType.ToString().ToUpperFirst(), t);
-            a.ToolTipText = "Module";
-            a.Tag = this;
+            TreeNode a = new TreeNode("Module = " + ModuleType.ToString().ToUpperFirst(), t)
+            {
+                ToolTipText = "Right-click to add specification",
+                Tag = this
+            };
             return a;
         }
     }

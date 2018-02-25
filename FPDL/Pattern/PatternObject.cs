@@ -122,10 +122,10 @@ namespace FPDL.Pattern
             for (int i = 0; i < Components.Count; i++)
                 t[i] = Components[i].GetNode();
 
-            TreeNode a = new TreeNode("Pattern");
+            TreeNode a = new TreeNode("Pattern (" + PatternType.ToString().ToUpper() + ")");
             a.Nodes.AddRange(t1);
             a.Nodes.AddRange(t);
-            a.ToolTipText = "Pattern specification";
+            a.ToolTipText = "Right-click to add components";
             a.Tag = this;
             return a;
         }

@@ -41,42 +41,44 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 18);
+            this.label1.Location = new System.Drawing.Point(17, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(103, 18);
+            this.label1.Size = new System.Drawing.Size(129, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "Pattern Name:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 49);
+            this.label2.Location = new System.Drawing.Point(26, 60);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 18);
+            this.label2.Size = new System.Drawing.Size(121, 24);
             this.label2.TabIndex = 1;
             this.label2.Text = "Pattern Type:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(31, 80);
+            this.label3.Location = new System.Drawing.Point(34, 98);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(87, 18);
+            this.label3.Size = new System.Drawing.Size(109, 24);
             this.label3.TabIndex = 2;
             this.label3.Text = "Description:";
             // 
             // patternNameTbx
             // 
-            this.patternNameTbx.Location = new System.Drawing.Point(134, 15);
+            this.patternNameTbx.Location = new System.Drawing.Point(149, 18);
+            this.patternNameTbx.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.patternNameTbx.Name = "patternNameTbx";
-            this.patternNameTbx.Size = new System.Drawing.Size(239, 24);
+            this.patternNameTbx.Size = new System.Drawing.Size(265, 28);
             this.patternNameTbx.TabIndex = 4;
             // 
             // applyBut
             // 
-            this.applyBut.Location = new System.Drawing.Point(57, 214);
+            this.applyBut.Location = new System.Drawing.Point(63, 262);
+            this.applyBut.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.applyBut.Name = "applyBut";
-            this.applyBut.Size = new System.Drawing.Size(85, 35);
+            this.applyBut.Size = new System.Drawing.Size(94, 43);
             this.applyBut.TabIndex = 8;
             this.applyBut.Text = "Create";
             this.applyBut.UseVisualStyleBackColor = true;
@@ -85,9 +87,10 @@
             // cancelBut
             // 
             this.cancelBut.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancelBut.Location = new System.Drawing.Point(279, 214);
+            this.cancelBut.Location = new System.Drawing.Point(310, 262);
+            this.cancelBut.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cancelBut.Name = "cancelBut";
-            this.cancelBut.Size = new System.Drawing.Size(83, 35);
+            this.cancelBut.Size = new System.Drawing.Size(92, 43);
             this.cancelBut.TabIndex = 9;
             this.cancelBut.Text = "Cancel";
             this.cancelBut.UseVisualStyleBackColor = true;
@@ -101,26 +104,28 @@
             "MTG",
             "HTG",
             "Filter"});
-            this.patternTypeCbx.Location = new System.Drawing.Point(134, 46);
+            this.patternTypeCbx.Location = new System.Drawing.Point(149, 56);
+            this.patternTypeCbx.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.patternTypeCbx.Name = "patternTypeCbx";
-            this.patternTypeCbx.Size = new System.Drawing.Size(239, 26);
+            this.patternTypeCbx.Size = new System.Drawing.Size(265, 30);
             this.patternTypeCbx.TabIndex = 10;
             this.patternTypeCbx.Text = "Select pattern type";
             // 
             // patternDescriptionRtbx
             // 
-            this.patternDescriptionRtbx.Location = new System.Drawing.Point(134, 80);
+            this.patternDescriptionRtbx.Location = new System.Drawing.Point(149, 98);
+            this.patternDescriptionRtbx.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.patternDescriptionRtbx.Name = "patternDescriptionRtbx";
-            this.patternDescriptionRtbx.Size = new System.Drawing.Size(239, 128);
+            this.patternDescriptionRtbx.Size = new System.Drawing.Size(265, 156);
             this.patternDescriptionRtbx.TabIndex = 11;
             this.patternDescriptionRtbx.Text = "";
             // 
-            // ModuleInterfaceEdit
+            // CreatePattern
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.cancelBut;
-            this.ClientSize = new System.Drawing.Size(433, 291);
+            this.ClientSize = new System.Drawing.Size(481, 356);
             this.Controls.Add(this.patternDescriptionRtbx);
             this.Controls.Add(this.patternTypeCbx);
             this.Controls.Add(this.cancelBut);
@@ -129,11 +134,12 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "ModuleInterfaceEdit";
+            this.Name = "CreatePattern";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Create Pattern";
             this.ResumeLayout(false);

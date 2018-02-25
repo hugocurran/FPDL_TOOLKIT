@@ -1,5 +1,7 @@
-﻿using FPDL;
+﻿
+using FPDL;
 using FPDL.Common;
+using FPDL.Deploy;
 using FPDL.Pattern;
 using System;
 using System.Collections.Generic;
@@ -18,11 +20,16 @@ namespace FPDL.Tools.PatternEditor
         private PatternObject pattern;
         private PatternLibrary library;
 
+        private ContextMenu contextMenu;
+
 
         public Form1()
         {
             InitializeComponent();
             //tabControl.TabPages.Clear();
+            contextMenu = new ContextMenu();
+            treeView1.ContextMenu = contextMenu;
+            treeView1.NodeMouseClick += new TreeNodeMouseClickEventHandler(showContextMenu);
         }
 
         // Create a new pattern
@@ -44,7 +51,7 @@ namespace FPDL.Tools.PatternEditor
                     1, 0,
                     "Initial Version");
                 showPatternFile(pattern);
-                treeView1.ContextMenuStrip = contextMenu;
+                treeView1.ContextMenu = contextMenu;
             }
         }
 
@@ -115,20 +122,93 @@ namespace FPDL.Tools.PatternEditor
         private TreeNode old_selectNode;
         private void showContextMenu(object sender, MouseEventArgs e)
         {
+            if (e.Button == MouseButtons.Right)
+            {
+                Point p = new Point(e.X, e.Y);
+                TreeNode node = treeView1.GetNodeAt(p);
+                if (node != null)
+                {
+                    old_selectNode = treeView1.SelectedNode;
+                    treeView1.SelectedNode = node;
 
+                    if (node.Tag == null)
+                        return;
+
+                    // Root (system) menu
+                    if (node.Tag.GetType() == typeof(PatternObject))
+                    {
+                        contextMenu.MenuItems.Clear();
+                        MenuItem[] items = new MenuItem[3];
+                        items[0] = new MenuItem("Proxy", addComponent);
+                        items[1] = new MenuItem("Guard", addComponent);
+                        items[2] = new MenuItem("Filter", addComponent);
+                        contextMenu.MenuItems.AddRange(items);
+                        contextMenu.Name = "Add Component";
+                    }
+                    // Component menu
+                    if (node.Tag.GetType() == typeof(PatternComponent))
+                    {
+                        contextMenu.MenuItems.Clear();
+                        MenuItem[] items = new MenuItem[8];
+                        items[0] = new MenuItem("Interface", addModule);
+                        items[1] = new MenuItem("Host", addModule);
+                        items[2] = new MenuItem("Federation", addModule);
+                        items[3] = new MenuItem("OSP", addModule);
+                        items[4] = new MenuItem("Import", addModule);
+                        items[5] = new MenuItem("Export", addModule);
+                        items[6] = new MenuItem("Filter", addModule);
+                        items[7] = new MenuItem("Extension", addModule);
+                        contextMenu.MenuItems.AddRange(items);
+                        contextMenu.Name = "Add Module";
+                        contextMenu.Tag = node.Tag;
+                    }
+                    // Module menu
+                    if (node.Tag.GetType() == typeof(Module))
+                    {
+                        contextMenu.MenuItems.Clear();
+                        MenuItem[] items = new MenuItem[1];
+                        items[0] = new MenuItem("Edit specification", editSpec);
+                        contextMenu.MenuItems.AddRange(items);
+                        contextMenu.Name = "Edit Specification";
+                        contextMenu.Tag = node.Tag;
+                    }
+                }
+            }
         }
 
-        // Add a new component based on the context menu selection
-        private void addComponentToolStripMenuItem_Click(object sender, EventArgs e)
+        private void addComponent(object sender, EventArgs e)
         {
-            ToolStripComboBox s = (ToolStripComboBox)sender;
-
             PatternComponent component = new PatternComponent();
-            component.ComponentType = (Enums.ComponentType)Enum.Parse(typeof(Enums.ComponentType), ((string)s.SelectedItem).ToLower());
+            component.ComponentType = (Enums.ComponentType)Enum.Parse(typeof(Enums.ComponentType), ((MenuItem)sender).Text.ToLower());
             component.ComponentID = Guid.NewGuid();
             pattern.Components.Add(component);
             showPatternFile(pattern);
+            contextMenu.MenuItems.Clear();
         }
+
+        private void addModule(object sender, EventArgs e)
+        {
+            PatternComponent component = (PatternComponent)contextMenu.Tag;
+            Enums.ModuleType moduleType = (Enums.ModuleType)Enum.Parse(typeof(Enums.ModuleType), ((MenuItem)sender).Text.ToLower());
+            component.Modules.Add(new Module(moduleType));
+            showPatternFile(pattern);
+            contextMenu.MenuItems.Clear();
+        }
+
+        private void editSpec(object sender, EventArgs e)
+        {
+            Module module = (Module)contextMenu.Tag;
+
+            ModuleOptions options = new ModuleOptions(module);
+            options.ShowDialog();
+
+            //PatternComponent component = (PatternComponent)contextMenu.Tag;
+            //Enums.ModuleType moduleType = (Enums.ModuleType)Enum.Parse(typeof(Enums.ModuleType), ((MenuItem)sender).Text.ToLower());
+            //component.Modules.Add(new Module(moduleType));
+            //showPatternFile(pattern);
+            contextMenu.MenuItems.Clear();
+        }
+
 
 
         #endregion
@@ -163,11 +243,6 @@ namespace FPDL.Tools.PatternEditor
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
 
         }

@@ -56,17 +56,15 @@
             this.pattName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pattVer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pattRef = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripComboBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.patternLibraryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.Pattern.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.patternLibraryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -162,6 +160,7 @@
             // 
             // Pattern
             // 
+            this.Pattern.Controls.Add(this.button1);
             this.Pattern.Controls.Add(this.genericType);
             this.Pattern.Controls.Add(this.panel1);
             this.Pattern.Controls.Add(this.label3);
@@ -193,7 +192,7 @@
             this.panel1.Location = new System.Drawing.Point(84, 403);
             this.panel1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1140, 277);
+            this.panel1.Size = new System.Drawing.Size(974, 277);
             this.panel1.TabIndex = 9;
             // 
             // treeView1
@@ -204,9 +203,8 @@
             this.treeView1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.treeView1.Name = "treeView1";
             this.treeView1.ShowNodeToolTips = true;
-            this.treeView1.Size = new System.Drawing.Size(1140, 277);
+            this.treeView1.Size = new System.Drawing.Size(974, 277);
             this.treeView1.TabIndex = 0;
-            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
             // label3
             // 
@@ -328,21 +326,6 @@
             this.pattRef.Name = "pattRef";
             this.pattRef.ReadOnly = true;
             // 
-            // contextMenu
-            // 
-            this.contextMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToolStripMenuItem});
-            this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(247, 36);
-            // 
-            // addToolStripMenuItem
-            // 
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(186, 28);
-            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
-            this.addToolStripMenuItem.TextChanged += new System.EventHandler(this.addComponentToolStripMenuItem_Click);
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
@@ -350,6 +333,15 @@
             // patternLibraryBindingSource
             // 
             this.patternLibraryBindingSource.DataSource = typeof(FPDL.Pattern.PatternLibrary);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1099, 516);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(123, 66);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Add to Library";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -371,7 +363,6 @@
             this.panel1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.contextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.patternLibraryBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -408,9 +399,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn pattName;
         private System.Windows.Forms.DataGridViewTextBoxColumn pattVer;
         private System.Windows.Forms.DataGridViewTextBoxColumn pattRef;
-        private System.Windows.Forms.ContextMenuStrip contextMenu;
-        private System.Windows.Forms.ToolStripComboBox addToolStripMenuItem;
         private System.Windows.Forms.TextBox genericType;
+        private System.Windows.Forms.Button button1;
     }
 }
 
