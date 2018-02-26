@@ -22,8 +22,9 @@ namespace FPDL.Pattern
         /// Read only
         /// </summary>
         public bool ReadOnly { get; set; }
+
         /// <summary>
-        /// Construct specification object from FPDL
+        /// Construct specification object
         /// </summary>
         public Specification() { }
         /// <summary>
@@ -78,7 +79,8 @@ namespace FPDL.Pattern
         {
             string node = (ReadOnly) ? ParamName + " = " + Value + " (ReadOnly)" : ParamName + " = " + Value;
             TreeNode a = new TreeNode(node);
-            a.ToolTipText = "Specification";
+            a.ToolTipText = "Right-click to edit";
+            a.Tag = this;
             return a;
         }
     }

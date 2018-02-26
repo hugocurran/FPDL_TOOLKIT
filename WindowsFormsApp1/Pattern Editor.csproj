@@ -51,12 +51,6 @@
     <Compile Include="CreatePattern.Designer.cs">
       <DependentUpon>CreatePattern.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModuleOptions.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ModuleOptions.Designer.cs">
-      <DependentUpon>ModuleOptions.cs</DependentUpon>
-    </Compile>
     <Compile Include="ModuleView.cs" />
     <Compile Include="Pattern Editor.cs">
       <SubType>Form</SubType>
@@ -66,17 +60,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpecThingy.cs">
+    <Compile Include="SpecEditor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SpecThingy.Designer.cs">
-      <DependentUpon>SpecThingy.cs</DependentUpon>
+    <Compile Include="SpecEditor.Designer.cs">
+      <DependentUpon>SpecEditor.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="CreatePattern.resx">
       <DependentUpon>CreatePattern.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ModuleOptions.resx">
-      <DependentUpon>ModuleOptions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pattern Editor.resx">
       <DependentUpon>Pattern Editor.cs</DependentUpon>
@@ -91,8 +82,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="SpecThingy.resx">
-      <DependentUpon>SpecThingy.cs</DependentUpon>
+    <EmbeddedResource Include="SpecEditor.resx">
+      <DependentUpon>SpecEditor.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\FPDL.Pattern.PatternLibrary.datasource" />
     <None Include="Properties\Settings.settings">

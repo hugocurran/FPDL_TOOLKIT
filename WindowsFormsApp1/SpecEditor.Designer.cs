@@ -1,6 +1,6 @@
 ﻿namespace FPDL.Tools.PatternEditor
 {
-    partial class SpecThingy
+    partial class SpecEditor
     {
         /// <summary>
         /// Required designer variable.
@@ -100,7 +100,7 @@
             this.readOnlyCk.Text = "Read Only";
             this.readOnlyCk.UseVisualStyleBackColor = true;
             // 
-            // SpecThingy
+            // SpecEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -113,8 +113,12 @@
             this.Controls.Add(this.cancelBut);
             this.Controls.Add(this.applyBut);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "SpecThingy";
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "SpecEditor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "SpecThingy";
             this.ResumeLayout(false);
             this.PerformLayout();

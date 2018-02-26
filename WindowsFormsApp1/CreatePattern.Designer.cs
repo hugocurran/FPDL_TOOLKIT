@@ -140,7 +140,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "CreatePattern";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Create Pattern";
             this.ResumeLayout(false);
             this.PerformLayout();

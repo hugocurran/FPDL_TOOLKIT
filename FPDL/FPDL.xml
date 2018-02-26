@@ -2234,6 +2234,11 @@
             Read only
             </summary>
         </member>
+        <member name="M:FPDL.Pattern.Specification.#ctor">
+            <summary>
+            Construct specification object
+            </summary>
+        </member>
         <member name="M:FPDL.Pattern.Specification.#ctor(System.Xml.Linq.XElement)">
             <summary>
             Construct specification object from FPDL

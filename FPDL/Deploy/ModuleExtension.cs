@@ -109,9 +109,11 @@ namespace FPDL.Deploy
             TreeNode[] t1 = new TreeNode[1];
             t1[0] = new TreeNode("Vendor name = " + VendorName, t);
 
-            TreeNode a = new TreeNode("Extensions", t1);
-            a.ToolTipText = "Extensions Module";
-            a.Tag = this;
+            TreeNode a = new TreeNode("Extensions", t1)
+            {
+                ToolTipText = "Extensions Module",
+                Tag = this
+            };
             return a;
         }
 

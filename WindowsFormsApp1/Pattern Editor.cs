@@ -167,7 +167,18 @@ namespace FPDL.Tools.PatternEditor
                     {
                         contextMenu.MenuItems.Clear();
                         MenuItem[] items = new MenuItem[1];
+                        items[0] = new MenuItem("Add specification", addSpec);
+                        contextMenu.MenuItems.AddRange(items);
+                        contextMenu.Name = "Add Specification";
+                        contextMenu.Tag = node.Tag;
+                    }
+                    // Specification menu
+                    if (node.Tag.GetType() == typeof(Specification))
+                    {
+                        contextMenu.MenuItems.Clear();
+                        MenuItem[] items = new MenuItem[2];
                         items[0] = new MenuItem("Edit specification", editSpec);
+                        items[1] = new MenuItem("Delete specification", deleteSpec);
                         contextMenu.MenuItems.AddRange(items);
                         contextMenu.Name = "Edit Specification";
                         contextMenu.Tag = node.Tag;
@@ -178,9 +189,11 @@ namespace FPDL.Tools.PatternEditor
 
         private void addComponent(object sender, EventArgs e)
         {
-            PatternComponent component = new PatternComponent();
-            component.ComponentType = (Enums.ComponentType)Enum.Parse(typeof(Enums.ComponentType), ((MenuItem)sender).Text.ToLower());
-            component.ComponentID = Guid.NewGuid();
+            PatternComponent component = new PatternComponent
+            {
+                ComponentType = (Enums.ComponentType)Enum.Parse(typeof(Enums.ComponentType), ((MenuItem)sender).Text.ToLower()),
+                ComponentID = Guid.NewGuid()
+            };
             pattern.Components.Add(component);
             showPatternFile(pattern);
             contextMenu.MenuItems.Clear();
@@ -195,21 +208,39 @@ namespace FPDL.Tools.PatternEditor
             contextMenu.MenuItems.Clear();
         }
 
-        private void editSpec(object sender, EventArgs e)
+        private void addSpec(object sender, EventArgs e)
         {
             Module module = (Module)contextMenu.Tag;
 
-            ModuleOptions options = new ModuleOptions(module);
-            options.ShowDialog();
-
-            //PatternComponent component = (PatternComponent)contextMenu.Tag;
-            //Enums.ModuleType moduleType = (Enums.ModuleType)Enum.Parse(typeof(Enums.ModuleType), ((MenuItem)sender).Text.ToLower());
-            //component.Modules.Add(new Module(moduleType));
-            //showPatternFile(pattern);
+            SpecEditor spec = new SpecEditor(module.ModuleType);
+            if (spec.ShowDialog() == DialogResult.OK)
+            {
+                module.Specifications.Add(spec.specification);
+                showPatternFile(pattern);
+            }
             contextMenu.MenuItems.Clear();
         }
 
+        private void editSpec(object sender, EventArgs e)
+        {
+            Specification specification = (Specification)contextMenu.Tag;
 
+            SpecEditor spec = new SpecEditor(specification);
+            if (spec.ShowDialog() == DialogResult.OK)
+            {
+                showPatternFile(pattern);
+            }
+            contextMenu.MenuItems.Clear();
+        }
+
+        private void deleteSpec(object sender, EventArgs e)
+        {
+            Specification specification = (Specification)contextMenu.Tag;
+            Module module = (Module)treeView1.SelectedNode.Parent.Tag;
+            module.Specifications.Remove(specification);
+            showPatternFile(pattern);
+            contextMenu.MenuItems.Clear();
+        }
 
         #endregion
 
