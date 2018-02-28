@@ -39,6 +39,7 @@ namespace FPDL.Tools.DeployEditor
                     t1[0] = new TreeNode(federates[i].FederateType.ToString().ToUpperFirst());
                 }
                 feds[i] = new TreeNode(federates[i].FederateName, t1);
+                feds[i].Tag = federates[i];
             }
             return feds;
         }

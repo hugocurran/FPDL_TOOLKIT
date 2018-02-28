@@ -37,10 +37,11 @@
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.libraryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.libraryAutosaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.Pattern = new System.Windows.Forms.TabPage();
+            this.addToLibraryBut = new System.Windows.Forms.Button();
             this.genericType = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.treeView1 = new System.Windows.Forms.TreeView();
@@ -58,7 +59,7 @@
             this.pattRef = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.patternLibraryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.button1 = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.Pattern.SuspendLayout();
@@ -78,7 +79,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(10, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(1339, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1279, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -111,56 +112,63 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(131, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.saveToolStripMenuItem.Text = "Save...";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(131, 26);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.saveAsToolStripMenuItem.Text = "SaveAs";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(131, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // libraryToolStripMenuItem
             // 
             this.libraryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.optionsToolStripMenuItem});
+            this.libraryAutosaveMenuItem});
             this.libraryToolStripMenuItem.Name = "libraryToolStripMenuItem";
             this.libraryToolStripMenuItem.Size = new System.Drawing.Size(66, 24);
             this.libraryToolStripMenuItem.Text = "Library";
             // 
-            // optionsToolStripMenuItem
+            // libraryAutosaveMenuItem
             // 
-            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(136, 26);
-            this.optionsToolStripMenuItem.Text = "Options";
+            this.libraryAutosaveMenuItem.CheckOnClick = true;
+            this.libraryAutosaveMenuItem.Name = "libraryAutosaveMenuItem";
+            this.libraryAutosaveMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.libraryAutosaveMenuItem.Text = "Autosave ON";
+            this.libraryAutosaveMenuItem.Click += new System.EventHandler(this.libraryAutosaveMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(62, 24);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // tabControl
             // 
             this.tabControl.Controls.Add(this.Pattern);
             this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Enabled = false;
-            this.tabControl.Location = new System.Drawing.Point(20, 45);
+            this.tabControl.Location = new System.Drawing.Point(0, 30);
             this.tabControl.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1309, 1144);
+            this.tabControl.Size = new System.Drawing.Size(1279, 722);
             this.tabControl.TabIndex = 1;
             // 
             // Pattern
             // 
-            this.Pattern.Controls.Add(this.button1);
+            this.Pattern.Controls.Add(this.addToLibraryBut);
             this.Pattern.Controls.Add(this.genericType);
             this.Pattern.Controls.Add(this.panel1);
             this.Pattern.Controls.Add(this.label3);
@@ -174,10 +182,20 @@
             this.Pattern.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.Pattern.Name = "Pattern";
             this.Pattern.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.Pattern.Size = new System.Drawing.Size(1301, 1109);
+            this.Pattern.Size = new System.Drawing.Size(1271, 687);
             this.Pattern.TabIndex = 0;
             this.Pattern.Text = "Pattern";
             this.Pattern.UseVisualStyleBackColor = true;
+            // 
+            // addToLibraryBut
+            // 
+            this.addToLibraryBut.Location = new System.Drawing.Point(1099, 516);
+            this.addToLibraryBut.Name = "addToLibraryBut";
+            this.addToLibraryBut.Size = new System.Drawing.Size(123, 66);
+            this.addToLibraryBut.TabIndex = 11;
+            this.addToLibraryBut.Text = "Add to Library";
+            this.addToLibraryBut.UseVisualStyleBackColor = true;
+            this.addToLibraryBut.Click += new System.EventHandler(this.addToLibraryBut_Click);
             // 
             // genericType
             // 
@@ -277,7 +295,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
-            this.tabPage2.Size = new System.Drawing.Size(1301, 1109);
+            this.tabPage2.Size = new System.Drawing.Size(1271, 687);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Library";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -299,7 +317,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1291, 1097);
+            this.dataGridView1.Size = new System.Drawing.Size(1261, 675);
             this.dataGridView1.TabIndex = 0;
             // 
             // pattType
@@ -334,20 +352,15 @@
             // 
             this.patternLibraryBindingSource.DataSource = typeof(FPDL.Pattern.PatternLibrary);
             // 
-            // button1
+            // saveFileDialog1
             // 
-            this.button1.Location = new System.Drawing.Point(1099, 516);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 66);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Add to Library";
-            this.button1.UseVisualStyleBackColor = true;
+            this.saveFileDialog1.Title = "Save Pattern File";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1339, 800);
+            this.ClientSize = new System.Drawing.Size(1279, 752);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -379,7 +392,6 @@
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem libraryToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage Pattern;
@@ -400,7 +412,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn pattVer;
         private System.Windows.Forms.DataGridViewTextBoxColumn pattRef;
         private System.Windows.Forms.TextBox genericType;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button addToLibraryBut;
+        private System.Windows.Forms.ToolStripMenuItem libraryAutosaveMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

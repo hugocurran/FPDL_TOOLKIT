@@ -8,10 +8,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace FPDL.Tools.PatternEditor
 {
@@ -21,15 +24,27 @@ namespace FPDL.Tools.PatternEditor
         private PatternLibrary library;
 
         private ContextMenu contextMenu;
+        private ContextMenu libContextMenu;
 
+        private bool dirtyPattern = false;  // If true then need to advance the version
+        private bool newPattern = false;    // if true then this is a new pattern
+        private bool libraryAutoSave = true;
+        private string libraryFilename;
 
         public Form1()
         {
             InitializeComponent();
             //tabControl.TabPages.Clear();
+            tabControl.SelectTab(0);
             contextMenu = new ContextMenu();
+            libContextMenu = new ContextMenu();
             treeView1.ContextMenu = contextMenu;
             treeView1.NodeMouseClick += new TreeNodeMouseClickEventHandler(showContextMenu);
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.CellMouseClick += new DataGridViewCellMouseEventHandler(showLibContextMenu);
+            libraryToolStripMenuItem.Checked = true;
+            libraryAutosaveMenuItem.Checked = true;
+
         }
 
         // Create a new pattern
@@ -52,6 +67,7 @@ namespace FPDL.Tools.PatternEditor
                     "Initial Version");
                 showPatternFile(pattern);
                 treeView1.ContextMenu = contextMenu;
+                newPattern = true;
             }
         }
 
@@ -72,11 +88,16 @@ namespace FPDL.Tools.PatternEditor
                     {
                         this.pattern = (PatternObject)input;
                         showPatternFile(pattern);
+                        tabControl.SelectTab(0);
+                        dirtyPattern = false;
+                        newPattern = true;
                     }
                     else if (input.GetType() == (typeof(PatternLibrary)))
                     {
+                        libraryFilename = openFileDialog1.FileName;
                         this.library = (PatternLibrary)input;
                         showPatternLibrary(library);
+                        tabControl.SelectTab(1);
                     }
                     else
                         MessageBox.Show("Not a Pattern or Pattern Library file", "Pattern Editor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -114,12 +135,14 @@ namespace FPDL.Tools.PatternEditor
 
             treeView1.Nodes.Add(pattern.GetNode());
             treeView1.ExpandAll();
+            tabControl.SelectTab(0);
+            enableSaveToLibraryButton(pattern);
         }
         #endregion
 
-        #region Context Menu
+        #region Pattern Context Menu
 
-        private TreeNode old_selectNode;
+        //private TreeNode old_selectNode;
         private void showContextMenu(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -128,7 +151,7 @@ namespace FPDL.Tools.PatternEditor
                 TreeNode node = treeView1.GetNodeAt(p);
                 if (node != null)
                 {
-                    old_selectNode = treeView1.SelectedNode;
+                    //old_selectNode = treeView1.SelectedNode;
                     treeView1.SelectedNode = node;
 
                     if (node.Tag == null)
@@ -146,7 +169,7 @@ namespace FPDL.Tools.PatternEditor
                         contextMenu.Name = "Add Component";
                     }
                     // Component menu
-                    if (node.Tag.GetType() == typeof(PatternComponent))
+                    if ((node.Tag.GetType() == typeof(PatternComponent)) && (!node.Text.Contains("Component Name")))
                     {
                         contextMenu.MenuItems.Clear();
                         MenuItem[] items = new MenuItem[8];
@@ -158,6 +181,15 @@ namespace FPDL.Tools.PatternEditor
                         items[5] = new MenuItem("Export", addModule);
                         items[6] = new MenuItem("Filter", addModule);
                         items[7] = new MenuItem("Extension", addModule);
+                        contextMenu.MenuItems.AddRange(items);
+                        contextMenu.Name = "Add Module";
+                        contextMenu.Tag = node.Tag;
+                    }
+                    if ((node.Tag.GetType() == typeof(PatternComponent)) && (node.Text.Contains("Component Name")))
+                    {
+                        contextMenu.MenuItems.Clear();
+                        MenuItem[] items = new MenuItem[1];
+                        items[0] = new MenuItem("Edit name", editName);
                         contextMenu.MenuItems.AddRange(items);
                         contextMenu.Name = "Add Module";
                         contextMenu.Tag = node.Tag;
@@ -197,6 +229,20 @@ namespace FPDL.Tools.PatternEditor
             pattern.Components.Add(component);
             showPatternFile(pattern);
             contextMenu.MenuItems.Clear();
+            dirtyPattern = true;
+        }
+
+        private void editName(object sender, EventArgs e)
+        {
+            PatternComponent component = (PatternComponent)contextMenu.Tag;
+            SpecEditor spec = new SpecEditor("ComponentName", component.ComponentName);
+            if (spec.ShowDialog() == DialogResult.OK)
+            {
+                component.ComponentName = spec.specification.Value;
+                showPatternFile(pattern);
+                dirtyPattern = true;
+            }
+            contextMenu.MenuItems.Clear();
         }
 
         private void addModule(object sender, EventArgs e)
@@ -206,6 +252,7 @@ namespace FPDL.Tools.PatternEditor
             component.Modules.Add(new Module(moduleType));
             showPatternFile(pattern);
             contextMenu.MenuItems.Clear();
+            dirtyPattern = true;
         }
 
         private void addSpec(object sender, EventArgs e)
@@ -217,6 +264,7 @@ namespace FPDL.Tools.PatternEditor
             {
                 module.Specifications.Add(spec.specification);
                 showPatternFile(pattern);
+                dirtyPattern = true;
             }
             contextMenu.MenuItems.Clear();
         }
@@ -224,11 +272,15 @@ namespace FPDL.Tools.PatternEditor
         private void editSpec(object sender, EventArgs e)
         {
             Specification specification = (Specification)contextMenu.Tag;
+            if (specification.ReadOnly)
+                return;
+            Module module = (Module)treeView1.SelectedNode.Parent.Tag;
 
-            SpecEditor spec = new SpecEditor(specification);
+            SpecEditor spec = new SpecEditor(specification, module.ModuleType);
             if (spec.ShowDialog() == DialogResult.OK)
             {
                 showPatternFile(pattern);
+                dirtyPattern = true;
             }
             contextMenu.MenuItems.Clear();
         }
@@ -240,9 +292,11 @@ namespace FPDL.Tools.PatternEditor
             module.Specifications.Remove(specification);
             showPatternFile(pattern);
             contextMenu.MenuItems.Clear();
+            dirtyPattern = true;
         }
 
         #endregion
+
 
         #region showPatternLibrary
 
@@ -251,8 +305,8 @@ namespace FPDL.Tools.PatternEditor
             tabControl.Show();
             tabControl.Enabled = true;
 
-            //dataGridView1.
-            foreach (var entry in library.Library)
+            dataGridView1.Rows.Clear();
+            foreach (Entry entry in library.Library)
             {
                 int rowId = dataGridView1.Rows.Add();
                 DataGridViewRow row = dataGridView1.Rows[rowId];
@@ -260,10 +314,92 @@ namespace FPDL.Tools.PatternEditor
                 row.Cells["pattName"].Value = entry.Name;
                 row.Cells["pattVer"].Value = entry.Version;
                 row.Cells["pattRef"].Value = entry.Reference;
-                //dataGridView1.Rows.Add(row);
+                row.Tag = entry;
             }
+            tabControl.SelectTab(1);
+        }
 
+        #endregion
 
+        #region Library Context Menu
+
+        //private TreeNode old_selectNode;
+        private void showLibContextMenu(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                dataGridView1.ContextMenu = libContextMenu;
+                DataGridViewRow row = dataGridView1.SelectedRows[0];
+                DataGridViewCell clickedCell = (sender as DataGridView).Rows[e.RowIndex].Cells[e.ColumnIndex];
+                var relativeMousePosition = dataGridView1.PointToClient(Cursor.Position);
+
+                if (row != null)
+                {
+                    if (row.Tag == null)
+                        return;
+
+                    libContextMenu.MenuItems.Clear();
+                    MenuItem[] items = new MenuItem[3];
+                    items[0] = new MenuItem("View Pattern", viewPattern);
+                    items[1] = new MenuItem("Delete Pattern", deletePattern);
+                    items[2] = new MenuItem("Export Pattern", exportPattern);
+                    libContextMenu.MenuItems.AddRange(items);
+                    libContextMenu.Name = "Library";
+                    libContextMenu.Tag = row.Tag;
+                    libContextMenu.Show(dataGridView1, relativeMousePosition);
+                }
+            }
+        }
+
+        private void viewPattern(object sender, EventArgs e)
+        {
+            Entry entry = (Entry)libContextMenu.Tag;
+            pattern = entry.Pattern;
+            showPatternFile(pattern);
+            libContextMenu.MenuItems.Clear();
+        }
+
+        private void deletePattern(object sender, EventArgs e)
+        {
+            Entry entry = (Entry)libContextMenu.Tag;
+            library.Remove(entry.Reference);
+            if (libraryAutoSave)
+                saveLibrary();
+            showPatternLibrary(library);
+            libContextMenu.MenuItems.Clear();
+        }
+
+        private void exportPattern(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion
+
+        #region Helpers
+
+        private void enableSaveToLibraryButton(PatternObject pattern)
+        {
+            if (library == null)
+            {
+                addToLibraryBut.Enabled = false;
+                return;
+            }
+            foreach (Entry entry in library.Library)
+            {
+                if ((entry.Reference == pattern.ConfigMgmt.DocReference) && (!dirtyPattern))
+                {
+                    addToLibraryBut.Enabled = false;
+                    return;
+                }
+            }
+            addToLibraryBut.Enabled = true;
+        }
+
+        private void saveLibrary()
+        {
+                XDocument doc = new XDocument(library.ToFPDL());
+                doc.Save(libraryFilename);
         }
 
         #endregion
@@ -276,6 +412,52 @@ namespace FPDL.Tools.PatternEditor
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void addToLibraryBut_Click(object sender, EventArgs e)
+        {
+            // Update the Pattern configMgmt if it has been edited
+            if (dirtyPattern && !newPattern)
+            {
+                pattern.ConfigMgmt.NewVersion(Environment.UserName, "New Version");
+            }
+            library.Add(pattern, Environment.UserName, "Added: " + pattern.PatternName);
+            if (libraryAutoSave)
+                saveLibrary();
+            showPatternLibrary(library);
+        }
+
+        private void libraryAutosaveMenuItem_Click(object sender, EventArgs e)
+        {
+            libraryAutoSave = libraryAutosaveMenuItem.Checked;
+            libraryAutosaveMenuItem.Text = (libraryAutoSave) ? "Autosave ON" : "Autosave OFF";
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("FPDL Pattern Editor\nNiteworks CDS\nVersion 0.3", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveLibrary();
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.Filter = "Pattern files | *.xml";
+            saveFileDialog1.InitialDirectory = "\\";
+            saveFileDialog1.FileName = String.Format("{0}-{1}.xml", pattern.PatternName, pattern.ConfigMgmt.DocReference.ToString());
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                XDocument doc = new XDocument(pattern.ToFPDL());
+                doc.Save(saveFileDialog1.FileName);
+            }
         }
     }
 }

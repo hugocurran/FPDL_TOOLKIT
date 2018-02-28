@@ -108,7 +108,7 @@ namespace FPDL.Common
         public XElement ToFPDL()
         {
             XElement fpdl = new XElement("configMgmt",
-                new XElement("SecurityOwner", SecurityOwner),
+                new XElement("securityOwner", SecurityOwner),
                 new XElement("securityClassification", SecurityClassification),
                 new XElement("currentVersion", VersionToString(CurrentVersion)),
                 new XElement("description", Description),
@@ -189,10 +189,33 @@ namespace FPDL.Common
                 prevDocReference = DocReference,
                 changeNotes = changeNotes
             };
-            DocReference = new Guid();
+            DocReference = Guid.NewGuid();
             CurrentVersion = Tuple.Create(Major, Minor);
             _changed.Insert(0, _c);
         }
+        /// <summary>
+        /// Issue a new version of a document
+        /// </summary>
+        /// <param name="author">Author name</param>
+        /// <param name="changeNotes">Change notes</param>
+        public void NewVersion(string author, string changeNotes)
+        {
+            // should check new version num > old version num
+            int major = CurrentVersion.Item1;
+            int minor = CurrentVersion.Item2 + 1;
+            changed _c = new changed
+            {
+                date = DateTime.UtcNow,
+                author = author,
+                newVersion = Tuple.Create(major, minor),
+                prevDocReference = DocReference,
+                changeNotes = changeNotes
+            };
+            DocReference = Guid.NewGuid();
+            CurrentVersion = Tuple.Create(major, minor);
+            _changed.Insert(0, _c);
+        }
+
         /// <summary>
         /// String representation of a ConfigMgmt object
         /// </summary>

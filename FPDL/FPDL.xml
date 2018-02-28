@@ -88,6 +88,13 @@
             <param name="Minor">Minor version number</param>
             <param name="changeNotes">Change notes</param>
         </member>
+        <member name="M:FPDL.Common.ConfigMgmt.NewVersion(System.String,System.String)">
+            <summary>
+            Issue a new version of a document
+            </summary>
+            <param name="author">Author name</param>
+            <param name="changeNotes">Change notes</param>
+        </member>
         <member name="M:FPDL.Common.ConfigMgmt.ToString">
             <summary>
             String representation of a ConfigMgmt object
@@ -361,9 +368,14 @@
             Source type
             </summary>
         </member>
-        <member name="P:FPDL.Common.Source.SourceId">
+        <member name="P:FPDL.Common.Source.EntityId">
             <summary>
-            ID of source
+            Identity of the entity
+            </summary>
+        </member>
+        <member name="P:FPDL.Common.Source.FederateName">
+            <summary>
+            Name of the federate
             </summary>
         </member>
         <member name="F:FPDL.Common.Source.FilterSource">
@@ -392,7 +404,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Common.Source.SetSubscribeSource(FPDL.Common.Source.Type,System.String)">
+        <member name="M:FPDL.Common.Source.SetSubscribeSource(System.Xml.Linq.XElement)">
             <summary>
             Set the identity of the subscription source
             </summary>
@@ -657,6 +669,11 @@
         <member name="P:FPDL.Deploy.Component.ComponentType">
             <summary>
             Component Type
+            </summary>
+        </member>
+        <member name="P:FPDL.Deploy.Component.ComponentName">
+            <summary>
+            Friendly name for component
             </summary>
         </member>
         <member name="M:FPDL.Deploy.Component.#ctor">
@@ -1930,6 +1947,11 @@
         <member name="F:FPDL.Pattern.PatternComponent.ComponentID">
             <summary>
             Component ID
+            </summary>
+        </member>
+        <member name="F:FPDL.Pattern.PatternComponent.ComponentName">
+            <summary>
+            Component name
             </summary>
         </member>
         <member name="F:FPDL.Pattern.PatternComponent.Modules">

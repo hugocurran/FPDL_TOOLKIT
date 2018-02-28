@@ -33,11 +33,22 @@ namespace FPDL.Common
         /// </summary>
         [DeployIf("sourceType", "Federate or Entity")]
         public Type SourceType { get; private set; }
+        ///// <summary>
+        ///// ID of source
+        ///// </summary>
+        //[DeployIf("sourceID", "Federate name or Entity ID")]
+        //public string SourceId { get; private set; }
+
         /// <summary>
-        /// ID of source
+        /// Identity of the entity
         /// </summary>
-        [DeployIf("sourceID", "Federate name or Entity ID")]
-        public string SourceId { get; private set; }
+        [DeployIf("entitySource", "Entity", true)]
+        public string EntityId { get; private set; }
+        /// <summary>
+        /// Name of the federate
+        /// </summary>
+        [DeployIf("federateSource", "Federate", true)]
+        public string FederateName { get; private set; }
 
         /// <summary>
         /// True if this Source refers to a filter
@@ -80,21 +91,18 @@ namespace FPDL.Common
         /// <param name="source">Federate or Entity</param>
         /// <param name="id">Identity</param>
         /// <exception cref="ApplicationException">If source is Entity and name is not a GUID</exception>
-        public void SetSubscribeSource(Type source, string id)
+        public void SetSubscribeSource(XElement id)
         {
-            SourceType = source;
-            if (SourceType == Type.Entity)
+            try
             {
-                try
-                {
-                    Guid _g = Guid.Parse(id);
-                }
-                catch (FormatException e)
-                {
-                    throw new ApplicationException("Deploy.Entities.Subscribe.SetSubscribeSource: Invalid EntityID - ", e);
-                }
+                Guid _g = Guid.Parse(id.Value);
             }
-            SourceId = id;
+            catch (FormatException e)
+            {
+                throw new ApplicationException("Deploy.Entities.Subscribe.SetSubscribeSource: Invalid EntityID - ", e);
+            }
+            EntityId = id.Value;
+            FederateName = id.Attribute("federateName").Value;
         }
         /// <summary>
         /// Deserialise Source object from FPDL
@@ -112,9 +120,9 @@ namespace FPDL.Common
                     FilterSource = false;
 
                 if (fpdl.Element("federateSource") != null)
-                    SetSubscribeSource(Type.Federate, fpdl.Element("federateSource").Value);
+                    FederateName = fpdl.Element("federateSource").Value;
                 else if (fpdl.Element("entitySource") != null)
-                    SetSubscribeSource(Type.Entity, fpdl.Element("entitySource").Value);
+                    SetSubscribeSource(fpdl.Element("entitySource"));
 
                 if (fpdl.Element("object") != null)
                 {
@@ -144,9 +152,9 @@ namespace FPDL.Common
             XElement fpdlType = new XElement("source", new XAttribute("filterSource", FilterSource.ToString()));
 
             if (SourceType == Type.Federate)
-                fpdlType.Add(new XElement("federateSource", SourceId));
+                fpdlType.Add(new XElement("federateSource", FederateName));
             else
-                fpdlType.Add(new XElement("entitySource", SourceId));
+                fpdlType.Add(new XElement("entitySource", EntityId, new XAttribute("federateName", FederateName)));
 
             foreach (HlaObject obj in _objects)
             {
@@ -168,9 +176,9 @@ namespace FPDL.Common
         {
             StringBuilder str = new StringBuilder("Source: ");
             if (SourceType == Type.Federate)
-                str.AppendFormat("(Federate) {0}\n", SourceId);
+                str.AppendFormat("(Federate) {0}\n", FederateName);
             else
-                str.AppendFormat("(Entity) {0}\n", SourceId);
+                str.AppendFormat("(Entity) {0}\n", EntityId);
             foreach (HlaObject obj in _objects)
             {
                 str.AppendFormat("\t{0}\n", obj.ToString());
@@ -195,7 +203,11 @@ namespace FPDL.Common
             for (int i = 0; i < Interactions.Count; i++)
                 t2[i] = Interactions[i].GetNode();
 
-            TreeNode a = new TreeNode(SourceId + " (" + SourceType.ToString());
+            TreeNode a;
+            if (SourceType == Type.Federate)
+                a = new TreeNode(FederateName);
+            else
+                a = new TreeNode(EntityId + " (" + FederateName + ")");
             a.Nodes.AddRange(t1);
             a.Nodes.AddRange(t2);
             a.ToolTipText = "Source federate/entity";

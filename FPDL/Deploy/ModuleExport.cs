@@ -110,8 +110,10 @@ namespace FPDL.Deploy
         public TreeNode GetNode()
         {
             TreeNode[] t0 = new TreeNode[1];
-            t0[0] = new TreeNode(InterfaceName);
-            t0[0].ToolTipText = "Interface Binding";
+            t0[0] = new TreeNode(InterfaceName)
+            {
+                ToolTipText = "Interface Binding"
+            };
 
             TreeNode[] t1 = new TreeNode[Sources.Count];
             for (int i = 0; i < Sources.Count; i++)

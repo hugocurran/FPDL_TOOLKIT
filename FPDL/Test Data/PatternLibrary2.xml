@@ -10,13 +10,13 @@
       <author>PC</author>
       <initialVersion>1.0</initialVersion>
     </created>
-    <docReference>f6262db5-ad3e-419b-ab11-9ee75fd8a1be</docReference>
+    <docReference>5463fbc3-cec5-4f9c-9d2c-73d3d3a308da</docReference>
     <changed>
-      <date>2018-02-26T20:20:36.507521Z</date>
+      <date>2018-02-27T09:49:32.1391828Z</date>
       <author>peter</author>
       <newVersion>1.2</newVersion>
       <prevDocReference>4bf0ec62-7554-41a6-9d46-6d9029f88bd3</prevDocReference>
-      <changeNotes>Added: Test Proximity Filter</changeNotes>
+      <changeNotes>Added: Test LTG</changeNotes>
     </changed>
     <changed>
       <date>2018-02-26T19:14:09.3979019Z</date>
@@ -95,6 +95,8 @@
         </module>
       </component>
     </Pattern>
+  </entry>
+  <entry embedded="True">
     <Pattern>
       <configMgmt>
         <securityOwner>UK</securityOwner>
@@ -281,32 +283,45 @@
         </module>
       </component>
     </Pattern>
+  </entry>
+  <entry embedded="True">
     <Pattern>
       <configMgmt>
         <securityOwner>UK</securityOwner>
-        <securityClassification>Official</securityClassification>
+        <securityClassification>OFFICIAL</securityClassification>
         <currentVersion>1.0</currentVersion>
-        <description>Test Proximity Filter Pattern</description>
+        <description>Initial Version</description>
         <created>
-          <date>2018-02-14T00:00:00Z</date>
-          <author>PC</author>
+          <date>2018-02-27T09:48:04.763186Z</date>
+          <author>peter</author>
           <initialVersion>1.0</initialVersion>
         </created>
-        <docReference>ce40c351-604b-454b-b43b-d32aafe45519</docReference>
+        <docReference>d31d1f28-6e94-4d64-8484-60d469e1c78c</docReference>
         <changed>
-          <date>2018-02-14T00:00:00Z</date>
-          <author>PC</author>
+          <date>2018-02-27T09:48:04.763186Z</date>
+          <author>peter</author>
           <newVersion>1.0</newVersion>
-          <prevDocReference>ce40c351-604b-454b-b43b-d32aafe45519</prevDocReference>
-          <changeNotes>Initial version</changeNotes>
+          <prevDocReference>d31d1f28-6e94-4d64-8484-60d469e1c78c</prevDocReference>
+          <changeNotes>Initial Version</changeNotes>
         </changed>
       </configMgmt>
-      <patternGenericType>filter</patternGenericType>
-      <patternName>Test Proximity Filter</patternName>
-      <description>Test only version of a simple proximity filter pattern</description>
+      <patternGenericType>ltg</patternGenericType>
+      <patternName>Test LTG</patternName>
+      <description>A test</description>
       <component>
-        <componentType>filter</componentType>
-        <componentID>5d876a0e-42e0-4e71-bed5-9e1fc0104564</componentID>
+        <componentType>proxy</componentType>
+        <componentID>4b90b823-bb14-4a18-9b47-5c3dbe62f6c5</componentID>
+        <module>
+          <moduleType>interface</moduleType>
+          <specification>
+            <paramName readOnly="false">interfaceName</paramName>
+            <value>eth0</value>
+          </specification>
+          <specification>
+            <paramName readOnly="false">ipAddress</paramName>
+            <value>10.10.10.1</value>
+          </specification>
+        </module>
         <module>
           <moduleType>interface</moduleType>
         </module>
@@ -317,37 +332,15 @@
           <moduleType>federation</moduleType>
         </module>
         <module>
-          <moduleType>export</moduleType>
+          <moduleType>federation</moduleType>
         </module>
         <module>
           <moduleType>import</moduleType>
         </module>
         <module>
-          <moduleType>filter</moduleType>
-          <specification>
-            <paramName readOnly="true">model</paramName>
-            <value>27</value>
-          </specification>
-          <specification>
-            <paramName readOnly="true">filterID</paramName>
-            <value>00000001-0001-0001-0001-1234567890ab</value>
-          </specification>
-          <specification>
-            <paramName readOnly="true">ObjectA ID</paramName>
-            <value>entityParam</value>
-          </specification>
-          <specification>
-            <paramName readOnly="true">ObjectB ID</paramName>
-            <value>entityParam</value>
-          </specification>
-          <specification>
-            <paramName readOnly="true">ObjectC ID</paramName>
-            <value>entityParam</value>
-          </specification>
+          <moduleType>export</moduleType>
         </module>
       </component>
     </Pattern>
   </entry>
-  <entry embedded="True" />
-  <entry embedded="True" />
 </PatternLibrary>

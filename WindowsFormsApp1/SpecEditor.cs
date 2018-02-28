@@ -28,14 +28,39 @@ namespace FPDL.Tools.PatternEditor
         }
 
         // Edit mode
-        public SpecEditor(Specification specification)
+        public SpecEditor(Specification specification, Enums.ModuleType moduleType)
         {
             this.specification = specification;
+            this.moduleType = moduleType;
             InitializeComponent();
+            loadList(moduleType);
             this.Text = "Edit Specification";
+            if (moduleType == Enums.ModuleType.extension)
+                paramCbx.Items.Add(specification.ParamName);
             paramCbx.SelectedItem = specification.ParamName;
             valueTbx.Text = specification.Value;
             readOnlyCk.Checked = specification.ReadOnly;
+        }
+
+        // Generic param/value edit
+        public SpecEditor(string parameter, string value, bool readOnlyPossible = false, bool readOnly = false)
+        {
+            specification = new Specification()
+            {
+                ParamName = parameter,
+                Value = value,
+                ReadOnly = readOnly
+            };
+            InitializeComponent();
+            this.Text = "Edit " + parameter;
+            paramCbx.Items.Add(specification.ParamName);
+            paramCbx.SelectedItem = specification.ParamName;
+            valueTbx.Text = specification.Value;
+            if (readOnlyPossible)
+                readOnlyCk.Checked = specification.ReadOnly;
+            else
+                readOnlyCk.Enabled = false;
+            moduleType = Enums.ModuleType.extension; // Allows soft parameter names
         }
 
         private void apply_Click(object sender, EventArgs e)

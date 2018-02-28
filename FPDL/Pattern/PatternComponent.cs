@@ -22,6 +22,10 @@ namespace FPDL.Pattern
         /// </summary>
         public Guid ComponentID;
         /// <summary>
+        /// Component name
+        /// </summary>
+        public string ComponentName;
+        /// <summary>
         /// Modules
         /// </summary>
         public List<Module> Modules = new List<Module>();
@@ -50,6 +54,7 @@ namespace FPDL.Pattern
             {
                 ComponentType = (Enums.ComponentType)Enum.Parse(typeof(Enums.ComponentType), fpdl.Element("componentType").Value);
                 ComponentID = Guid.Parse(fpdl.Element("componentID").Value);
+                ComponentName = fpdl.Element("componentName").Value;
                 foreach (XElement module in fpdl.Descendants("module"))
                     Modules.Add(new Module(module));
             }
@@ -70,7 +75,8 @@ namespace FPDL.Pattern
         {
             XElement fpdl = new XElement("component",
                 new XElement("componentType", ComponentType.ToString()),
-                new XElement("componentID", ComponentID.ToString())
+                new XElement("componentID", ComponentID.ToString()),
+                new XElement("componentName", ComponentName)
                 );
             foreach (Module module in Modules)
                 fpdl.Add(module.ToFPDL());
@@ -95,10 +101,16 @@ namespace FPDL.Pattern
         /// <returns></returns>
         public TreeNode GetNode()
         {
-            TreeNode[] t1 = new TreeNode[1];
-            t1[0] = new TreeNode("Component ID = " + ComponentID.ToString());
-            t1[0].ToolTipText = "Component ID";
-            //t1[2] = new TreeNode("Modules");
+            TreeNode[] t1 = new TreeNode[2];
+            t1[0] = new TreeNode("Component ID = " + ComponentID.ToString())
+            {
+                ToolTipText = "Component ID"
+            };
+            t1[1] = new TreeNode("Component Name = " + ComponentName)
+            {
+                ToolTipText = "Right-click to edit",
+                Tag = this
+            };
 
             TreeNode[] t = new TreeNode[Modules.Count];
             for (int i = 0; i < Modules.Count; i++)

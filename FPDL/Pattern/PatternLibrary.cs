@@ -103,19 +103,24 @@ namespace FPDL.Pattern
                 );
             // The library entry either has embedded Pattern or a summery of a Pattern contained in a file
             foreach (Entry entry in _library)
-            {
-                fpdl.Add(new XElement("entry", new XAttribute("embedded", entry.Embedded.ToString())));
+            { 
                 if (entry.Embedded)
                 {
-                    fpdl.Add(entry.Pattern.ToFPDL());
+                    fpdl.Add(new XElement("entry", 
+                        new XAttribute("embedded", entry.Embedded.ToString()),
+                        new XElement(entry.Pattern.ToFPDL()))
+                        );
                 }
                 else
                 {
-                    fpdl.Add(new XElement("patternGenericType", entry.Type.ToString()));
-                    fpdl.Add(new XElement("patternName", entry.Name));
-                    fpdl.Add(new XElement("patternVersion", entry.Version));
-                    fpdl.Add(new XElement("patternReference", entry.Reference));
-                    fpdl.Add(new XElement("fileName", entry.Filename));
+                    fpdl.Add(new XElement("entry",
+                        new XAttribute("embedded", entry.Embedded.ToString()),
+                        new XElement("patternGenericType", entry.Type.ToString()),
+                        new XElement("patternName", entry.Name),
+                        new XElement("patternVersion", entry.Version),
+                        new XElement("patternReference", entry.Reference),
+                        new XElement("fileName", entry.Filename))
+                        );
                 }
             }
             return fpdl;

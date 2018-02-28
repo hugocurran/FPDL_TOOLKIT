@@ -10,6 +10,7 @@ using FPDL.Pattern;
 using System.IO;
 using System.Xml;
 using System.Xml.Linq;
+using System.Drawing;
 
 namespace FPDL.Tools.DeployEditor
 {
@@ -24,11 +25,22 @@ namespace FPDL.Tools.DeployEditor
         // Keep track of the total number of System nodes in the Deploy doc
         //private int deploySystemsCount;
 
+        private ContextMenu designContextMenu;
+        private ContextMenu deployContextMenu;
+
         public DeployEditor()
         {
             InitializeComponent();
             createDeploy.Enabled = false;
             toolStripStatusLabel1.Text = "Pattern Library not loaded";
+
+            designContextMenu = new ContextMenu();
+            deployContextMenu = new ContextMenu();
+            designTreeView.ContextMenu = designContextMenu;
+            designTreeView.NodeMouseClick += new TreeNodeMouseClickEventHandler(showDesignContextMenu);
+            deployTreeView.ContextMenu = deployContextMenu;
+            deployTreeView.NodeMouseClick += new TreeNodeMouseClickEventHandler(showDeployContextMenu);
+
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -220,8 +232,10 @@ namespace FPDL.Tools.DeployEditor
 
             designTreeView.Nodes.Clear();
 
-            TreeNode federation = new TreeNode(design.Federation.Name, DesignViewBuilder.getFederates(design.Federation.Federates));
-            federation.Tag = "ROOT";
+            TreeNode federation = new TreeNode(design.Federation.Name, DesignViewBuilder.getFederates(design.Federation.Federates))
+            {
+                Tag = design.Federation
+            };
             designTreeView.Nodes.Add(federation);
             designTreeView.ExpandAll();
         }
@@ -242,31 +256,31 @@ namespace FPDL.Tools.DeployEditor
                 return;
             object tag = ((TreeView)sender).SelectedNode.Tag;
 
-            // Pattern 
-            if (tag.GetType() == typeof(DeploySystem))
-            {
-                DeploySystem system = (DeploySystem)tag;
-                if (system.Components.Count == 0)      // No pattern applied
-                {
-                    PatternSelect patternSelect = new PatternSelect();
-                    patternSelect.initialise(library, system.PatternType);
-                    if (patternSelect.ShowDialog() == DialogResult.OK)
-                    {
-                        PatternObject pattern = patternSelect.getPattern();
-                        Federate federate = null;
-                        // Find the federate in Design by name
-                        foreach (Federate fed in design.Federation.Federates)
-                        {
-                            if (system.FederateName == fed.FederateName)
-                            {
-                                federate = fed;
-                                break;
-                            }
-                        }
-                        BuildIt.AddPattern(federate, system, pattern);
-                    }
-                }
-            } // end pattern
+            //// Pattern 
+            //if (tag.GetType() == typeof(DeploySystem))
+            //{
+            //    DeploySystem system = (DeploySystem)tag;
+            //    if (system.Components.Count == 0)      // No pattern applied
+            //    {
+            //        PatternSelect patternSelect = new PatternSelect();
+            //        patternSelect.initialise(library, system.PatternType);
+            //        if (patternSelect.ShowDialog() == DialogResult.OK)
+            //        {
+            //            PatternObject pattern = patternSelect.getPattern();
+            //            Federate federate = null;
+            //            // Find the federate in Design by name
+            //            foreach (Federate fed in design.Federation.Federates)
+            //            {
+            //                if (system.FederateName == fed.FederateName)
+            //                {
+            //                    federate = fed;
+            //                    break;
+            //                }
+            //            }
+            //            BuildIt.AddPattern(federate, system, pattern);
+            //        }
+            //    }
+            //} // end pattern
 
             // Module edit
             if (tag.GetType() == typeof(ModuleInterface))
@@ -295,6 +309,224 @@ namespace FPDL.Tools.DeployEditor
 
 
         #endregion
+
+        #region Design Context Menu
+
+        //private TreeNode old_selectNode;
+        private void showDesignContextMenu(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                Point p = new Point(e.X, e.Y);
+                TreeNode node = designTreeView.GetNodeAt(p);
+                if (node != null)
+                {
+                    //old_selectNode = treeView1.SelectedNode;
+                   designTreeView.SelectedNode = node;
+
+                    if (node.Tag == null)
+                        return;
+
+                    // Root (system) menu
+                    if (node.Tag.GetType() == typeof(Federation))
+                    {
+                        designContextMenu.MenuItems.Clear();
+                        MenuItem[] items = new MenuItem[1];
+                        items[0] = new MenuItem("Add all federates", addFederation);
+                        designContextMenu.MenuItems.AddRange(items);
+                        designContextMenu.Name = "Add Federation";
+                        designContextMenu.Tag = node.Tag;                   }
+                    // Federate menu
+                    if (node.Tag.GetType() == typeof(Federate))
+                    {
+                        designContextMenu.MenuItems.Clear();
+                        MenuItem[] items = new MenuItem[1];
+                        items[0] = new MenuItem("Add this federate", addFederate);
+                        designContextMenu.MenuItems.AddRange(items);
+                        designContextMenu.Name = "Add Federate";
+                        designContextMenu.Tag = node.Tag;
+                    }
+                }
+            }
+        }
+
+        private void addFederation(object sender, EventArgs e)
+        {
+            if (designTreeView.SelectedNode == null)
+                return;
+
+            Federation federation = (Federation)designContextMenu.Tag;
+            deploy = BuildIt.Initialise(design, "UK", "Official", this);
+            showDeployTree();
+            createDeploy.Enabled = checkListTest();
+            designContextMenu.MenuItems.Clear();
+        }
+
+        private void addFederate(object sender, EventArgs e)
+        {
+            if (designTreeView.SelectedNode == null)
+                return;
+
+            Federate federation = (Federate)designContextMenu.Tag;
+            //deploy = BuildIt.Initialise(design, "UK", "Official", this);
+            showDeployTree();
+            createDeploy.Enabled = checkListTest();
+            designContextMenu.MenuItems.Clear();
+        }
+
+        #endregion
+
+        #region Deploy Context Menu
+
+        //private TreeNode old_selectNode;
+        private void showDeployContextMenu(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                if (library == null)
+                {
+                    MessageBox.Show("No Pattern Library Loaded", "Deploy Editor", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                    return;
+                }
+                Point p = new Point(e.X, e.Y);
+                TreeNode node = deployTreeView.GetNodeAt(p);
+                if (node != null)
+                {
+                    //old_selectNode = treeView1.SelectedNode;
+                    deployTreeView.SelectedNode = node;
+
+                    if (node.Tag == null)
+                        return;
+
+                    Type nodeType = node.Tag.GetType();
+                    Type nodeParentType = node.Parent.Tag.GetType();
+                    // Root (System) menu
+                    if (nodeType == typeof(DeploySystem))
+                    {
+                        deployContextMenu.MenuItems.Clear();
+                        MenuItem[] items = new MenuItem[1];
+                        items[0] = new MenuItem("Apply Pattern", applyPattern);
+                        deployContextMenu.MenuItems.AddRange(items);
+                        deployContextMenu.Name = "Apply pattern";
+                        deployContextMenu.Tag = node.Tag;
+                    }
+                    //// Component menu
+                    //if (node.Tag.GetType() == typeof(Component))
+                    //{
+                    //    deployContextMenu.MenuItems.Clear();
+                    //    MenuItem[] items = new MenuItem[8];
+                    //    items[0] = new MenuItem("Interface", addModule);
+                    //    items[1] = new MenuItem("Host", addModule);
+                    //    items[2] = new MenuItem("Federation", addModule);
+                    //    items[3] = new MenuItem("OSP", addModule);
+                    //    items[4] = new MenuItem("Import", addModule);
+                    //    items[5] = new MenuItem("Export", addModule);
+                    //    items[6] = new MenuItem("Filter", addModule);
+                    //    items[7] = new MenuItem("Extension", addModule);
+                    //    deployContextMenu.MenuItems.AddRange(items);
+                    //    deployContextMenu.Name = "Add Module";
+                    //    deployContextMenu.Tag = node.Tag;
+                    //}
+                    // Module menu
+                    if (nodeType.IsInstanceOfType(typeof(IModule)))
+                    {
+                        deployContextMenu.MenuItems.Clear();
+                        MenuItem[] items = new MenuItem[1];
+                        items[0] = new MenuItem("Add specification", addSpec);
+                        deployContextMenu.MenuItems.AddRange(items);
+                        deployContextMenu.Name = "Add Specification";
+                        deployContextMenu.Tag = node.Tag;
+                    }
+                    // Specification menu
+                    if (nodeParentType.IsInstanceOfType(typeof(IModule)))
+                        //if (node.Parent.Tag.GetType() == typeof(IModule))
+                    {
+                        deployContextMenu.MenuItems.Clear();
+                        MenuItem[] items = new MenuItem[2];
+                        items[0] = new MenuItem("Edit specification", editSpec);
+                        items[1] = new MenuItem("Delete specification", deleteSpec);
+                        deployContextMenu.MenuItems.AddRange(items);
+                        deployContextMenu.Name = "Edit Specification";
+                        deployContextMenu.Tag = node.Tag;
+                    }
+                }
+            }
+        }
+
+        private void applyPattern(object sender, EventArgs e)
+        {
+            DeploySystem system = (DeploySystem)deployContextMenu.Tag;
+            if (system.Components.Count == 0)      // No pattern applied
+            {
+                PatternSelect patternSelect = new PatternSelect();
+                patternSelect.initialise(library, system.PatternType);
+                if (patternSelect.ShowDialog() == DialogResult.OK)
+                {
+                    PatternObject pattern = patternSelect.getPattern();
+                    Federate federate = null;
+                    // Find the federate in Design by name
+                    foreach (Federate fed in design.Federation.Federates)
+                    {
+                        if (system.FederateName == fed.FederateName)
+                        {
+                            federate = fed;
+                            break;
+                        }
+                    }
+                    BuildIt.AddPattern(federate, system, pattern);
+                    showDeployTree();
+                }
+            }
+        }
+
+        private void addModule(object sender, EventArgs e)
+        {
+            PatternComponent component = (PatternComponent)deployContextMenu.Tag;
+            Enums.ModuleType moduleType = (Enums.ModuleType)Enum.Parse(typeof(Enums.ModuleType), ((MenuItem)sender).Text.ToLower());
+            component.Modules.Add(new Module(moduleType));
+            showDeployTree();
+            deployContextMenu.MenuItems.Clear();
+        }
+
+        private void addSpec(object sender, EventArgs e)
+        {
+            Module module = (Module)deployContextMenu.Tag;
+
+            //SpecEditor spec = new SpecEditor(module.ModuleType);
+            //if (spec.ShowDialog() == DialogResult.OK)
+            //{
+            //    module.Specifications.Add(spec.specification);
+            //    showDeployTree();
+            //}
+            deployContextMenu.MenuItems.Clear();
+        }
+
+        private void editSpec(object sender, EventArgs e)
+        {
+            Specification specification = (Specification)deployContextMenu.Tag;
+            if (specification.ReadOnly)
+                return;
+            Module module = (Module)deployTreeView.SelectedNode.Parent.Tag;
+
+            //SpecEditor spec = new SpecEditor(specification, module.ModuleType);
+            //if (spec.ShowDialog() == DialogResult.OK)
+            //{
+            //    showDeployTree();
+            //}
+            deployContextMenu.MenuItems.Clear();
+        }
+
+        private void deleteSpec(object sender, EventArgs e)
+        {
+            Specification specification = (Specification)deployContextMenu.Tag;
+            Module module = (Module)deployTreeView.SelectedNode.Parent.Tag;
+            module.Specifications.Remove(specification);
+            showDeployTree();
+            deployContextMenu.MenuItems.Clear();
+        }
+
+        #endregion
+
 
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)

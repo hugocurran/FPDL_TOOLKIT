@@ -10,9 +10,9 @@
       <author>PC</author>
       <initialVersion>1.0</initialVersion>
     </created>
-    <docReference>f6262db5-ad3e-419b-ab11-9ee75fd8a1be</docReference>
+    <docReference>7fbe7bd1-d420-4844-a86d-d75fe7d92edc</docReference>
     <changed>
-      <date>2018-02-26T20:20:36.507521Z</date>
+      <date>2018-02-26T20:31:01.0923679Z</date>
       <author>peter</author>
       <newVersion>1.2</newVersion>
       <prevDocReference>4bf0ec62-7554-41a6-9d46-6d9029f88bd3</prevDocReference>
@@ -95,6 +95,8 @@
         </module>
       </component>
     </Pattern>
+  </entry>
+  <entry embedded="True">
     <Pattern>
       <configMgmt>
         <securityOwner>UK</securityOwner>
@@ -281,6 +283,8 @@
         </module>
       </component>
     </Pattern>
+  </entry>
+  <entry embedded="True">
     <Pattern>
       <configMgmt>
         <securityOwner>UK</securityOwner>
@@ -348,6 +352,4 @@
       </component>
     </Pattern>
   </entry>
-  <entry embedded="True" />
-  <entry embedded="True" />
 </PatternLibrary>

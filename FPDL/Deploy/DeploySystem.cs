@@ -143,7 +143,7 @@ namespace FPDL.Deploy
             TreeNode a = new TreeNode("System = " + SystemType.ToString().ToUpper());
             a.Nodes.AddRange(t1);
             a.Nodes.AddRange(t);
-            a.ToolTipText = "System";
+            a.ToolTipText = "Right-click to add pattern";
             a.Tag = this;
             return a;
         }

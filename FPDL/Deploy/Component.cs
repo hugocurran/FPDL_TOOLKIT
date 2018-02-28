@@ -29,6 +29,11 @@ namespace FPDL.Deploy
         [DeployIf("configMgmt", "Configuration Management Data")]
         public Enums.ComponentType ComponentType { get; set; }
         /// <summary>
+        /// Friendly name for component
+        /// </summary>
+        [DeployIf("componentName", "Friendly name for component", true)]
+        public string ComponentName { get; set; }
+        /// <summary>
         /// Construct Component object
         /// </summary>
         public Component()
@@ -55,6 +60,8 @@ namespace FPDL.Deploy
             {
                 ComponentID = Guid.Parse(fpdl.Attribute("componentID").Value);
                 ComponentType = (Enums.ComponentType)Enum.Parse(typeof(Enums.ComponentType), fpdl.Attribute("componentType").Value);
+                if (fpdl.Attribute("componentName") != null)
+                    ComponentName = fpdl.Attribute("componentName").Value;
                 ModuleFactory.Create(fpdl, this);
             }
             catch (ArgumentException e)
@@ -76,6 +83,8 @@ namespace FPDL.Deploy
                     new XElement("componentID", ComponentID.ToString()),
                     new XElement("componentType", ComponentType.ToString())
                     );
+            if (ComponentName != "")
+                fpdl.Add(new XAttribute("componentName", ComponentName));
 
             foreach (IModule module in Modules)
             {
@@ -92,6 +101,7 @@ namespace FPDL.Deploy
             StringBuilder str = new StringBuilder("=======\nComponent ");
             str.AppendFormat("({0}):\n", ComponentID);
             str.AppendFormat("  Type: {0}\n", ComponentType);
+            str.AppendFormat("  Name: {0}\n", ComponentName);
             foreach (IModule mod in Modules)
                 str.AppendFormat("  {0}\n", mod.ToString());
             return str.ToString();
@@ -102,9 +112,15 @@ namespace FPDL.Deploy
         /// <returns></returns>
         public TreeNode GetNode()
         {
-            TreeNode[] t1 = new TreeNode[1];
-            t1[0] = new TreeNode("Component ID = " + ComponentID.ToString());
-            t1[0].ToolTipText = "Component ID reference";
+            TreeNode[] t1 = new TreeNode[2];
+            t1[0] = new TreeNode("Component ID = " + ComponentID.ToString())
+            {
+                ToolTipText = "Component ID reference"
+            };
+            t1[1] = new TreeNode("Component Name = " + ComponentName)
+            {
+                ToolTipText = "Component friendly name"
+            };
 
             TreeNode[] t = new TreeNode[Modules.Count];
             for (int i = 0; i < Modules.Count; i++)

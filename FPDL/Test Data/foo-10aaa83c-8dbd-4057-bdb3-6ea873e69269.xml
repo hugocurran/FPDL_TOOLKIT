@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Pattern>
+  <configMgmt>
+    <SecurityOwner>UK</SecurityOwner>
+    <securityClassification>OFFICIAL</securityClassification>
+    <currentVersion>1.0</currentVersion>
+    <description>Initial Version</description>
+    <created>
+      <date>2018-02-26T19:46:20.0794778Z</date>
+      <author>peter</author>
+      <initialVersion>1.0</initialVersion>
+    </created>
+    <docReference>10aaa83c-8dbd-4057-bdb3-6ea873e69269</docReference>
+    <changed>
+      <date>2018-02-26T19:46:20.0794778Z</date>
+      <author>peter</author>
+      <newVersion>1.0</newVersion>
+      <prevDocReference>10aaa83c-8dbd-4057-bdb3-6ea873e69269</prevDocReference>
+      <changeNotes>Initial Version</changeNotes>
+    </changed>
+  </configMgmt>
+  <patternGenericType>htg</patternGenericType>
+  <patternName>foo</patternName>
+  <description>bar</description>
+  <component>
+    <componentType>proxy</componentType>
+    <componentID>b55ca3d3-446f-494a-9000-e587e3e89459</componentID>
+    <module>
+      <moduleType>interface</moduleType>
+    </module>
+    <module>
+      <moduleType>federation</moduleType>
+    </module>
+  </component>
+</Pattern>
