@@ -218,7 +218,11 @@ namespace FPDL.Tools.DeployEditor
             TreeNode treeRoot = deploy.GetNode();
             deployTreeView.Nodes.Add(treeRoot);
             deployTreeView.ShowNodeToolTips = true;
-            deployTreeView.ExpandAll();
+            deployTreeView.CollapseAll();
+            if (deployTreeView.SelectedNode == null)
+                deployTreeView.ExpandAll();
+            else
+                deployTreeView.SelectedNode.ExpandAll();
         }
 
         #endregion
@@ -383,11 +387,6 @@ namespace FPDL.Tools.DeployEditor
         {
             if (e.Button == MouseButtons.Right)
             {
-                if (library == null)
-                {
-                    MessageBox.Show("No Pattern Library Loaded", "Deploy Editor", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                    return;
-                }
                 Point p = new Point(e.X, e.Y);
                 TreeNode node = deployTreeView.GetNodeAt(p);
                 if (node != null)
@@ -404,31 +403,29 @@ namespace FPDL.Tools.DeployEditor
                     if (nodeType == typeof(DeploySystem))
                     {
                         deployContextMenu.MenuItems.Clear();
+                        if (library == null)
+                        {
+                            MessageBox.Show("No Pattern Library Loaded", "Deploy Editor", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                            return;
+                        }
                         MenuItem[] items = new MenuItem[1];
                         items[0] = new MenuItem("Apply Pattern", applyPattern);
                         deployContextMenu.MenuItems.AddRange(items);
                         deployContextMenu.Name = "Apply pattern";
                         deployContextMenu.Tag = node.Tag;
                     }
-                    //// Component menu
-                    //if (node.Tag.GetType() == typeof(Component))
-                    //{
-                    //    deployContextMenu.MenuItems.Clear();
-                    //    MenuItem[] items = new MenuItem[8];
-                    //    items[0] = new MenuItem("Interface", addModule);
-                    //    items[1] = new MenuItem("Host", addModule);
-                    //    items[2] = new MenuItem("Federation", addModule);
-                    //    items[3] = new MenuItem("OSP", addModule);
-                    //    items[4] = new MenuItem("Import", addModule);
-                    //    items[5] = new MenuItem("Export", addModule);
-                    //    items[6] = new MenuItem("Filter", addModule);
-                    //    items[7] = new MenuItem("Extension", addModule);
-                    //    deployContextMenu.MenuItems.AddRange(items);
-                    //    deployContextMenu.Name = "Add Module";
-                    //    deployContextMenu.Tag = node.Tag;
-                    //}
+                    // Component menu
+                    if (node.Tag.GetType() == typeof(Component))
+                    {
+                        deployContextMenu.MenuItems.Clear();
+                        MenuItem[] items = new MenuItem[1];
+                        items[0] = new MenuItem("Edit component name", editComponent);
+                        deployContextMenu.MenuItems.AddRange(items);
+                        deployContextMenu.Name = "Edit component";
+                        deployContextMenu.Tag = node.Tag;
+                    }
                     // Module menu
-                    if (nodeType.IsInstanceOfType(typeof(IModule)))
+                    if (node.Tag is IModule)
                     {
                         deployContextMenu.MenuItems.Clear();
                         MenuItem[] items = new MenuItem[1];
@@ -438,8 +435,7 @@ namespace FPDL.Tools.DeployEditor
                         deployContextMenu.Tag = node.Tag;
                     }
                     // Specification menu
-                    if (nodeParentType.IsInstanceOfType(typeof(IModule)))
-                        //if (node.Parent.Tag.GetType() == typeof(IModule))
+                    if (node.Tag.GetType() == typeof(Specification))
                     {
                         deployContextMenu.MenuItems.Clear();
                         MenuItem[] items = new MenuItem[2];
@@ -479,25 +475,27 @@ namespace FPDL.Tools.DeployEditor
             }
         }
 
-        private void addModule(object sender, EventArgs e)
+        private void editComponent(object sender, EventArgs e)
         {
-            PatternComponent component = (PatternComponent)deployContextMenu.Tag;
-            Enums.ModuleType moduleType = (Enums.ModuleType)Enum.Parse(typeof(Enums.ModuleType), ((MenuItem)sender).Text.ToLower());
-            component.Modules.Add(new Module(moduleType));
-            showDeployTree();
+            Component component = (Component)deployContextMenu.Tag;
+            SpecEditor spec = new SpecEditor("componentName", component.ComponentName);
+            if (spec.ShowDialog() == DialogResult.OK)
+            {
+                component.ComponentName = spec.specification.Value;
+                showDeployTree();
+            }
             deployContextMenu.MenuItems.Clear();
         }
 
         private void addSpec(object sender, EventArgs e)
         {
-            Module module = (Module)deployContextMenu.Tag;
-
-            //SpecEditor spec = new SpecEditor(module.ModuleType);
-            //if (spec.ShowDialog() == DialogResult.OK)
-            //{
-            //    module.Specifications.Add(spec.specification);
-            //    showDeployTree();
-            //}
+            IModule module = (IModule)deployContextMenu.Tag;
+            SpecEditor spec = new SpecEditor(module.GetModuleType());
+            if (spec.ShowDialog() == DialogResult.OK)
+            {
+                module.ApplyPattern(spec.specification);
+                showDeployTree();
+            }
             deployContextMenu.MenuItems.Clear();
         }
 
@@ -506,13 +504,13 @@ namespace FPDL.Tools.DeployEditor
             Specification specification = (Specification)deployContextMenu.Tag;
             if (specification.ReadOnly)
                 return;
-            Module module = (Module)deployTreeView.SelectedNode.Parent.Tag;
+            IModule module = (IModule)deployTreeView.SelectedNode.Parent.Tag;
 
-            //SpecEditor spec = new SpecEditor(specification, module.ModuleType);
-            //if (spec.ShowDialog() == DialogResult.OK)
-            //{
-            //    showDeployTree();
-            //}
+            SpecEditor spec = new SpecEditor(specification, module.GetModuleType());
+            if (spec.ShowDialog() == DialogResult.OK)
+            {
+                showDeployTree();
+            }
             deployContextMenu.MenuItems.Clear();
         }
 

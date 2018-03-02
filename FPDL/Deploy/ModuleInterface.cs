@@ -116,12 +116,16 @@ namespace FPDL.Deploy
         {
             TreeNode[] t = new TreeNode[4];
             t[0] = new TreeNode("InterfaceName = " + InterfaceName);
+            t[0].Tag = new Specification { ParamName = "interfaceName", Value = InterfaceName };
             t[0].ToolTipText = "Interface Name";
             t[1] = new TreeNode("IP Address = " + IpAddress);
+            t[1].Tag = new Specification { ParamName = "ipAddress", Value = IpAddress };
             t[1].ToolTipText = "IP Address";
             t[2] = new TreeNode("Network Prefix = " + NetPrefix);
+            t[2].Tag = new Specification { ParamName = "netPrefix", Value = NetPrefix };
             t[2].ToolTipText = "Network Prefix (eg 24)";
             t[3] = new TreeNode("Default Router = " + DefaultRouter);
+            t[3].Tag = new Specification { ParamName = "defaultRouter", Value = DefaultRouter };
             t[3].ToolTipText = "Default Router";
 
             TreeNode a = new TreeNode("Interface", t);
@@ -136,22 +140,28 @@ namespace FPDL.Deploy
         public void ApplyPattern(List<Specification> specifications)
         {
             foreach (Specification spec in specifications)
+                ApplyPattern(spec);
+        }
+        /// <summary>
+        /// Apply specifications from a Pattern to this module
+        /// </summary>
+        /// <param name="specification"></param>
+        public void ApplyPattern(Specification specification)
+        {
+            switch (specification.ParamName)
             {
-                switch (spec.ParamName)
-                {
-                    case "interfaceName":
-                        InterfaceName = spec.Value;
-                        break;
-                    case "ipAddress":
-                        IpAddress = spec.Value;
-                        break;
-                    case "netPrefix":
-                        NetPrefix = spec.Value;
-                        break;
-                    case "defaultRouter":
-                        DefaultRouter = spec.Value;
-                        break;
-                }
+                case "interfaceName":
+                    InterfaceName = specification.Value;
+                    break;
+                case "ipAddress":
+                    IpAddress = specification.Value;
+                    break;
+                case "netPrefix":
+                    NetPrefix = specification.Value;
+                    break;
+                case "defaultRouter":
+                    DefaultRouter = specification.Value;
+                    break;
             }
         }
     }

@@ -23,6 +23,7 @@ namespace FPDL.Tools.DeployEditor
         public PatternSelect()
         {
             InitializeComponent();
+            patternListGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         internal void initialise(PatternLibrary library, Enums.PatternType patternType)
@@ -51,7 +52,7 @@ namespace FPDL.Tools.DeployEditor
                 };
                 patternListGrid.Rows.Add(row);
                 patternListGrid.Rows[i].Tag = patternList[i].Pattern;
-                patternTypeLabel.Text += patternType.ToString().ToUpper();
+                patternTypeLabel.Text = "Patterns of type: " + patternType.ToString().ToUpper();
             }
         }
 
@@ -78,11 +79,6 @@ namespace FPDL.Tools.DeployEditor
         {
             DialogResult = DialogResult.Cancel;
             Close();
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
         }
     }
 }

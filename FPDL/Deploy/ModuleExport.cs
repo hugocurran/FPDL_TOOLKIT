@@ -112,12 +112,16 @@ namespace FPDL.Deploy
             TreeNode[] t0 = new TreeNode[1];
             t0[0] = new TreeNode(InterfaceName)
             {
-                ToolTipText = "Interface Binding"
-            };
+                ToolTipText = "Interface Binding",
+                Tag = new Specification { ParamName = "interfaceName", Value = InterfaceName }
+        };
 
             TreeNode[] t1 = new TreeNode[Sources.Count];
             for (int i = 0; i < Sources.Count; i++)
+            {
                 t1[i] = Sources[i].GetNode();
+                t1[i].Tag = null;
+            }
 
             TreeNode a = new TreeNode("Export Policy");
             a.Nodes.AddRange(t0);
@@ -133,15 +137,24 @@ namespace FPDL.Deploy
         public void ApplyPattern(List<Specification> specifications)
         {
             foreach (Specification spec in specifications)
+                ApplyPattern(spec);
+
+        }
+        /// <summary>
+        /// Apply specifications from a Pattern to this module
+        /// </summary>
+        /// <param name="specification"></param>
+        public void ApplyPattern(Specification specification)
+        {
+            switch (specification.ParamName)
             {
-                switch (spec.ParamName)
-                {
-                    case "interfaceName":
-                        InterfaceName = spec.Value;
-                        break;
-                }
+                case "interfaceName":
+                    InterfaceName = specification.Value;
+                    break;
             }
         }
+
+
         /// <summary>
         /// Apply specifications from a Design to this module
         /// </summary>

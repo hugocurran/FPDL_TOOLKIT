@@ -35,5 +35,10 @@ namespace FPDL.Deploy
         /// </summary>
         /// <param name="specifications"></param>
         void ApplyPattern(List<Specification> specifications);
+        /// <summary>
+        /// Apply specification from a Pattern to this module
+        /// </summary>
+        /// <param name="specification"></param>
+        void ApplyPattern(Specification specification);
     }
 }

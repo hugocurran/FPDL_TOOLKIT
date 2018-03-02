@@ -103,11 +103,15 @@ namespace FPDL.Deploy
         {
             TreeNode[] t = new TreeNode[Parameters.Count];
             int i = 0;
-            foreach(var param in Parameters)
+            foreach (var param in Parameters)
+            {
                 t[i++] = new TreeNode(param.Key + " = " + param.Value);
+                t[i].Tag = new Specification { ParamName = param.Key, Value = param.Value };
+            }
 
             TreeNode[] t1 = new TreeNode[1];
             t1[0] = new TreeNode("Vendor name = " + VendorName, t);
+            t1[0].Tag = new Specification { ParamName = "vendorName", Value = VendorName };
 
             TreeNode a = new TreeNode("Extensions", t1)
             {
@@ -124,16 +128,23 @@ namespace FPDL.Deploy
         public void ApplyPattern(List<Specification> specifications)
         {
             foreach (Specification spec in specifications)
+                ApplyPattern(spec);
+
+        }
+        /// <summary>
+        /// Apply specifications from a Pattern to this module
+        /// </summary>
+        /// <param name="specification"></param>
+        public void ApplyPattern(Specification specification)
+        {
+            switch (specification.ParamName)
             {
-                switch (spec.ParamName)
-                {
-                    case "vendorName":
-                        VendorName = spec.Value;
-                        break;
-                    default:
-                        Parameters.Add(spec.ParamName, spec.Value);
-                        break;
-                }
+                case "vendorName":
+                    VendorName = specification.Value;
+                    break;
+                default:
+                    Parameters.Add(specification.ParamName, specification.Value);
+                    break;
             }
         }
     }

@@ -1,346 +1,351 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <PatternLibrary>
-  <configMgmt>
-    <securityOwner>UK</securityOwner>
-    <securityClassification>Official</securityClassification>
-    <currentVersion>1.2</currentVersion>
-    <description>Pattern Library for testing</description>
-    <created>
-      <date>2018-02-07T00:00:00Z</date>
-      <author>PC</author>
-      <initialVersion>1.0</initialVersion>
-    </created>
-    <docReference>5463fbc3-cec5-4f9c-9d2c-73d3d3a308da</docReference>
-    <changed>
-      <date>2018-02-27T09:49:32.1391828Z</date>
-      <author>peter</author>
-      <newVersion>1.2</newVersion>
-      <prevDocReference>4bf0ec62-7554-41a6-9d46-6d9029f88bd3</prevDocReference>
-      <changeNotes>Added: Test LTG</changeNotes>
-    </changed>
-    <changed>
-      <date>2018-02-26T19:14:09.3979019Z</date>
-      <author>peter</author>
-      <newVersion>1.1</newVersion>
-      <prevDocReference>efd5a9be-44e8-4557-8b26-fbdcbb03303d</prevDocReference>
-      <changeNotes>Added: foo</changeNotes>
-    </changed>
-    <changed>
-      <date>2018-02-07T00:00:00Z</date>
-      <author>PC</author>
-      <newVersion>1.0</newVersion>
-      <prevDocReference>efd5a9be-44e8-4557-8b26-fbdcbb03303d</prevDocReference>
-      <changeNotes>Initial version</changeNotes>
-    </changed>
-  </configMgmt>
-  <entry embedded="True">
-    <Pattern>
-      <configMgmt>
-        <securityOwner>UK</securityOwner>
-        <securityClassification>Official</securityClassification>
-        <currentVersion>1.0</currentVersion>
-        <description>Generic LTG</description>
-        <created>
-          <date>2018-02-03T00:00:00Z</date>
-          <author>PC</author>
-          <initialVersion>1.0</initialVersion>
-        </created>
-        <docReference>cc3b511a-f1f6-418b-ba00-3bf05d8afa05</docReference>
-        <changed>
-          <date>2018-02-03T00:00:00Z</date>
-          <author>PC</author>
-          <newVersion>1.0</newVersion>
-          <prevDocReference>cc3b511a-f1f6-418b-ba00-3bf05d8afa05</prevDocReference>
-          <changeNotes>Initial Version</changeNotes>
-        </changed>
-      </configMgmt>
-      <patternGenericType>ltg</patternGenericType>
-      <patternName>Generic LTG</patternName>
-      <description>Pattern for a generic LTG</description>
-      <component>
-        <componentType>proxy</componentType>
-        <componentID>39592edb-c906-4b31-8965-cb8c5106b0c6</componentID>
-        <module>
-          <moduleType>interface</moduleType>
-          <specification>
-            <paramName readOnly="false">interfaceName</paramName>
-            <value>CS+S Federation</value>
-          </specification>
-        </module>
-        <module>
-          <moduleType>interface</moduleType>
-        </module>
-        <module>
-          <moduleType>host</moduleType>
-        </module>
-        <module>
-          <moduleType>federation</moduleType>
-          <specification>
-            <paramName readOnly="false">federationName</paramName>
-            <value>CS+S</value>
-          </specification>
-          <specification>
-            <paramName readOnly="false">interfaceName</paramName>
-            <value>CS+S Federation</value>
-          </specification>
-        </module>
-        <module>
-          <moduleType>federation</moduleType>
-        </module>
-        <module>
-          <moduleType>export</moduleType>
-        </module>
-        <module>
-          <moduleType>import</moduleType>
-        </module>
-      </component>
-    </Pattern>
-  </entry>
-  <entry embedded="True">
-    <Pattern>
-      <configMgmt>
-        <securityOwner>UK</securityOwner>
-        <securityClassification>Official</securityClassification>
-        <currentVersion>1.0</currentVersion>
-        <description>Generic HTG</description>
-        <created>
-          <date>2018-02-07T00:00:00Z</date>
-          <author>PC</author>
-          <initialVersion>1.0</initialVersion>
-        </created>
-        <docReference>7dd4b3a2-22c9-478e-85d5-227fc2f4559e</docReference>
-        <changed>
-          <date>2018-02-07T00:00:00Z</date>
-          <author>PC</author>
-          <newVersion>1.0</newVersion>
-          <prevDocReference>7dd4b3a2-22c9-478e-85d5-227fc2f4559e</prevDocReference>
-          <changeNotes>Initial Version</changeNotes>
-        </changed>
-      </configMgmt>
-      <patternGenericType>htg</patternGenericType>
-      <patternName>Generic HTG</patternName>
-      <description>Test Pattern for a generic HTG</description>
-      <component>
-        <componentType>proxy</componentType>
-        <componentID>3465ac9a-f78e-41ce-b637-4740c6467554</componentID>
-        <module>
-          <moduleType>interface</moduleType>
-          <specification>
-            <paramName readOnly="false">interfaceName</paramName>
-            <value>CS+S Federation</value>
-          </specification>
-        </module>
-        <module>
-          <moduleType>interface</moduleType>
-          <specification>
-            <paramName readOnly="false">interfaceName</paramName>
-            <value>Guard High</value>
-          </specification>
-        </module>
-        <module>
-          <moduleType>interface</moduleType>
-          <specification>
-            <paramName readOnly="false">interfaceName</paramName>
-            <value>Management</value>
-          </specification>
-        </module>
-        <module>
-          <moduleType>host</moduleType>
-        </module>
-        <module>
-          <moduleType>federation</moduleType>
-          <specification>
-            <paramName readOnly="false">federationName</paramName>
-            <value>CS+S</value>
-          </specification>
-          <specification>
-            <paramName readOnly="false">interfaceName</paramName>
-            <value>CS+S Federation</value>
-          </specification>
-        </module>
-        <module>
-          <moduleType>osp</moduleType>
-          <specification>
-            <paramName readOnly="true">path</paramName>
-            <value>ExportPath</value>
-          </specification>
-        </module>
-        <module>
-          <moduleType>osp</moduleType>
-          <specification>
-            <paramName readOnly="true">path</paramName>
-            <value>ImportPath</value>
-          </specification>
-        </module>
-        <module>
-          <moduleType>export</moduleType>
-        </module>
-        <module>
-          <moduleType>import</moduleType>
-        </module>
-      </component>
-      <component>
-        <componentType>proxy</componentType>
-        <componentID>6270300f-45f2-4d9b-bf10-c24773e76394</componentID>
-        <module>
-          <moduleType>interface</moduleType>
-          <specification>
-            <paramName readOnly="false">interfaceName</paramName>
-            <value>Guard Low</value>
-          </specification>
-        </module>
-        <module>
-          <moduleType>interface</moduleType>
-          <specification>
-            <paramName readOnly="false">interfaceName</paramName>
-            <value>Management</value>
-          </specification>
-        </module>
-        <module>
-          <moduleType>host</moduleType>
-        </module>
-        <module>
-          <moduleType>federation</moduleType>
-        </module>
-        <module>
-          <moduleType>osp</moduleType>
-          <specification>
-            <paramName readOnly="true">path</paramName>
-            <value>ExportPath</value>
-          </specification>
-        </module>
-        <module>
-          <moduleType>osp</moduleType>
-          <specification>
-            <paramName readOnly="true">path</paramName>
-            <value>ImportPath</value>
-          </specification>
-        </module>
-        <module>
-          <moduleType>export</moduleType>
-        </module>
-        <module>
-          <moduleType>import</moduleType>
-        </module>
-      </component>
-      <component>
-        <componentType>guard</componentType>
-        <componentID>cf181760-2da2-461c-a045-ad100503a0de</componentID>
-        <module>
-          <moduleType>interface</moduleType>
-          <specification>
-            <paramName readOnly="false">interfaceName</paramName>
-            <value>Guard High</value>
-          </specification>
-        </module>
-        <module>
-          <moduleType>interface</moduleType>
-          <specification>
-            <paramName readOnly="false">interfaceName</paramName>
-            <value>Guard Low</value>
-          </specification>
-        </module>
-        <module>
-          <moduleType>interface</moduleType>
-          <specification>
-            <paramName readOnly="false">interfaceName</paramName>
-            <value>Management</value>
-          </specification>
-        </module>
-        <module>
-          <moduleType>osp</moduleType>
-          <specification>
-            <paramName readOnly="true">path</paramName>
-            <value>ExportPath</value>
-          </specification>
-        </module>
-        <module>
-          <moduleType>osp</moduleType>
-          <specification>
-            <paramName readOnly="true">path</paramName>
-            <value>ImportPath</value>
-          </specification>
-        </module>
-        <module>
-          <moduleType>host</moduleType>
-        </module>
-        <module>
-          <moduleType>export</moduleType>
-        </module>
-        <module>
-          <moduleType>import</moduleType>
-        </module>
-        <module>
-          <moduleType>extension</moduleType>
-          <specification>
-            <paramName readOnly="false">vendorName</paramName>
-            <value>Eric</value>
-          </specification>
-          <specification>
-            <paramName readOnly="false">foo</paramName>
-            <value>bar</value>
-          </specification>
-        </module>
-      </component>
-    </Pattern>
-  </entry>
-  <entry embedded="True">
-    <Pattern>
-      <configMgmt>
-        <securityOwner>UK</securityOwner>
-        <securityClassification>OFFICIAL</securityClassification>
-        <currentVersion>1.0</currentVersion>
-        <description>Initial Version</description>
-        <created>
-          <date>2018-02-27T09:48:04.763186Z</date>
-          <author>peter</author>
-          <initialVersion>1.0</initialVersion>
-        </created>
-        <docReference>d31d1f28-6e94-4d64-8484-60d469e1c78c</docReference>
-        <changed>
-          <date>2018-02-27T09:48:04.763186Z</date>
-          <author>peter</author>
-          <newVersion>1.0</newVersion>
-          <prevDocReference>d31d1f28-6e94-4d64-8484-60d469e1c78c</prevDocReference>
-          <changeNotes>Initial Version</changeNotes>
-        </changed>
-      </configMgmt>
-      <patternGenericType>ltg</patternGenericType>
-      <patternName>Test LTG</patternName>
-      <description>A test</description>
-      <component>
-        <componentType>proxy</componentType>
-        <componentID>4b90b823-bb14-4a18-9b47-5c3dbe62f6c5</componentID>
-        <module>
-          <moduleType>interface</moduleType>
-          <specification>
-            <paramName readOnly="false">interfaceName</paramName>
-            <value>eth0</value>
-          </specification>
-          <specification>
-            <paramName readOnly="false">ipAddress</paramName>
-            <value>10.10.10.1</value>
-          </specification>
-        </module>
-        <module>
-          <moduleType>interface</moduleType>
-        </module>
-        <module>
-          <moduleType>host</moduleType>
-        </module>
-        <module>
-          <moduleType>federation</moduleType>
-        </module>
-        <module>
-          <moduleType>federation</moduleType>
-        </module>
-        <module>
-          <moduleType>import</moduleType>
-        </module>
-        <module>
-          <moduleType>export</moduleType>
-        </module>
-      </component>
-    </Pattern>
-  </entry>
+	<configMgmt>
+		<securityOwner>UK</securityOwner>
+		<securityClassification>Official</securityClassification>
+		<currentVersion>1.2</currentVersion>
+		<description>Pattern Library for testing</description>
+		<created>
+			<date>2018-02-07T00:00:00Z</date>
+			<author>PC</author>
+			<initialVersion>1.0</initialVersion>
+		</created>
+		<docReference>5463fbc3-cec5-4f9c-9d2c-73d3d3a308da</docReference>
+		<changed>
+			<date>2018-02-27T09:49:32.1391828Z</date>
+			<author>peter</author>
+			<newVersion>1.2</newVersion>
+			<prevDocReference>4bf0ec62-7554-41a6-9d46-6d9029f88bd3</prevDocReference>
+			<changeNotes>Added: Test LTG</changeNotes>
+		</changed>
+		<changed>
+			<date>2018-02-26T19:14:09.3979019Z</date>
+			<author>peter</author>
+			<newVersion>1.1</newVersion>
+			<prevDocReference>efd5a9be-44e8-4557-8b26-fbdcbb03303d</prevDocReference>
+			<changeNotes>Added: foo</changeNotes>
+		</changed>
+		<changed>
+			<date>2018-02-07T00:00:00Z</date>
+			<author>PC</author>
+			<newVersion>1.0</newVersion>
+			<prevDocReference>efd5a9be-44e8-4557-8b26-fbdcbb03303d</prevDocReference>
+			<changeNotes>Initial version</changeNotes>
+		</changed>
+	</configMgmt>
+	<entry embedded="True">
+		<Pattern>
+			<configMgmt>
+				<securityOwner>UK</securityOwner>
+				<securityClassification>Official</securityClassification>
+				<currentVersion>1.0</currentVersion>
+				<description>Generic LTG</description>
+				<created>
+					<date>2018-02-03T00:00:00Z</date>
+					<author>PC</author>
+					<initialVersion>1.0</initialVersion>
+				</created>
+				<docReference>cc3b511a-f1f6-418b-ba00-3bf05d8afa05</docReference>
+				<changed>
+					<date>2018-02-03T00:00:00Z</date>
+					<author>PC</author>
+					<newVersion>1.0</newVersion>
+					<prevDocReference>cc3b511a-f1f6-418b-ba00-3bf05d8afa05</prevDocReference>
+					<changeNotes>Initial Version</changeNotes>
+				</changed>
+			</configMgmt>
+			<patternGenericType>ltg</patternGenericType>
+			<patternName>Generic LTG</patternName>
+			<description>Pattern for a generic LTG</description>
+			<component>
+				<componentType>proxy</componentType>
+				<componentID>39592edb-c906-4b31-8965-cb8c5106b0c6</componentID>
+				<componentName/>
+				<module>
+					<moduleType>interface</moduleType>
+					<specification>
+						<paramName readOnly="false">interfaceName</paramName>
+						<value>CS+S Federation</value>
+					</specification>
+				</module>
+				<module>
+					<moduleType>interface</moduleType>
+				</module>
+				<module>
+					<moduleType>host</moduleType>
+				</module>
+				<module>
+					<moduleType>federation</moduleType>
+					<specification>
+						<paramName readOnly="false">federationName</paramName>
+						<value>CS+S</value>
+					</specification>
+					<specification>
+						<paramName readOnly="false">interfaceName</paramName>
+						<value>CS+S Federation</value>
+					</specification>
+				</module>
+				<module>
+					<moduleType>federation</moduleType>
+				</module>
+				<module>
+					<moduleType>export</moduleType>
+				</module>
+				<module>
+					<moduleType>import</moduleType>
+				</module>
+			</component>
+		</Pattern>
+	</entry>
+	<entry embedded="True">
+		<Pattern>
+			<configMgmt>
+				<securityOwner>UK</securityOwner>
+				<securityClassification>Official</securityClassification>
+				<currentVersion>1.0</currentVersion>
+				<description>Generic HTG</description>
+				<created>
+					<date>2018-02-07T00:00:00Z</date>
+					<author>PC</author>
+					<initialVersion>1.0</initialVersion>
+				</created>
+				<docReference>7dd4b3a2-22c9-478e-85d5-227fc2f4559e</docReference>
+				<changed>
+					<date>2018-02-07T00:00:00Z</date>
+					<author>PC</author>
+					<newVersion>1.0</newVersion>
+					<prevDocReference>7dd4b3a2-22c9-478e-85d5-227fc2f4559e</prevDocReference>
+					<changeNotes>Initial Version</changeNotes>
+				</changed>
+			</configMgmt>
+			<patternGenericType>htg</patternGenericType>
+			<patternName>Generic HTG</patternName>
+			<description>Test Pattern for a generic HTG</description>
+			<component>
+				<componentType>proxy</componentType>
+				<componentID>3465ac9a-f78e-41ce-b637-4740c6467554</componentID>
+				<componentName/>
+				<module>
+					<moduleType>interface</moduleType>
+					<specification>
+						<paramName readOnly="false">interfaceName</paramName>
+						<value>CS+S Federation</value>
+					</specification>
+				</module>
+				<module>
+					<moduleType>interface</moduleType>
+					<specification>
+						<paramName readOnly="false">interfaceName</paramName>
+						<value>Guard High</value>
+					</specification>
+				</module>
+				<module>
+					<moduleType>interface</moduleType>
+					<specification>
+						<paramName readOnly="false">interfaceName</paramName>
+						<value>Management</value>
+					</specification>
+				</module>
+				<module>
+					<moduleType>host</moduleType>
+				</module>
+				<module>
+					<moduleType>federation</moduleType>
+					<specification>
+						<paramName readOnly="false">federationName</paramName>
+						<value>CS+S</value>
+					</specification>
+					<specification>
+						<paramName readOnly="false">interfaceName</paramName>
+						<value>CS+S Federation</value>
+					</specification>
+				</module>
+				<module>
+					<moduleType>osp</moduleType>
+					<specification>
+						<paramName readOnly="true">path</paramName>
+						<value>ExportPath</value>
+					</specification>
+				</module>
+				<module>
+					<moduleType>osp</moduleType>
+					<specification>
+						<paramName readOnly="true">path</paramName>
+						<value>ImportPath</value>
+					</specification>
+				</module>
+				<module>
+					<moduleType>export</moduleType>
+				</module>
+				<module>
+					<moduleType>import</moduleType>
+				</module>
+			</component>
+			<component>
+				<componentType>proxy</componentType>
+				<componentID>6270300f-45f2-4d9b-bf10-c24773e76394</componentID>
+				        <componentName/>
+				<module>
+					<moduleType>interface</moduleType>
+					<specification>
+						<paramName readOnly="false">interfaceName</paramName>
+						<value>Guard Low</value>
+					</specification>
+				</module>
+				<module>
+					<moduleType>interface</moduleType>
+					<specification>
+						<paramName readOnly="false">interfaceName</paramName>
+						<value>Management</value>
+					</specification>
+				</module>
+				<module>
+					<moduleType>host</moduleType>
+				</module>
+				<module>
+					<moduleType>federation</moduleType>
+				</module>
+				<module>
+					<moduleType>osp</moduleType>
+					<specification>
+						<paramName readOnly="true">path</paramName>
+						<value>ExportPath</value>
+					</specification>
+				</module>
+				<module>
+					<moduleType>osp</moduleType>
+					<specification>
+						<paramName readOnly="true">path</paramName>
+						<value>ImportPath</value>
+					</specification>
+				</module>
+				<module>
+					<moduleType>export</moduleType>
+				</module>
+				<module>
+					<moduleType>import</moduleType>
+				</module>
+			</component>
+			<component>
+				<componentType>guard</componentType>
+				<componentID>cf181760-2da2-461c-a045-ad100503a0de</componentID>
+				        <componentName/>
+				<module>
+					<moduleType>interface</moduleType>
+					<specification>
+						<paramName readOnly="false">interfaceName</paramName>
+						<value>Guard High</value>
+					</specification>
+				</module>
+				<module>
+					<moduleType>interface</moduleType>
+					<specification>
+						<paramName readOnly="false">interfaceName</paramName>
+						<value>Guard Low</value>
+					</specification>
+				</module>
+				<module>
+					<moduleType>interface</moduleType>
+					<specification>
+						<paramName readOnly="false">interfaceName</paramName>
+						<value>Management</value>
+					</specification>
+				</module>
+				<module>
+					<moduleType>osp</moduleType>
+					<specification>
+						<paramName readOnly="true">path</paramName>
+						<value>ExportPath</value>
+					</specification>
+				</module>
+				<module>
+					<moduleType>osp</moduleType>
+					<specification>
+						<paramName readOnly="true">path</paramName>
+						<value>ImportPath</value>
+					</specification>
+				</module>
+				<module>
+					<moduleType>host</moduleType>
+				</module>
+				<module>
+					<moduleType>export</moduleType>
+				</module>
+				<module>
+					<moduleType>import</moduleType>
+				</module>
+				<module>
+					<moduleType>extension</moduleType>
+					<specification>
+						<paramName readOnly="false">vendorName</paramName>
+						<value>Eric</value>
+					</specification>
+					<specification>
+						<paramName readOnly="false">foo</paramName>
+						<value>bar</value>
+					</specification>
+				</module>
+			</component>
+		</Pattern>
+	</entry>
+	<entry embedded="True">
+		<Pattern>
+			<configMgmt>
+				<securityOwner>UK</securityOwner>
+				<securityClassification>OFFICIAL</securityClassification>
+				<currentVersion>1.0</currentVersion>
+				<description>Initial Version</description>
+				<created>
+					<date>2018-02-27T09:48:04.763186Z</date>
+					<author>peter</author>
+					<initialVersion>1.0</initialVersion>
+				</created>
+				<docReference>d31d1f28-6e94-4d64-8484-60d469e1c78c</docReference>
+				<changed>
+					<date>2018-02-27T09:48:04.763186Z</date>
+					<author>peter</author>
+					<newVersion>1.0</newVersion>
+					<prevDocReference>d31d1f28-6e94-4d64-8484-60d469e1c78c</prevDocReference>
+					<changeNotes>Initial Version</changeNotes>
+				</changed>
+			</configMgmt>
+			<patternGenericType>ltg</patternGenericType>
+			<patternName>Test LTG</patternName>
+			<description>A test</description>
+			<component>
+				<componentType>proxy</componentType>
+				<componentID>4b90b823-bb14-4a18-9b47-5c3dbe62f6c5</componentID>
+				<componentName/>
+				<module>
+					<moduleType>interface</moduleType>
+					<specification>
+						<paramName readOnly="false">interfaceName</paramName>
+						<value>eth0</value>
+					</specification>
+					<specification>
+						<paramName readOnly="false">ipAddress</paramName>
+						<value>10.10.10.1</value>
+					</specification>
+				</module>
+				<module>
+					<moduleType>interface</moduleType>
+				</module>
+				<module>
+					<moduleType>host</moduleType>
+				</module>
+				<module>
+					<moduleType>federation</moduleType>
+				</module>
+				<module>
+					<moduleType>federation</moduleType>
+				</module>
+				<module>
+					<moduleType>import</moduleType>
+				</module>
+				<module>
+					<moduleType>export</moduleType>
+				</module>
+			</component>
+		</Pattern>
+	</entry>
 </PatternLibrary>

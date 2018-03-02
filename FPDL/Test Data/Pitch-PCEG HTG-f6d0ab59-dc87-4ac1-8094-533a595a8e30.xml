@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Pattern>
+  <configMgmt>
+    <securityOwner>UK</securityOwner>
+    <securityClassification>OFFICIAL</securityClassification>
+    <currentVersion>1.0</currentVersion>
+    <description>Initial Version</description>
+    <created>
+      <date>2018-03-01T23:58:49.6091494Z</date>
+      <author>peter</author>
+      <initialVersion>1.0</initialVersion>
+    </created>
+    <docReference>f6d0ab59-dc87-4ac1-8094-533a595a8e30</docReference>
+    <changed>
+      <date>2018-03-01T23:58:49.6091494Z</date>
+      <author>peter</author>
+      <newVersion>1.0</newVersion>
+      <prevDocReference>f6d0ab59-dc87-4ac1-8094-533a595a8e30</prevDocReference>
+      <changeNotes>Initial Version</changeNotes>
+    </changed>
+  </configMgmt>
+  <patternGenericType>htg</patternGenericType>
+  <patternName>Pitch/PCEG HTG</patternName>
+  <description>HTG with 2x Pitch proxies and the PCEG guard</description>
+  <component>
+    <componentType>proxy</componentType>
+    <componentID>12c7bbbc-89eb-43ef-82e2-d66186df2d8d</componentID>
+    <componentName>High side proxy</componentName>
+    <module>
+      <moduleType>federation</moduleType>
+      <specification>
+        <paramName readOnly="false">federationName</paramName>
+        <value>CSS</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">addressType</paramName>
+        <value>ipAddress</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">hlaSpec</paramName>
+        <value>HLA Evolved</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>RPR_FOM_v2.0_1516-2010.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>CBRN_v1.1.9.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>MRM_v1.1.1.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Aggregate_v1.0.4.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Base_v1.0.2.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-HCBML_v1.1.1.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-LBML_v1.1.0.xm</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Physical_v1.1.2.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Repair_v1.2.1.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-SCP-Base_v1.1.3.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Storage_v1.2.2.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Supply_v1.1.2.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Transport_v1.1.2.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>TMR_v1.1.3.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Emitter_v1.0.0.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Weapons_v1.0.0.xml</value>
+      </specification>
+    </module>
+    <module>
+      <moduleType>osp</moduleType>
+      <specification>
+        <paramName readOnly="true">path</paramName>
+        <value>exportPath</value>
+      </specification>
+      <specification>
+        <paramName readOnly="true">protocol</paramName>
+        <value>HPSD_TCP</value>
+      </specification>
+    </module>
+    <module>
+      <moduleType>export</moduleType>
+    </module>
+    <module>
+      <moduleType>osp</moduleType>
+      <specification>
+        <paramName readOnly="true">path</paramName>
+        <value>importPath</value>
+      </specification>
+      <specification>
+        <paramName readOnly="true">protocol</paramName>
+        <value>HPSD_TCP</value>
+      </specification>
+    </module>
+    <module>
+      <moduleType>import</moduleType>
+    </module>
+    <module>
+      <moduleType>extension</moduleType>
+      <specification>
+        <paramName readOnly="true">vendorName</paramName>
+        <value>Pitch Technologies</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">instanceIdAttribute:HLAobjectRoot.BaseEntity.PhysicalEntity.Platform.Aircraft.NETN_Aircraft.</paramName>
+        <value>UUID</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">configurationType</paramName>
+        <value>PitchSpecific</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">create</paramName>
+        <value>RPR_FOM_v2.0_1516-2010.xml</value>
+      </specification>
+    </module>
+  </component>
+  <component>
+    <componentType>guard</componentType>
+    <componentID>ebe6eb25-3f45-4238-8d72-1544d40a35bd</componentID>
+    <componentName>Guard</componentName>
+  </component>
+  <component>
+    <componentType>proxy</componentType>
+    <componentID>591b77f6-afb4-4ff7-8f63-a736df95266e</componentID>
+    <componentName>Low side proxy</componentName>
+    <module>
+      <moduleType>federation</moduleType>
+      <specification>
+        <paramName readOnly="false">federationName</paramName>
+        <value>CSS</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">addressType</paramName>
+        <value>ipAddress</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">hlaSpec</paramName>
+        <value>HLA Evolved</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>RPR_FOM_v2.0_1516-2010.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>CBRN_v1.1.9.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>MRM_v1.1.1.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Aggregate_v1.0.4.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Base_v1.0.2.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-HCBML_v1.1.1.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-LBML_v1.1.0.xm</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Physical_v1.1.2.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Repair_v1.2.1.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-SCP-Base_v1.1.3.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Storage_v1.2.2.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Supply_v1.1.2.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Transport_v1.1.2.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>TMR_v1.1.3.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Emitter_v1.0.0.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Weapons_v1.0.0.xml</value>
+      </specification>
+    </module>
+    <module>
+      <moduleType>osp</moduleType>
+      <specification>
+        <paramName readOnly="true">path</paramName>
+        <value>exportPath</value>
+      </specification>
+      <specification>
+        <paramName readOnly="true">protocol</paramName>
+        <value>HPSD_TCP</value>
+      </specification>
+    </module>
+    <module>
+      <moduleType>export</moduleType>
+    </module>
+    <module>
+      <moduleType>osp</moduleType>
+      <specification>
+        <paramName readOnly="true">path</paramName>
+        <value>importPath</value>
+      </specification>
+      <specification>
+        <paramName readOnly="true">protocol</paramName>
+        <value>HPSD_TCP</value>
+      </specification>
+    </module>
+    <module>
+      <moduleType>import</moduleType>
+    </module>
+    <module>
+      <moduleType>extension</moduleType>
+      <specification>
+        <paramName readOnly="true">vendorName</paramName>
+        <value>Pitch Technologies</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">instanceIdAttribute:HLAobjectRoot.BaseEntity.PhysicalEntity.Platform.Aircraft.NETN_Aircraft.</paramName>
+        <value>UUID</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">configurationType</paramName>
+        <value>PitchSpecific</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">create</paramName>
+        <value>RPR_FOM_v2.0_1516-2010.xml</value>
+      </specification>
+    </module>
+  </component>
+</Pattern>

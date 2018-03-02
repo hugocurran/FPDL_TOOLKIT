@@ -142,12 +142,16 @@ namespace FPDL.Deploy
         {
             TreeNode[] t = new TreeNode[4];
             t[0] = new TreeNode("Path = " + Path);
+            t[0].Tag = new Specification { ParamName = "path", Value = Path };
             t[0].ToolTipText = "Path (export/import)";
             t[1] = new TreeNode("Protocol = " + Protocol.ToString());
+            t[1].Tag = new Specification { ParamName = "protocol", Value = Protocol.ToString() };
             t[1].ToolTipText = "OSP protocol";
             t[2] = new TreeNode("Input = " + InputPort);
+            t[2].Tag = new Specification { ParamName = "inputPort", Value = InputPort };
             t[2].ToolTipText = "Input Address:Port (optional)";
             t[3] = new TreeNode("Output = " + OutputPort);
+            t[3].Tag = new Specification { ParamName = "outputPort", Value = OutputPort };
             t[3].ToolTipText = "Output Address:Port (optional)";
 
             TreeNode a = new TreeNode("OSP", t);
@@ -162,22 +166,28 @@ namespace FPDL.Deploy
         public void ApplyPattern(List<Specification> specifications)
         {
             foreach (Specification spec in specifications)
+                ApplyPattern(spec);
+        }
+        /// <summary>
+        /// Apply specifications from a Pattern to this module
+        /// </summary>
+        /// <param name="specification"></param>
+        public void ApplyPattern(Specification specification)
+        {
+            switch (specification.ParamName)
             {
-                switch (spec.ParamName)
-                {
-                    case "path":
-                        Path = spec.Value;
-                        break;
-                    case "protocol":
-                        Protocol = (OspProtocol)Enum.Parse(typeof(OspProtocol), spec.Value);
-                        break;
-                    case "inputPort":
-                        InputPort = spec.Value;
-                        break;
-                    case "outputPort":
-                        OutputPort = spec.Value;
-                        break;
-                }
+                case "path":
+                    Path = specification.Value;
+                    break;
+                case "protocol":
+                    Protocol = (OspProtocol)Enum.Parse(typeof(OspProtocol), specification.Value);
+                    break;
+                case "inputPort":
+                    InputPort = specification.Value;
+                    break;
+                case "outputPort":
+                    OutputPort = specification.Value;
+                    break;
             }
         }
     }

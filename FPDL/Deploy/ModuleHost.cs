@@ -151,11 +151,15 @@ namespace FPDL.Deploy
         {
             TreeNode[] t0 = new TreeNode[1];
             t0[0] = new TreeNode("Host Name = " + HostName);
+            t0[0].Tag = new Specification { ParamName = "hostName", Value = HostName };
             t0[0].ToolTipText = "Host name";
 
             TreeNode[] t1 = new TreeNode[Logging.Count];
             for (int i = 0; i < Logging.Count; i++)
+            {
                 t1[i] = Logging[i].GetNode();
+                
+            }
 
             TreeNode[] t2 = new TreeNode[Time.Count];
             for (int i = 0; i < Time.Count; i++)
@@ -176,14 +180,20 @@ namespace FPDL.Deploy
         public void ApplyPattern(List<Specification> specifications)
         {
             foreach (Specification spec in specifications)
+                ApplyPattern(spec);
+        }
+        /// <summary>
+        /// Apply specifications from a Pattern to this module
+        /// </summary>
+        /// <param name="specification"></param>
+        public void ApplyPattern(Specification specification)
+        {
+            switch (specification.ParamName)
             {
-                switch (spec.ParamName)
-                {
-                    case "hostName":
-                        HostName = spec.Value;
-                        break;
-                        // Need to figure out time and logging
-                }
+                case "hostName":
+                    HostName = specification.Value;
+                    break;
+                    // Need to figure out time and logging
             }
         }
     }
@@ -217,12 +227,16 @@ namespace FPDL.Deploy
         {
             TreeNode[] t = new TreeNode[4];
             t[0] = new TreeNode("Server = " + Name);
+            t[0].Tag = new Specification { ParamName = "server", Value = Name };
             t[0].ToolTipText = "Server FQDN or IP address";
             t[1] = new TreeNode("Protocol = " + Protocol);
+            t[1].Tag = new Specification { ParamName = "protocol", Value = Protocol };
             t[1].ToolTipText = "Protocol (eg syslog, ntp)";
             t[2] = new TreeNode("Transport = " + Transport);
+            t[0].Tag = new Specification { ParamName = "transport", Value = Transport };
             t[2].ToolTipText = "Transport protocol (TCP/UDP)";
             t[3] = new TreeNode("Port = " + Port);
+            t[0].Tag = new Specification { ParamName = "port", Value = Port };
             t[3].ToolTipText = "Port number";
 
             TreeNode a = new TreeNode("Server", t);

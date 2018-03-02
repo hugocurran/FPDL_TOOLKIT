@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DesignPatternLibrary xmlns="http://www.niteworks.net/fpdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.niteworks.net/fpdl file:///C:/Users/peter/source/repos/FPDL-Schema/FPDL-ver0.3.xsd">
+	<configMgmt>
+		<securityOwner>UK</securityOwner>
+		<securityClassification>Official</securityClassification>
+		<currentVersion>1.0</currentVersion>
+		<description>CDS4 Design Patterns</description>
+		<created>
+			<date>2018-02-28</date>
+			<author>Peter</author>
+			<initialVersion>1.0</initialVersion>
+		</created>
+		<docReference>C45CBE57-2861-4B78-9BC3-5EAAE71EE073</docReference>
+	</configMgmt>
+	<entry>
+		<pattern>
+			<configMgmt>
+				<securityOwner>UK</securityOwner>
+				<securityClassification>Official</securityClassification>
+				<currentVersion>1.0</currentVersion>
+				<description>Prox(A,B) &lt; C, Release D as FilterID</description>
+				<created>
+					<date>2018-02-28</date>
+					<author>Peter</author>
+					<initialVersion>1.0</initialVersion>
+				</created>
+				<docReference>B9E76F59-EE12-4211-B205-9604874A84F6</docReference>
+			</configMgmt>
+			<patternGenericType>filter</patternGenericType>
+			<patternName>Proximity #1 (Slant Range)</patternName>
+			<description>Proximity filter (type 1): Prox(A,B) &lt; C, Release D as FilterID</description>
+			<parameter>
+				<name parameterType="stringParam">filterRef</name>
+				<value>0101</value>
+				<description/>
+			</parameter>
+			<parameter>
+				<name parameterType="entityParam">A</name>
+				<description>Entity A</description>
+			</parameter>
+			<parameter>
+				<name parameterType="entityParam">B</name>
+				<description>Entity B</description>
+			</parameter>
+			<parameter>
+				<name parameterType="decimalParam">C</name>
+				<description>Slant range (metres)</description>
+			</parameter>
+			<parameter>
+				<name parameterType="entityParam">D</name>
+				<description>Entity D</description>
+			</parameter>
+		</pattern>
+	</entry>
+	<entry>
+		<pattern>
+			<configMgmt>
+				<securityOwner>UK</securityOwner>
+				<securityClassification>Official</securityClassification>
+				<currentVersion>1.0</currentVersion>
+				<description>Prox(A,B) &lt; C, Release D</description>
+				<created>
+					<date>2018-02-28</date>
+					<author>Peter</author>
+					<initialVersion>1.0</initialVersion>
+				</created>
+				<docReference>BAD267D3-9262-457B-AAC9-F6D89BDEFBD2</docReference>
+			</configMgmt>
+			<patternGenericType>filter</patternGenericType>
+			<patternName>Proximity #2 (Horizontal Range)</patternName>
+			<description>Proximity filter (type 2): Prox(A,B) &lt; C, Release D</description>
+			<parameter>
+				<name parameterType="stringParam">filterRef</name>
+				<value>0102</value>
+				<description/>
+			</parameter>
+			<parameter>
+				<name parameterType="entityParam">A</name>
+				<description>Entity A</description>
+			</parameter>
+			<parameter>
+				<name parameterType="entityParam">B</name>
+				<description>Entity B</description>
+			</parameter>
+			<parameter>
+				<name parameterType="decimalParam">C</name>
+				<description>Horizontal range (metres)</description>
+			</parameter>
+			<parameter>
+				<name parameterType="entityParam">D</name>
+				<description>Entity D</description>
+			</parameter>
+		</pattern>
+	</entry>
+	<entry>
+		<pattern>
+			<configMgmt>
+				<securityOwner>UK</securityOwner>
+				<securityClassification>Official</securityClassification>
+				<currentVersion>1.0</currentVersion>
+				<description>Prox(A,B) &lt; C, Release D</description>
+				<created>
+					<date>2018-02-28</date>
+					<author>Peter</author>
+					<initialVersion>1.0</initialVersion>
+				</created>
+				<docReference>03305597-C069-47D9-8A60-120D4162577E</docReference>
+			</configMgmt>
+			<patternGenericType>filter</patternGenericType>
+			<patternName>Proximity #3 (Vertical Range)</patternName>
+			<description>Proximity filter (type 2): Prox(A,B) &lt; C, Release D</description>
+			<parameter>
+				<name parameterType="stringParam">filterRef</name>
+				<value>0103</value>
+				<description/>
+			</parameter>
+			<parameter>
+				<name parameterType="entityParam">A</name>
+				<description>Entity A</description>
+			</parameter>
+			<parameter>
+				<name parameterType="entityParam">B</name>
+				<description>Entity B</description>
+			</parameter>
+			<parameter>
+				<name parameterType="decimalParam">C</name>
+				<description>Horizontal range (metres)</description>
+			</parameter>
+			<parameter>
+				<name parameterType="entityParam">D</name>
+				<description>Entity D</description>
+			</parameter>
+		</pattern>
+	</entry>
+	<entry>
+		<pattern>
+			<configMgmt>
+				<securityOwner>UK</securityOwner>
+				<securityClassification>Official</securityClassification>
+				<currentVersion>1.0</currentVersion>
+				<description>C &lt; Prox(A,B) &lt; D, Release E</description>
+				<created>
+					<date>2018-02-28</date>
+					<author>Peter</author>
+					<initialVersion>1.0</initialVersion>
+				</created>
+				<docReference>324BD2F7-7074-488D-B8C6-910649C06AEE</docReference>
+			</configMgmt>
+			<patternGenericType>filter</patternGenericType>
+			<patternName>Proximity #4 (Slant Range)</patternName>
+			<description>Proximity filter (type 4): C &lt; Prox(A,B) &lt; D, Release E</description>
+			<parameter>
+				<name parameterType="stringParam">filterRef</name>
+				<value>0104</value>
+				<description/>
+			</parameter>
+			<parameter>
+				<name parameterType="entityParam">A</name>
+				<description>Entity A</description>
+			</parameter>
+			<parameter>
+				<name parameterType="entityParam">B</name>
+				<description>Entity B</description>
+			</parameter>
+			<parameter>
+				<name parameterType="decimalParam">C</name>
+				<description>Horizontal range (metres)</description>
+			</parameter>
+			<parameter>
+				<name parameterType="decimalParam">D</name>
+				<description>Range D</description>
+			</parameter>
+			<parameter>
+				<name parameterType="entityParam">E</name>
+				<description>Entity E</description>
+			</parameter>
+		</pattern>
+	</entry>
+	<entry>
+		<pattern>
+			<configMgmt>
+				<securityOwner>UK</securityOwner>
+				<securityClassification>Official</securityClassification>
+				<currentVersion>1.0</currentVersion>
+				<description>Delay Weapon Fire interaction with Firing ID</description>
+				<created>
+					<date>2018-02-28</date>
+					<author>Peter</author>
+					<initialVersion>1.0</initialVersion>
+				</created>
+				<docReference>324BD2F7-7074-488D-B8C6-910649C06AEA</docReference>
+			</configMgmt>
+			<patternGenericType>filter</patternGenericType>
+			<patternName>Delay #1</patternName>
+			<description>Delay filter (type 1): Delay Weapon Fire interaction with Firing ID</description>
+			<parameter>
+				<name parameterType="stringParam">filterRef</name>
+				<value>0201</value>
+				<description/>
+			</parameter>
+			<parameter>
+				<name parameterType="entityParam">A</name>
+				<description>Firing Entity</description>
+			</parameter>
+			<parameter>
+				<name parameterType="decimalParam">B</name>
+				<description>Delay Time</description>
+			</parameter>
+			<parameter>
+				<name parameterType="entityParam">C</name>
+				<description>Munition Entity ID to create</description>
+			</parameter>
+		</pattern>
+	</entry>
+	<entry>
+		<pattern>
+			<configMgmt>
+				<securityOwner>UK</securityOwner>
+				<securityClassification>Official</securityClassification>
+				<currentVersion>1.0</currentVersion>
+				<description>Delay Weapon Fire interaction with Firing ID; match on defined parameter</description>
+				<created>
+					<date>2018-02-28</date>
+					<author>Peter</author>
+					<initialVersion>1.0</initialVersion>
+				</created>
+				<docReference>324BD2F7-7074-488D-B8C6-910649C06AEA</docReference>
+			</configMgmt>
+			<patternGenericType>filter</patternGenericType>
+			<patternName>Delay #1</patternName>
+			<description>Delay filter (type 2): Delay Weapon Fire interaction with Firing ID; match on defined parameter (eg release data about missile X but not Y)</description>
+			<parameter>
+				<name parameterType="stringParam">filterRef</name>
+				<value>0202</value>
+				<description/>
+			</parameter>
+			<parameter>
+				<name parameterType="entityParam">A</name>
+				<description>Firing Entity</description>
+			</parameter>
+			<parameter>
+				<name parameterType="decimalParam">B</name>
+				<description>Delay Time</description>
+			</parameter>
+			<parameter>
+				<name parameterType="entityParam">C</name>
+				<description>Munition Entity ID to create</description>
+			</parameter>
+			<parameter>
+				<name parameterType="hlaParameterParam">D</name>
+				<description>HLA Parameter to match</description>
+			</parameter>
+			<parameter>
+				<name parameterType="stringParam">E</name>
+				<description>Parameter value to match</description>
+			</parameter>
+		</pattern>
+	</entry>
+		<entry>
+		<pattern>
+			<configMgmt>
+				<securityOwner>UK</securityOwner>
+				<securityClassification>Official</securityClassification>
+				<currentVersion>1.0</currentVersion>
+				<description>Delay Weapon Fire interaction (with FiringID,A) and assocated MunitionDetonation but with no munition flyout</description>
+				<created>
+					<date>2018-02-28</date>
+					<author>Peter</author>
+					<initialVersion>1.0</initialVersion>
+				</created>
+				<docReference>324BD2F7-7074-488D-B8C6-910649C06ABB</docReference>
+			</configMgmt>
+			<patternGenericType>filter</patternGenericType>
+			<patternName>Delay #3</patternName>
+			<description>Delay filter (type 3): Delay Weapon Fire interaction (with FiringID,A) and assocated MunitionDetonation but with no munition flyout</description>
+			<parameter>
+				<name parameterType="stringParam">filterRef</name>
+				<value>0203</value>
+				<description/>
+			</parameter>
+			<parameter>
+				<name parameterType="entityParam">A</name>
+				<description>Firing Entity</description>
+			</parameter>
+			<parameter>
+				<name parameterType="decimalParam">B</name>
+				<description>Delay Time</description>
+			</parameter>
+		</pattern>
+	</entry>
+	<entry>
+		<pattern>
+			<configMgmt>
+				<securityOwner>UK</securityOwner>
+				<securityClassification>Official</securityClassification>
+				<currentVersion>1.0</currentVersion>
+				<description>Replace Given Attribute, B of object A with value,C</description>
+				<created>
+					<date>2018-02-28</date>
+					<author>Peter</author>
+					<initialVersion>1.0</initialVersion>
+				</created>
+				<docReference>2211D2F7-7074-488D-B8C6-910649C06AEA</docReference>
+			</configMgmt>
+			<patternGenericType>filter</patternGenericType>
+			<patternName>Obfuscate #1</patternName>
+			<description>Obfuscate filter (type 1): Replace Given Attribute, B of object A with value,C</description>
+			<parameter>
+				<name parameterType="stringParam">filterRef</name>
+				<value>0301</value>
+				<description/>
+			</parameter>
+			<parameter>
+				<name parameterType="entityParam">A</name>
+				<description>Firing Entity</description>
+			</parameter>
+			<parameter>
+				<name parameterType="hlaAttributeParam">B</name>
+				<description>Attribute to obfuscate</description>
+			</parameter>
+			<parameter>
+				<name parameterType="stringParam">C</name>
+				<description>Replacement value</description>
+			</parameter>
+		</pattern>
+	</entry>
+		<entry>
+		<pattern>
+			<configMgmt>
+				<securityOwner>UK</securityOwner>
+				<securityClassification>Official</securityClassification>
+				<currentVersion>1.0</currentVersion>
+				<description>Apply an obfuscate rule to an existing proximity rule</description>
+				<created>
+					<date>2018-02-28</date>
+					<author>Peter</author>
+					<initialVersion>1.0</initialVersion>
+				</created>
+				<docReference>118DB818-8793-4581-8FEA-C0B225A1EE8D</docReference>
+			</configMgmt>
+			<patternGenericType>filter</patternGenericType>
+			<patternName>Compound #1</patternName>
+			<description>Compound filter (type 1): Apply an obfuscate rule to an existing proximity rule</description>
+			<parameter>
+				<name parameterType="stringParam">filterRef</name>
+				<value>0501</value>
+				<description/>
+			</parameter>
+			<parameter>
+				<name parameterType="entityParam">A</name>
+				<description>Entity ID of the proximity filter</description>
+			</parameter>
+			<parameter>
+				<name parameterType="hlaAttributeParam">B</name>
+				<description>Attribute to obfuscate</description>
+			</parameter>
+			<parameter>
+				<name parameterType="stringParam">C</name>
+				<description>Replacement value</description>
+			</parameter>
+		</pattern>
+	</entry>
+</DesignPatternLibrary>

@@ -398,8 +398,11 @@ namespace FPDL.Tools.PatternEditor
 
         private void saveLibrary()
         {
+            if (library != null)
+            {
                 XDocument doc = new XDocument(library.ToFPDL());
                 doc.Save(libraryFilename);
+            }
         }
 
         #endregion

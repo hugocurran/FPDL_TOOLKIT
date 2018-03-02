@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.patternTypeLabel = new System.Windows.Forms.Label();
             this.applyPatternSelect = new System.Windows.Forms.Button();
             this.cancelPatternSelect = new System.Windows.Forms.Button();
@@ -45,17 +44,19 @@
             // patternTypeLabel
             // 
             this.patternTypeLabel.AutoSize = true;
-            this.patternTypeLabel.Location = new System.Drawing.Point(30, 9);
+            this.patternTypeLabel.Location = new System.Drawing.Point(38, 11);
+            this.patternTypeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.patternTypeLabel.Name = "patternTypeLabel";
-            this.patternTypeLabel.Size = new System.Drawing.Size(116, 17);
+            this.patternTypeLabel.Size = new System.Drawing.Size(137, 20);
             this.patternTypeLabel.TabIndex = 0;
             this.patternTypeLabel.Text = "Patterns of type :";
             // 
             // applyPatternSelect
             // 
-            this.applyPatternSelect.Location = new System.Drawing.Point(230, 242);
+            this.applyPatternSelect.Location = new System.Drawing.Point(288, 302);
+            this.applyPatternSelect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.applyPatternSelect.Name = "applyPatternSelect";
-            this.applyPatternSelect.Size = new System.Drawing.Size(75, 23);
+            this.applyPatternSelect.Size = new System.Drawing.Size(94, 29);
             this.applyPatternSelect.TabIndex = 2;
             this.applyPatternSelect.Text = "Apply";
             this.applyPatternSelect.UseVisualStyleBackColor = true;
@@ -63,9 +64,10 @@
             // 
             // cancelPatternSelect
             // 
-            this.cancelPatternSelect.Location = new System.Drawing.Point(428, 242);
+            this.cancelPatternSelect.Location = new System.Drawing.Point(535, 302);
+            this.cancelPatternSelect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cancelPatternSelect.Name = "cancelPatternSelect";
-            this.cancelPatternSelect.Size = new System.Drawing.Size(75, 23);
+            this.cancelPatternSelect.Size = new System.Drawing.Size(94, 29);
             this.cancelPatternSelect.TabIndex = 3;
             this.cancelPatternSelect.Text = "Cancel";
             this.cancelPatternSelect.UseVisualStyleBackColor = true;
@@ -82,23 +84,15 @@
             this.PatternName,
             this.Version,
             this.PatternRef});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.patternListGrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.patternListGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.patternListGrid.Location = new System.Drawing.Point(0, 0);
+            this.patternListGrid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.patternListGrid.MultiSelect = false;
             this.patternListGrid.Name = "patternListGrid";
             this.patternListGrid.ReadOnly = true;
             this.patternListGrid.RowTemplate.Height = 24;
-            this.patternListGrid.Size = new System.Drawing.Size(695, 176);
+            this.patternListGrid.Size = new System.Drawing.Size(869, 220);
             this.patternListGrid.TabIndex = 4;
-            this.patternListGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Type
             // 
@@ -127,20 +121,23 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.patternListGrid);
-            this.panel1.Location = new System.Drawing.Point(13, 45);
+            this.panel1.Location = new System.Drawing.Point(16, 56);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(695, 176);
+            this.panel1.Size = new System.Drawing.Size(869, 220);
             this.panel1.TabIndex = 5;
             // 
             // PatternSelect
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(720, 279);
+            this.ClientSize = new System.Drawing.Size(900, 349);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.cancelPatternSelect);
             this.Controls.Add(this.applyPatternSelect);
             this.Controls.Add(this.patternTypeLabel);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "PatternSelect";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PatternSelect";

@@ -129,7 +129,7 @@ namespace FPDL.Deploy
             TreeNode a = new TreeNode("Component = " + ComponentType.ToString());
             a.Nodes.AddRange(t1);
             a.Nodes.AddRange(t);
-            a.ToolTipText = "Component";
+            a.ToolTipText = "Right-click to edit";
             a.Tag = this;
             return a;
         }
