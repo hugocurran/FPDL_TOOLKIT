@@ -62,6 +62,7 @@ namespace FPDL.Tools.PatternEditor
                     Description = create.patternDescription
                 };
                 editablePattern = true;
+                dirtyPattern = true;
                 pattern.ConfigMgmt = new ConfigMgmt();
                 pattern.ConfigMgmt.Initialise(
                     Environment.UserName,
@@ -93,10 +94,12 @@ namespace FPDL.Tools.PatternEditor
                     if (input.GetType() == typeof(PatternObject))
                     {
                         this.pattern = (PatternObject)input;
+                        dirtyPattern = true;
+                        newPattern = true;
+                        editablePattern = true;
                         showPatternFile(pattern);
                         tabControl.SelectTab(0);
-                        dirtyPattern = false;
-                        newPattern = true;
+
                     }
                     else if (input.GetType() == (typeof(PatternLibrary)))
                     {

@@ -115,7 +115,7 @@ namespace FPDL.Common
                 new XElement(ns + "created",
                     new XElement(ns + "date", Created.date.ToUniversalTime()),
                     new XElement(ns + "author", Created.author),
-                    new XElement(ns + "initialVersion", VersionToString(Created.initialVersion))
+                    new XElement(ns + "initialVersion", Created.initialVersion.VersionToString())
                     ),
                 new XElement(ns + "docReference", DocReference.ToString())
                 );
@@ -124,7 +124,7 @@ namespace FPDL.Common
                 XElement _c = new XElement(ns + "changed",
                     new XElement(ns + "date", change.date.ToUniversalTime()),
                     new XElement(ns + "author", change.author),
-                    new XElement(ns + "newVersion", VersionToString(change.newVersion)),
+                    new XElement(ns + "newVersion", change.newVersion.VersionToString()),
                     new XElement(ns + "prevDocReference", change.prevDocReference.ToString()),
                     new XElement(ns + "changeNotes", change.changeNotes)
                 );

@@ -208,7 +208,8 @@ namespace FPDL.Tools.DeployEditor
             if (deploy == null)
                 return;
 
-            deployVersionTbox.Text = ConfigMgmt.VersionToString(deploy.ConfigMgmt.CurrentVersion);
+            deployVersionTbox.Text = deploy.ConfigMgmt.CurrentVersion.VersionToString();
+            //deployVersionTbox.Text = ConfigMgmt.VersionToString(deploy.ConfigMgmt.CurrentVersion);
             //deployDateTbox.Text = deploy.ConfigMgmt
             deployRefTbox.Text = deploy.ConfigMgmt.DocReference.ToString();
 

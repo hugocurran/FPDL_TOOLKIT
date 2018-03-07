@@ -159,7 +159,7 @@ namespace FPDL.Pattern
                     Type = pattern.PatternType,
                     Reference = pattern.ConfigMgmt.DocReference,
                     Name = pattern.PatternName,
-                    Version = ConfigMgmt.VersionToString(pattern.ConfigMgmt.CurrentVersion),
+                    Version = pattern.ConfigMgmt.CurrentVersion.VersionToString(),
                     Pattern = pattern
                 };
                 _library.Add(entry);
@@ -185,7 +185,7 @@ namespace FPDL.Pattern
                     Type = pattern.PatternType,
                     Reference = pattern.ConfigMgmt.DocReference,
                     Name = pattern.PatternName,
-                    Version = ConfigMgmt.VersionToString(pattern.ConfigMgmt.CurrentVersion),
+                    Version = pattern.ConfigMgmt.CurrentVersion.VersionToString(),
                     Filename = filename
                 };
                 _library.Add(entry);
