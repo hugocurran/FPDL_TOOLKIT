@@ -45,5 +45,12 @@ namespace FPDL
                     return Enums.PatternType.NotApplicable;
             }
         }
+
+        public static string VersionToString(this Tuple<int,int> version)
+        {
+            string major = version.Item1.ToString();
+            string minor = version.Item2.ToString();
+            return major + "." + minor;
+        }
     }
 }

@@ -76,17 +76,17 @@ namespace FPDL.Policy
         /// Serialise PolicyHlaAttribute to FPDL
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
-            XElement fpdl = new XElement("attribute",
-                new XElement("attributeName", AttributeName));
+            XElement fpdl = new XElement(ns + "attribute",
+                new XElement(ns + "attributeName", AttributeName));
             if (DefaultValue != null)
-                fpdl.Add(new XElement("defaultValue", DefaultValue, new XAttribute("dataType", DataType)));
+                fpdl.Add(new XElement(ns + "defaultValue", DefaultValue, new XAttribute("dataType", DataType)));
             if (ReleaseStatements.Count > 0)
             {
-                XElement rs = new XElement("releaseStatements");
+                XElement rs = new XElement(ns + "releaseStatements");
                 foreach (IReleaseStatement statement in ReleaseStatements)
-                    rs.Add(statement.ToFPDL());
+                    rs.Add(statement.ToFPDL(ns));
                 fpdl.Add(rs);
             }
             return fpdl;

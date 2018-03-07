@@ -67,13 +67,13 @@ namespace FPDL.Pattern
         /// Serialise Module object to FPDL
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
-            XElement fpdl = new XElement("module",
-                new XElement("moduleType", ModuleType.ToString())
+            XElement fpdl = new XElement(ns + "module",
+                new XElement(ns + "moduleType", ModuleType.ToString())
                 );
             foreach (Specification spec in Specifications)
-                fpdl.Add(spec.ToFPDL());
+                fpdl.Add(spec.ToFPDL(ns));
             return fpdl;
         }
         /// <summary>

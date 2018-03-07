@@ -70,23 +70,23 @@ namespace FPDL.Policy
         /// Serialise HlaObject to FPDL
         /// </summary>
         /// <returns>FPDL HLA object</returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
             XElement fpdl =
-                new XElement("object",
-                    new XElement("objectClassName", ObjectClassName)
+                new XElement(ns+ "object",
+                    new XElement(ns + "objectClassName", ObjectClassName)
                 );
             if (ReleaseStatements.Count > 0)
             {
-                XElement rs = new XElement("releaseStatements");
+                XElement rs = new XElement(ns + "releaseStatements");
                 foreach (IReleaseStatement statement in ReleaseStatements)
-                    rs.Add(statement.ToFPDL());
+                    rs.Add(statement.ToFPDL(ns));
                 fpdl.Add(rs);
             }
             if (Attributes.Count > 0)
             {
                 foreach (PolicyHlaAttribute attrib in Attributes)
-                    fpdl.Add(attrib.ToFPDL());
+                    fpdl.Add(attrib.ToFPDL(ns));
             }
             return fpdl;
         }

@@ -61,7 +61,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Common.ConfigMgmt.ToFPDL">
+        <member name="M:FPDL.Common.ConfigMgmt.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise ConfigMgmt object to FPDL
             </summary>
@@ -242,7 +242,7 @@
             <param name="fpdl"></param>
             <returns></returns>
         </member>
-        <member name="M:FPDL.Common.HlaInteraction.ToFPDL">
+        <member name="M:FPDL.Common.HlaInteraction.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise HLA interaction into FPDL
             </summary>
@@ -293,7 +293,7 @@
             <param name="fpdl"></param>
             <returns></returns>
         </member>
-        <member name="M:FPDL.Common.HlaObject.ToFPDL">
+        <member name="M:FPDL.Common.HlaObject.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise HlaObject to FPDL
             </summary>
@@ -418,7 +418,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Common.Source.ToFPDL">
+        <member name="M:FPDL.Common.Source.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise Source to FPDL
             </summary>
@@ -693,7 +693,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Deploy.Component.ToFPDL">
+        <member name="M:FPDL.Deploy.Component.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise Component to FPDL
             </summary>
@@ -806,7 +806,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Deploy.IModule.ToFPDL">
+        <member name="M:FPDL.Deploy.IModule.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise module to FPDL
             </summary>
@@ -867,7 +867,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Deploy.ModuleExport.ToFPDL">
+        <member name="M:FPDL.Deploy.ModuleExport.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise Export module to FPDL
             </summary>
@@ -940,7 +940,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Deploy.ModuleExtension.ToFPDL">
+        <member name="M:FPDL.Deploy.ModuleExtension.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise Module to FPDL
             </summary>
@@ -1042,7 +1042,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Deploy.ModuleFederation.ToFPDL">
+        <member name="M:FPDL.Deploy.ModuleFederation.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise Module to FPDL
             </summary>
@@ -1118,6 +1118,151 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:FPDL.Deploy.ModuleFilter">
+            <summary>
+            Filter Module
+            </summary>
+        </member>
+        <member name="P:FPDL.Deploy.ModuleFilter.FilterId">
+            <summary>
+            UUID of the filter
+            </summary>
+        </member>
+        <member name="P:FPDL.Deploy.ModuleFilter.Rules">
+            <summary>
+            Filter rules
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleFilter.GetModuleType">
+            <summary>
+            Get the module identity
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleFilter.#ctor">
+            <summary>
+            Construct a Host Module
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleFilter.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct an Filter module from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleFilter.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Filter module from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleFilter.ToFPDL(System.Xml.Linq.XNamespace)">
+            <summary>
+            Serialise Filter module to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleFilter.ToString">
+            <summary>
+            String representation of Filter module
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleFilter.GetNode">
+            <summary>
+            Get a TreeNode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleFilter.ApplyPattern(System.Collections.Generic.List{FPDL.Pattern.Specification})">
+            <summary>
+            Apply specifications from a Pattern to this module
+            </summary>
+            <param name="specifications"></param>
+        </member>
+        <member name="M:FPDL.Deploy.ModuleFilter.ApplyPattern(FPDL.Pattern.Specification)">
+            <summary>
+            Apply specifications from a Pattern to this module
+            </summary>
+            <param name="specification"></param>
+        </member>
+        <member name="T:FPDL.Deploy.FilterRule">
+            <summary>
+            Filter rule
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.FilterRule.Ref">
+            <summary>
+            Numeric reference for the filter
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.FilterRule.Model">
+            <summary>
+            Model for the rule
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.FilterRule.Parameters">
+            <summary>
+            Parameter list
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.FilterRule.#ctor">
+            <summary>
+            Filter Rule
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.FilterRule.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct an Filter Rule from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.FilterRule.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Filter Rule from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.FilterRule.ToFPDL(System.Xml.Linq.XNamespace)">
+            <summary>
+            Serialise Host module to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.FilterRule.GetNode">
+            <summary>
+            Get a TreeNode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FPDL.Deploy.FilterRule.FilterParameter">
+            <summary>
+            Filter parameters
+            </summary>
+        </member>
+        <member name="M:FPDL.Deploy.FilterRule.FilterParameter.#ctor(System.Xml.Linq.XElement)">
+            <summary>
+            Construct an Interface module from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.FilterRule.FilterParameter.FromFPDL(System.Xml.Linq.XElement)">
+            <summary>
+            Deserialise Interface module from FPDL
+            </summary>
+            <param name="fpdl"></param>
+        </member>
+        <member name="M:FPDL.Deploy.FilterRule.FilterParameter.ToFPDL(System.Xml.Linq.XNamespace)">
+            <summary>
+            Serialise Parameter to FPDL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FPDL.Deploy.FilterRule.FilterParameter.GetNode">
+            <summary>
+            Get a TreeNode
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:FPDL.Deploy.ModuleHost">
             <summary>
             Host Module
@@ -1160,7 +1305,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Deploy.ModuleHost.ToFPDL">
+        <member name="M:FPDL.Deploy.ModuleHost.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise Host module to FPDL
             </summary>
@@ -1263,7 +1408,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Deploy.ModuleImport.ToFPDL">
+        <member name="M:FPDL.Deploy.ModuleImport.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise Import module to FPDL
             </summary>
@@ -1346,7 +1491,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Deploy.ModuleInterface.ToFPDL">
+        <member name="M:FPDL.Deploy.ModuleInterface.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise Interface module to FPDL
             </summary>
@@ -1384,6 +1529,11 @@
         <member name="T:FPDL.Deploy.ModuleOsp.OspProtocol">
             <summary>
             OspProtocol types
+            </summary>
+        </member>
+        <member name="F:FPDL.Deploy.ModuleOsp.OspProtocol.INVALID">
+            <summary>
+            Invalid (null value)
             </summary>
         </member>
         <member name="F:FPDL.Deploy.ModuleOsp.OspProtocol.HPSD_ZMQ">
@@ -1448,7 +1598,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Deploy.ModuleOsp.ToFPDL">
+        <member name="M:FPDL.Deploy.ModuleOsp.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise OSP module to FPDL
             </summary>
@@ -1530,7 +1680,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Deploy.DeploySystem.ToFPDL">
+        <member name="M:FPDL.Deploy.DeploySystem.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise System object to FPDL
             </summary>
@@ -1641,7 +1791,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Design.Entity.ToFPDL">
+        <member name="M:FPDL.Design.Entity.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise Entity object to FPDL
             </summary>
@@ -1714,7 +1864,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Design.Federate.ToFPDL">
+        <member name="M:FPDL.Design.Federate.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise Federation object to FPDL
             </summary>
@@ -1763,7 +1913,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Design.Federation.ToFPDL">
+        <member name="M:FPDL.Design.Federation.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise Federation object to FPDL
             </summary>
@@ -1819,7 +1969,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Design.Publish.ToFPDL">
+        <member name="M:FPDL.Design.Publish.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise Publish onject to FPDL
             </summary>
@@ -1958,6 +2108,13 @@
             Write FPDL documents to the filesystem
             </summary>
         </member>
+        <member name="M:FPDL.FpdlWriter.Write(System.Xml.Linq.XElement,System.String)">
+            <summary>
+            Write an FPDL Document to the filesystem
+            </summary>
+            <param name="fpdl"></param>
+            <param name="filename"></param>
+        </member>
         <member name="M:FPDL.FpdlWriter.Write(FPDL.IFpdlObject,System.String)">
             <summary>
             Write an FPDL Document to the filesystem
@@ -2024,7 +2181,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Pattern.PatternComponent.ToFPDL">
+        <member name="M:FPDL.Pattern.PatternComponent.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise Component object to FPDL
             </summary>
@@ -2120,7 +2277,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Pattern.Module.ToFPDL">
+        <member name="M:FPDL.Pattern.Module.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise Module object to FPDL
             </summary>
@@ -2272,6 +2429,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:FPDL.Pattern.PatternObject.ToFPDL(System.Xml.Linq.XNamespace)">
+            <summary>
+            Serialise PatternObject to FPDL
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:FPDL.Pattern.PatternObject.ToString">
             <summary>
             String representation of PatternObject
@@ -2321,7 +2484,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Pattern.Specification.ToFPDL">
+        <member name="M:FPDL.Pattern.Specification.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise Specification object to FPDL
             </summary>
@@ -2391,7 +2554,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Policy.PolicyEntity.ToFPDL">
+        <member name="M:FPDL.Policy.PolicyEntity.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise Entity object to FPDL
             </summary>
@@ -2464,7 +2627,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Policy.Federate.ToFPDL">
+        <member name="M:FPDL.Policy.Federate.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise Federate object to FPDL
             </summary>
@@ -2507,7 +2670,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Policy.PolicyException.ToFPDL">
+        <member name="M:FPDL.Policy.PolicyException.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise PolicyException to FPDL
             </summary>
@@ -2562,7 +2725,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Policy.PolicyHlaAttribute.ToFPDL">
+        <member name="M:FPDL.Policy.PolicyHlaAttribute.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise PolicyHlaAttribute to FPDL
             </summary>
@@ -2606,7 +2769,7 @@
             <param name="fpdl"></param>
             <returns></returns>
         </member>
-        <member name="M:FPDL.Policy.PolicyHlaInteraction.ToFPDL">
+        <member name="M:FPDL.Policy.PolicyHlaInteraction.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise HLA interaction into FPDL
             </summary>
@@ -2655,7 +2818,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Policy.PolicyHlaObject.ToFPDL">
+        <member name="M:FPDL.Policy.PolicyHlaObject.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise HlaObject to FPDL
             </summary>
@@ -2738,7 +2901,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Policy.PolicyPublish.ToFPDL">
+        <member name="M:FPDL.Policy.PolicyPublish.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise Publish onject to FPDL
             </summary>
@@ -2761,7 +2924,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Policy.IReleaseStatement.ToFPDL">
+        <member name="M:FPDL.Policy.IReleaseStatement.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise to FPDL
             </summary>
@@ -2857,7 +3020,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Policy.ReleaseToGeneric.ToFPDL">
+        <member name="M:FPDL.Policy.ReleaseToGeneric.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise ReleaseToGeneric to FPDL
             </summary>
@@ -2902,7 +3065,7 @@
             </summary>
             <param name="fpdl"></param>
         </member>
-        <member name="M:FPDL.Policy.ReleaseToSpecific.ToFPDL">
+        <member name="M:FPDL.Policy.ReleaseToSpecific.ToFPDL(System.Xml.Linq.XNamespace)">
             <summary>
             Serialise ReleaseToSpecific to FPDL
             </summary>

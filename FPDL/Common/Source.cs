@@ -19,6 +19,7 @@ namespace FPDL.Common
         /// </summary>
         public enum Type
         {
+            INVALID,
             /// <summary>
             /// Federate source
             /// </summary>
@@ -73,6 +74,8 @@ namespace FPDL.Common
         /// </summary>
         public Source()
         {
+            FederateName = "";
+            EntityId = "";
             _objects = new List<HlaObject>();
             _interactions = new List<HlaInteraction>();
         }
@@ -102,7 +105,8 @@ namespace FPDL.Common
                 throw new ApplicationException("Deploy.Entities.Subscribe.SetSubscribeSource: Invalid EntityID - ", e);
             }
             EntityId = id.Value;
-            FederateName = id.Attribute("federateName").Value;
+            if (id.Attribute("federateName") != null)
+                FederateName = (string)id.Attribute("federateName") ?? "";
         }
         /// <summary>
         /// Deserialise Source object from FPDL
@@ -120,9 +124,17 @@ namespace FPDL.Common
                     FilterSource = false;
 
                 if (fpdl.Element("federateSource") != null)
+                {
                     FederateName = fpdl.Element("federateSource").Value;
+                    SourceType = Type.Federate;
+                }
                 else if (fpdl.Element("entitySource") != null)
+                {
                     SetSubscribeSource(fpdl.Element("entitySource"));
+                    SourceType = Type.Entity;
+                }
+                else
+                    throw new ApplicationException("Invalid source type");
 
                 if (fpdl.Element("object") != null)
                 {
@@ -147,23 +159,30 @@ namespace FPDL.Common
         /// Serialise Source to FPDL
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
-            XElement fpdlType = new XElement("source", new XAttribute("filterSource", FilterSource.ToString()));
+            XElement fpdlType = new XElement(ns + "source", new XAttribute("filterSource", FilterSource.ToString()));
 
-            if (SourceType == Type.Federate)
-                fpdlType.Add(new XElement("federateSource", FederateName));
-            else
-                fpdlType.Add(new XElement("entitySource", EntityId, new XAttribute("federateName", FederateName)));
+            switch (SourceType)
+            {
+                case Type.Federate:
+                    fpdlType.Add(new XElement(ns + "federateSource", FederateName));
+                    break;
+                case Type.Entity:
+                    fpdlType.Add(new XElement(ns + "entitySource", EntityId, new XAttribute("federateName", FederateName)));
+                    break;
+                default:
+                    throw new ApplicationException("Invalid source type in source");
+            }
 
             foreach (HlaObject obj in _objects)
             {
-                fpdlType.Add(obj.ToFPDL());
+                fpdlType.Add(obj.ToFPDL(ns));
             }
 
             foreach (HlaInteraction inter in _interactions)
             {
-                fpdlType.Add(inter.ToFPDL());
+                fpdlType.Add(inter.ToFPDL(ns));
             }
             return fpdlType;
         }
@@ -211,7 +230,7 @@ namespace FPDL.Common
             a.Nodes.AddRange(t1);
             a.Nodes.AddRange(t2);
             a.ToolTipText = "Source federate/entity";
-            a.Tag = this;
+            a.Tag = null;
             return a;
         }
     }

@@ -71,23 +71,23 @@ namespace FPDL.Policy
         /// Serialise HLA interaction into FPDL
         /// </summary>
         /// <returns>FPDL HLA interaction</returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
-            XElement fpdl = new XElement("interaction",
-                    new XElement("interactionClassName", InteractionClassName)
+            XElement fpdl = new XElement(ns + "interaction",
+                    new XElement(ns + "interactionClassName", InteractionClassName)
                 );
             if (ReleaseStatements.Count > 0)
             {
-                XElement rs = new XElement("releaseStatements");
+                XElement rs = new XElement(ns + "releaseStatements");
                 foreach (IReleaseStatement statement in ReleaseStatements)
-                    rs.Add(statement.ToFPDL());
+                    rs.Add(statement.ToFPDL(ns));
                 fpdl.Add(rs);
             }
             if (Exceptions.Count > 0)
             {
                 foreach (PolicyException ex in Exceptions)
                 {
-                    fpdl.Add(ex.ToFPDL());
+                    fpdl.Add(ex.ToFPDL(ns));
                 }
             }
             return fpdl;

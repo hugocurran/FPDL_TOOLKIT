@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DeployPattern xmlns="http://www.niteworks.net/fpdl" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <configMgmt>
+    <securityOwner>UK</securityOwner>
+    <securityClassification>OFFICIAL</securityClassification>
+    <currentVersion>1.0</currentVersion>
+    <description>Initial Version</description>
+    <created>
+      <date>2018-03-05T12:05:08.0112522Z</date>
+      <author>peter</author>
+      <initialVersion>1.0</initialVersion>
+    </created>
+    <docReference>d18ff7cf-fa9e-4936-8b2a-760f57c95d0c</docReference>
+    <changed>
+      <date>2018-03-05T12:05:08.0112522Z</date>
+      <author>peter</author>
+      <newVersion>1.0</newVersion>
+      <prevDocReference>d18ff7cf-fa9e-4936-8b2a-760f57c95d0c</prevDocReference>
+      <changeNotes>Initial Version</changeNotes>
+    </changed>
+  </configMgmt>
+  <patternGenericType>ltg</patternGenericType>
+  <patternName>LTG - Pitch Extender</patternName>
+  <description>Two back-to-back Extenders acting as a LTG</description>
+  <component xmlns="">
+    <componentType>proxy</componentType>
+    <componentID>57cf1471-0ba9-4072-8a69-bf1ba4552c4d</componentID>
+    <componentName>High proxy</componentName>
+    <module>
+      <moduleType>interface</moduleType>
+      <specification>
+        <paramName readOnly="false">interfaceName</paramName>
+        <value>CSS Federation</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">ipAddress</paramName>
+        <value>1.1.1.1</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">netPrefix</paramName>
+        <value>24</value>
+      </specification>
+    </module>
+    <module>
+      <moduleType>interface</moduleType>
+      <specification>
+        <paramName readOnly="false">interfaceName</paramName>
+        <value>OSP interface</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">ipAddress</paramName>
+        <value>60.60.60.94</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">ipAddress</paramName>
+        <value>24</value>
+      </specification>
+    </module>
+    <module>
+      <moduleType>interface</moduleType>
+      <specification>
+        <paramName readOnly="false">interfaceName</paramName>
+        <value>Management</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">ipAddress</paramName>
+        <value>10.10.10.94</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">netPrefix</paramName>
+        <value>24</value>
+      </specification>
+    </module>
+    <module>
+      <moduleType>host</moduleType>
+      <specification>
+        <paramName readOnly="false">hostName</paramName>
+        <value>NW31</value>
+      </specification>
+    </module>
+    <module>
+      <moduleType>federation</moduleType>
+      <specification>
+        <paramName readOnly="false">federationName</paramName>
+        <value>CSS</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">federateName</paramName>
+        <value>TYP</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">interfaceName</paramName>
+        <value>CSS Federation</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">crcAddress</paramName>
+        <value>1.1.1.1</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">crcPortNumber</paramName>
+        <value>8989</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">addressType</paramName>
+        <value>ipAddress</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">hlaSpec</paramName>
+        <value>HLA Evolved</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>RPR_FOM_v2.0_1516-2010.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>CBRN_v1.1.9.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>MRM_v1.1.1.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Aggregate_v1.0.4.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Base_v1.0.2.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-HCBML_v1.1.1.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-LBML_v1.1.0.xm</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Physical_v1.1.2.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Repair_v1.2.1.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-SCP-Base_v1.1.3.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Storage_v1.2.2.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Supply_v1.1.2.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Transport_v1.1.2.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>TMR_v1.1.3.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Emitter_v1.0.0.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Weapons_v1.0.0.xml</value>
+      </specification>
+    </module>
+    <module>
+      <moduleType>osp</moduleType>
+      <specification>
+        <paramName readOnly="false">path</paramName>
+        <value>exportPath</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">protocol</paramName>
+        <value>HPSD_TCP</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">outputPort</paramName>
+        <value>60.60.60.95:9001</value>
+      </specification>
+    </module>
+    <module>
+      <moduleType>osp</moduleType>
+      <specification>
+        <paramName readOnly="false">path</paramName>
+        <value>importPath</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">protocol</paramName>
+        <value>HPSD_TCP</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">inputPort</paramName>
+        <value>60.60.60.94:8100</value>
+      </specification>
+    </module>
+    <module>
+      <moduleType>export</moduleType>
+      <specification>
+        <paramName readOnly="false">interfaceName</paramName>
+        <value>CSS Federation</value>
+      </specification>
+    </module>
+    <module>
+      <moduleType>extension</moduleType>
+      <specification>
+        <paramName readOnly="false">vendorName</paramName>
+        <value>Pitch Technologies</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">configurationType</paramName>
+        <value>PitchSpecific</value>
+      </specification>
+    </module>
+  </component>
+  <component xmlns="">
+    <componentType>proxy</componentType>
+    <componentID>687b55a7-6b3c-449e-a65b-aa682a5d7df7</componentID>
+    <componentName>Low proxy</componentName>
+    <module>
+      <moduleType>interface</moduleType>
+      <specification>
+        <paramName readOnly="false">interfaceName</paramName>
+        <value>TYP Federation</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">ipAddress</paramName>
+        <value>2.2.2.1</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">netPrefix</paramName>
+        <value>24</value>
+      </specification>
+    </module>
+    <module>
+      <moduleType>interface</moduleType>
+      <specification>
+        <paramName readOnly="false">interfaceName</paramName>
+        <value>OSP interface</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">ipAddress</paramName>
+        <value>60.60.60.95</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">ipAddress</paramName>
+        <value>24</value>
+      </specification>
+    </module>
+    <module>
+      <moduleType>interface</moduleType>
+      <specification>
+        <paramName readOnly="false">interfaceName</paramName>
+        <value>Management</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">ipAddress</paramName>
+        <value>10.10.10.95</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">netPrefix</paramName>
+        <value>24</value>
+      </specification>
+    </module>
+    <module>
+      <moduleType>host</moduleType>
+      <specification>
+        <paramName readOnly="false">hostName</paramName>
+        <value>NW21</value>
+      </specification>
+    </module>
+    <module>
+      <moduleType>federation</moduleType>
+      <specification>
+        <paramName readOnly="false">federationName</paramName>
+        <value>TYP</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">federateName</paramName>
+        <value>CSS</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">interfaceName</paramName>
+        <value>CSS Federation</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">crcAddress</paramName>
+        <value>2.2.2.1</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">crcPortNumber</paramName>
+        <value>8989</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">addressType</paramName>
+        <value>ipAddress</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">hlaSpec</paramName>
+        <value>HLA Evolved</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>RPR_FOM_v2.0_1516-2010.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>CBRN_v1.1.9.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>MRM_v1.1.1.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Aggregate_v1.0.4.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Base_v1.0.2.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-HCBML_v1.1.1.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-LBML_v1.1.0.xm</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Physical_v1.1.2.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Repair_v1.2.1.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-SCP-Base_v1.1.3.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Storage_v1.2.2.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Supply_v1.1.2.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Transport_v1.1.2.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>TMR_v1.1.3.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Emitter_v1.0.0.xml</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">fomFile</paramName>
+        <value>NETN-Weapons_v1.0.0.xml</value>
+      </specification>
+    </module>
+    <module>
+      <moduleType>osp</moduleType>
+      <specification>
+        <paramName readOnly="false">path</paramName>
+        <value>exportPath</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">protocol</paramName>
+        <value>HPSD_TCP</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">inputPort</paramName>
+        <value>60.60.60.95:9001</value>
+      </specification>
+    </module>
+    <module>
+      <moduleType>osp</moduleType>
+      <specification>
+        <paramName readOnly="false">path</paramName>
+        <value>importPath</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">protocol</paramName>
+        <value>HPSD_TCP</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">outputPort</paramName>
+        <value>60.60.60.94:8100</value>
+      </specification>
+    </module>
+    <module>
+      <moduleType>export</moduleType>
+      <specification>
+        <paramName readOnly="false">interfaceName</paramName>
+        <value>CSS Federation</value>
+      </specification>
+    </module>
+    <module>
+      <moduleType>extension</moduleType>
+      <specification>
+        <paramName readOnly="false">vendorName</paramName>
+        <value>Pitch Technologies</value>
+      </specification>
+      <specification>
+        <paramName readOnly="false">configurationType</paramName>
+        <value>PitchSpecific</value>
+      </specification>
+    </module>
+  </component>
+</DeployPattern>

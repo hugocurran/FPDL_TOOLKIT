@@ -24,7 +24,7 @@ namespace FPDL.Deploy
         /// Serialise module to FPDL
         /// </summary>
         /// <returns></returns>
-        XElement ToFPDL();
+        XElement ToFPDL(XNamespace ns);
         /// <summary>
         /// Get a TreeNode representation
         /// </summary>
@@ -40,5 +40,10 @@ namespace FPDL.Deploy
         /// </summary>
         /// <param name="specification"></param>
         void ApplyPattern(Specification specification);
+        ///// <summary>
+        ///// Remove a specification from a module
+        ///// </summary>
+        ///// <param name="specification"></param>
+        //void DeleteSpecification(Specification specification);
     }
 }

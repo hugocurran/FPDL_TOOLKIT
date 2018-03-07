@@ -62,16 +62,16 @@ namespace FPDL.Policy
         /// Serialise PolicyException to FPDL
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
-            XElement fpdl = new XElement("exception",
-                new XElement("parameterName", ParameterName)
+            XElement fpdl = new XElement(ns + "exception",
+                new XElement(ns + "parameterName", ParameterName)
                 );
             foreach (Guid entity in EntityIDs)
-                fpdl.Add(new XElement("entityID", entity.ToString()));
-            XElement rs = new XElement("releaseStatements");
+                fpdl.Add(new XElement(ns + "entityID", entity.ToString()));
+            XElement rs = new XElement(ns + "releaseStatements");
             foreach (IReleaseStatement statement in ReleaseStatements)
-                rs.Add(statement.ToFPDL());
+                rs.Add(statement.ToFPDL(ns));
             fpdl.Add(rs);
             return fpdl;
         }

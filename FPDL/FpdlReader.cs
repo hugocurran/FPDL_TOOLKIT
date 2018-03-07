@@ -53,10 +53,10 @@ namespace FPDL
                     return new DesignObject(fpdlDoc.Element("Design"));
                 case "Deploy":
                     return new DeployObject(fpdlDoc.Element("Deploy"));
-                case "Pattern":
-                    return new PatternObject(fpdlDoc.Element("Pattern"));
-                case "PatternLibrary":
-                    return new PatternLibrary(fpdlDoc.Element("PatternLibrary"));
+                case "DeployPattern":
+                    return new PatternObject(fpdlDoc.Element("DeployPattern"));
+                case "DeployPatternLibrary":
+                    return new PatternLibrary(fpdlDoc.Element("DeployPatternLibrary"));
                 default:
                     throw new ApplicationException("Cannot parse: Not an FPDL document");
             }

@@ -55,8 +55,8 @@ namespace FPDL.Pattern
         /// <param name="fpdl"></param>
         public void FromFPDL(XElement fpdl)
         {
-            if (fpdl.Name != "Pattern")
-                throw new ApplicationException("Cannot parse: Not an FPDL Pattern file");
+            if (fpdl.Name != "DeployPattern")
+                throw new ApplicationException("Cannot parse: Not an FPDL Deploy Pattern file");
             try
             {
                 ConfigMgmt = new ConfigMgmt(fpdl.Descendants("configMgmt").FirstOrDefault());
@@ -81,17 +81,41 @@ namespace FPDL.Pattern
         /// <returns></returns>
         public XElement ToFPDL()
         {
-            XElement pattern = new XElement("Pattern",
-                ConfigMgmt.ToFPDL(),
-                new XElement("patternGenericType", PatternType.ToString()),
-                new XElement("patternName", PatternName),
-                new XElement("description", Description)
+            XNamespace xsi = XNamespace.Get("http://www.w3.org/2001/XMLSchema-instance");
+            XNamespace xsd = XNamespace.Get("http://www.w3.org/2001/XMLSchema");
+            XNamespace ns = XNamespace.Get("http://www.niteworks.net/fpdl");
+            XElement fpdl = new XElement(ns + "DeployPattern",
+                    new XAttribute("xmlns", ns.NamespaceName),
+                    new XAttribute(XNamespace.Xmlns + "xsd", xsd.NamespaceName),
+                    new XAttribute(XNamespace.Xmlns + "xsi", xsi.NamespaceName),
+                ConfigMgmt.ToFPDL(ns),
+                new XElement(ns + "patternGenericType", PatternType.ToString()),
+                new XElement(ns + "patternName", PatternName),
+                new XElement(ns + "description", Description)
             );
             foreach (PatternComponent component in Components)
             {
-                pattern.Add(component.ToFPDL());
+                fpdl.Add(component.ToFPDL(ns));
             }
-            return pattern;
+            return fpdl;
+        }
+        /// <summary>
+        /// Serialise PatternObject to FPDL
+        /// </summary>
+        /// <returns></returns>
+        public XElement ToFPDL(XNamespace ns)
+        {
+            XElement fpdl = new XElement(ns + "DeployPattern",
+                ConfigMgmt.ToFPDL(ns),
+                new XElement(ns + "patternGenericType", PatternType.ToString()),
+                new XElement(ns + "patternName", PatternName),
+                new XElement(ns + "description", Description)
+            );
+            foreach (PatternComponent component in Components)
+            {
+                fpdl.Add(component.ToFPDL(ns));
+            }
+            return fpdl;
         }
         /// <summary>
         /// String representation of PatternObject

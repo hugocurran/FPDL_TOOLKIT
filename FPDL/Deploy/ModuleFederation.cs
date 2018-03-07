@@ -50,6 +50,9 @@ namespace FPDL.Deploy
         /// </summary>
         public ModuleFederation()
         {
+            FederationName = "";
+            FederateName = "";
+            InterfaceName = "";
             RTI = new Rti();
         }
         /// <summary>
@@ -73,13 +76,11 @@ namespace FPDL.Deploy
                 FederationName = fpdl.Element("federationName").Value;
                 FederateName = fpdl.Element("federateName").Value;
                 InterfaceName = fpdl.Element("interfaceName").Value;
-                RTI = new Rti
-                {
-                    CrcAddress = fpdl.Element("rti").Element("crcAddress").Value,
-                    AddressType = fpdl.Element("rti").Element("crcAddress").Attribute("addressType").Value,
-                    CrcPortNumber = fpdl.Element("rti").Element("crcPortNumber").Value,
-                    HlaSpec = fpdl.Element("rti").Element("hlaSpec").Value,
-                };
+                RTI.CrcAddress = fpdl.Element("rti").Element("crcAddress").Value;
+                RTI.AddressType = fpdl.Element("rti").Element("crcAddress").Attribute("addressType").Value;
+                RTI.CrcPortNumber = fpdl.Element("rti").Element("crcPortNumber").Value;
+                RTI.HlaSpec = fpdl.Element("rti").Element("hlaSpec").Value;
+
                 XElement foo = fpdl.Element("rti").Element("fom");
                 if (fpdl.Element("rti").Element("fom").Element("uri") != null)
                 {
@@ -101,24 +102,25 @@ namespace FPDL.Deploy
         /// Serialise Module to FPDL
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
-            XElement fpdl = new XElement("federation",
-               new XElement("federationName", FederationName),
-               new XElement("federateName", FederateName),
-               new XElement("interfaceName", InterfaceName)
+            XElement fpdl = new XElement(ns + "federation",
+               new XElement(ns + "federationName", FederationName),
+               new XElement(ns + "federateName", FederateName),
+               new XElement(ns + "interfaceName", InterfaceName)
             );
-
-            XElement rti = new XElement("rti",
-                new XElement("crcAddress", RTI.CrcAddress,
+            XElement rti = new XElement(ns + "rti",
+                new XElement(ns + "crcAddress", RTI.CrcAddress,
                     new XAttribute("addressType", RTI.AddressType)),
-                new XElement("crcPortNumber", RTI.CrcPortNumber),
-                new XElement("hlaSpec", RTI.HlaSpec)
+                new XElement(ns + "crcPortNumber", RTI.CrcPortNumber),
+                new XElement(ns + "hlaSpec", RTI.HlaSpec),
+                new XElement(ns + "fom")
                 );
             foreach (string fom in RTI.FomUri)
-                rti.Add(new XElement("uri", fom));
+                rti.Element(ns + "fom").Add(new XElement(ns + "uri", fom));
             foreach (string fom in RTI.FomFile)
-                rti.Add(new XElement("uri", fom));
+                rti.Element(ns + "fom").Add(new XElement(ns + "uri", fom));
+            fpdl.Add(rti);
             return fpdl;
         }
 
@@ -251,6 +253,10 @@ namespace FPDL.Deploy
         /// </summary>
         public Rti()
         {
+            CrcAddress = "";
+            AddressType = "";
+            CrcPortNumber = "";
+            HlaSpec = "";
             FomUri = new List<string>();
             FomFile = new List<string>();
         }

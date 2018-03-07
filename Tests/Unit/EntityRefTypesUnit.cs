@@ -24,7 +24,7 @@ namespace FPDL.Test.Unit
 
             Assert.IsNull(testObj.Attributes[1].DefaultValue);
 
-            XElement result = testObj.ToFPDL();
+            XElement result = testObj.ToFPDL(ns);
             Assert.AreEqual("HlaObjectRoot.Some.Object", result.Element("objectClassName").Value);
             Assert.AreEqual("attrib1", result.Element("attributeName").Value);
         }

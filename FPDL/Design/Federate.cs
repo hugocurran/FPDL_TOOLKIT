@@ -114,30 +114,30 @@ namespace FPDL.Design
         /// Serialise Federation object to FPDL
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
-            XElement fpdl = new XElement("federate",
+            XElement fpdl = new XElement(ns + "federate",
                 new XAttribute("federateType", FederateType.ToString()),
-                new XElement("federateName", FederateName),
-                new XElement("policyReference", PolicyReference)
+                new XElement(ns + "federateName", FederateName),
+                new XElement(ns + "policyReference", PolicyReference)
                 );
             if (SimulatorName != null)
-                fpdl.Add(new XElement("simulatorName", SimulatorName));
+                fpdl.Add(new XElement(ns + "simulatorName", SimulatorName));
             if (FederateType == Enums.FederateType.gateway)
-                fpdl.Add(new XElement("gateway", new XAttribute("gatewayType", GatewayType.ToString())));
+                fpdl.Add(new XElement(ns + "gateway", new XAttribute("gatewayType", GatewayType.ToString())));
             if (FederateType == Enums.FederateType.filter)
-                fpdl.Add(new XElement("filter", Filter.ToFPDL()));
+                fpdl.Add(new XElement(ns + "filter", Filter.ToFPDL()));
             if (Sources.Count > 0)
             {
                 foreach (Source source in Sources)
-                    fpdl.Add(source.ToFPDL());
+                    fpdl.Add(source.ToFPDL(ns));
             }
             if (Publish != null)
-                fpdl.Add(Publish.ToFPDL());
+                fpdl.Add(Publish.ToFPDL(ns));
             if (Entities.Count > 0)
             {
                 foreach (Entity entity in Entities)
-                    fpdl.Add(entity.ToFPDL());
+                    fpdl.Add(entity.ToFPDL(ns));
             }
             return fpdl;
         }

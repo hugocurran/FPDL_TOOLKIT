@@ -57,6 +57,7 @@
     <Compile Include="Deploy\ModuleExtension.cs" />
     <Compile Include="Deploy\ModuleFactory.cs" />
     <Compile Include="Deploy\ModuleFederation.cs" />
+    <Compile Include="Deploy\ModuleFilter.cs" />
     <Compile Include="Deploy\ModuleHost.cs" />
     <Compile Include="Deploy\ModuleImport.cs" />
     <Compile Include="Deploy\ModuleInterface.cs" />

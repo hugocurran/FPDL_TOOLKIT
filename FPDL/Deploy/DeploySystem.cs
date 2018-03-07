@@ -93,18 +93,17 @@ namespace FPDL.Deploy
         /// Serialise System object to FPDL
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
-            XElement fpdl = new XElement("system",
+            XElement fpdl = new XElement(ns + "system",
                     new XAttribute("systemType", SystemType.ToString()),
-                new XElement("pattern", Pattern,
-                    new XAttribute("patternReference", PatternRef.ToString()),
-                new XElement("federateName", FederateName)
-                )
+                new XElement(ns + "pattern", Pattern,
+                    new XAttribute("patternReference", PatternRef.ToString())),
+                new XElement(ns + "federateName", FederateName)
             );
             foreach (Component component in Components)
             {
-                fpdl.Add(component.ToFPDL());
+                fpdl.Add(component.ToFPDL(ns));
             }
             return fpdl;
         }

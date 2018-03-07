@@ -62,17 +62,17 @@ namespace FPDL.Design
         /// Serialise Federation object to FPDL
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
-            XElement fpdl = new XElement("federation",
-                new XElement("description", 
-                    new XElement("name", Name),
-                    new XElement("summary", Summary))
+            XElement fpdl = new XElement(ns+"federation",
+                new XElement(ns + "description", 
+                    new XElement(ns + "name", Name),
+                    new XElement(ns + "summary", Summary))
                 );
             if (Scenario != null)
-                fpdl.Element("description").Add(new XElement("scenario", Scenario));
+                fpdl.Element(ns + "description").Add(new XElement(ns + "scenario", Scenario));
             foreach (Federate federate in Federates)
-                fpdl.Add(federate.ToFPDL());
+                fpdl.Add(federate.ToFPDL(ns));
             return fpdl;
         }
         /// <summary>

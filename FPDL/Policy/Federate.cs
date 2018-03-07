@@ -99,24 +99,24 @@ namespace FPDL.Policy
         /// Serialise Federate object to FPDL
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
-            XElement fpdl = new XElement("federate",
-                new XElement("federateType", FederateType.ToString()),
-                new XElement("federateName", FederateName),
-                new XElement("securityOwner", SecurityOwner),
-                new XElement("securityClassification", SecurityClassification)
+            XElement fpdl = new XElement(ns + "federate",
+                new XElement(ns + "federateType", FederateType.ToString()),
+                new XElement(ns + "federateName", FederateName),
+                new XElement(ns + "securityOwner", SecurityOwner),
+                new XElement(ns + "securityClassification", SecurityClassification)
                 );
             if (SecurityCaveat != null)
-                fpdl.Add(new XElement("securityCaveat", SecurityCaveat));
-            fpdl.Add(new XElement("physicalLocation", PhysicalLocation));
+                fpdl.Add(new XElement(ns + "securityCaveat", SecurityCaveat));
+            fpdl.Add(new XElement(ns + "physicalLocation", PhysicalLocation));
             if (Description != null)
-                fpdl.Add(new XElement("description", Description));
+                fpdl.Add(new XElement(ns + "description", Description));
             if (Publish != null)
-                fpdl.Add(Publish.ToFPDL());
+                fpdl.Add(Publish.ToFPDL(ns));
             if (Entities != null)
                 foreach (PolicyEntity entity in Entities)
-                    fpdl.Add(entity.ToFPDL());
+                    fpdl.Add(entity.ToFPDL(ns));
             return fpdl;
         }
     }

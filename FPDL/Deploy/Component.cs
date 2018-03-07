@@ -77,18 +77,18 @@ namespace FPDL.Deploy
         /// Serialise Component to FPDL
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
-            XElement fpdl = new XElement("component",
-                    new XElement("componentID", ComponentID.ToString()),
-                    new XElement("componentType", ComponentType.ToString())
+            XElement fpdl = new XElement(ns + "component",
+                    new XAttribute("componentID", ComponentID.ToString()),
+                    new XAttribute("componentType", ComponentType.ToString())
                     );
-            if (ComponentName != "")
+            if (ComponentName != null)
                 fpdl.Add(new XAttribute("componentName", ComponentName));
 
             foreach (IModule module in Modules)
             {
-                fpdl.Add(module.ToFPDL());
+                fpdl.Add(module.ToFPDL(ns));
             }
             return fpdl;
         }

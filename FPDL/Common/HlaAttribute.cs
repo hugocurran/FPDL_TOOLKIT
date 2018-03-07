@@ -54,9 +54,12 @@ namespace FPDL.Common
                 TreeNode[] t = new TreeNode[1];
                 string dt = string.Format("{0} [{1}]", DefaultValue, DataType);
                 t[0] = new TreeNode(dt);
+                t[0].Tag = null;
                 return new TreeNode(AttributeName, t);
             }
-            return new TreeNode(AttributeName);
+            TreeNode tr = new TreeNode(AttributeName);
+            tr.Tag = null;
+            return tr;
         }
     }
 }

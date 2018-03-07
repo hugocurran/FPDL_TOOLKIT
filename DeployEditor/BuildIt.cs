@@ -55,6 +55,7 @@ namespace FPDL.Tools.DeployEditor
                 Deploy.Component component = new Deploy.Component();
                 component.ComponentType = pcomponent.ComponentType;
                 component.ComponentID = pcomponent.ComponentID;
+                component.ComponentName = pcomponent.ComponentName ?? "";
                 foreach (var pmodule in pcomponent.Modules)
                 {
                     IModule module = ModuleFactory.Create(pmodule.ModuleType);

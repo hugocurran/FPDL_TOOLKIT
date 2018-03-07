@@ -40,7 +40,6 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.createDeploy = new System.Windows.Forms.Button();
             this.designTreeView = new System.Windows.Forms.TreeView();
             this.federationDescription = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -99,41 +98,41 @@
             this.patternLibraryToolStripMenuItem,
             this.designToolStripMenuItem});
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(120, 26);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // deployDocumentToolStripMenuItem
             // 
             this.deployDocumentToolStripMenuItem.Name = "deployDocumentToolStripMenuItem";
-            this.deployDocumentToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.deployDocumentToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.deployDocumentToolStripMenuItem.Text = "Deploy";
             this.deployDocumentToolStripMenuItem.Click += new System.EventHandler(this.deployDocumentToolStripMenuItem_Click);
             // 
             // patternLibraryToolStripMenuItem
             // 
             this.patternLibraryToolStripMenuItem.Name = "patternLibraryToolStripMenuItem";
-            this.patternLibraryToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.patternLibraryToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.patternLibraryToolStripMenuItem.Text = "Pattern Library";
             this.patternLibraryToolStripMenuItem.Click += new System.EventHandler(this.patternLibraryToolStripMenuItem_Click);
             // 
             // designToolStripMenuItem
             // 
             this.designToolStripMenuItem.Name = "designToolStripMenuItem";
-            this.designToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.designToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.designToolStripMenuItem.Text = "Design";
             this.designToolStripMenuItem.Click += new System.EventHandler(this.designToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(120, 26);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(120, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -152,7 +151,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 28);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(5);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -162,14 +161,13 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
-            this.splitContainer1.Size = new System.Drawing.Size(1631, 970);
+            this.splitContainer1.Size = new System.Drawing.Size(1631, 768);
             this.splitContainer1.SplitterDistance = 517;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 1;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.createDeploy);
             this.groupBox1.Controls.Add(this.designTreeView);
             this.groupBox1.Controls.Add(this.federationDescription);
             this.groupBox1.Controls.Add(this.label2);
@@ -177,30 +175,18 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.groupBox1.Size = new System.Drawing.Size(517, 970);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
+            this.groupBox1.Size = new System.Drawing.Size(517, 768);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Design";
             // 
-            // createDeploy
-            // 
-            this.createDeploy.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.createDeploy.Location = new System.Drawing.Point(5, 930);
-            this.createDeploy.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.createDeploy.Name = "createDeploy";
-            this.createDeploy.Size = new System.Drawing.Size(507, 35);
-            this.createDeploy.TabIndex = 5;
-            this.createDeploy.Text = "Create Deploy";
-            this.createDeploy.UseVisualStyleBackColor = true;
-            this.createDeploy.Click += new System.EventHandler(this.createDeploy_Click);
-            // 
             // designTreeView
             // 
             this.designTreeView.Location = new System.Drawing.Point(19, 199);
-            this.designTreeView.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.designTreeView.Margin = new System.Windows.Forms.Padding(5);
             this.designTreeView.Name = "designTreeView";
             this.designTreeView.Size = new System.Drawing.Size(443, 513);
             this.designTreeView.TabIndex = 4;
@@ -208,7 +194,7 @@
             // federationDescription
             // 
             this.federationDescription.Location = new System.Drawing.Point(139, 79);
-            this.federationDescription.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.federationDescription.Margin = new System.Windows.Forms.Padding(5);
             this.federationDescription.Multiline = true;
             this.federationDescription.Name = "federationDescription";
             this.federationDescription.Size = new System.Drawing.Size(274, 84);
@@ -227,7 +213,7 @@
             // federationTxtBox
             // 
             this.federationTxtBox.Location = new System.Drawing.Point(139, 31);
-            this.federationTxtBox.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.federationTxtBox.Margin = new System.Windows.Forms.Padding(5);
             this.federationTxtBox.Name = "federationTxtBox";
             this.federationTxtBox.Size = new System.Drawing.Size(274, 27);
             this.federationTxtBox.TabIndex = 1;
@@ -254,10 +240,10 @@
             this.groupBox2.Controls.Add(this.deployTreeView);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(0, 0);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(5);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.groupBox2.Size = new System.Drawing.Size(1108, 970);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(5);
+            this.groupBox2.Size = new System.Drawing.Size(1108, 768);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Deploy";
@@ -265,7 +251,7 @@
             // deployDateTbox
             // 
             this.deployDateTbox.Location = new System.Drawing.Point(372, 34);
-            this.deployDateTbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.deployDateTbox.Margin = new System.Windows.Forms.Padding(4);
             this.deployDateTbox.Name = "deployDateTbox";
             this.deployDateTbox.Size = new System.Drawing.Size(200, 27);
             this.deployDateTbox.TabIndex = 7;
@@ -283,7 +269,7 @@
             // deployRefTbox
             // 
             this.deployRefTbox.Location = new System.Drawing.Point(170, 75);
-            this.deployRefTbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.deployRefTbox.Margin = new System.Windows.Forms.Padding(4);
             this.deployRefTbox.Name = "deployRefTbox";
             this.deployRefTbox.Size = new System.Drawing.Size(403, 27);
             this.deployRefTbox.TabIndex = 5;
@@ -291,7 +277,7 @@
             // deployVersionTbox
             // 
             this.deployVersionTbox.Location = new System.Drawing.Point(169, 34);
-            this.deployVersionTbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.deployVersionTbox.Margin = new System.Windows.Forms.Padding(4);
             this.deployVersionTbox.Name = "deployVersionTbox";
             this.deployVersionTbox.Size = new System.Drawing.Size(98, 27);
             this.deployVersionTbox.TabIndex = 4;
@@ -322,7 +308,7 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusLabel1,
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(5, 940);
+            this.statusStrip1.Location = new System.Drawing.Point(5, 738);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 18, 0);
             this.statusStrip1.Size = new System.Drawing.Size(1098, 25);
@@ -343,7 +329,7 @@
             // deployTreeView
             // 
             this.deployTreeView.Location = new System.Drawing.Point(30, 144);
-            this.deployTreeView.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.deployTreeView.Margin = new System.Windows.Forms.Padding(5);
             this.deployTreeView.Name = "deployTreeView";
             this.deployTreeView.Size = new System.Drawing.Size(1019, 568);
             this.deployTreeView.TabIndex = 0;
@@ -353,7 +339,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1631, 998);
+            this.ClientSize = new System.Drawing.Size(1631, 796);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -395,7 +381,6 @@
         private System.Windows.Forms.TextBox federationDescription;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox federationTxtBox;
-        private System.Windows.Forms.Button createDeploy;
         private System.Windows.Forms.TreeView deployTreeView;
         private System.Windows.Forms.ToolStripMenuItem patternLibraryToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStrip1;

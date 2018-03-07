@@ -52,12 +52,12 @@ namespace FPDL.Pattern
         /// Serialise Specification object to FPDL
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
-            XElement fpdl = new XElement("specification",
-                new XElement("paramName", ParamName,
+            XElement fpdl = new XElement(ns + "specification",
+                new XElement(ns + "paramName", ParamName,
                     new XAttribute("readOnly", ReadOnly)),
-                new XElement("value", Value)
+                new XElement(ns + "value", Value)
                 );
             return fpdl;
         }

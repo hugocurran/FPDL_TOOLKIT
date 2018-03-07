@@ -105,28 +105,28 @@ namespace FPDL.Common
         /// Serialise ConfigMgmt object to FPDL
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
-            XElement fpdl = new XElement("configMgmt",
-                new XElement("securityOwner", SecurityOwner),
-                new XElement("securityClassification", SecurityClassification),
-                new XElement("currentVersion", VersionToString(CurrentVersion)),
-                new XElement("description", Description),
-                new XElement("created",
-                    new XElement("date", Created.date.ToUniversalTime()),
-                    new XElement("author", Created.author),
-                    new XElement("initialVersion", VersionToString(Created.initialVersion))
+            XElement fpdl = new XElement(ns+"configMgmt",
+                new XElement(ns + "securityOwner", SecurityOwner),
+                new XElement(ns + "securityClassification", SecurityClassification),
+                new XElement(ns + "currentVersion", VersionToString(CurrentVersion)),
+                new XElement(ns + "description", Description),
+                new XElement(ns + "created",
+                    new XElement(ns + "date", Created.date.ToUniversalTime()),
+                    new XElement(ns + "author", Created.author),
+                    new XElement(ns + "initialVersion", VersionToString(Created.initialVersion))
                     ),
-                new XElement("docReference", DocReference.ToString())
+                new XElement(ns + "docReference", DocReference.ToString())
                 );
             foreach (changed change in _changed)
             {
-                XElement _c = new XElement("changed",
-                    new XElement("date", change.date.ToUniversalTime()),
-                    new XElement("author", change.author),
-                    new XElement("newVersion", VersionToString(change.newVersion)),
-                    new XElement("prevDocReference", change.prevDocReference.ToString()),
-                    new XElement("changeNotes", change.changeNotes)
+                XElement _c = new XElement(ns + "changed",
+                    new XElement(ns + "date", change.date.ToUniversalTime()),
+                    new XElement(ns + "author", change.author),
+                    new XElement(ns + "newVersion", VersionToString(change.newVersion)),
+                    new XElement(ns + "prevDocReference", change.prevDocReference.ToString()),
+                    new XElement(ns + "changeNotes", change.changeNotes)
                 );
                 fpdl.Add(_c);
             }

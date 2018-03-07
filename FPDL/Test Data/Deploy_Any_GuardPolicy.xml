@@ -201,11 +201,11 @@
     <component componentID="ED425374-5626-4773-8D5E-C2EBE683F632" componentType="Guard">
       <interface>
         <interfaceName>HighNetwork</interfaceName>
-        <ipAddress netPrefix="24">20.20.20.193</ipAddress>
+        <ipAddress netPrefix="24">20.20.20.192</ipAddress>
       </interface>
       <interface>
         <interfaceName>LowNetwork</interfaceName>
-        <ipAddress netPrefix="24">40.40.40.193</ipAddress>
+        <ipAddress netPrefix="24">30.30.30.192</ipAddress>
       </interface>
       <host>
         <hostName>Guard</hostName>
@@ -215,16 +215,16 @@
         <time protocol="ntp">10.10.10.12</time>
       </host>
       <osp>
-        <protocol>HPSD_TCP</protocol>
+        <protocol>WebLVC_ZMQ</protocol>
         <path>ExportPath</path>
-        <inputPort>20.20.20.193:8100</inputPort>
-        <outputPort>40.40.40.21:8100</outputPort>
+        <inputPort>20.20.20.192:8100</inputPort>
+        <outputPort>30.30.30.31:90001</outputPort>
       </osp>
       <osp>
-        <protocol>HPSD_TCP</protocol>
+        <protocol>WebLVC_ZMQ</protocol>
         <path>ImportPath</path>
-        <inputPort>40.40.40.193:8100</inputPort>
-        <outputPort>20.20.20.31:8100</outputPort>
+        <inputPort>30.30.30.192:8101</inputPort>
+        <outputPort>20.20.20.31:9000</outputPort>
       </osp>
       <export>
         <source>

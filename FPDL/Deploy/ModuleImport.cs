@@ -52,12 +52,15 @@ namespace FPDL.Deploy
         /// <summary>
         /// Construct an Import module
         /// </summary>
-        public ModuleImport() {}
+        public ModuleImport()
+        {
+            InterfaceName = "";
+        }
         /// <summary>
         /// Construct an Import module from FPDL
         /// </summary>
         /// <param name="fpdl"></param>
-        public ModuleImport(XElement fpdl)
+        public ModuleImport(XElement fpdl) : this ()
         {
             FromFPDL(fpdl);
         }
@@ -89,15 +92,15 @@ namespace FPDL.Deploy
         /// Serialise Import module to FPDL
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
-            XElement fpdl = new XElement("import");
-            fpdl.Add(new XElement("interfaceName", InterfaceName));
+            XElement fpdl = new XElement(ns + "import");
+            fpdl.Add(new XElement(ns + "interfaceName", InterfaceName));
 
             foreach (HlaObject hlaObject in _objects)
-                fpdl.Add(hlaObject.ToFPDL());
+                fpdl.Add(hlaObject.ToFPDL(ns));
             foreach (HlaInteraction hlaInteraction in _interactions)
-                fpdl.Add(hlaInteraction.ToFPDL());
+                fpdl.Add(hlaInteraction.ToFPDL(ns));
             return fpdl;
         }
         /// <summary>
@@ -157,6 +160,7 @@ namespace FPDL.Deploy
         /// <param name="specification"></param>
         public void ApplyPattern(Specification specification)
         {
+            // Cannot edit objects/interactions, so no need to worry about them
             switch (specification.ParamName)
             {
                 case "interfaceName":

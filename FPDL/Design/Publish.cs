@@ -58,18 +58,18 @@ namespace FPDL.Design
         /// Serialise Publish onject to FPDL
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
-            XElement fpdl = new XElement("publish");
+            XElement fpdl = new XElement(ns + "publish");
             if (Objects.Count > 0)
             {
                 foreach (HlaObject obj in Objects)
-                    fpdl.Add(obj.ToFPDL());
+                    fpdl.Add(obj.ToFPDL(ns));
             }
             if (Interactions.Count > 0)
             {
                 foreach (HlaInteraction inter in Interactions)
-                    fpdl.Add(inter.ToFPDL());
+                    fpdl.Add(inter.ToFPDL(ns));
             }
             return fpdl;
         }

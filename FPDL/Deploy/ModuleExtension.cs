@@ -38,6 +38,7 @@ namespace FPDL.Deploy
         /// </summary>
         public ModuleExtension()
         {
+            VendorName = "";
             Parameters = new Dictionary<string, string>();
         }
         /// <summary>
@@ -73,13 +74,16 @@ namespace FPDL.Deploy
         /// Serialise Module to FPDL
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
-            XElement fpdl = new XElement("extension",
-                new XElement("vendorName", VendorName)
+            XElement fpdl = new XElement(ns + "extension",
+                new XElement(ns + "vendorName", VendorName)
                 );
             foreach (KeyValuePair<string, string> param in Parameters)
-                fpdl.Add(new XElement(param.Key, param.Value));
+                fpdl.Add(new XElement(ns + "parameter",
+                    new XElement(ns + "name",param.Key),
+                    new XElement(ns + "value", param.Value)
+                    ));
             return fpdl;
         }
 
@@ -105,8 +109,9 @@ namespace FPDL.Deploy
             int i = 0;
             foreach (var param in Parameters)
             {
-                t[i++] = new TreeNode(param.Key + " = " + param.Value);
+                t[i] = new TreeNode(param.Key + " = " + param.Value);
                 t[i].Tag = new Specification { ParamName = param.Key, Value = param.Value };
+                i++;
             }
 
             TreeNode[] t1 = new TreeNode[1];

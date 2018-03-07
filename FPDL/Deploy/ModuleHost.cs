@@ -44,6 +44,7 @@ namespace FPDL.Deploy
         /// </summary>
         public ModuleHost()
         {
+            HostName = "";
             Logging = new List<Server>();
             Time = new List<Server>();
         }
@@ -104,15 +105,15 @@ namespace FPDL.Deploy
         /// Serialise Host module to FPDL
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
-            XElement fpdl = new XElement("host",
-                new XElement("hostName", HostName)
+            XElement fpdl = new XElement(ns + "host",
+                new XElement(ns + "hostName", HostName)
             );
             if (Logging.Count > 0)
             {
                 foreach (Server serv in Logging)
-                    fpdl.Add(new XElement("server", serv.Name,
+                    fpdl.Add(new XElement(ns + "server", serv.Name,
                         new XAttribute("protocol", serv.Protocol),
                         new XAttribute("transport", serv.Transport),
                         new XAttribute("port", serv.Port))
@@ -121,7 +122,7 @@ namespace FPDL.Deploy
             if (Time.Count > 0)
             {
                 foreach (Server serv in Time)
-                    fpdl.Add(new XElement("server", serv.Name,
+                    fpdl.Add(new XElement(ns + "server", serv.Name,
                         new XAttribute("protocol", serv.Protocol),
                         new XAttribute("transport", serv.Transport),
                         new XAttribute("port", serv.Port))
@@ -233,10 +234,10 @@ namespace FPDL.Deploy
             t[1].Tag = new Specification { ParamName = "protocol", Value = Protocol };
             t[1].ToolTipText = "Protocol (eg syslog, ntp)";
             t[2] = new TreeNode("Transport = " + Transport);
-            t[0].Tag = new Specification { ParamName = "transport", Value = Transport };
+            t[2].Tag = new Specification { ParamName = "transport", Value = Transport };
             t[2].ToolTipText = "Transport protocol (TCP/UDP)";
             t[3] = new TreeNode("Port = " + Port);
-            t[0].Tag = new Specification { ParamName = "port", Value = Port };
+            t[3].Tag = new Specification { ParamName = "port", Value = Port };
             t[3].ToolTipText = "Port number";
 
             TreeNode a = new TreeNode("Server", t);
@@ -244,8 +245,5 @@ namespace FPDL.Deploy
             a.Tag = this;
             return a;
         }
-
-
-
     }
 }

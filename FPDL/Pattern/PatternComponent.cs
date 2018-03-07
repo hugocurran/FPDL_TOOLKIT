@@ -71,15 +71,15 @@ namespace FPDL.Pattern
         /// Serialise Component object to FPDL
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
-            XElement fpdl = new XElement("component",
-                new XElement("componentType", ComponentType.ToString()),
-                new XElement("componentID", ComponentID.ToString()),
-                new XElement("componentName", ComponentName)
+            XElement fpdl = new XElement(ns + "component",
+                new XElement(ns + "componentType", ComponentType.ToString()),
+                new XElement(ns + "componentID", ComponentID.ToString()),
+                new XElement(ns + "componentName", ComponentName)
                 );
             foreach (Module module in Modules)
-                fpdl.Add(module.ToFPDL());
+                fpdl.Add(module.ToFPDL(ns));
             return fpdl;
         }
         /// <summary>

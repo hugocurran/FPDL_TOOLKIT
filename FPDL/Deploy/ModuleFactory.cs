@@ -48,6 +48,9 @@ namespace FPDL.Deploy
                     case "extension":
                         component.Modules.Add(new ModuleExtension(module));
                         break;
+                    case "filter":
+                        component.Modules.Add(new ModuleFilter(module));
+                        break;
                     default:
                         // Should throw an exception
                         continue;
@@ -84,6 +87,9 @@ namespace FPDL.Deploy
                 case "extension":
                     component.Modules.Add(new ModuleExtension());
                     break;
+                case "filter":
+                    component.Modules.Add(new ModuleFilter());
+                    break;
                 default:
                     // Should throw an exception
                     break;
@@ -112,6 +118,8 @@ namespace FPDL.Deploy
                     return new ModuleFederation();
                 case "extension":
                     return new ModuleExtension();
+                case "filter":
+                    return new ModuleFilter();
                 default:
                     return null;
             }

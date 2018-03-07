@@ -103,24 +103,24 @@ namespace FPDL.Policy
         /// Serialise ReleaseToGeneric to FPDL
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
             XElement fpdl;
             if (NotReleasable)
-                fpdl = new XElement("notReleasableToGeneric",
-                    new XElement("securityOwner", SecurityOwner),
-                    new XElement("securityClassification", SecurityClassification)
+                fpdl = new XElement(ns + "notReleasableToGeneric",
+                    new XElement(ns + "securityOwner", SecurityOwner),
+                    new XElement(ns + "securityClassification", SecurityClassification)
                     );
             else
-                fpdl = new XElement("releasableToGeneric",
-                    new XElement("securityOwner", SecurityOwner),
-                    new XElement("securityClassification", SecurityClassification)
+                fpdl = new XElement(ns + "releasableToGeneric",
+                    new XElement(ns + "securityOwner", SecurityOwner),
+                    new XElement(ns + "securityClassification", SecurityClassification)
                     );
 
             if (SecurityCaveat != null)
-                fpdl.Add(new XElement("securityCaveat", SecurityCaveat, new XAttribute("type", Caveat.ToString())));
+                fpdl.Add(new XElement(ns + "securityCaveat", SecurityCaveat, new XAttribute("type", Caveat.ToString())));
             if (SecurityNote != null)
-                fpdl.Add(new XElement("securityNote", SecurityNote));
+                fpdl.Add(new XElement(ns + "securityNote", SecurityNote));
             return fpdl;
         }
 

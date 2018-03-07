@@ -52,12 +52,12 @@ namespace FPDL.Design
         /// Serialise Entity object to FPDL
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
-            XElement fpdl = new XElement("entity",
-                new XElement("entityName", EntityName),
-                new XElement("entityID", EntityId.ToString()),
-                new XElement(Publish.ToFPDL())
+            XElement fpdl = new XElement(ns + "entity",
+                new XElement(ns + "entityName", EntityName),
+                new XElement(ns + "entityID", EntityId.ToString()),
+                new XElement(Publish.ToFPDL(ns))
                 );
             return fpdl;
         }

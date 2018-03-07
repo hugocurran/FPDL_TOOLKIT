@@ -59,18 +59,18 @@ namespace FPDL.Policy
         /// Serialise ReleaseToSpecific to FPDL
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
             XElement fpdl;
             if (NotReleasable)
             {
-                fpdl = new XElement("notReleasableToSpecific",
-                    new XElement("federateName", FederateName));
+                fpdl = new XElement(ns + "notReleasableToSpecific",
+                    new XElement(ns + "federateName", FederateName));
             }
             else
             {
-                fpdl = new XElement("ReleasableToSpecific",
-                    new XElement("federateName", FederateName));
+                fpdl = new XElement(ns + "ReleasableToSpecific",
+                    new XElement(ns + "federateName", FederateName));
             }
             return fpdl;
         }

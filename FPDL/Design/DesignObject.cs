@@ -59,11 +59,17 @@ namespace FPDL.Design
         /// <returns></returns>
         public XElement ToFPDL()
         {
-            XElement design = new XElement("Design",
-                ConfigMgmt.ToFPDL(),
-                new XElement("federation", Federation.ToFPDL())
+            XNamespace xsi = XNamespace.Get("http://www.w3.org/2001/XMLSchema-instance");
+            XNamespace xsd = XNamespace.Get("http://www.w3.org/2001/XMLSchema");
+            XNamespace ns = XNamespace.Get("http://www.niteworks.net/fpdl");
+            XElement fpdl = new XElement(ns + "Design",
+                    new XAttribute("xmlns", ns.NamespaceName),
+                    new XAttribute(XNamespace.Xmlns + "xsd", xsd.NamespaceName),
+                    new XAttribute(XNamespace.Xmlns + "xsi", xsi.NamespaceName),
+                ConfigMgmt.ToFPDL(ns),
+                new XElement(ns + "federation", Federation.ToFPDL(ns))
             );
-            return design;
+            return fpdl;
         }
         /// <summary>
         /// String representation of PatternObject

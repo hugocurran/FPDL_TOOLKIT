@@ -31,7 +31,6 @@ namespace FPDL.Tools.DeployEditor
         public DeployEditor()
         {
             InitializeComponent();
-            createDeploy.Enabled = false;
             toolStripStatusLabel1.Text = "Pattern Library not loaded";
 
             designContextMenu = new ContextMenu();
@@ -124,7 +123,6 @@ namespace FPDL.Tools.DeployEditor
                             checkList.Add(federate.FederateName, false);
                     }
                     showDesignTree();
-                    createDeploy.Enabled = checkListTest();
                 }
                 catch (ApplicationException)
                 {
@@ -169,21 +167,20 @@ namespace FPDL.Tools.DeployEditor
 
         #region Create Deploy
 
-        private void createDeploy_Click(object sender, EventArgs e)
-        {
-            if (designTreeView.SelectedNode == null)
-                return;
+        //private void createDeploy_Click(object sender, EventArgs e)
+        //{
+        //    if (designTreeView.SelectedNode == null)
+        //        return;
 
-            if ((string)designTreeView.SelectedNode.Tag == "ROOT")      // Design tree root
-            {
-                if (MessageBox.Show("Deploy all federates?", "Deploy Editor", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
-                {
-                    deploy = BuildIt.Initialise(design, "UK", "Official", this);
-                    showDeployTree();
-                }
-            }
-            createDeploy.Enabled = checkListTest();
-        }
+        //    if ((string)designTreeView.SelectedNode.Tag == "ROOT")      // Design tree root
+        //    {
+        //        if (MessageBox.Show("Deploy all federates?", "Deploy Editor", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation) == DialogResult.OK)
+        //        {
+        //            deploy = BuildIt.Initialise(design, "UK", "Official", this);
+        //            showDeployTree();
+        //        }
+        //    }
+        //}
 
         // Test if all applicable federates in design have been copied to deploy
         private bool checkListTest()
@@ -219,10 +216,42 @@ namespace FPDL.Tools.DeployEditor
             deployTreeView.Nodes.Add(treeRoot);
             deployTreeView.ShowNodeToolTips = true;
             deployTreeView.CollapseAll();
+            if (old_selectNode != null)
+                deployTreeView.SelectedNode = findaNode(old_selectNode);
             if (deployTreeView.SelectedNode == null)
                 deployTreeView.ExpandAll();
             else
                 deployTreeView.SelectedNode.ExpandAll();
+        }
+
+        private TreeNode findaNode(TreeNode oldNode)
+        {
+            TreeNode origNode = null;
+            if (oldNode.Tag == null)    // leaf nodes not all tagged
+                origNode = oldNode.Parent;
+            else
+                origNode = oldNode;
+            if (origNode.Tag == null)   // give up
+                return null;
+            foreach (TreeNode node in Collect(deployTreeView.Nodes))
+            {
+                if (node.Tag == null)
+                    continue;
+                if (((object)node.Tag).Equals((object)origNode.Tag))
+                    return node;
+            }
+            return null;
+        }
+
+        private IEnumerable<TreeNode> Collect(TreeNodeCollection nodes)
+        {
+            foreach (TreeNode node in nodes)
+            {
+                yield return node;
+
+                foreach (var child in Collect(node.Nodes))
+                    yield return child;
+            }
         }
 
         #endregion
@@ -362,7 +391,6 @@ namespace FPDL.Tools.DeployEditor
             Federation federation = (Federation)designContextMenu.Tag;
             deploy = BuildIt.Initialise(design, "UK", "Official", this);
             showDeployTree();
-            createDeploy.Enabled = checkListTest();
             designContextMenu.MenuItems.Clear();
         }
 
@@ -374,7 +402,6 @@ namespace FPDL.Tools.DeployEditor
             Federate federation = (Federate)designContextMenu.Tag;
             //deploy = BuildIt.Initialise(design, "UK", "Official", this);
             showDeployTree();
-            createDeploy.Enabled = checkListTest();
             designContextMenu.MenuItems.Clear();
         }
 
@@ -382,7 +409,7 @@ namespace FPDL.Tools.DeployEditor
 
         #region Deploy Context Menu
 
-        //private TreeNode old_selectNode;
+        private TreeNode old_selectNode;
         private void showDeployContextMenu(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
@@ -391,10 +418,10 @@ namespace FPDL.Tools.DeployEditor
                 TreeNode node = deployTreeView.GetNodeAt(p);
                 if (node != null)
                 {
-                    //old_selectNode = treeView1.SelectedNode;
+                    old_selectNode = node;
                     deployTreeView.SelectedNode = node;
 
-                    if (node.Tag == null)
+                    if ((node.Tag == null) || (node.Parent == null))    // Catch the tree root and non-editable nodes
                         return;
 
                     Type nodeType = node.Tag.GetType();
@@ -438,9 +465,8 @@ namespace FPDL.Tools.DeployEditor
                     if (node.Tag.GetType() == typeof(Specification))
                     {
                         deployContextMenu.MenuItems.Clear();
-                        MenuItem[] items = new MenuItem[2];
+                        MenuItem[] items = new MenuItem[1];
                         items[0] = new MenuItem("Edit specification", editSpec);
-                        items[1] = new MenuItem("Delete specification", deleteSpec);
                         deployContextMenu.MenuItems.AddRange(items);
                         deployContextMenu.Name = "Edit Specification";
                         deployContextMenu.Tag = node.Tag;
@@ -509,17 +535,9 @@ namespace FPDL.Tools.DeployEditor
             SpecEditor spec = new SpecEditor(specification, module.GetModuleType());
             if (spec.ShowDialog() == DialogResult.OK)
             {
+                module.ApplyPattern(spec.specification);
                 showDeployTree();
             }
-            deployContextMenu.MenuItems.Clear();
-        }
-
-        private void deleteSpec(object sender, EventArgs e)
-        {
-            Specification specification = (Specification)deployContextMenu.Tag;
-            Module module = (Module)deployTreeView.SelectedNode.Parent.Tag;
-            module.Specifications.Remove(specification);
-            showDeployTree();
             deployContextMenu.MenuItems.Clear();
         }
 
@@ -542,8 +560,9 @@ namespace FPDL.Tools.DeployEditor
                     saveFileDialog1.RestoreDirectory = true;
                     if (DialogResult.OK == saveFileDialog1.ShowDialog())
                     {
-                        XDocument doc = new XDocument(deploy.ToFPDL());
-                        doc.Save(saveFileDialog1.FileName);
+                        FpdlWriter.Write(deploy, saveFileDialog1.FileName);
+                        //XDocument doc = new XDocument(deploy.ToFPDL());
+                        //doc.Save(saveFileDialog1.FileName);
                     }
                 }
                 else
@@ -555,13 +574,14 @@ namespace FPDL.Tools.DeployEditor
                         string path = folderBrowserDialog1.SelectedPath;
                         foreach (DeploySystem system in deploy.Systems)
                         {
-                            XDocument doc = new XDocument(deploy.ToFPDL(system));
+                            //XDocument doc = new XDocument(deploy.ToFPDL(system));
                             string filename = String.Format("{0}\\{1} - {2}",
                                 folderBrowserDialog1.SelectedPath,
                                 system.FederateName, 
                                 deploy.DesignReference
                                 );
-                            doc.Save(filename);
+                            //doc.Save(filename);
+                            FpdlWriter.Write(deploy.ToFPDL(system), filename);
                         }
                     }
                 }

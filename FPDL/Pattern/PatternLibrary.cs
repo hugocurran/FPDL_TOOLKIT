@@ -44,8 +44,8 @@ namespace FPDL.Pattern
         /// <param name="fpdl"></param>
         public void FromFPDL(XElement fpdl)
         {
-            if (fpdl.Name != "PatternLibrary")
-                throw new ApplicationException("Cannot parse: Not an FPDL pattern library");
+            if (fpdl.Name != "DeployPatternLibrary")
+                throw new ApplicationException("Cannot parse: Not an FPDL Deploy pattern library");
             try
             {
                 ConfigMgmt = new ConfigMgmt(fpdl.Element("configMgmt"));
@@ -59,12 +59,12 @@ namespace FPDL.Pattern
                         entry = new Entry
                         {
                             Embedded = Convert.ToBoolean(_entry.Attribute("embedded").Value),
-                            Pattern = new PatternObject(_entry.Element("Pattern"))
+                            Pattern = new PatternObject(_entry.Element("DeployPattern"))
                         };
                         entry.Type = entry.Pattern.PatternType;
                         entry.Reference = entry.Pattern.ConfigMgmt.DocReference;
                         entry.Name = entry.Pattern.PatternName;
-                        entry.Version = entry.Pattern.ConfigMgmt.CurrentVersion.ToString();
+                        entry.Version = entry.Pattern.ConfigMgmt.CurrentVersion.VersionToString();
                     }
                     else
                     {
@@ -98,28 +98,34 @@ namespace FPDL.Pattern
         /// <returns></returns>
         public XElement ToFPDL()
         {
-            XElement fpdl = new XElement("PatternLibrary",
-                new XElement(ConfigMgmt.ToFPDL())
+            XNamespace xsi = XNamespace.Get("http://www.w3.org/2001/XMLSchema-instance");
+            XNamespace xsd = XNamespace.Get("http://www.w3.org/2001/XMLSchema");
+            XNamespace ns = XNamespace.Get("http://www.niteworks.net/fpdl");
+            XElement fpdl = new XElement(ns + "DeployPatternLibrary",
+                    new XAttribute("xmlns", ns.NamespaceName),
+                    new XAttribute(XNamespace.Xmlns + "xsd", xsd.NamespaceName),
+                    new XAttribute(XNamespace.Xmlns + "xsi", xsi.NamespaceName),
+                new XElement(ConfigMgmt.ToFPDL(ns))
                 );
             // The library entry either has embedded Pattern or a summery of a Pattern contained in a file
             foreach (Entry entry in _library)
             { 
                 if (entry.Embedded)
                 {
-                    fpdl.Add(new XElement("entry", 
+                    fpdl.Add(new XElement(ns + "entry", 
                         new XAttribute("embedded", entry.Embedded.ToString()),
-                        new XElement(entry.Pattern.ToFPDL()))
+                        new XElement(entry.Pattern.ToFPDL(ns)))
                         );
                 }
                 else
                 {
-                    fpdl.Add(new XElement("entry",
+                    fpdl.Add(new XElement(ns + "entry",
                         new XAttribute("embedded", entry.Embedded.ToString()),
-                        new XElement("patternGenericType", entry.Type.ToString()),
-                        new XElement("patternName", entry.Name),
-                        new XElement("patternVersion", entry.Version),
-                        new XElement("patternReference", entry.Reference),
-                        new XElement("fileName", entry.Filename))
+                        new XElement(ns + "patternGenericType", entry.Type.ToString()),
+                        new XElement(ns + "patternName", entry.Name),
+                        new XElement(ns + "patternVersion", entry.Version),
+                        new XElement(ns + "patternReference", entry.Reference),
+                        new XElement(ns + "fileName", entry.Filename))
                         );
                 }
             }
@@ -219,13 +225,24 @@ namespace FPDL.Pattern
         /// <param name="pattern"></param>
         internal void Remove(PatternObject pattern)
         {
-            Remove(pattern.ConfigMgmt.DocReference);
-
-            int major = ConfigMgmt.CurrentVersion.Item1;
-            int minor = ConfigMgmt.CurrentVersion.Item2;
-                minor++;
-
-            ConfigMgmt.NewVersion("Editor", major, minor, "Removed pattern: " + pattern.ConfigMgmt.DocReference.ToString());
+            if (initialised)
+            {
+                foreach (Entry entry in _library)
+                {
+                    if (entry.Reference == pattern.ConfigMgmt.DocReference)
+                    {
+                        _library.Remove(entry);
+                        int major = ConfigMgmt.CurrentVersion.Item1;
+                        int minor = ConfigMgmt.CurrentVersion.Item2;
+                        minor++;
+                        ConfigMgmt.NewVersion("Editor", major, minor, "Removed pattern: " + pattern.ConfigMgmt.DocReference.ToString());
+                        break;
+                    }
+                }
+                throw new ApplicationException("Remove failed: Not in library: " + pattern.ConfigMgmt.DocReference.ToString());
+            }
+            else
+                throw new ApplicationException("Attempt to update unitialised pattern library");
         }
         /// <summary>
         /// Remove a Pattern from the Library
@@ -240,6 +257,10 @@ namespace FPDL.Pattern
                     if (entry.Reference == patternRef)
                     {
                         _library.Remove(entry);
+                        int major = ConfigMgmt.CurrentVersion.Item1;
+                        int minor = ConfigMgmt.CurrentVersion.Item2;
+                        minor++;
+                        ConfigMgmt.NewVersion("Editor", major, minor, "Removed pattern: " + patternRef.ToString());
                         return;
                     }
                 }

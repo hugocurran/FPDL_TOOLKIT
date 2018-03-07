@@ -46,12 +46,15 @@ namespace FPDL.Deploy
         /// <summary>
         /// Construct Export module
         /// </summary>
-        public ModuleExport() { }
+        public ModuleExport()
+        {
+            InterfaceName = "";
+        }
         /// <summary>
         /// Construct Export module from FPDL
         /// </summary>
         /// <param name="fpdl"></param>
-        public ModuleExport(XElement fpdl)
+        public ModuleExport(XElement fpdl) : this ()
         {
             FromFPDL(fpdl);
         }
@@ -80,14 +83,14 @@ namespace FPDL.Deploy
         /// Serialise Export module to FPDL
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
-            XElement fpdl = new XElement("export");
-            fpdl.Add(new XElement("interfaceName", InterfaceName));
+            XElement fpdl = new XElement(ns + "export");
+            fpdl.Add(new XElement(ns + "interfaceName", InterfaceName));
 
             foreach (Source sub in _sources)
             {
-                fpdl.Add(sub.ToFPDL());
+                fpdl.Add(sub.ToFPDL(ns));
             }
             return fpdl;
         }
@@ -146,6 +149,7 @@ namespace FPDL.Deploy
         /// <param name="specification"></param>
         public void ApplyPattern(Specification specification)
         {
+            // Editing of sources/objects/interactions not required
             switch (specification.ParamName)
             {
                 case "interfaceName":
@@ -153,7 +157,6 @@ namespace FPDL.Deploy
                     break;
             }
         }
-
 
         /// <summary>
         /// Apply specifications from a Design to this module

@@ -75,18 +75,18 @@ namespace FPDL.Common
         /// Serialise HlaObject to FPDL
         /// </summary>
         /// <returns>FPDL HLA object</returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
             XElement fpdlType =
-                new XElement("object",
-                    new XElement("objectClassName", ObjectClassName)
+                new XElement(ns + "object",
+                    new XElement(ns + "objectClassName", ObjectClassName)
                 );
             // There may not be any attributes
             if (Attributes.Count > 0)
             {
                 foreach (HlaAttribute attrib in Attributes)
                 {
-                    XElement _a = new XElement("attributeName", attrib.AttributeName);
+                    XElement _a = new XElement(ns + "attributeName", attrib.AttributeName);
                     if (attrib.DataType != null)
                         _a.SetAttributeValue("dataType", attrib.DataType);
                     if ((attrib.DefaultValue != null) && (attrib.DataType == null))
@@ -123,7 +123,7 @@ namespace FPDL.Common
                 t[i] = Attributes[i].GetNode();
             TreeNode a = new TreeNode(ObjectClassName, t);
             a.ToolTipText = "Object class name";
-            a.Tag = this;
+            a.Tag = null;
             return a;
         }
     }

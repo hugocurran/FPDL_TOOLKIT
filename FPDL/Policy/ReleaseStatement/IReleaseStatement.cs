@@ -21,7 +21,7 @@ namespace FPDL.Policy
         /// Serialise to FPDL
         /// </summary>
         /// <returns></returns>
-        XElement ToFPDL();
+        XElement ToFPDL(XNamespace ns);
         /// <summary>
         /// String representation
         /// </summary>

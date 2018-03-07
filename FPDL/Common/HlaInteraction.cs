@@ -76,18 +76,18 @@ namespace FPDL.Common
         /// Serialise HLA interaction into FPDL
         /// </summary>
         /// <returns>FPDL HLA interaction</returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
             XElement fpdlType =
-                new XElement("interaction",
-                    new XElement("interactionClassName", InteractionClassName)
+                new XElement(ns + "interaction",
+                    new XElement(ns + "interactionClassName", InteractionClassName)
                 );
             // There may not be any parameters
             if (Parameters.Count > 0)
             {
                 foreach (HlaParameter param in Parameters)
                 {
-                    XElement _a = new XElement("parameterName", param.ParameterName);
+                    XElement _a = new XElement(ns + "parameterName", param.ParameterName);
                     if (param.DataType != null)
                         _a.SetAttributeValue("dataType", param.DataType);
                     if ((param.DefaultValue != null) && (param.DataType == null))

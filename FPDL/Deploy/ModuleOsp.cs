@@ -20,6 +20,10 @@ namespace FPDL.Deploy
         public enum OspProtocol
         {
             /// <summary>
+            /// Invalid (null value)
+            /// </summary>
+            INVALID,
+            /// <summary>
             /// HPSD over ZMQ
             /// </summary>
             HPSD_ZMQ,
@@ -68,7 +72,13 @@ namespace FPDL.Deploy
         /// <summary>
         /// Construct OSP module
         /// </summary>
-        public ModuleOsp() { }
+        public ModuleOsp()
+        {
+            Path = "";
+            Protocol = OspProtocol.INVALID;
+            InputPort = "";
+            OutputPort = "";
+        }
         /// <summary>
         /// Construct OSP module from FPDL
         /// </summary>
@@ -89,10 +99,12 @@ namespace FPDL.Deploy
             {
                 Path = fpdl.Element("path").Value;
                 Protocol = (OspProtocol)Enum.Parse(typeof(OspProtocol), fpdl.Element("protocol").Value);
-                if (fpdl.Element("inputPort") != null)
-                    InputPort = fpdl.Element("inputPort").Value;
-                if (fpdl.Element("outputPort") != null)
-                    OutputPort = fpdl.Element("outputPort").Value;
+                InputPort = (String)fpdl.Element("inputPort") ?? "";
+                OutputPort = (String)fpdl.Element("outputPort") ?? "";
+                //if (fpdl.Element("inputPort") != null)
+                //    InputPort = fpdl.Element("inputPort").Value;
+                //if (fpdl.Element("outputPort") != null)
+                //    OutputPort = fpdl.Element("outputPort").Value;
             }
             catch (ArgumentException e)
             {
@@ -107,16 +119,16 @@ namespace FPDL.Deploy
         /// Serialise OSP module to FPDL
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
-            XElement fpdl = new XElement("osp",
-                new XElement("path", Path),
-                new XElement("protocol", Protocol.ToString())
+            XElement fpdl = new XElement(ns + "osp",
+                new XElement(ns + "path", Path),
+                new XElement(ns + "protocol", Protocol.ToString())
             );
             if (InputPort != "")
-                fpdl.Add(new XElement("inputPort", InputPort));
+                fpdl.Add(new XElement(ns + "inputPort", InputPort));
             if (OutputPort != "")
-                fpdl.Add(new XElement("outputPort", OutputPort));
+                fpdl.Add(new XElement(ns + "outputPort", OutputPort));
             return fpdl;
         }
         /// <summary>

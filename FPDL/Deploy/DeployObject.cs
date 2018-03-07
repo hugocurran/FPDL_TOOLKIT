@@ -103,21 +103,37 @@ namespace FPDL.Deploy
             foreach (PropertyInfo p in pi)
             {
                 DeployIfAttribute a = p.GetCustomAttribute<DeployIfAttribute>();
-                if ((!a.Optional) && (!a.List))     // Note marked optional or a list
+                if ((!a.Optional) && (!a.List))     // Not marked optional and not a list
                 {
                     object value = p.GetValue(obj);
+                    if (value == null)
+                    {
+                        VerifyResult = String.Format("Missing value for {0}", a.FpdlName);
+                        return false;
+                    }
                     if (value != null || !string.IsNullOrEmpty(value.ToString()))
                         continue;
                      VerifyResult = String.Format("Missing value for {0}", a.FpdlName);
-                    return false;
+                     return false;
                 }
-                if ((!a.Optional) && (a.List))
+                if ((!a.Optional) && (a.List))     // Not optional and is a list
                 {
                     object value = p.GetValue(obj);
-                    if (((IList)value).Count < 1)
+                    if (value is IList)
                     {
-                        VerifyResult = String.Format("Empty collection for {0}", a.FpdlName);
-                        return false;
+                        if (((IList)value).Count < 1)
+                        {
+                            VerifyResult = String.Format("Empty collection for {0}", a.FpdlName);
+                            return false;
+                        }
+                    }
+                    if (value is IDictionary)
+                    {
+                        if (((IDictionary)value).Count < 1)
+                        {
+                            VerifyResult = String.Format("Empty collection for {0}", a.FpdlName);
+                            return false;
+                        }
                     }
                 }
             }
@@ -130,12 +146,19 @@ namespace FPDL.Deploy
             /// <returns></returns>
             public XElement ToFPDL()
         {
-            XElement fpdl = new XElement("Deploy");
-            fpdl.Add(ConfigMgmt.ToFPDL());
+            XNamespace xsi = XNamespace.Get("http://www.w3.org/2001/XMLSchema-instance");
+            XNamespace xsd = XNamespace.Get("http://www.w3.org/2001/XMLSchema");
+            XNamespace ns = XNamespace.Get("http://www.niteworks.net/fpdl");
+            XElement fpdl = new XElement(ns + "Deploy",
+                    new XAttribute("xmlns", ns.NamespaceName),
+                    new XAttribute(XNamespace.Xmlns + "xsd", xsd.NamespaceName),
+                    new XAttribute(XNamespace.Xmlns + "xsi", xsi.NamespaceName)
+                );
+            fpdl.Add(ConfigMgmt.ToFPDL(ns));
             fpdl.Add(new XElement("designReference", DesignReference));
             foreach(DeploySystem system in Systems)
             {
-                fpdl.Add(system.ToFPDL());
+                fpdl.Add(system.ToFPDL(ns));
             }
             return fpdl;
         }
@@ -146,10 +169,18 @@ namespace FPDL.Deploy
         /// <returns></returns>
         public XElement ToFPDL(DeploySystem system)
         {
-            XElement fpdl = new XElement("Deploy");
-            fpdl.Add(ConfigMgmt.ToFPDL());
-            fpdl.Add(new XElement("designReference", DesignReference));
-            fpdl.Add(system.ToFPDL());
+            XNamespace xsi = XNamespace.Get("http://www.w3.org/2001/XMLSchema-instance");
+            XNamespace xsd = XNamespace.Get("http://www.w3.org/2001/XMLSchema");
+            XNamespace ns = XNamespace.Get("http://www.niteworks.net/fpdl");
+            XElement fpdl = new XElement(ns+"Deploy",
+                    new XAttribute("xmlns", ns.NamespaceName),
+                    new XAttribute(XNamespace.Xmlns + "xsd", xsd.NamespaceName),
+                    new XAttribute(XNamespace.Xmlns + "xsi", xsi.NamespaceName)
+                    );
+
+            fpdl.Add(ConfigMgmt.ToFPDL(ns));
+            fpdl.Add(new XElement(ns + "designReference", DesignReference));
+            fpdl.Add(system.ToFPDL(ns));
             return fpdl;
         }
 

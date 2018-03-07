@@ -57,9 +57,15 @@ namespace FPDL.Policy
         /// <returns></returns>
         public XElement ToFPDL()
         {
-            XElement fpdl = new XElement("Policy",
-                new XElement(ConfigMgmt.ToFPDL()),
-                new XElement(Federate.ToFPDL())
+            XNamespace xsi = XNamespace.Get("http://www.w3.org/2001/XMLSchema-instance");
+            XNamespace xsd = XNamespace.Get("http://www.w3.org/2001/XMLSchema");
+            XNamespace ns = XNamespace.Get("http://www.niteworks.net/fpdl");
+            XElement fpdl = new XElement(ns + "Policy",
+                    new XAttribute("xmlns", ns.NamespaceName),
+                    new XAttribute(XNamespace.Xmlns + "xsd", xsd.NamespaceName),
+                    new XAttribute(XNamespace.Xmlns + "xsi", xsi.NamespaceName),
+                new XElement(ConfigMgmt.ToFPDL(ns)),
+                new XElement(Federate.ToFPDL(ns))
                 );
             return fpdl;
         }

@@ -49,12 +49,18 @@ namespace FPDL.Deploy
         /// <summary>
         /// Construct an Interface module
         /// </summary>
-        public ModuleInterface() { }
+        public ModuleInterface()
+        {
+            InterfaceName = "";
+            IpAddress = "";
+            NetPrefix = "";
+            DefaultRouter = "";
+        }
         /// <summary>
         /// Construct an Interface module from FPDL
         /// </summary>
         /// <param name="fpdl"></param>
-        public ModuleInterface(XElement fpdl)
+        public ModuleInterface(XElement fpdl) : this ()
         {
             FromFPDL(fpdl);
         }
@@ -71,8 +77,9 @@ namespace FPDL.Deploy
                 InterfaceName = fpdl.Element("interfaceName").Value;
                 IpAddress = fpdl.Element("ipAddress").Value;
                 NetPrefix = fpdl.Element("ipAddress").Attribute("netPrefix").Value;
-                if (fpdl.Element("defaultRouter") != null)
-                    DefaultRouter = fpdl.Element("defaultRouter").Value;
+                DefaultRouter = (String)fpdl.Element("defaultRouter") ?? "";
+                //if (fpdl.Element("defaultRouter") != null)
+                //    DefaultRouter = fpdl.Element("defaultRouter").Value;
             }
             catch (NullReferenceException e)
             {
@@ -83,16 +90,16 @@ namespace FPDL.Deploy
         /// Serialise Interface module to FPDL
         /// </summary>
         /// <returns></returns>
-        public XElement ToFPDL()
+        public XElement ToFPDL(XNamespace ns)
         {
-            XElement fpdl = new XElement("interface",
-                new XElement("interfaceName", InterfaceName),
-                new XElement("ipAddress", IpAddress,
+            XElement fpdl = new XElement(ns + "interface",
+                new XElement(ns + "interfaceName", InterfaceName),
+                new XElement(ns + "ipAddress", IpAddress,
                     new XAttribute("netPrefix", NetPrefix)
                 )
             );
             if (DefaultRouter != "")
-                fpdl.Add(new XElement("defaultRouter", DefaultRouter));
+                fpdl.Add(new XElement(ns + "defaultRouter", DefaultRouter));
             return fpdl;
         }
         /// <summary>
