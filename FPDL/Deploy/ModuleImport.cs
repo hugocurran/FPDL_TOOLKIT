@@ -95,12 +95,11 @@ namespace FPDL.Deploy
         public XElement ToFPDL(XNamespace ns)
         {
             XElement fpdl = new XElement(ns + "import");
-            fpdl.Add(new XElement(ns + "interfaceName", InterfaceName));
-
             foreach (HlaObject hlaObject in _objects)
                 fpdl.Add(hlaObject.ToFPDL(ns));
             foreach (HlaInteraction hlaInteraction in _interactions)
                 fpdl.Add(hlaInteraction.ToFPDL(ns));
+            fpdl.Add(new XElement(ns + "interfaceName", InterfaceName));
             return fpdl;
         }
         /// <summary>

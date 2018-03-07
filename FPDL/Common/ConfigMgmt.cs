@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Linq;
 
 namespace FPDL.Common
@@ -113,7 +114,7 @@ namespace FPDL.Common
                 new XElement(ns + "currentVersion", VersionToString(CurrentVersion)),
                 new XElement(ns + "description", Description),
                 new XElement(ns + "created",
-                    new XElement(ns + "date", Created.date.ToUniversalTime()),
+                    new XElement(ns + "date",XmlConvert.ToString(Created.date, XmlDateTimeSerializationMode.Utc)),
                     new XElement(ns + "author", Created.author),
                     new XElement(ns + "initialVersion", Created.initialVersion.VersionToString())
                     ),
@@ -122,7 +123,7 @@ namespace FPDL.Common
             foreach (changed change in _changed)
             {
                 XElement _c = new XElement(ns + "changed",
-                    new XElement(ns + "date", change.date.ToUniversalTime()),
+                    new XElement(ns + "date", XmlConvert.ToString(change.date, XmlDateTimeSerializationMode.Utc)),
                     new XElement(ns + "author", change.author),
                     new XElement(ns + "newVersion", change.newVersion.VersionToString()),
                     new XElement(ns + "prevDocReference", change.prevDocReference.ToString()),

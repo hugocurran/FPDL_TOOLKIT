@@ -26,8 +26,8 @@ namespace FPDL.Deploy
         /// System type
         /// </summary>
         [DeployIf("System Type", "Type of system")]
-        public Enums.FederateType SystemType { get; set; }
-        //public Enums.PatternType SystemType { get; set; }
+        //public Enums.FederateType SystemType { get; set; }
+        public Enums.PatternType SystemType { get; set; }
         /// <summary>
         /// Pattern name
         /// </summary>
@@ -72,7 +72,7 @@ namespace FPDL.Deploy
                 throw new ApplicationException("Cannot parse: Not an FPDL system description");
             try
             {
-                SystemType = (Enums.FederateType)Enum.Parse(typeof(Enums.FederateType), fpdl.Attribute("systemType").Value);
+                SystemType = (Enums.PatternType)Enum.Parse(typeof(Enums.PatternType), fpdl.Attribute("systemType").Value);
                 Pattern = fpdl.Element("pattern").Value;
                 PatternRef = Guid.Parse(fpdl.Element("pattern").Attribute("patternReference").Value);
                 FederateName = fpdl.Element("federateName").Value;
