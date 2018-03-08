@@ -29,13 +29,13 @@ namespace FPDL.Tools.DeployEditor
             foreach(Federate federate in design.Federation.Federates)
             {
                 DeploySystem system = null;
-                if ((federate.FederateType == Enums.FederateType.gateway) || (federate.FederateType == Enums.FederateType.filter))
+                if (federate.FederateType != Enums.FederateType.service) // it is a gateway or filter
                 {
                     system = new DeploySystem
                     {
-                        SystemType = federate.FederateType,
-                        FederateName = federate.FederateName,
-                        PatternType = federate.FederateType.ToPattern(federate.GatewayType)
+                        SystemType = federate.FederateType.ToPattern(federate.GatewayType),
+                        FederateName = federate.FederateName
+                        //PatternType = federate.FederateType.ToPattern(federate.GatewayType)
                     };
                     deploy.Systems.Add(system);
                     editor.checkList[federate.FederateName] = true;

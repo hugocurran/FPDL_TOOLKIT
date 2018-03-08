@@ -482,7 +482,7 @@ namespace FPDL.Tools.DeployEditor
             if (system.Components.Count == 0)      // No pattern applied
             {
                 PatternSelect patternSelect = new PatternSelect();
-                patternSelect.initialise(library, system.PatternType);
+                patternSelect.initialise(library, system.SystemType);
                 if (patternSelect.ShowDialog() == DialogResult.OK)
                 {
                     PatternObject pattern = patternSelect.getPattern();

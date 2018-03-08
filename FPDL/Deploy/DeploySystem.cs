@@ -41,15 +41,15 @@ namespace FPDL.Deploy
         /// <summary>
         /// Pattern Type (internal use)
         /// </summary>
-        [DeployIf("patternType", "Pattern Type", true)]
-        public Enums.PatternType PatternType { get; set; }
+        //[DeployIf("patternType", "Pattern Type", true)]
+        //public Enums.PatternType PatternType { get; set; }
         /// <summary>
         /// Construct System object
         /// </summary>
         public DeploySystem()
         {
             Components = new List<Component>();
-            PatternType = Enums.PatternType.NotApplicable;
+            //PatternType = Enums.PatternType.NotApplicable;
         }
 
 

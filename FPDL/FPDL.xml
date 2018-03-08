@@ -1658,11 +1658,6 @@
             Pattern reference
             </summary>
         </member>
-        <member name="P:FPDL.Deploy.DeploySystem.PatternType">
-            <summary>
-            Pattern Type (internal use)
-            </summary>
-        </member>
         <member name="M:FPDL.Deploy.DeploySystem.#ctor">
             <summary>
             Construct System object
@@ -2068,41 +2063,6 @@
             <param name="filename"></param>
             <param name="overwrite"></param>
         </member>
-        <member name="T:FPDL.PatternParser">
-            <summary>
-            FPDL Pattern Parser
-            </summary>
-        </member>
-        <member name="M:FPDL.PatternParser.Load(System.Xml.Linq.XDocument)">
-            <summary>
-            Create a PatternObject from an FPDL Pattern document
-            </summary>
-            <param name="fpdlDoc"></param>
-            <returns></returns>
-        </member>
-        <member name="M:FPDL.PatternParser.LoadLibrary(System.Xml.Linq.XDocument)">
-            <summary>
-            Create a PatternLibrary from a FPDL Pattern Library document
-            </summary>
-            <param name="fpdlDoc"></param>
-            <returns></returns>
-        </member>
-        <member name="M:FPDL.PatternParser.Save(FPDL.Pattern.PatternObject,System.String,System.Boolean)">
-            <summary>
-            Save a PatternObject to a FPDL Pattern document
-            </summary>
-            <param name="pattern"></param>
-            <param name="filename"></param>
-            <param name="overwrite"></param>
-        </member>
-        <member name="M:FPDL.PatternParser.Save(FPDL.Pattern.PatternLibrary,System.String,System.Boolean)">
-            <summary>
-            Save a PatternObject to a FPDL Pattern document
-            </summary>
-            <param name="library"></param>
-            <param name="filename"></param>
-            <param name="overwrite"></param>
-        </member>
         <member name="T:FPDL.FpdlWriter">
             <summary>
             Write FPDL documents to the filesystem
@@ -2501,26 +2461,6 @@
             Get a TreeNode
             </summary>
             <returns></returns>
-        </member>
-        <member name="T:FPDL.PolicyParser">
-            <summary>
-            Read a FPDL Policy document and creata a PolicyObject
-            </summary>
-        </member>
-        <member name="M:FPDL.PolicyParser.Load(System.Xml.Linq.XDocument)">
-            <summary>
-            Create a DesignObject from a FPDL Deploy document
-            </summary>
-            <param name="fpdlDoc"></param>
-            <returns></returns>
-        </member>
-        <member name="M:FPDL.PolicyParser.Save(FPDL.Policy.PolicyObject,System.String,System.Boolean)">
-            <summary>
-            Save a PolicyObject to a FPDL Deploy document
-            </summary>
-            <param name="deploy"></param>
-            <param name="filename"></param>
-            <param name="overwrite"></param>
         </member>
         <member name="T:FPDL.Policy.PolicyEntity">
             <summary>
