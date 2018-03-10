@@ -69,14 +69,14 @@ namespace FPDL.Deploy
                 HostName = fpdl.Element("hostName").Value;
                 if (fpdl.Element("logging") != null)
                 {
-                    foreach (XElement server in fpdl.Elements("server"))
+                    foreach (XElement server in fpdl.Element("logging").Elements("server"))
                     {
                         Server serv = new Server
                         {
                             Name = server.Value,
-                            Protocol = server.Attribute("protocol").Value,
-                            Transport = server.Attribute("transport").Value,
-                            Port = server.Attribute("port").Value
+                            Protocol = server.Attribute("protocol").Value ?? "syslog",
+                            Transport = server.Attribute("transport").Value ?? "UDP",
+                            Port = server.Attribute("port").Value ?? "514"
                         };
                         Logging.Add(serv);
                     }

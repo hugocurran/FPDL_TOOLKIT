@@ -119,7 +119,7 @@ namespace FPDL.Deploy
             foreach (string fom in RTI.FomUri)
                 rti.Element(ns + "fom").Add(new XElement(ns + "uri", fom));
             foreach (string fom in RTI.FomFile)
-                rti.Element(ns + "fom").Add(new XElement(ns + "uri", fom));
+                rti.Element(ns + "fom").Add(new XElement(ns + "fileName", fom));
             fpdl.Add(rti);
             return fpdl;
         }
